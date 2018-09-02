@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b94d796c-dde9-4de5-9c42-14a01e799fc4" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/out/" />
+    <list default="true" id="50f67880-fd28-4fde-b368-6ab48eb12f70" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Martin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Martin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ecj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecj.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Empleado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Solucion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Tarea.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/Empleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/Tarea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/Tarea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ec/simple/SimpleFitness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/simple/SimpleFitness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividual.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividual.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpecies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpecies.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,65 +29,45 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FUSProjectUsageTrigger">
-    <session id="-1966729238">
+    <session id="-988088992">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.30" value="1" />
-          <entry key="project.open.time.32" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="1" />
-          <entry key="iml" value="3" />
-          <entry key="java" value="7" />
-          <entry key="params" value="1" />
-          <entry key="xml" value="2" />
+          <entry key="java" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="1" />
-          <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="7" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="XML" value="2" />
+          <entry key="JAVA" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="iml" value="2" />
-          <entry key="java" value="1754" />
+          <entry key="java" value="1066" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="IDEA_MODULE" value="2" />
-          <entry key="JAVA" value="1754" />
+          <entry key="JAVA" value="1066" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Test.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/Empleado.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Classes/Empleado.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+            <state relative-caret-position="470">
+              <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
               <folding>
+                <element signature="e#681#682#0" expanded="true" />
+                <element signature="e#713#714#0" expanded="true" />
                 <element signature="e#834#835#0" expanded="true" />
                 <element signature="e#863#864#0" expanded="true" />
               </folding>
@@ -77,10 +76,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Classes/Tarea.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/Tarea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
               <folding>
                 <element signature="e#474#475#0" expanded="true" />
                 <element signature="e#505#506#0" expanded="true" />
@@ -90,17 +89,94 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Classes/Solucion.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="-241">
+              <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#Solucion#0;class#Solucion#0" />
-                <element signature="e#2382#2383#0" expanded="true" />
-                <element signature="e#2419#2420#0" expanded="true" />
-                <element signature="e#2454#2455#0" expanded="true" />
-                <element signature="e#2481#2482#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ec/simple/SimpleFitness.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="37">
+              <caret line="36" column="15" lean-forward="true" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+              <folding>
+                <element signature="e#1174#1175#0" expanded="true" />
+                <element signature="e#1206#1207#0" expanded="true" />
+                <element signature="e#1580#1581#0" expanded="true" />
+                <element signature="e#1626#1627#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividual.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+              <folding>
+                <element signature="docComment;class#IntegerVectorIndividual#0" />
+                <element signature="e#4146#4147#0" expanded="true" />
+                <element signature="e#4186#4187#0" expanded="true" />
+                <element signature="e#4244#4245#0" expanded="true" />
+                <element signature="e#4289#4290#0" expanded="true" />
+                <element signature="e#4327#4328#0" expanded="true" />
+                <element signature="e#4364#4365#0" expanded="true" />
+                <element signature="e#4413#4414#0" expanded="true" />
+                <element signature="e#4452#4453#0" expanded="true" />
+                <element signature="e#4056#4057#0" expanded="true" />
+                <element signature="e#4136#4137#0" expanded="true" />
+                <element signature="method#defaultCrossover#0;class#IntegerVectorIndividual#0" />
+                <element signature="docComment;method#split#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#split#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#join#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#randomValueFromClosedInterval#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#defaultMutate#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#reset#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#hashCode#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#genotypeToStringForHumans#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#genotypeToString#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#parseGenotype#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#equals#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#writeGenotype#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#readGenotype#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#clamp#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#setGenomeLength#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#isInRange#0;class#IntegerVectorIndividual#0" />
+                <element signature="method#distanceTo#0;class#IntegerVectorIndividual#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpecies.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="445">
+              <caret line="174" column="5" lean-forward="true" selection-start-line="174" selection-start-column="5" selection-end-line="174" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#IntegerVectorSpecies#0" />
+                <element signature="docComment;field#minGene#0;class#IntegerVectorSpecies#0" />
+                <element signature="docComment;field#maxGene#0;class#IntegerVectorSpecies#0" />
+                <element signature="docComment;field#mutationType#0;class#IntegerVectorSpecies#0" />
+                <element signature="docComment;field#randomWalkProbability#0;class#IntegerVectorSpecies#0" />
+                <element signature="docComment;field#mutationIsBounded#0;class#IntegerVectorSpecies#0" />
+                <element signature="docComment;field#mutationIsBoundedDefined#0;class#IntegerVectorSpecies#0" />
+                <element signature="e#7430#7431#0" expanded="true" />
+                <element signature="e#7476#7477#0" expanded="true" />
+                <element signature="e#7542#7543#0" expanded="true" />
+                <element signature="e#7574#7575#0" expanded="true" />
+                <element signature="e#7667#7668#0" expanded="true" />
+                <element signature="e#7699#7700#0" expanded="true" />
+                <element signature="e#7692#7693#0" expanded="true" />
+                <element signature="e#7716#7717#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,91 +184,58 @@
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>iterTareas</find>
-      <find>cantTareasPorEmpleado</find>
-      <find>tiempoTotalPorEmpleado</find>
-      <find>tiempoPorEmpleado</find>
-      <find>dedicacion</find>
-      <find>pasadoDeTiempo</find>
+      <find>limites</find>
+      <find>setFitness</find>
+      <find>fitness</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/Classes/Programador.java" />
-        <option value="$PROJECT_DIR$/Test.iml" />
-        <option value="$PROJECT_DIR$/src/Classes/Empleado.java" />
-        <option value="$PROJECT_DIR$/src/Test.java" />
-        <option value="$PROJECT_DIR$/src/Controllers/ControladorSolucion.java" />
-        <option value="$PROJECT_DIR$/src/Classes/Tarea.java" />
-        <option value="$PROJECT_DIR$/src/Classes/Solucion.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/app/p1e1/Empleado.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/app/p1e1/Tarea.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividual.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpecies.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/simple/SimpleFitness.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
     <option name="height" value="698" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
-              <item name="Practico1" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Test" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="ecj" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ecj" type="2674bda8:ScopeViewTreeModel$GroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Practico1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Practico1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Practico1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Test" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files/Java/ecj" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -206,105 +249,107 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Test" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="Test" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b94d796c-dde9-4de5-9c42-14a01e799fc4" name="Default Changelist" comment="" />
-      <created>1534802789343</created>
+      <changelist id="50f67880-fd28-4fde-b368-6ab48eb12f70" name="Default Changelist" comment="" />
+      <created>1535916014711</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1534802789343</updated>
-      <workItem from="1534802795542" duration="944000" />
-      <workItem from="1534952602706" duration="4432000" />
-      <workItem from="1534964585342" duration="7473000" />
+      <updated>1535916014711</updated>
+      <workItem from="1535916016677" duration="10991000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12849000" />
+    <option name="totallyTimeSpent" value="10991000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13615733" />
+      <window_info id="Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18532526" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5939716" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39893618" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.4432624" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32978722" />
-      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="right" id="Maven Projects" order="4" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Program Files/Java/ecj/src/main/resources/ec/app/tutorial1/tutorial1.params">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/Fitness.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        <state relative-caret-position="198">
+          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/Test/Test.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test.iml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/Individual.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+        <state relative-caret-position="224">
+          <caret line="85" column="22" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controllers/ControladorSolucion.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/Empleado.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="470">
+          <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#834#835#0" expanded="true" />
+            <element signature="e#863#864#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/dictionaries/Martin.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/reflect/Array.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpecies.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+        <state relative-caret-position="445">
+          <caret line="174" column="5" lean-forward="true" selection-start-line="174" selection-start-column="5" selection-end-line="174" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#IntegerVectorSpecies#0" />
+            <element signature="docComment;field#minGene#0;class#IntegerVectorSpecies#0" />
+            <element signature="docComment;field#maxGene#0;class#IntegerVectorSpecies#0" />
+            <element signature="docComment;field#mutationType#0;class#IntegerVectorSpecies#0" />
+            <element signature="docComment;field#randomWalkProbability#0;class#IntegerVectorSpecies#0" />
+            <element signature="docComment;field#mutationIsBounded#0;class#IntegerVectorSpecies#0" />
+            <element signature="docComment;field#mutationIsBoundedDefined#0;class#IntegerVectorSpecies#0" />
+            <element signature="e#7430#7431#0" expanded="true" />
+            <element signature="e#7476#7477#0" expanded="true" />
+            <element signature="e#7542#7543#0" expanded="true" />
+            <element signature="e#7574#7575#0" expanded="true" />
+            <element signature="e#7667#7668#0" expanded="true" />
+            <element signature="e#7699#7700#0" expanded="true" />
+            <element signature="e#7692#7693#0" expanded="true" />
+            <element signature="e#7716#7717#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Classes/Tarea.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/Tarea.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        <state relative-caret-position="340">
+          <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
           <folding>
             <element signature="e#474#475#0" expanded="true" />
             <element signature="e#505#506#0" expanded="true" />
@@ -312,114 +357,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Classes/Empleado.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/simple/SimpleFitness.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        <state relative-caret-position="37">
+          <caret line="36" column="15" lean-forward="true" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
           <folding>
-            <element signature="e#834#835#0" expanded="true" />
-            <element signature="e#863#864#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1626#1627#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividual.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="190">
+          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+          <folding>
+            <element signature="docComment;class#IntegerVectorIndividual#0" />
+            <element signature="e#4146#4147#0" expanded="true" />
+            <element signature="e#4186#4187#0" expanded="true" />
+            <element signature="e#4244#4245#0" expanded="true" />
+            <element signature="e#4289#4290#0" expanded="true" />
+            <element signature="e#4327#4328#0" expanded="true" />
+            <element signature="e#4364#4365#0" expanded="true" />
+            <element signature="e#4413#4414#0" expanded="true" />
+            <element signature="e#4452#4453#0" expanded="true" />
+            <element signature="e#4056#4057#0" expanded="true" />
+            <element signature="e#4136#4137#0" expanded="true" />
+            <element signature="method#defaultCrossover#0;class#IntegerVectorIndividual#0" />
+            <element signature="docComment;method#split#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#split#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#join#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#randomValueFromClosedInterval#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#defaultMutate#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#reset#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#hashCode#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#genotypeToStringForHumans#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#genotypeToString#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#parseGenotype#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#equals#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#writeGenotype#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#readGenotype#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#clamp#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#setGenomeLength#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#isInRange#0;class#IntegerVectorIndividual#0" />
+            <element signature="method#distanceTo#0;class#IntegerVectorIndividual#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Classes/Solucion.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="-241">
+          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Solucion#0;class#Solucion#0" />
-            <element signature="e#2382#2383#0" expanded="true" />
-            <element signature="e#2419#2420#0" expanded="true" />
-            <element signature="e#2454#2455#0" expanded="true" />
-            <element signature="e#2481#2482#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Test</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>ecj</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

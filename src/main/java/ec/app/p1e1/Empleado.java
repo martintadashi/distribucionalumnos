@@ -1,4 +1,4 @@
-package Classes;
+package ec.app.p1e1;
 
 import com.google.gson.Gson;
 

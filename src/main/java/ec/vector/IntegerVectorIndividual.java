@@ -8,6 +8,8 @@
 package ec.vector;
 
 import ec.*;
+import ec.app.p1e1.Empleado;
+import ec.app.p1e1.Tarea;
 import ec.util.*;
 import java.io.*;
 
@@ -71,7 +73,26 @@ public class IntegerVectorIndividual extends VectorIndividual
     {
     public static final String P_INTEGERVECTORINDIVIDUAL = "int-vect-ind";
     public int[] genome;
-    
+
+    protected Empleado[] Empleados;
+    protected Tarea[] Tareas;
+
+    public Empleado[] getEmpleados() {
+        return Empleados;
+    }
+
+    public void setEmpleados(Empleado[] empleados) {
+        Empleados = empleados;
+    }
+
+    public Tarea[] getTareas() {
+        return Tareas;
+    }
+
+    public void setTareas(Tarea[] tareas) {
+        Tareas = tareas;
+    }
+
     public Parameter defaultBase()
         {
         return VectorDefaults.base().push(P_INTEGERVECTORINDIVIDUAL);

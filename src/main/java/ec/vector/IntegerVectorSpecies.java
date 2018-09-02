@@ -153,6 +153,26 @@ public class IntegerVectorSpecies extends VectorSpecies
         genomes which have extended beyond the genome length.  */
     boolean mutationIsBoundedDefined;
 
+    protected int [] empleados_por_tarea;
+    protected int E;
+    protected int T;
+    protected int F;
+
+    public int [] getEmpleadosPorCadaTarea(){
+        return empleados_por_tarea;
+    }
+
+    public int getCantEmpleados() {
+        return E;
+    }
+
+    public int getCantTareas() {
+        return T;
+    }
+
+    public int getF() {
+        return F;
+    }
     
     public long maxGene(int gene)
         {

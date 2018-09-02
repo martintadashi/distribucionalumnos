@@ -41,6 +41,11 @@ public class SimpleFitness extends Fitness
     {
     private double fitness;
     protected boolean isIdeal;
+    protected double minFitness;
+
+    public double getMinFitness() {
+        return minFitness;
+    }
 
     public Parameter defaultBase()
         {
