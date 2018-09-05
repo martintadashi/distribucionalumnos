@@ -7,7 +7,11 @@
 
 package ec.vector;
 import ec.*;
+import ec.app.p1e1.Empleado;
+import ec.app.p1e1.Tarea;
 import ec.util.*;
+
+import java.io.*;
 
 /* 
  * IntegerVectorSpecies.java
@@ -88,6 +92,9 @@ import ec.util.*;
  
 public class IntegerVectorSpecies extends VectorSpecies
     {
+    public final static String RUTA_TAREAS="ruta-tareas";
+    public final static String RUTA_EMPLEADOS="ruta-empleados";
+
     public final static String P_MINGENE = "min-gene";
     public final static String P_MAXGENE = "max-gene";
     
@@ -154,20 +161,36 @@ public class IntegerVectorSpecies extends VectorSpecies
     boolean mutationIsBoundedDefined;
 
     protected int [] empleados_por_tarea;
-    protected int E;
-    protected int T;
+    protected Empleado[] empleados;
+    protected Tarea[] tareas;
     protected int F;
+
+    public Empleado[] getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(Empleado[] empleados) {
+        empleados = empleados;
+    }
+
+    public Tarea[] getTareas() {
+        return tareas;
+    }
+
+    public void setTareas(Tarea[] tareas) {
+        tareas = tareas;
+    }
 
     public int [] getEmpleadosPorCadaTarea(){
         return empleados_por_tarea;
     }
 
     public int getCantEmpleados() {
-        return E;
+        return (empleados == null) ? 0 : empleados.length;
     }
 
     public int getCantTareas() {
-        return T;
+        return (tareas == null) ? 0 : tareas.length;
     }
 
     public int getF() {
@@ -252,6 +275,96 @@ public class IntegerVectorSpecies extends VectorSpecies
         mutationType = fill(new int[genomeSize + 1], -1);
         mutationIsBounded = new boolean[genomeSize + 1];
         randomWalkProbability = new double[genomeSize + 1];
+
+
+
+        // Cargo los empleados y las tareas de los archivos
+
+        tareas = new Tarea[genomeSize];
+
+        try{
+            String ruta_tareas = state.parameters.getStringWithDefault(base.push(RUTA_TAREAS), def.push(RUTA_TAREAS), null);
+            System.out.println(ruta_tareas);
+            File fin = new File(ruta_tareas);
+            FileInputStream fis = new FileInputStream(fin);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+
+            // 1er linea
+            F = Integer.parseInt(br.readLine());
+
+            // 2da linea
+            int index = 0;
+            String [] line_tokens = br.readLine().split(" ");
+            for (String id: line_tokens) {
+                tareas[index] = new Tarea(Integer.parseInt(id));
+                index++;
+            }
+
+            // 3er linea
+            index = 0;
+            line_tokens = br.readLine().split(" ");
+            for (String dias: line_tokens) {
+                tareas[index].setEsfuerzo(Integer.parseInt(dias));
+                index++;
+            }
+
+            br.close();
+
+        } catch(IOException e ){
+            state.output.fatal (e + ", error al leer el archivo de tareas");
+        }
+
+
+        empleados = new Empleado[genomeSize];
+
+
+        try{
+            String ruta_empleados = state.parameters.getStringWithDefault(base.push(RUTA_EMPLEADOS), def.push(RUTA_EMPLEADOS), null);
+            System.out.println(ruta_empleados);
+            File fin = new File(ruta_empleados);
+            FileInputStream fis = new FileInputStream(fin);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+
+            // 1er linea
+            int index = 0;
+            String [] line_tokens = br.readLine().split(" ");
+            for (String id: line_tokens) {
+                empleados[index] = new Empleado(Integer.parseInt(id));
+                index++;
+            }
+
+            // 2da linea
+            index = 0;
+            line_tokens = br.readLine().split(" ");
+            for (String dedicacion: line_tokens) {
+                empleados[index].setDedicacion(Integer.parseInt(dedicacion));
+                index++;
+            }
+
+            // 3er linea
+            index = 0;
+            line_tokens = br.readLine().split(" ");
+            for (String habilidad: line_tokens) {
+                empleados[index].setHabilidad(Float.parseFloat(habilidad));
+                index++;
+            }
+
+            // 4ta linea
+            index = 0;
+            line_tokens = br.readLine().split(" ");
+            for (String sueldo: line_tokens) {
+                empleados[index].setSueldo(Integer.parseInt(sueldo));
+                index++;
+            }
+
+            br.close();
+
+        } catch(IOException e ){
+            state.output.fatal (e + ", error al leer el archivo de empleados");
+        }
+
         
 
         // LOADING GLOBAL MIN/MAX GENES
