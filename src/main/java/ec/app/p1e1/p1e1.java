@@ -25,8 +25,8 @@ public class p1e1 extends Problem implements SimpleProblemForm
             // Fitness
             int costoProyecto = 0;
             int posMax = 0;
-            Tarea[] tareas = ind2.getTareas();
-            Empleado[] empleados = ind2.getEmpleados();
+            Tarea[] tareas = t_spe.getTareas();
+            Empleado[] empleados = t_spe.getEmpleados();
 
             if (!(ind2.fitness instanceof SimpleFitness)) {
                 state.output.fatal("Error. No es un SimpleFitness", null);

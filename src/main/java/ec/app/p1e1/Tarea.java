@@ -9,9 +9,8 @@ public class Tarea {
     private int id;             // entre 1 y T
     private int esfuerzo;       // esfuerzo requerido en horas
 
-    public Tarea(int id, int esfuerzo) {
+    public Tarea(int id) {
         this.id = id;
-        this.esfuerzo = esfuerzo;
     }
 
     public int getId() {

@@ -11,11 +11,8 @@ public class Empleado {
     private int sueldo;         // sueldo diario
     private int dedicacion;     // dedicacion horaria diaria
 
-    public Empleado(int id, float habilidad, int sueldo, int dedicacion) {
+    public Empleado(int id) {
         this.id = id;
-        this.habilidad = habilidad;
-        this.sueldo = sueldo;
-        this.dedicacion = dedicacion;
     }
 
     public int getId() {
