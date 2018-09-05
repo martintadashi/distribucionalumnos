@@ -1,5 +1,5 @@
 parent.0 = ../../simple/simple.params
-eval.problem = ec.app.p1e1
+eval.problem = ec.app.p1e1.p1e1
 state = ec.simple.SimpleEvolutionState
 
 quit-on-run-complete = true
@@ -7,19 +7,18 @@ quit-on-run-complete = true
 pop.subpop.0.size = 100
 generations = 10000
 
-pop.subpop.0.species = ec.vector.IntegerVectorSpecies  # Vectors
-
+pop.subpop.0.species = ec.vector.IntegerVectorSpecies
 
 pop.subpop.0.species.ind = ec.vector.IntegerVectorIndividual
 # valores min y max de los elementos del vector
 pop.subpop.0.species.min-gene = 1
-pop.subpop.0.species.max-gene = E
+pop.subpop.0.species.max-gene = 5
 
 pop.subpop.0.species.fitness = ec.simple.SimpleFitness
 
-pop.subpop.0.species.genome-size = T
+pop.subpop.0.species.genome-size = 8
 
-pop.subpop.0.species.crossover-type = uniform
+pop.subpop.0.species.crossover-type = one
 pop.subpop.0.species.crossover-prob = 0.5
 
 # agregar otra mutacion??
@@ -29,8 +28,8 @@ pop.subpop.0.species.random-walk-probability = 0.9
 
 pop.subpop.0.species.mutation-stdev = 0.01
 
-pop.subpop.0.species.pipe = ec.vector.VectorMutationPipeline
-pop.subpop.0.species.pipe.source.0 = ec.vector.VectorCrossoverPipeline
+pop.subpop.0.species.pipe = ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0 = ec.vector.breed.VectorCrossoverPipeline
 pop.subpop.0.species.pipe.source.0.source.0 = ec.select.TournamentSelection
 pop.subpop.0.species.pipe.source.0.source.1 = same
 pop.subpop.0.species.pipe.source.0.source.0.size = 2

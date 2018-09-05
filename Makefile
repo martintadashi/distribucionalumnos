@@ -14,7 +14,8 @@
 # Prepare for distribution:		make dist
 #
 
-JAVAC = javac ${JAVACFLAGS}
+#JAVAC = javac ${JAVACFLAGS}
+JAVAC = javac -sourcepath src/ -classpath lib/gson-2.8.5.jar ${JAVACFLAGS} -Xlint
 
 CLASSROOT = target/classes
 JAVACFLAGS = -target 1.5 -source 1.5 ${FLAGS} -d ${CLASSROOT}
@@ -104,6 +105,7 @@ ec/vector/breed/*.java \
 ec/parsimony/*.java\
 ec/rule/*.java \
 ec/rule/breed/*.java \
+ec/app/p1e1/*.java \
 
 RSRCROOT=src/main/resources/
 SRCROOT=src/main/java/
