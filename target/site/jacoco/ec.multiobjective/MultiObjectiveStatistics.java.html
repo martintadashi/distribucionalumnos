@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MultiObjectiveStatistics.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecj</a> &gt; <a href="index.source.html" class="el_package">ec.multiobjective</a> &gt; <span class="el_source">MultiObjectiveStatistics.java</span></div><h1>MultiObjectiveStatistics.java</h1><pre class="source lang-java linenums">/*
+  Copyright 2010 by Sean Luke and George Mason University
+  Licensed under the Academic Free License version 3.0
+  See the file &quot;LICENSE&quot; for more information
+*/
+
+package ec.multiobjective;
+
+import java.util.ArrayList;
+
+import ec.EvolutionState;
+import ec.Individual;
+import ec.simple.SimpleStatistics;
+import ec.util.*;
+import java.io.*;
+
+/* 
+ * MultiObjectiveStatistics.java
+ * 
+ * Created: Thu Feb 04 2010
+ * By: Faisal Abidi and Sean Luke
+ *
+ */
+
+/*
+ * MultiObjectiveStatistics are a SimpleStatistics subclass which overrides the finalStatistics
+ * method to output the current Pareto Front in various ways:
+ *
+ * &lt;ul&gt;
+ * &lt;li&gt;&lt;p&gt;Every individual in the Pareto Front is written to the end of the statistics log.
+ * &lt;li&gt;&lt;p&gt;A summary of the objective values of the Pareto Front is written to stdout.
+ * &lt;li&gt;&lt;p&gt;The objective values of the Pareto Front are written in tabular form to a special
+ * Pareto Front file specified with the parameters below.  This file can be easily read by
+ * gnuplot or Excel etc. to display the Front (if it's 2D or perhaps 3D).
+ * 
+ * &lt;p&gt;
+ * &lt;b&gt;Parameters&lt;/b&gt;&lt;br&gt;
+ * &lt;table&gt;
+ * &lt;tr&gt;
+ * &lt;td valign=top&gt;&lt;i&gt;base&lt;/i&gt;.&lt;tt&gt;front&lt;/tt&gt;&lt;br&gt;
+ * &lt;font size=-1&gt;String (a filename)&lt;/font&gt;&lt;/td&gt;
+ * &lt;td valign=top&gt;(The Pareto Front file, if any)&lt;/td&gt;
+ * &lt;/tr&gt;
+ * &lt;/table&gt;
+ */
+
+<span class="nc" id="L47">public class MultiObjectiveStatistics extends SimpleStatistics</span>
+    {   
+    /** front file parameter */
+    public static final String P_PARETO_FRONT_FILE = &quot;front&quot;;
+    public static final String P_SILENT_FRONT_FILE = &quot;silent.front&quot;;
+        
+    public boolean silentFront;
+
+    /** The pareto front log */
+<span class="nc" id="L56">    public int frontLog = 0;  // stdout by default</span>
+
+    public void setup(final EvolutionState state, final Parameter base)
+        {
+<span class="nc" id="L60">        super.setup(state,base);</span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (state.parameters.exists(base.push(P_DO_DESCRIPTION),null))</span>
+<span class="nc" id="L63">            state.output.warning(&quot;Descriptions are not printed out by &quot; + this.getClass().getSimpleName(), base.push(P_DO_DESCRIPTION));</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (state.parameters.exists(base.push(P_DO_PER_GENERATION_DESCRIPTION),null))</span>
+<span class="nc" id="L65">            state.output.warning(&quot;Descriptions are not printed out by &quot; + this.getClass().getSimpleName(), base.push(P_DO_PER_GENERATION_DESCRIPTION));</span>
+        
+<span class="nc" id="L67">        silentFront = state.parameters.getBoolean(base.push(P_SILENT), null, false);</span>
+        // yes, we're stating it a second time.  It's correct logic.
+<span class="nc" id="L69">        silentFront = state.parameters.getBoolean(base.push(P_SILENT_FRONT_FILE), null, silentFront);</span>
+        
+<span class="nc" id="L71">        File frontFile = state.parameters.getFile(base.push(P_PARETO_FRONT_FILE),null);</span>
+
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (silentFront)</span>
+            {
+<span class="nc" id="L75">            frontLog = Output.NO_LOGS;</span>
+            }
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        else if (frontFile!=null)</span>
+            {
+            try
+                {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">                frontLog = state.output.addLog(frontFile, !compress, compress);</span>
+                }
+<span class="nc" id="L83">            catch (IOException i)</span>
+                {
+<span class="nc" id="L85">                state.output.fatal(&quot;An IOException occurred while trying to create the log &quot; + frontFile + &quot;:\n&quot; + i);</span>
+<span class="nc" id="L86">                }</span>
+            }
+<span class="nc" id="L88">        else state.output.warning(&quot;No Pareto Front statistics file specified, printing to stdout at end.&quot;, base.push(P_PARETO_FRONT_FILE));</span>
+<span class="nc" id="L89">        }</span>
+
+
+    /** Logs the best individual of the generation. */
+<span class="nc" id="L93">    boolean warned = false;</span>
+    public void postEvaluationStatistics(final EvolutionState state)
+        {
+<span class="nc" id="L96">        super.bypassPostEvaluationStatistics(state);</span>
+        
+<span class="nc" id="L98">        state.output.println(&quot;\nGeneration: &quot; + state.generation, statisticslog);</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        for(int s = 0; s &lt; state.population.subpops.size(); s++)</span>
+            {
+<span class="nc bnc" id="L101" title="All 4 branches missed.">            if (doMessage || doGeneration)</span>
+                {
+                // build front
+<span class="nc" id="L104">                ArrayList&lt;Individual&gt; sortedFront = MultiObjectiveFitness.getSortedParetoFront(state.population.subpops.get(s).individuals);</span>
+                
+<span class="nc bnc" id="L106" title="All 2 branches missed.">                if (doGeneration)</span>
+                    {
+                    // Print out the front
+<span class="nc" id="L109">                    state.output.println(&quot;Subpopulation &quot; + s + &quot;:&quot;, statisticslog);</span>
+<span class="nc" id="L110">                    state.output.println(&quot;\nFront: &quot;, statisticslog);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">                    for (int i = 0; i &lt; sortedFront.size(); i++)</span>
+<span class="nc" id="L112">                        ((Individual)(sortedFront.get(i))).printIndividualForHumans(state, statisticslog);</span>
+                    }
+                                
+<span class="nc bnc" id="L115" title="All 4 branches missed.">                if (doMessage &amp;&amp; !silentPrint) </span>
+                    {
+<span class="nc" id="L117">                    StringBuilder msg = new StringBuilder();</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                    for(int i = 0; i &lt; sortedFront.size(); i++)</span>
+                        {
+<span class="nc" id="L120">                        Individual ind = (Individual)(sortedFront.get(i));</span>
+<span class="nc" id="L121">                        MultiObjectiveFitness mof = (MultiObjectiveFitness) (ind.fitness);</span>
+<span class="nc" id="L122">                        double[] objectives = mof.getObjectives();</span>
+
+<span class="nc" id="L124">                        msg.append(&quot;[&quot;);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">                        for(int j = 0; j &lt; objectives.length; j++)</span>
+                            {
+<span class="nc" id="L127">                            msg.append(objectives[j]);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                            if (j &lt; (objectives.length - 1)) msg.append(&quot; &quot;);</span>
+                            }
+<span class="nc" id="L130">                        msg.append(&quot;] &quot;);</span>
+                        }
+<span class="nc" id="L132">                    state.output.message(&quot;Subpop &quot; + s + &quot; front: &quot; + msg);</span>
+                    }
+                }
+            }
+<span class="nc" id="L136">        }</span>
+
+    /** Logs the best individual of the run. */
+    public void finalStatistics(final EvolutionState state, final int result)
+        {
+<span class="nc" id="L141">        bypassFinalStatistics(state, result);  // just call super.super.finalStatistics(...)</span>
+
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (doFinal) state.output.println(&quot;\n\n\n PARETO FRONTS&quot;, statisticslog);</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        for (int s = 0; s &lt; state.population.subpops.size(); s++)</span>
+            {
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (doFinal) state.output.println(&quot;\n\nPareto Front of Subpopulation &quot; + s, statisticslog);</span>
+
+            // build front
+<span class="nc" id="L149">            ArrayList&lt;Individual&gt; sortedFront = MultiObjectiveFitness.getSortedParetoFront(state.population.subpops.get(s).individuals);</span>
+                        
+            // print out front to statistics log
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (doFinal)</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">                for (int i = 0; i &lt; sortedFront.size(); i++)</span>
+<span class="nc" id="L154">                    ((Individual)(sortedFront.get(i))).printIndividualForHumans(state, statisticslog);</span>
+                
+            // write short version of front out to disk
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (!silentFront)</span>
+                {
+<span class="nc bnc" id="L159" title="All 2 branches missed.">                if (state.population.subpops.size() &gt; 1)</span>
+<span class="nc" id="L160">                    state.output.println(&quot;Subpopulation &quot; + s, frontLog);</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">                for (int i = 0; i &lt; sortedFront.size(); i++)</span>
+                    {
+<span class="nc" id="L163">                    Individual ind = (Individual)(sortedFront.get(i));</span>
+<span class="nc" id="L164">                    MultiObjectiveFitness mof = (MultiObjectiveFitness) (ind.fitness);</span>
+<span class="nc" id="L165">                    double[] objectives = mof.getObjectives();</span>
+        
+<span class="nc" id="L167">                    String line = &quot;&quot;;</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">                    for (int f = 0; f &lt; objectives.length; f++)</span>
+<span class="nc" id="L169">                        line += (objectives[f] + &quot; &quot;);</span>
+<span class="nc" id="L170">                    state.output.println(line, frontLog);</span>
+                    }
+                }
+            }
+<span class="nc" id="L174">        }</span>
+    }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

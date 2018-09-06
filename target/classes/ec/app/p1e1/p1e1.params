@@ -7,9 +7,9 @@ quit-on-run-complete = true
 pop.subpop.0.size = 100
 generations = 10000
 
-pop.subpop.0.species = ec.vector.IntegerVectorSpecies
+pop.subpop.0.species = ec.vector.IntegerVectorSpeciesP1E1
 
-pop.subpop.0.species.ind = ec.vector.IntegerVectorIndividual
+pop.subpop.0.species.ind = ec.vector.IntegerVectorIndividualP1E1
 # valores min y max de los elementos del vector
 pop.subpop.0.species.min-gene = 1
 pop.subpop.0.species.max-gene = 5
@@ -33,3 +33,7 @@ pop.subpop.0.species.pipe.source.0 = ec.vector.breed.VectorCrossoverPipeline
 pop.subpop.0.species.pipe.source.0.source.0 = ec.select.TournamentSelection
 pop.subpop.0.species.pipe.source.0.source.1 = same
 pop.subpop.0.species.pipe.source.0.source.0.size = 2
+
+
+pop.subpop.0.species.ruta-empleados=empleados.csv
+pop.subpop.0.species.ruta-tareas=tareas.csv

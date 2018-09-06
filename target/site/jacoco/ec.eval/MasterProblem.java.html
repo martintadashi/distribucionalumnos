@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MasterProblem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecj</a> &gt; <a href="index.source.html" class="el_package">ec.eval</a> &gt; <span class="el_source">MasterProblem.java</span></div><h1>MasterProblem.java</h1><pre class="source lang-java linenums">/*
+  Copyright 2006 by Sean Luke and George Mason University
+  Licensed under the Academic Free License version 3.0
+  See the file &quot;LICENSE&quot; for more information
+*/
+
+
+package ec.eval;
+
+import ec.*;
+import ec.util.*;
+import ec.coevolve.GroupedProblemForm;
+import ec.simple.SimpleProblemForm;
+import ec.steadystate.QueueIndividual;
+import java.util.ArrayList;
+
+import java.io.*;
+
+/**
+ * MasterProblem.java
+ *
+
+ &lt;p&gt;The MasterProblem is a special ECJ problem that performs evaluations by sending them to
+ a remote Slave process to be evaluated.  As it implements both the
+ &lt;i&gt;SimpleProblemForm&lt;/i&gt; and the &lt;i&gt;GroupedProblemForm&lt;/i&gt; interfaces, the MasterProblem
+ can perform both traditional EC evaluations as well as coevolutionary evaluations.
+ 
+ &lt;p&gt;When a MasterProblem is specified by the Evaluator, the Problem is set up as usual, but then
+ the MasterProblem replaces it.  The Problem is not garbage collected -- instead, it's hung off the
+ MasterProblem's &lt;tt&gt;problem&lt;/tt&gt; variable.  In some sense the Problem is &quot;pushed aside&quot;.
+ 
+ &lt;p&gt;If the Evaluator begins by calling prepareToEvaluate(), and we're not doing coevolution, then
+ the MasterProblem does not evaluate individuals immediately.  Instead, it waits for at most 
+ &lt;i&gt;jobSize&lt;/i&gt; individuals be submitted via evaluate(), and then sends them all off in a group,
+ called a &lt;i&gt;job&lt;/i&gt;, to the remote slave.  In other situations (coevolution, or no prepareToEvaluate())
+ the MasterProblem sends off individuals immediately.
+ 
+ &lt;p&gt;It may be the case that no Slave has space in its queue to accept a new job containing, among others,
+ your new individual.  In this case, calling evaluate() will block until one comes available.  You can avoid
+ this by testing for availability first by calling canEvaluate().  Note that canEvaluate() and evaluate()
+ together are not atomic and so you should not rely on this facility if your system uses multiple threads.
+ 
+ &lt;P&gt;When the individuals or their fitnesses return, they are immediately updated in place.  You have three
+ options to wait for them:
+ 
+ &lt;ul&gt;
+ &lt;li&gt;&lt;p&gt;You can wait for all the individuals to finish evaluation by calling finishEvaluating().
+ If you call this method before a job is entirely filled, it will be sent in truncated format (which
+ generally is perfectly fine).  You then block until all the jobs have been completed and the individuals
+ updated.
+    
+ &lt;li&gt;&lt;p&gt;You can block until at least one individual is available, by calling getNextEvaluatedIndividual(),
+ which blocks and then returns the individual that was just completed.
+    
+ &lt;li&gt;&lt;p&gt;You can test in non-blocking fashion to see if an individual is available, by calling 
+ evaluatedIndividualAvailable().  If this returns true, you may then call getNextEvaluatedIndividual()
+ to get the individual.  Note that this isn't atomic, so don't use it if you have multiple threads.
+ &lt;/ul&gt;
+  
+ &lt;p&gt;&lt;b&gt;Parameters&lt;/b&gt;&lt;br&gt;
+ &lt;table&gt;
+ &lt;tr&gt;&lt;td valign=top&gt;&lt;i&gt;base.&lt;/i&gt;&lt;tt&gt;debug-info&lt;/tt&gt;&lt;br&gt;
+ &lt;font size=-1&gt;boolean&lt;/font&gt;&lt;/td&gt;
+ &lt;td valign=top&gt;(whether the system should display information useful for debugging purposes)&lt;br&gt;
+
+ &lt;tr&gt;&lt;td valign=top&gt;&lt;i&gt;base.&lt;/i&gt;&lt;tt&gt;job-size&lt;/tt&gt;&lt;br&gt;
+ &lt;font size=-1&gt;integer &amp;gt; 0 &lt;/font&gt;&lt;/td&gt;
+ &lt;td valign=top&gt;(how large should a job be at most?)&lt;br&gt;
+ &lt;/td&gt;&lt;/tr&gt;
+
+
+ &lt;!-- technically these are handled by the SlaveMonitor --&gt;
+
+ &lt;tr&gt;&lt;td valign=top&gt;&lt;tt&gt;eval.master.port&lt;/tt&gt;&lt;br&gt;
+ &lt;font size=-1&gt;int&lt;/font&gt;&lt;/td&gt;
+ &lt;td valign=top&gt;(the port where the slaves will connect)&lt;br&gt;
+ &lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td valign=top&gt;&lt;tt&gt;eval.compression&lt;/tt&gt;&lt;br&gt;
+ &lt;font size=-1&gt;boolean&lt;/font&gt;&lt;/td&gt;
+ &lt;td valign=top&gt;(whether the communication with the slaves should be compressed or not)&lt;br&gt;
+ &lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td valign=top&gt;&lt;tt&gt;eval.masterproblem.max-jobs-per-slave&lt;/tt&gt;&lt;br&gt;
+ &lt;font size=-1&gt;int&lt;/font&gt;&lt;/td&gt;
+ &lt;td valign=top&gt;(the maximum load (number of jobs) per slave at any point in time)&lt;br&gt;
+ &lt;/td&gt;&lt;/tr&gt;
+
+ &lt;/table&gt;
+
+ * @author Liviu Panait, Keith Sullivan, and Sean Luke
+ * @version 1.0 
+ */
+
+<span class="nc" id="L93">public class MasterProblem extends Problem implements SimpleProblemForm, GroupedProblemForm </span>
+    {
+    private static final long serialVersionUID = 1;
+    
+    public static final String P_DEBUG_INFO = &quot;debug-info&quot;;
+    public static final String P_JOB_SIZE = &quot;job-size&quot;;
+    
+    int jobSize;
+    boolean showDebugInfo;
+    public boolean batchMode;
+    public transient SlaveMonitor monitor;               // note transient.  We rebuild it.
+    public Problem problem;
+
+    // except for the problem, everything else is shallow-cloned
+    public Object clone()
+        {
+<span class="nc" id="L109">        MasterProblem c = (MasterProblem)(super.clone());</span>
+
+        // shallow-cloned stuff
+<span class="nc" id="L112">        c.monitor = monitor;</span>
+<span class="nc" id="L113">        c.batchMode = batchMode;</span>
+<span class="nc" id="L114">        c.jobSize = jobSize; </span>
+        
+<span class="nc" id="L116">        c.showDebugInfo = showDebugInfo;</span>
+
+        // deep-cloned stuff
+<span class="nc" id="L119">        c.problem = (Problem)(problem.clone());</span>
+
+<span class="nc" id="L121">        return c;</span>
+        }
+
+    // setup
+    public void setup(final EvolutionState state, final Parameter base) 
+        {
+<span class="nc" id="L127">        Thread.currentThread().setName(&quot;MainThread: &quot;);</span>
+<span class="nc" id="L128">        super.setup(state, base);</span>
+<span class="nc" id="L129">        showDebugInfo = state.parameters.getBoolean(base.push(P_DEBUG_INFO),null,false);</span>
+                
+<span class="nc" id="L131">        jobSize = state.parameters.getIntWithDefault(base.push(P_JOB_SIZE),null,1);</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        if (jobSize&lt;=0)</span>
+<span class="nc" id="L133">            state.output.fatal(&quot;The job size must be an integer &gt; 0.&quot;, base.push(P_JOB_SIZE));</span>
+
+<span class="nc" id="L135">        batchMode = false;</span>
+<span class="nc" id="L136">        }</span>
+
+    // prepare for a batch of evaluations
+    public void prepareToEvaluate(final EvolutionState state, final int threadnum)
+        {
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        if (jobSize &gt; 1) queue = new ArrayList();</span>
+<span class="nc" id="L142">        batchMode = true;</span>
+<span class="nc" id="L143">        }</span>
+
+    // wait until a batch of evaluations is finished
+    public void finishEvaluating(final EvolutionState state, final int threadnum)
+        {
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        if(showDebugInfo)</span>
+<span class="nc" id="L149">            state.output.message(Thread.currentThread().getName() + &quot;Waiting for all slaves to finish.&quot;);</span>
+<span class="nc" id="L150">        flush(state, threadnum);</span>
+<span class="nc" id="L151">        queue = null;  // get rid of it just in case</span>
+                
+<span class="nc" id="L153">        monitor.waitForAllSlavesToFinishEvaluating( state );</span>
+<span class="nc" id="L154">        batchMode = false;</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if(showDebugInfo)</span>
+<span class="nc" id="L156">            state.output.message(Thread.currentThread().getName() + &quot;All slaves have finished their jobs.&quot;);</span>
+<span class="nc" id="L157">        }</span>
+
+    // evaluate a regular individual
+    public void evaluate(EvolutionState state, Individual ind, int subpopulation, int threadnum)
+        {
+<span class="nc bnc" id="L162" title="All 4 branches missed.">        if (jobSize &gt; 1 &amp;&amp; batchMode == true)    // chunked evaluation mechanism</span>
+            {
+<span class="nc" id="L164">            queue.add(new QueueIndividual(ind, subpopulation));</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (queue.size() &gt;= jobSize)</span>
+<span class="nc" id="L166">                flush(state, threadnum);</span>
+            }
+        else    /// ordinary evaluation mechanism  
+<span class="nc" id="L169">            evaluate(state, new Individual[] { ind }, new int[] { subpopulation }, threadnum);           </span>
+<span class="nc" id="L170">        }</span>
+        
+        
+    ArrayList queue;
+    void flush(EvolutionState state, int threadnum)
+        {
+        int subpopulation;
+<span class="nc bnc" id="L177" title="All 4 branches missed.">        if (queue!=null &amp;&amp; queue.size() &gt; 0 )</span>
+            {
+<span class="nc" id="L179">            Individual[] inds = new Individual[queue.size()];</span>
+<span class="nc" id="L180">            int[] subpopulations = new int[queue.size()];</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            for(int i = 0; i &lt; queue.size(); i++)</span>
+                {
+<span class="nc" id="L183">                QueueIndividual qind = (QueueIndividual)(queue.get(i));</span>
+<span class="nc" id="L184">                inds[i] = qind.ind;</span>
+<span class="nc" id="L185">                subpopulations[i] = qind.subpop; </span>
+                }
+<span class="nc" id="L187">            evaluate(state, inds, subpopulations, threadnum);</span>
+            }
+<span class="nc" id="L189">        queue = new ArrayList();</span>
+<span class="nc" id="L190">        }</span>
+
+
+    // send a group of individuals to one slave for evaluation 
+    void evaluate(EvolutionState state, Individual inds[], int[] subpopulations, int threadnum)
+        {
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if(showDebugInfo)</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">            state.output.message(Thread.currentThread().getName() + &quot;Starting a &quot; + (batchMode ? &quot;batched &quot; : &quot;&quot;) + &quot;SimpleProblemForm evaluation.&quot;);</span>
+
+        // Acquire a slave socket
+<span class="nc" id="L200">        Job job = new Job();</span>
+<span class="nc" id="L201">        job.type = Slave.V_EVALUATESIMPLE;</span>
+<span class="nc" id="L202">        job.inds = inds;</span>
+<span class="nc" id="L203">        job.subPops = subpopulations ;</span>
+<span class="nc" id="L204">        job.updateFitness = new boolean[inds.length]; </span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">        for (int i=0 ; i &lt; inds.length; i++) </span>
+<span class="nc" id="L206">            job.updateFitness[i]=true; </span>
+<span class="nc" id="L207">        monitor.scheduleJobForEvaluation(state,job);</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        if( !batchMode )</span>
+<span class="nc" id="L209">            monitor.waitForAllSlavesToFinishEvaluating( state );</span>
+<span class="nc bnc" id="L210" title="All 4 branches missed.">        if(showDebugInfo) state.output.message(Thread.currentThread().getName() + &quot;Finished a &quot; + (batchMode ? &quot;batched &quot; : &quot;&quot;) + &quot;SimpleProblemForm evaluation.&quot;);</span>
+<span class="nc" id="L211">        }</span>
+        
+        
+        
+
+    /* (non-Javadoc)
+     * @see ec.simple.SimpleProblemForm#describe(ec.EvolutionState, ec.Individual, int, int)
+     */
+    public void describe(EvolutionState state, Individual ind, int subpopulation, int threadnum, int log) 
+        {
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        if ((problem instanceof SimpleProblemForm)) </span>
+            {
+<span class="nc" id="L223">            ((SimpleProblemForm)problem).describe(state, ind, subpopulation, threadnum, log);</span>
+            }
+<span class="nc" id="L225">        }</span>
+
+    /* (non-Javadoc)
+     * @see ec.coevolve.GroupedProblemForm#preprocessPopulation(ec.EvolutionState, ec.Population)
+     */
+    public void preprocessPopulation(final EvolutionState state, Population pop, final boolean[] prepareForFitnessAssessment, boolean countVictoriesOnly)
+        {
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        if (!(problem instanceof GroupedProblemForm)) </span>
+            {
+<span class="nc" id="L234">            state.output.fatal(&quot;MasterProblem.preprocessPopulation(...) invoked, but the underlying Problem is not of GroupedProblemForm&quot;);</span>
+            }
+                
+<span class="nc" id="L237">        ((GroupedProblemForm) problem).preprocessPopulation(state, pop, prepareForFitnessAssessment, countVictoriesOnly);</span>
+<span class="nc" id="L238">        }</span>
+
+    /* (non-Javadoc)
+     * @see ec.coevolve.GroupedProblemForm#postprocessPopulation(ec.EvolutionState, ec.Population)
+     */
+    public int postprocessPopulation(EvolutionState state, Population pop, boolean[] assessFitness, boolean countVictoriesOnly) 
+        {
+<span class="nc bnc" id="L245" title="All 2 branches missed.">        if (!(problem instanceof GroupedProblemForm)) </span>
+            {
+<span class="nc" id="L247">            state.output.fatal(&quot;MasterProblem.postprocessPopulation(...) invoked, but the underlying Problem is not of GroupedProblemForm&quot;);</span>
+            }
+                
+<span class="nc" id="L250">        return ((GroupedProblemForm) problem).postprocessPopulation(state, pop, assessFitness, countVictoriesOnly);</span>
+        }
+
+    // regular coevolutionary evaluation
+    public void evaluate(EvolutionState state, Individual[] inds,
+        boolean[] updateFitness, boolean countVictoriesOnly, int[] subpops, int threadnum)
+        {
+<span class="nc bnc" id="L257" title="All 2 branches missed.">        if(showDebugInfo)</span>
+<span class="nc" id="L258">            state.output.message(&quot;Starting a GroupedProblemForm evaluation.&quot;);</span>
+
+        // Acquire a slave socket
+<span class="nc" id="L261">        Job job = new Job();</span>
+<span class="nc" id="L262">        job.type = Slave.V_EVALUATEGROUPED;</span>
+<span class="nc" id="L263">        job.subPops = subpops;</span>
+<span class="nc" id="L264">        job.countVictoriesOnly = countVictoriesOnly;</span>
+<span class="nc" id="L265">        job.inds = inds;</span>
+<span class="nc" id="L266">        job.updateFitness = updateFitness;</span>
+<span class="nc" id="L267">        monitor.scheduleJobForEvaluation(state,job);</span>
+                
+<span class="nc bnc" id="L269" title="All 2 branches missed.">        if( !batchMode )</span>
+<span class="nc" id="L270">            monitor.waitForAllSlavesToFinishEvaluating( state );</span>
+
+<span class="nc bnc" id="L272" title="All 2 branches missed.">        if(showDebugInfo)</span>
+<span class="nc" id="L273">            state.output.message(&quot;Finished the GroupedProblemForm evaluation.&quot;);</span>
+<span class="nc" id="L274">        }</span>
+
+    /* Custom serialization */
+    //private void writeObject(ObjectOutputStream out) throws IOException
+    //    {
+    //    out.writeObject(problem);
+    //    }
+
+    /* Custom serialization */
+    //private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
+    //    {
+    //    problem = (Problem) in.readObject();
+    //    }
+
+    /** Initialize contacts with the slaves */
+    public void initializeContacts( final EvolutionState state )
+        {
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        if(showDebugInfo)</span>
+<span class="nc" id="L292">            state.output.message(Thread.currentThread().getName() + &quot;Spawning the server thread.&quot;);</span>
+<span class="nc" id="L293">        monitor = new SlaveMonitor(state, showDebugInfo, this);</span>
+<span class="nc" id="L294">        }</span>
+
+    /** Reinitialize contacts with the slaves */
+    public void reinitializeContacts( final EvolutionState state )
+        {
+<span class="nc" id="L299">        initializeContacts(state);</span>
+<span class="nc" id="L300">        }</span>
+
+    /** Gracefully close contacts with the slaves */
+    public void closeContacts(EvolutionState state, int result)
+        {
+<span class="nc" id="L305">        monitor.shutdown();</span>
+<span class="nc" id="L306">        }</span>
+        
+    public boolean canEvaluate() 
+        {
+<span class="nc bnc" id="L310" title="All 2 branches missed.">        return (monitor.numAvailableSlaves() != 0); </span>
+        }
+        
+    /** This will only return true if (1) the EvolutionState is a SteadyStateEvolutionState and
+        (2) an individual has returned from the system.  If you're not doing steady state evolution,
+        you should not call this method.  */
+    public boolean evaluatedIndividualAvailable()
+        {
+<span class="nc" id="L318">        return monitor.evaluatedIndividualAvailable();</span>
+        }
+    
+    /** This method blocks until an individual is available from the slaves (which will cause evaluatedIndividualAvailable()
+        to return true), at which time it returns the individual.  You should only call this method
+        if you're doing steady state evolution -- otherwise, the method will block forever. */
+    public QueueIndividual getNextEvaluatedIndividual()
+        {
+<span class="nc" id="L326">        return monitor.waitForIndividual();</span>
+        }
+                
+    /** This method is called from the SlaveMonitor's accept() thread to optionally send additional data to the
+        Slave via the dataOut stream.  By default it does nothing.  If you override this you must also override (and use) 
+        receiveAdditionalData() and transferAdditionalData(). */
+    public void sendAdditionalData(EvolutionState state, DataOutputStream dataOut)
+        {
+        // do nothing
+<span class="nc" id="L335">        }</span>
+
+    /** This method is called on a MasterProblem by the Slave.  You should use this method to store away
+        received data via the dataIn stream for later transferring to the current EvolutionState via the
+        transferAdditionalData method.  You should NOT expect this MasterProblem to be used for by the Slave
+        for evolution (though it might).  By default this method does nothing, which is the usual situation. 
+        The EvolutionState is provided solely for you to be able to output warnings and errors: do not rely
+        on it for any other purpose (including access of the random number generator or storing any data).  */
+    public void receiveAdditionalData(EvolutionState state, DataInputStream dataIn)
+        {
+        // do nothing
+<span class="nc" id="L346">        }</span>
+
+    /** This method is called by a Slave to transfer data previously loaded via receiveAdditionalData() to
+        a running EvolutionState at the beginning of evolution.  It may be called multiple times if multiple
+        EvolutionStates are created. By default this method does nothing, which is the usual situation. */
+    public void transferAdditionalData(EvolutionState state)
+        {
+        // do nothing
+<span class="nc" id="L354">        }</span>
+    }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

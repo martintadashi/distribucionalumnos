@@ -9,7 +9,6 @@ ec/multiobjective/spea2/SPEA2BreederTest$6.class
 ec/multiobjective/HypervolumeStatisticsTest$7.class
 ec/multiobjective/HypervolumeStatisticsTest$11.class
 ec/eda/pbil/PBILSpeciesTest.class
-ec/app/AppsTest$1.class
 ec/util/MiscTest$1.class
 ec/test/StubInitializer.class
 ec/coevolve/MultiPopCoevolutionaryEvaluatorTest$1.class
@@ -23,14 +22,11 @@ ec/coevolve/MultiPopCoevolutionaryEvaluatorTest$2.class
 ec/multiobjective/spea2/SPEA2BreederTest$10.class
 ec/test/StubEvaluator.class
 ec/multiobjective/spea2/SPEA2BreederTest$2.class
-ec/app/AppsTest$2.class
 ec/multiobjective/nsga2/NSGA2BreederTest$5.class
 ec/multiobjective/HypervolumeStatisticsTest$4.class
 ec/multiobjective/nsga2/NSGA2BreederTest.class
 ec/util/MiscTest$2.class
 ec/multiobjective/spea2/SPEA2BreederTest$9.class
-ec/app/AppsTest.class
-ec/app/SPEA2AppsTest.class
 ec/EvolutionStateTest.class
 ec/multiobjective/spea2/SPEA2BreederTest$8.class
 ec/multiobjective/HypervolumeStatisticsTest$2.class
@@ -45,7 +41,6 @@ ec/multiobjective/spea2/SPEA2BreederTest.class
 ec/simple/SimpleBreederTest.class
 ec/test/StubExchanger.class
 ec/multiobjective/nsga2/NSGA2BreederTest$1.class
-ec/app/bbob/BBOBenchmarksTest.class
 ec/util/MiscTest$4.class
 ec/multiobjective/spea2/SPEA2BreederTest$7.class
 ec/multiobjective/HypervolumeStatisticsTest$6.class

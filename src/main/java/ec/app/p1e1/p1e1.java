@@ -11,16 +11,16 @@ public class p1e1 extends Problem implements SimpleProblemForm
         if (ind.evaluated)
             return;
 
-        if (!(ind instanceof IntegerVectorIndividual)) {
+        if (!(ind instanceof IntegerVectorIndividualP1E1)) {
 
             state.output.fatal("Error. No es un vector de enteros!", null);
 
         } else {
 
-            IntegerVectorIndividual ind2 = (IntegerVectorIndividual) ind;
-            IntegerVectorSpecies t_spe = (IntegerVectorSpecies) ind2.species;
+            IntegerVectorIndividualP1E1 ind2 = (IntegerVectorIndividualP1E1) ind;
+            IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) ind2.species;
 
-            int[] empleadosPorTarea = t_spe.getEmpleadosPorCadaTarea();
+            int[] empleadosPorTarea = ((IntegerVectorIndividualP1E1) ind).genome;
 
             // Fitness
             int costoProyecto = 0;

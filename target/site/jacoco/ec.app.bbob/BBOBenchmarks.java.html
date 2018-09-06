@@ -1,0 +1,2177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BBOBenchmarks.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecj</a> &gt; <a href="index.source.html" class="el_package">ec.app.bbob</a> &gt; <span class="el_source">BBOBenchmarks.java</span></div><h1>BBOBenchmarks.java</h1><pre class="source lang-java linenums">package ec.app.bbob;
+
+import java.util.HashMap;
+
+import ec.EvolutionState;
+import ec.Individual;
+import ec.Initializer;
+import ec.Population;
+import ec.Problem;
+import ec.Subpopulation;
+import ec.gp.koza.HalfBuilder;
+import ec.simple.SimpleFitness;
+import ec.simple.SimpleProblemForm;
+import ec.util.MersenneTwisterFast;
+import ec.util.Parameter;
+import ec.util.QuickSort;
+import ec.vector.DoubleVectorIndividual;
+
+/* 
+ * BBOBenchmarks.java
+ * 
+ * Created: Fri Apr 2 09:00:00 2010
+ * By: Faisal Abidi
+ */
+
+/**
+ * The Black Box Optimization workshop (BBOB) has an annual competition for doing real-valued parameter optimization.
+ * The examples shown here are more or less faithful reproductions of the BBOB 2010 C code, only using Mersenne Twister
+ * instead of BBOB's random number generator.  Unfortunately, the original BBOB code has various magic numbers, unexplained
+ * variables, and unfortunate algorithmic decisions.  We've reproduced them exactly rather than attempt to convert to a 
+ * standard ECJ template, and simply apologize beforehand.
+ *
+ * &lt;p&gt;
+ * &lt;b&gt;Parameters&lt;/b&gt;&lt;br&gt;
+ * &lt;table&gt;
+ * &lt;tr&gt;
+ * &lt;td valign=top&gt;&lt;i&gt;base&lt;/i&gt;.&lt;tt&gt;type&lt;/tt&gt;&lt;br&gt;
+ * &lt;font size=-1&gt; String = &lt;tt&gt;none &lt;/tt&gt;(default)
+ * &lt;tt&gt;, sphere, ellipsoidal, rastrigin, buch-rastrigin, linear-slope, attractive-sector, step-elipsoidal, rosenbrock, rosenbrock-rotated, ellipsoidal-2, discus, bent-cigar, sharp-ridge, different-powers, rastrigin-2,
+ * weierstrass, schaffers-f7, schaffers-f7-2, griewak-rosenbrock, schwefel, gallagher-gaussian-101me, gallagher-gaussian-21hi, katsuura, lunacek&lt;/tt&gt;
+ * &lt;/font&gt;&lt;/td&gt;
+ * &lt;td valign=top&gt;(The particular function)
+ * &lt;tr&gt;
+ * &lt;td valign=top&gt;&lt;i&gt;base&lt;/i&gt;.&lt;tt&gt;noise&lt;/tt&gt;&lt;br&gt;
+ * &lt;font size=-1&gt; String = &lt;tt&gt;none &lt;/tt&gt;(default)
+ * &lt;tt&gt;, gauss, uniform, cauchy, gauss-moderate, uniform-moderate, cauchy-moderate&lt;/tt&gt;
+ * &lt;/font&gt;&lt;/td&gt;
+ * &lt;td valign=top&gt;(what type of noise (if any) to add to the function value)
+ * &lt;tr&gt;
+ * &lt;td valign=top&gt;&lt;i&gt;base&lt;/i&gt;.&lt;tt&gt;reevaluate-noisy-problems&lt;/tt&gt;&lt;br&gt;
+ * &lt;font size=-1&gt; boolean = &lt;tt&gt;true&lt;/tt&gt;(default)
+ * &lt;/font&gt;&lt;/td&gt;
+ * &lt;td valign=top&gt;(whether to reevaluate noisy problems)
+ * &lt;/table&gt;
+ * 
+ * 
+ * @author Faisal Abidi
+ * @version 1.0
+ */
+
+<span class="nc" id="L61">public class BBOBenchmarks extends Problem implements SimpleProblemForm</span>
+    {
+    public static final String P_GENOME_SIZE = &quot;genome-size&quot;;
+    public static final String P_WHICH_PROBLEM = &quot;type&quot;;
+    public static final String P_NOISE = &quot;noise&quot;;
+    public static final String P_REEVALUATE_NOISY_PROBLEMS = &quot;reevaluate-noisy-problems&quot;;
+    public static final String P_ZERO_IS_BEST = &quot;zeroIsBest&quot;;
+
+<span class="nc" id="L69">    final public String[] problemTypes =</span>
+        { &quot;sphere&quot;, &quot;ellipsoidal&quot;, &quot;rastrigin&quot;, &quot;buche-rastrigin&quot;, &quot;linear-slope&quot;, &quot;attractive-sector&quot;, &quot;step-ellipsoidal&quot;, &quot;rosenbrock&quot;, &quot;rosenbrock-rotated&quot;, &quot;ellipsoidal-2&quot;, &quot;discus&quot;, &quot;bent-cigar&quot;, &quot;sharp-ridge&quot;, &quot;different-powers&quot;, &quot;rastrigin-2&quot;,
+          &quot;weierstrass&quot;, &quot;schaffers-f7&quot;, &quot;schaffers-f7-2&quot;, &quot;griewank-rosenbrock&quot;, &quot;schwefel&quot;, &quot;gallagher-gaussian-101me&quot;, &quot;gallagher-gaussian-21hi&quot;, &quot;katsuura&quot;, &quot;lunacek&quot; };
+
+    final static public int SPHERE = 0;
+    final static public int ELLIPSOIDAL = 1;
+    final static public int RASTRIGIN = 2;
+    final static public int BUCHE_RASTRIGIN = 3;
+    final static public int LINEAR_SLOPE = 4;
+    final static public int ATTRACTIVE_SECTOR = 5;
+    final static public int STEP_ELLIPSOIDAL = 6;
+    final static public int ROSENBROCK = 7;
+    final static public int ROSENBROCK_ROTATED = 8;
+    final static public int ELLIPSOIDAL_2 = 9;
+    final static public int DISCUS = 10;
+    final static public int BENT_CIGAR = 11;
+    final static public int SHARP_RIDGE = 12;
+    final static public int DIFFERENT_POWERS = 13;
+    final static public int RASTRIGIN_2 = 14;
+    final static public int WEIERSTRASS = 15;
+    final static public int SCHAFFERS_F7 = 16;
+    final static public int SCHAFFERS_F7_2 = 17;
+    final static public int GRIEWANK_ROSENBROCK = 18;
+    final static public int SCHWEFEL = 19;
+    final static public int GALLAGHER_GAUSSIAN_101ME = 20;
+    final static public int GALLAGHER_GAUSSIAN_21HI = 21;
+    final static public int KATSUURA = 22;
+    final static public int LUNACEK = 23;
+
+    // Noise types
+<span class="nc" id="L99">    final public String[] noiseTypes =</span>
+        { &quot;none&quot;, &quot;gauss&quot;, &quot;uniform&quot;, &quot;cauchy&quot;, &quot;gauss-moderate&quot;, &quot;uniform-moderate&quot;, &quot;cauchy-moderate&quot; };
+
+    final static public int NONE = 0;
+    final static public int GAUSSIAN = 1;
+    final static public int UNIFORM = 2;
+    final static public int CAUCHY = 3;
+    final static public int GAUSSIAN_MODERATE = 4;
+    final static public int UNIFORM_MODERATE = 5;
+    final static public int CAUCHY_MODERATE = 6;
+
+<span class="nc" id="L110">    public int problemType = 0; // defaults on SPHERE</span>
+
+<span class="nc" id="L112">    public int noise = NONE; // defaults to NONE</span>
+    
+    public boolean reevaluateNoisyProblems;
+    public boolean zeroIsBest;
+
+    public static final int NHIGHPEAKS21 = 101;
+    public static final int NHIGHPEAKS22 = 21;
+
+    // DO NOT MODIFY THESE VARIABLES except in the setup method: global
+    // variables are not threadsafe.
+    double fOpt;
+    double[] xOpt;
+    double fAdd_Init;
+
+    double f0;
+    double[][] rotation;
+    double[][] rot2;
+    double[][] linearTF;
+    double[] peaks21;
+    double[] peaks22;
+    int[] rperm;
+    int[] rperm21;
+    int[] rperm22;
+    double[][] xLocal;
+    double[][] xLocal21;
+    double[][] xLocal22;
+    double[][] arrScales;
+    double[][] arrScales21;
+    double[][] arrScales22;
+    double[] aK;
+    double[] bK;
+    double[] peakvalues;
+    double scales;
+
+    public void setup(final EvolutionState state, final Parameter base)
+        {
+<span class="nc" id="L148">        super.setup(state, base);</span>
+<span class="nc" id="L149">        String wp = state.parameters.getStringWithDefault(base.push(P_WHICH_PROBLEM), null, &quot;&quot;);</span>
+        int i, j, k;
+<span class="nc" id="L151">        Parameter p = new Parameter(Initializer.P_POP);</span>
+<span class="nc" id="L152">        int genomeSize = state.parameters.getInt(p.push(Population.P_SUBPOP).push(&quot;0&quot;).push(Subpopulation.P_SPECIES).push(P_GENOME_SIZE), null, 1);</span>
+<span class="nc" id="L153">        String noiseStr = state.parameters.getString(base.push(P_NOISE), null);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        for (i = 0; i &lt; noiseTypes.length; i++)</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (noiseStr.equals(noiseTypes[i]))</span>
+<span class="nc" id="L156">                noise = i;</span>
+                
+<span class="nc" id="L158">        reevaluateNoisyProblems = state.parameters.getBoolean(base.push(P_REEVALUATE_NOISY_PROBLEMS), null, true);</span>
+<span class="nc" id="L159">        zeroIsBest = state.parameters.getBoolean(base.push(P_ZERO_IS_BEST), null, false);</span>
+                                
+<span class="nc" id="L161">        double condition = 10.0;</span>
+<span class="nc" id="L162">        double alpha = 100.0;</span>
+        double tmp, tmp2, maxCondition;
+<span class="nc" id="L164">        double[] fitValues = { 1.1, 9.1 };</span>
+
+        double[] arrCondition, peaks, tmpvect;
+
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        for (i = 0; i &lt; problemTypes.length; i++)</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (wp.equals(problemTypes[i]))</span>
+<span class="nc" id="L170">                problemType = i;</span>
+
+        // common Initialization
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        fOpt = zeroIsBest ? 0.0 : computeFopt(state.random[0]);</span>
+<span class="nc" id="L174">        xOpt = new double[genomeSize];</span>
+
+<span class="nc bnc" id="L176" title="All 25 branches missed.">        switch (problemType)</span>
+            {
+            case SPHERE:
+                /* INITIALIZATION */
+<span class="nc" id="L180">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L181">                break;</span>
+                        
+            case ELLIPSOIDAL: // f2
+<span class="nc" id="L184">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L185">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L186">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">                if (noise != NONE)</span>
+                    {
+<span class="nc" id="L189">                    rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L190">                    computeRotation(rot2, state.random[0], genomeSize);</span>
+                    }
+                break;
+                        
+            case RASTRIGIN:
+<span class="nc" id="L195">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L196">                break;</span>
+                        
+            case BUCHE_RASTRIGIN:
+<span class="nc" id="L199">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i += 2)</span>
+<span class="nc" id="L201">                    xOpt[i] = Math.abs(xOpt[i]); /* Skew */</span>
+                break;
+                        
+            case LINEAR_SLOPE:
+<span class="nc" id="L205">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L208">                    tmp = Math.pow(Math.sqrt(alpha), ((double) i) / ((double) (genomeSize - 1)));</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">                    if (xOpt[i] &gt; 0)</span>
+                        {
+<span class="nc" id="L211">                        xOpt[i] = 5.;</span>
+                        }
+<span class="nc bnc" id="L213" title="All 2 branches missed.">                    else if (xOpt[i] &lt; 0)</span>
+                        {
+<span class="nc" id="L215">                        xOpt[i] = -5.;</span>
+                        }
+<span class="nc" id="L217">                    fAdd_Init += 5. * tmp;</span>
+                    }
+                break;
+                        
+            case ATTRACTIVE_SECTOR:
+<span class="nc" id="L222">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L223">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L224">                linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L225">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L226">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L227">                computeRotation(rot2, state.random[0], genomeSize);</span>
+                /* decouple scaling from function definition */
+<span class="nc bnc" id="L229" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L231" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L233">                        linearTF[i][j] = 0.0;</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">                        for (k = 0; k &lt; genomeSize; k++)</span>
+                            {
+<span class="nc" id="L236">                            linearTF[i][j] += rotation[i][k] * Math.pow(Math.sqrt(condition), ((double) k) / ((double) (genomeSize - 1))) * rot2[k][j];</span>
+                            }
+                        }
+                    }
+                break;
+                        
+            case STEP_ELLIPSOIDAL:
+<span class="nc" id="L243">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L244">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L245">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L246">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L247">                computeRotation(rot2, state.random[0], genomeSize);</span>
+<span class="nc" id="L248">                break;</span>
+                        
+            case ROSENBROCK:
+<span class="nc" id="L251">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L252">                scales = Math.max(1.0, Math.sqrt(genomeSize) / 8.0);</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">                if (noise == NONE)</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+<span class="nc" id="L255">                        xOpt[i] *= 0.75;</span>
+                break;
+                        
+            case ROSENBROCK_ROTATED:
+                /* INITIALIZATION */
+<span class="nc" id="L260">                linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L261">                rotation = new double[genomeSize][genomeSize];</span>
+                /* computeXopt(state.random[0], genomeSize); */
+<span class="nc" id="L263">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L264">                scales = Math.max(1.0, Math.sqrt(genomeSize) / 8.);</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L267" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+<span class="nc" id="L268">                        linearTF[i][j] = scales * rotation[i][j];</span>
+                    }
+                break;
+                        
+            case ELLIPSOIDAL_2:
+<span class="nc" id="L273">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L274">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L275">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L276">                break;</span>
+                        
+            case DISCUS:
+<span class="nc" id="L279">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L280">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L281">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L282">                break;</span>
+                        
+            case BENT_CIGAR:
+<span class="nc" id="L285">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L286">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L287">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L288">                break;</span>
+                        
+            case SHARP_RIDGE:
+<span class="nc" id="L291">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L292">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L293">                linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L294">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L295">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L296">                computeRotation(rot2, state.random[0], genomeSize);</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L299" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L301">                        linearTF[i][j] = 0.0;</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">                        for (k = 0; k &lt; genomeSize; k++)</span>
+                            {
+<span class="nc" id="L304">                            linearTF[i][j] += rotation[i][k] * Math.pow(Math.sqrt(condition), ((double) k) / ((double) (genomeSize - 1))) * rot2[k][j];</span>
+                            }
+                        }
+                    }
+                break;
+                        
+            case DIFFERENT_POWERS:
+<span class="nc" id="L311">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L312">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L313">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L314">                break;</span>
+                        
+            case RASTRIGIN_2:
+<span class="nc" id="L317">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L318">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L319">                linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L320">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L321">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L322">                computeRotation(rot2, state.random[0], genomeSize);</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L325" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L327">                        linearTF[i][j] = 0.0;</span>
+<span class="nc bnc" id="L328" title="All 2 branches missed.">                        for (k = 0; k &lt; genomeSize; k++)</span>
+                            {
+<span class="nc" id="L330">                            linearTF[i][j] += rotation[i][k] * Math.pow(Math.sqrt(condition), ((double) k) / ((double) (genomeSize - 1))) * rot2[k][j];</span>
+                            }
+                        }
+                    }
+                break;
+                        
+            case WEIERSTRASS:
+<span class="nc" id="L337">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L338">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L339">                linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L340">                aK = new double[12];</span>
+<span class="nc" id="L341">                bK = new double[12];</span>
+<span class="nc" id="L342">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L343">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L344">                computeRotation(rot2, state.random[0], genomeSize);</span>
+
+<span class="nc bnc" id="L346" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L348" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L350">                        linearTF[i][j] = 0.0;</span>
+<span class="nc bnc" id="L351" title="All 2 branches missed.">                        for (k = 0; k &lt; genomeSize; k++)</span>
+                            {
+<span class="nc" id="L353">                            linearTF[i][j] += rotation[i][k] * Math.pow(1.0 / Math.sqrt(condition), ((double) k) / ((double) (genomeSize - 1))) * rot2[k][j];</span>
+                            }
+                        }
+                    }
+
+<span class="nc" id="L358">                f0 = 0.0;</span>
+<span class="nc bnc" id="L359" title="All 2 branches missed.">                for (i = 0; i &lt; 12; i++) /*</span>
+                                          * number of summands, 20 in CEC2005, 10/12
+                                          * saves 30% of time
+                                          */
+                    {
+<span class="nc" id="L364">                    aK[i] = Math.pow(0.5, (double) i);</span>
+<span class="nc" id="L365">                    bK[i] = Math.pow(3., (double) i);</span>
+<span class="nc" id="L366">                    f0 += aK[i] * Math.cos(2 * Math.PI * bK[i] * 0.5);</span>
+                    }
+                break;
+                        
+            case SCHAFFERS_F7:
+<span class="nc" id="L371">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L372">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L373">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L374">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L375">                computeRotation(rot2, state.random[0], genomeSize);</span>
+<span class="nc" id="L376">                break;</span>
+                        
+            case SCHAFFERS_F7_2:
+<span class="nc" id="L379">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L380">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L381">                linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L382">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L383">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L384">                computeRotation(rot2, state.random[0], genomeSize);</span>
+<span class="nc" id="L385">                break;</span>
+                        
+            case GRIEWANK_ROSENBROCK:
+<span class="nc" id="L388">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L389">                scales = Math.max(1.0, Math.sqrt(genomeSize) / 8.0);</span>
+<span class="nc" id="L390">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc bnc" id="L391" title="All 2 branches missed.">                if (noise == NONE)</span>
+                    {
+<span class="nc" id="L393">                    rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L394">                    linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc bnc" id="L395" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc bnc" id="L397" title="All 2 branches missed.">                        for (j = 0; j &lt; genomeSize; j++)</span>
+                            {
+<span class="nc" id="L399">                            linearTF[i][j] = scales * rotation[i][j];</span>
+                            }
+                        }
+<span class="nc bnc" id="L402" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L404">                        xOpt[i] = 0.0;</span>
+<span class="nc bnc" id="L405" title="All 2 branches missed.">                        for (j = 0; j &lt; genomeSize; j++)</span>
+                            {
+<span class="nc" id="L407">                            xOpt[i] += linearTF[j][i] * 0.5 / scales / scales;</span>
+                            }
+                        }
+                    }
+                else
+                    {
+                    // TODO
+                    }
+                break;
+                        
+            case SCHWEFEL:
+                /* INITIALIZATION */
+<span class="nc" id="L419">                tmpvect = new double[genomeSize];</span>
+
+<span class="nc bnc" id="L421" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+<span class="nc" id="L422">                    tmpvect[i] = nextDoubleClosedInterval(state.random[0]);</span>
+<span class="nc bnc" id="L423" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L425">                    xOpt[i] = 0.5 * 4.2096874633;</span>
+<span class="nc bnc" id="L426" title="All 2 branches missed.">                    if (tmpvect[i] - 0.5 &lt; 0)</span>
+<span class="nc" id="L427">                        xOpt[i] *= -1.;</span>
+                    }
+                break;
+                        
+            case GALLAGHER_GAUSSIAN_101ME:
+<span class="nc" id="L432">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L433">                maxCondition = 1000.0;</span>
+<span class="nc" id="L434">                arrCondition = new double[NHIGHPEAKS21];</span>
+<span class="nc" id="L435">                peaks21 = new double[genomeSize * NHIGHPEAKS21];</span>
+<span class="nc" id="L436">                rperm21 = new int[Math.max(genomeSize, NHIGHPEAKS21)];</span>
+<span class="nc" id="L437">                peaks = peaks21;</span>
+<span class="nc" id="L438">                peakvalues = new double[NHIGHPEAKS21];</span>
+<span class="nc" id="L439">                arrScales21 = new double[NHIGHPEAKS21][genomeSize];</span>
+<span class="nc" id="L440">                xLocal21 = new double[genomeSize][NHIGHPEAKS21];</span>
+<span class="nc" id="L441">                computeRotation(rotation, state.random[0], genomeSize);</span>
+
+<span class="nc bnc" id="L443" title="All 2 branches missed.">                for (i = 0; i &lt; NHIGHPEAKS21 - 1; i++)</span>
+<span class="nc" id="L444">                    peaks[i] = nextDoubleClosedInterval(state.random[0]);</span>
+<span class="nc" id="L445">                rperm = rperm21;</span>
+<span class="nc bnc" id="L446" title="All 2 branches missed.">                for (i = 0; i &lt; NHIGHPEAKS21 - 1; i++)</span>
+<span class="nc" id="L447">                    rperm[i] = i;</span>
+<span class="nc" id="L448">                QuickSort.qsort(rperm);</span>
+
+                /* Random permutation */
+
+<span class="nc" id="L452">                arrCondition[0] = Math.sqrt(maxCondition);</span>
+<span class="nc" id="L453">                peakvalues[0] = 10;</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">                for (i = 1; i &lt; NHIGHPEAKS21; i++)</span>
+                    {
+<span class="nc" id="L456">                    arrCondition[i] = Math.pow(maxCondition, (double) (rperm[i - 1]) / ((double) (NHIGHPEAKS21 - 2)));</span>
+<span class="nc" id="L457">                    peakvalues[i] = (double) (i - 1) / (double) (NHIGHPEAKS21 - 2) * (fitValues[1] - fitValues[0]) + fitValues[0];</span>
+                    }
+<span class="nc" id="L459">                arrScales = arrScales21;</span>
+<span class="nc bnc" id="L460" title="All 2 branches missed.">                for (i = 0; i &lt; NHIGHPEAKS21; i++)</span>
+                    {
+<span class="nc bnc" id="L462" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+<span class="nc" id="L463">                        peaks[j] = nextDoubleClosedInterval(state.random[0]);</span>
+<span class="nc bnc" id="L464" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+<span class="nc" id="L465">                        rperm[j] = j;</span>
+                    // qsort(rperm, genomeSize, sizeof(int), compare_doubles);
+<span class="nc" id="L467">                    QuickSort.qsort(rperm);</span>
+<span class="nc bnc" id="L468" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L470">                        arrScales[i][j] = Math.pow(arrCondition[i], ((double) rperm[j]) / ((double) (genomeSize - 1)) - 0.5);</span>
+                        }
+                    }
+
+<span class="nc bnc" id="L474" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize * NHIGHPEAKS21; i++)</span>
+<span class="nc" id="L475">                    peaks[i] = nextDoubleClosedInterval(state.random[0]);</span>
+<span class="nc" id="L476">                xLocal = xLocal21;</span>
+<span class="nc bnc" id="L477" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L479">                    xOpt[i] = 0.8 * (10. * peaks[i] - 5.);</span>
+<span class="nc bnc" id="L480" title="All 2 branches missed.">                    for (j = 0; j &lt; NHIGHPEAKS21; j++)</span>
+                        {
+<span class="nc" id="L482">                        xLocal[i][j] = 0.0;</span>
+<span class="nc bnc" id="L483" title="All 2 branches missed.">                        for (k = 0; k &lt; genomeSize; k++)</span>
+                            {
+<span class="nc" id="L485">                            xLocal[i][j] += rotation[i][k] * (10. * peaks[j * genomeSize + k] - 5.);</span>
+                            }
+<span class="nc bnc" id="L487" title="All 2 branches missed.">                        if (j == 0)</span>
+<span class="nc" id="L488">                            xLocal[i][j] *= 0.8;</span>
+                        }
+                    }
+                break;
+                        
+            case GALLAGHER_GAUSSIAN_21HI:
+<span class="nc" id="L494">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L495">                maxCondition = 1000.0;</span>
+<span class="nc" id="L496">                arrCondition = new double[NHIGHPEAKS22];</span>
+<span class="nc" id="L497">                peaks22 = new double[genomeSize * NHIGHPEAKS22];</span>
+<span class="nc" id="L498">                rperm22 = new int[Math.max(genomeSize, NHIGHPEAKS22)];</span>
+<span class="nc" id="L499">                arrScales22 = new double[NHIGHPEAKS22][genomeSize];</span>
+<span class="nc" id="L500">                xLocal22 = new double[genomeSize][NHIGHPEAKS22];</span>
+<span class="nc" id="L501">                peaks = peaks22;</span>
+<span class="nc" id="L502">                peakvalues = new double[NHIGHPEAKS22];</span>
+<span class="nc" id="L503">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L504">                peaks = peaks22;</span>
+<span class="nc bnc" id="L505" title="All 2 branches missed.">                for (i = 0; i &lt; NHIGHPEAKS22 - 1; i++)</span>
+<span class="nc" id="L506">                    peaks[i] = nextDoubleClosedInterval(state.random[0]);</span>
+<span class="nc" id="L507">                rperm = rperm22;</span>
+<span class="nc bnc" id="L508" title="All 2 branches missed.">                for (i = 0; i &lt; NHIGHPEAKS22 - 1; i++)</span>
+<span class="nc" id="L509">                    rperm[i] = i;</span>
+                // NOTE: confirm if this is a valid java conversion.
+<span class="nc" id="L511">                QuickSort.qsort(rperm);</span>
+                /* Random permutation */
+<span class="nc" id="L513">                arrCondition[0] = maxCondition;</span>
+<span class="nc" id="L514">                peakvalues[0] = 10;</span>
+<span class="nc bnc" id="L515" title="All 2 branches missed.">                for (i = 1; i &lt; NHIGHPEAKS22; i++)</span>
+                    {
+<span class="nc" id="L517">                    arrCondition[i] = Math.pow(maxCondition, (double) (rperm[i - 1]) / ((double) (NHIGHPEAKS22 - 2)));</span>
+<span class="nc" id="L518">                    peakvalues[i] = (double) (i - 1) / (double) (NHIGHPEAKS22 - 2) * (fitValues[1] - fitValues[0]) + fitValues[0];</span>
+                    }
+<span class="nc" id="L520">                arrScales = arrScales22;</span>
+<span class="nc bnc" id="L521" title="All 2 branches missed.">                for (i = 0; i &lt; NHIGHPEAKS22; i++)</span>
+                    {
+<span class="nc bnc" id="L523" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+<span class="nc" id="L524">                        peaks[j] = nextDoubleClosedInterval(state.random[0]);</span>
+<span class="nc bnc" id="L525" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+<span class="nc" id="L526">                        rperm[j] = j;</span>
+                    // qsort(rperm, genomeSize, sizeof(int), compare_doubles);
+                    // NOTE: confirm if converted correctly
+<span class="nc" id="L529">                    QuickSort.qsort(rperm);</span>
+<span class="nc bnc" id="L530" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L532">                        arrScales[i][j] = Math.pow(arrCondition[i], ((double) rperm[j]) / ((double) (genomeSize - 1)) - 0.5);</span>
+                        }
+                    }
+
+<span class="nc bnc" id="L536" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize * NHIGHPEAKS22; i++)</span>
+<span class="nc" id="L537">                    peaks[i] = nextDoubleClosedInterval(state.random[0]);</span>
+<span class="nc" id="L538">                xLocal = xLocal22;</span>
+<span class="nc bnc" id="L539" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L541">                    xOpt[i] = 0.8 * (9.8 * peaks[i] - 4.9);</span>
+<span class="nc bnc" id="L542" title="All 2 branches missed.">                    for (j = 0; j &lt; NHIGHPEAKS22; j++)</span>
+                        {
+<span class="nc" id="L544">                        xLocal[i][j] = 0.0;</span>
+<span class="nc bnc" id="L545" title="All 2 branches missed.">                        for (k = 0; k &lt; genomeSize; k++)</span>
+                            {
+<span class="nc" id="L547">                            xLocal[i][j] += rotation[i][k] * (9.8 * peaks[j * genomeSize + k] - 4.9);</span>
+                            }
+<span class="nc bnc" id="L549" title="All 2 branches missed.">                        if (j == 0)</span>
+<span class="nc" id="L550">                            xLocal[i][j] *= 0.8;</span>
+                        }
+                    }
+                break;
+                        
+            case KATSUURA:
+<span class="nc" id="L556">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L557">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L558">                linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L559">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L560">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L561">                computeRotation(rot2, state.random[0], genomeSize);</span>
+<span class="nc bnc" id="L562" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L564" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L566">                        linearTF[i][j] = 0.0;</span>
+<span class="nc bnc" id="L567" title="All 2 branches missed.">                        for (k = 0; k &lt; genomeSize; k++)</span>
+                            {
+<span class="nc" id="L569">                            linearTF[i][j] += rotation[i][k] * Math.pow(Math.sqrt(condition), ((double) k) / (double) (genomeSize - 1)) * rot2[k][j];</span>
+                            }
+                        }
+                    }
+                break;
+                        
+            case LUNACEK:
+<span class="nc" id="L576">                rotation = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L577">                rot2 = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L578">                tmpvect = new double[genomeSize];</span>
+<span class="nc" id="L579">                linearTF = new double[genomeSize][genomeSize];</span>
+<span class="nc" id="L580">                double mu1 = 2.5;</span>
+<span class="nc" id="L581">                computeXopt(xOpt, state.random[0]);</span>
+<span class="nc" id="L582">                computeRotation(rotation, state.random[0], genomeSize);</span>
+<span class="nc" id="L583">                computeRotation(rot2, state.random[0], genomeSize);</span>
+<span class="nc" id="L584">                gauss(tmpvect, state.random[0]);</span>
+<span class="nc bnc" id="L585" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L587">                    xOpt[i] = 0.5 * mu1;</span>
+<span class="nc bnc" id="L588" title="All 2 branches missed.">                    if (tmpvect[i] &lt; 0.)</span>
+<span class="nc" id="L589">                        xOpt[i] *= -1.;</span>
+                    }
+
+<span class="nc bnc" id="L592" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L594" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L596">                        linearTF[i][j] = 0.0;</span>
+<span class="nc bnc" id="L597" title="All 2 branches missed.">                        for (k = 0; k &lt; genomeSize; k++)</span>
+                            {
+<span class="nc" id="L599">                            linearTF[i][j] += rotation[i][k] * Math.pow(Math.sqrt(condition), ((double) k) / ((double) (genomeSize - 1))) * rot2[k][j];</span>
+                            }
+                        }
+                    }
+                break;
+                        
+            default:
+<span class="nc" id="L606">                String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L607" title="All 2 branches missed.">                for (i = 0; i &lt; problemTypes.length; i++)</span>
+<span class="nc" id="L608">                    outputStr += problemTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L609">                state.output.fatal(outputStr, base.push(P_WHICH_PROBLEM));</span>
+            }
+
+<span class="nc" id="L612">        }</span>
+
+    public void evaluate(EvolutionState state, Individual ind, int subpopulation, int threadnum)
+        {
+<span class="nc bnc" id="L616" title="All 2 branches missed.">        if (noise != NONE)</span>
+            {
+<span class="nc bnc" id="L618" title="All 4 branches missed.">            if (!reevaluateNoisyProblems &amp;&amp; ind.evaluated) // don't bother reevaluating</span>
+<span class="nc" id="L619">                return;</span>
+            }
+<span class="nc bnc" id="L621" title="All 2 branches missed.">        else if (ind.evaluated)  // don't bother reevaluating</span>
+<span class="nc" id="L622">            return;</span>
+            
+<span class="nc bnc" id="L624" title="All 2 branches missed.">        if (!(ind instanceof DoubleVectorIndividual))</span>
+<span class="nc" id="L625">            state.output.fatal(&quot;The individuals for this problem should be DoubleVectorIndividuals.&quot;);</span>
+<span class="nc" id="L626">        DoubleVectorIndividual temp = (DoubleVectorIndividual) ind;</span>
+<span class="nc" id="L627">        double[] genome = temp.genome;</span>
+<span class="nc" id="L628">        int genomeSize = genome.length;</span>
+<span class="nc" id="L629">        double value = 0;</span>
+        double fit;
+        int i, j;
+<span class="nc" id="L632">        double condition, alpha, beta, tmp = 0.0, tmp2, fAdd, fPen = 0.0, x1, fac, a, f = 0.0, f2;</span>
+<span class="nc" id="L633">        double[] tmx = new double[genomeSize];</span>
+<span class="nc" id="L634">        double[] tmpvect = new double[genomeSize];</span>
+        
+<span class="nc bnc" id="L636" title="All 25 branches missed.">        switch (problemType)</span>
+            {
+            case SPHERE:// f1
+                        /* Sphere function */
+<span class="nc" id="L640">                fAdd = fOpt;</span>
+<span class="nc bnc" id="L641" title="All 2 branches missed.">                if (noise != NONE)</span>
+                    {
+<span class="nc bnc" id="L643" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L645">                        tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L646" title="All 2 branches missed.">                        if (tmp &gt; 0.0)</span>
+                            {
+<span class="nc" id="L648">                            fPen += tmp * tmp;</span>
+                            }
+                        }
+<span class="nc" id="L651">                    fAdd += 100. * fPen;</span>
+                    }
+                /* COMPUTATION core */
+<span class="nc bnc" id="L654" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L656">                    tmp = genome[i] - xOpt[i];</span>
+<span class="nc" id="L657">                    value += tmp * tmp;</span>
+                    }
+<span class="nc bnc" id="L659" title="All 8 branches missed.">                switch (noise)</span>
+                    {
+                    case NONE:
+<span class="nc" id="L662">                        break;</span>
+                    case GAUSSIAN:
+<span class="nc" id="L664">                        value = fGauss(value, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L665">                        break;</span>
+                    case UNIFORM:
+<span class="nc" id="L667">                        value = fUniform(value, 0.49 + 1.0 / genomeSize, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L668">                        break;</span>
+                    case CAUCHY:
+<span class="nc" id="L670">                        value = fCauchy(value, 1.0, 0.2, state.random[threadnum]);</span>
+<span class="nc" id="L671">                        break;</span>
+                    case GAUSSIAN_MODERATE:
+<span class="nc" id="L673">                        value = fGauss(value, 0.01, state.random[threadnum]);</span>
+<span class="nc" id="L674">                        break;</span>
+                    case UNIFORM_MODERATE:
+<span class="nc" id="L676">                        value = fUniform(value, 0.01 * (0.49 + 1. / genomeSize), 0.01, state.random[threadnum]);</span>
+<span class="nc" id="L677">                        break;</span>
+                    case CAUCHY_MODERATE:
+<span class="nc" id="L679">                        value = fCauchy(value, 0.01, 0.05, state.random[threadnum]);</span>
+<span class="nc" id="L680">                        break;</span>
+                    default:
+<span class="nc" id="L682">                        String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L683" title="All 2 branches missed.">                        for (i = 0; i &lt; noiseTypes.length; i++)</span>
+<span class="nc" id="L684">                            outputStr += noiseTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L685">                        state.output.fatal(outputStr, new Parameter(P_NOISE));</span>
+                        break;
+                    }
+<span class="nc" id="L688">                value += fAdd;</span>
+<span class="nc" id="L689">                fit = (-value);</span>
+<span class="nc bnc" id="L690" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L691">            break;</span>
+                        
+                        
+                        
+            case ELLIPSOIDAL:// f2
+                /*
+                 * separable ellipsoid with monotone transformation with noiseless
+                 * condition 1e6 and noisy condition 1e4
+                 */
+<span class="nc" id="L700">                fAdd = fOpt;</span>
+<span class="nc bnc" id="L701" title="All 2 branches missed.">                if (noise == NONE)</span>
+                    {
+<span class="nc" id="L703">                    condition = 1e6;</span>
+<span class="nc bnc" id="L704" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L706">                        tmx[i] = genome[i] - xOpt[i];</span>
+                        }
+                    }
+                else
+                    {
+<span class="nc" id="L711">                    condition = 1e4;</span>
+<span class="nc" id="L712">                    fAdd = fOpt;</span>
+
+                    /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L715" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L717">                        tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L718" title="All 2 branches missed.">                        if (tmp &gt; 0.)</span>
+                            {
+<span class="nc" id="L720">                            fPen += tmp * tmp;</span>
+                            }
+                        }
+<span class="nc" id="L723">                    fAdd += 100. * fPen;</span>
+
+                    /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L726" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L728">                        tmx[i] = 0.;</span>
+<span class="nc bnc" id="L729" title="All 2 branches missed.">                        for (j = 0; j &lt; genomeSize; j++)</span>
+                            {
+<span class="nc" id="L731">                            tmx[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                            }
+                        }
+                    }
+
+<span class="nc" id="L736">                monotoneTFosc(tmx);</span>
+                /* COMPUTATION core */
+<span class="nc bnc" id="L738" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L740">                    value += Math.pow(condition, ((double) i) / ((double) (genomeSize - 1))) * tmx[i] * tmx[i];</span>
+                    }
+
+<span class="nc bnc" id="L743" title="All 5 branches missed.">                switch (noise)</span>
+                    {
+                    case NONE:
+<span class="nc" id="L746">                        break;</span>
+                    case GAUSSIAN:
+<span class="nc" id="L748">                        value = fGauss(value, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L749">                        break;</span>
+                    case UNIFORM:
+<span class="nc" id="L751">                        value = fUniform(value, 0.49 + 1.0 / genomeSize, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L752">                        break;</span>
+                    case CAUCHY:
+<span class="nc" id="L754">                        value = fCauchy(value, 1.0, 0.2, state.random[threadnum]);</span>
+<span class="nc" id="L755">                        break;</span>
+                    default:
+<span class="nc" id="L757">                        String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L758" title="All 2 branches missed.">                        for (i = 0; i &lt; 4; i++)</span>
+<span class="nc" id="L759">                            outputStr += noiseTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L760">                        state.output.fatal(outputStr, new Parameter(P_NOISE));</span>
+                        break;
+                    }
+<span class="nc" id="L763">                value += fAdd;</span>
+<span class="nc" id="L764">                fit = (-value);</span>
+<span class="nc bnc" id="L765" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L766">            break;</span>
+                        
+                        
+
+            case RASTRIGIN:// f3
+                /* Rastrigin with monotone transformation separable &quot;condition&quot; 10 */
+<span class="nc" id="L772">                condition = 10;</span>
+<span class="nc" id="L773">                beta = 0.2;</span>
+<span class="nc" id="L774">                fAdd = fOpt;</span>
+<span class="nc bnc" id="L775" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L777">                    tmx[i] = genome[i] - xOpt[i];</span>
+                    }
+<span class="nc" id="L779">                monotoneTFosc(tmx);</span>
+<span class="nc bnc" id="L780" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L782">                    tmp = ((double) i) / ((double) (genomeSize - 1));</span>
+<span class="nc bnc" id="L783" title="All 2 branches missed.">                    if (tmx[i] &gt; 0)</span>
+<span class="nc" id="L784">                        tmx[i] = Math.pow(tmx[i], 1 + beta * tmp * Math.sqrt(tmx[i]));</span>
+<span class="nc" id="L785">                    tmx[i] = Math.pow(Math.sqrt(condition), tmp) * tmx[i];</span>
+                    }
+                /* COMPUTATION core */
+<span class="nc" id="L788">                tmp = 0;</span>
+<span class="nc" id="L789">                tmp2 = 0;</span>
+<span class="nc bnc" id="L790" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L792">                    tmp += Math.cos(2 * Math.PI * tmx[i]);</span>
+<span class="nc" id="L793">                    tmp2 += tmx[i] * tmx[i];</span>
+                    }
+<span class="nc" id="L795">                value = 10 * (genomeSize - tmp) + tmp2;</span>
+<span class="nc" id="L796">                value += fAdd;</span>
+
+<span class="nc" id="L798">                fit = (-value);</span>
+<span class="nc bnc" id="L799" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L800">            break;</span>
+                        
+                        
+                        
+            case BUCHE_RASTRIGIN:// f4
+                /* skew Rastrigin-Bueche, condition 10, skew-&quot;condition&quot; 100 */
+<span class="nc" id="L806">                condition = 10.0;</span>
+<span class="nc" id="L807">                alpha = 100;</span>
+<span class="nc" id="L808">                fAdd = fOpt;</span>
+<span class="nc bnc" id="L809" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L811">                    tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L812" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+<span class="nc" id="L813">                        fPen += tmp * tmp;</span>
+                    }
+<span class="nc" id="L815">                fPen *= 1e2;</span>
+<span class="nc" id="L816">                fAdd += fPen;</span>
+
+<span class="nc bnc" id="L818" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L820">                    tmx[i] = genome[i] - xOpt[i];</span>
+                    }
+
+<span class="nc" id="L823">                monotoneTFosc(tmx);</span>
+<span class="nc bnc" id="L824" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L826" title="All 4 branches missed.">                    if (i % 2 == 0 &amp;&amp; tmx[i] &gt; 0)</span>
+<span class="nc" id="L827">                        tmx[i] = Math.sqrt(alpha) * tmx[i];</span>
+<span class="nc" id="L828">                    tmx[i] = Math.pow(Math.sqrt(condition), ((double) i) / ((double) (genomeSize - 1))) * tmx[i];</span>
+                    }
+                /* COMPUTATION core */
+<span class="nc" id="L831">                tmp = 0.0;</span>
+<span class="nc" id="L832">                tmp2 = 0.0;</span>
+<span class="nc bnc" id="L833" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L835">                    tmp += Math.cos(2 * Math.PI * tmx[i]);</span>
+<span class="nc" id="L836">                    tmp2 += tmx[i] * tmx[i];</span>
+                    }
+<span class="nc" id="L838">                value = 10 * (genomeSize - tmp) + tmp2;</span>
+<span class="nc" id="L839">                value += fAdd;</span>
+
+<span class="nc" id="L841">                fit = (-value);</span>
+<span class="nc bnc" id="L842" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L843">            break;</span>
+                        
+                        
+                        
+            case LINEAR_SLOPE:// f5
+                /* linear slope */
+<span class="nc" id="L849">                alpha = 100;</span>
+<span class="nc" id="L850">                fAdd = fOpt;</span>
+                /* BOUNDARY HANDLING */
+                /* move &quot;too&quot; good coordinates back into domain */
+<span class="nc bnc" id="L853" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L855" title="All 4 branches missed.">                    if ((xOpt[i] == 5.) &amp;&amp; (genome[i] &gt; 5))</span>
+<span class="nc" id="L856">                        tmx[i] = 5.;</span>
+<span class="nc bnc" id="L857" title="All 4 branches missed.">                    else if ((xOpt[i] == -5.) &amp;&amp; (genome[i] &lt; -5))</span>
+<span class="nc" id="L858">                        tmx[i] = -5.;</span>
+                    else
+<span class="nc" id="L860">                        tmx[i] = genome[i];</span>
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L864" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L866" title="All 2 branches missed.">                    if (xOpt[i] &gt; 0)</span>
+                        {
+<span class="nc" id="L868">                        value -= Math.pow(Math.sqrt(alpha), ((double) i) / ((double) (genomeSize - 1))) * tmx[i];</span>
+                        }
+                    else
+                        {
+<span class="nc" id="L872">                        value += Math.pow(Math.sqrt(alpha), ((double) i) / ((double) (genomeSize - 1))) * tmx[i];</span>
+                        }
+                    }
+<span class="nc" id="L875">                value += fAdd;</span>
+
+<span class="nc" id="L877">                fit = (-value);</span>
+<span class="nc bnc" id="L878" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L879">            break;</span>
+                        
+                        
+                        
+            case ATTRACTIVE_SECTOR:// f6
+                /* attractive sector function */
+<span class="nc" id="L885">                alpha = 100.0;</span>
+<span class="nc" id="L886">                fAdd = fOpt;</span>
+
+                /* BOUNDARY HANDLING */
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L890" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+
+<span class="nc" id="L893">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L894" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L896">                        tmx[i] += linearTF[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L901" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L903" title="All 2 branches missed.">                    if (tmx[i] * xOpt[i] &gt; 0)</span>
+<span class="nc" id="L904">                        tmx[i] *= alpha;</span>
+<span class="nc" id="L905">                    value += tmx[i] * tmx[i];</span>
+                    }
+
+                /* monotoneTFosc... */
+<span class="nc bnc" id="L909" title="All 2 branches missed.">                if (value &gt; 0)</span>
+                    {
+<span class="nc" id="L911">                    value = Math.pow(Math.exp(Math.log(value) / 0.1 + 0.49 * (Math.sin(Math.log(value) / 0.1) + Math.sin(0.79 * Math.log(value) / 0.1))), 0.1);</span>
+                    }
+<span class="nc bnc" id="L913" title="All 2 branches missed.">                else if (value &lt; 0)</span>
+                    {
+<span class="nc" id="L915">                    value = -Math.pow(Math.exp(Math.log(-value) / 0.1 + 0.49 * (Math.sin(0.55 * Math.log(-value) / 0.1) + Math.sin(0.31 * Math.log(-value) / 0.1))), 0.1);</span>
+                    }
+<span class="nc" id="L917">                value = Math.pow(value, 0.9);</span>
+<span class="nc" id="L918">                value += fAdd;</span>
+<span class="nc" id="L919">                fit = (-value);</span>
+<span class="nc bnc" id="L920" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L921">            break;</span>
+                        
+                        
+                        
+            case STEP_ELLIPSOIDAL:// f7
+                /* step-ellipsoid, condition 100 */
+<span class="nc" id="L927">                condition = 100.0;</span>
+<span class="nc" id="L928">                alpha = 10.0;</span>
+<span class="nc" id="L929">                fAdd = fOpt;</span>
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L931" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L933">                    tmp = Math.abs(genome[i]) - 5.0;</span>
+<span class="nc bnc" id="L934" title="All 2 branches missed.">                    if (tmp &gt; 0.0)</span>
+                        {
+<span class="nc" id="L936">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc bnc" id="L939" title="All 2 branches missed.">                if (noise == NONE)</span>
+<span class="nc" id="L940">                    fAdd += fPen;</span>
+                else
+<span class="nc" id="L942">                    fAdd += 100. * fPen;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L945" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+
+<span class="nc" id="L948">                    tmpvect[i] = 0.0;</span>
+<span class="nc" id="L949">                    tmp = Math.sqrt(Math.pow(condition / 10., ((double) i) / ((double) (genomeSize - 1))));</span>
+<span class="nc bnc" id="L950" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L952">                        tmpvect[i] += tmp * rot2[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+
+                    }
+<span class="nc" id="L956">                x1 = tmpvect[0];</span>
+
+<span class="nc bnc" id="L958" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L960" title="All 2 branches missed.">                    if (Math.abs(tmpvect[i]) &gt; 0.5)</span>
+<span class="nc" id="L961">                        tmpvect[i] = Math.round(tmpvect[i]);</span>
+                    else
+<span class="nc" id="L963">                        tmpvect[i] = Math.round(alpha * tmpvect[i]) / alpha;</span>
+                    }
+
+<span class="nc bnc" id="L966" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L968">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L969" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L971">                        tmx[i] += rotation[i][j] * tmpvect[j];</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L976" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L978">                    value += Math.pow(condition, ((double) i) / ((double) (genomeSize - 1))) * tmx[i] * tmx[i];</span>
+                    }
+<span class="nc" id="L980">                value = 0.1 * Math.max(1e-4 * Math.abs(x1), value);</span>
+<span class="nc bnc" id="L981" title="All 5 branches missed.">                switch (noise)</span>
+                    {
+                    case NONE:
+<span class="nc" id="L984">                        break;</span>
+                    case GAUSSIAN:
+<span class="nc" id="L986">                        value = fGauss(value, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L987">                        break;</span>
+                    case UNIFORM:
+<span class="nc" id="L989">                        value = fUniform(value, 0.49 + 1.0 / genomeSize, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L990">                        break;</span>
+                    case CAUCHY:
+<span class="nc" id="L992">                        value = fCauchy(value, 1.0, 0.2, state.random[threadnum]);</span>
+<span class="nc" id="L993">                        break;</span>
+                    default:
+<span class="nc" id="L995">                        String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L996" title="All 2 branches missed.">                        for (i = 0; i &lt; 4; i++)</span>
+<span class="nc" id="L997">                            outputStr += noiseTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L998">                        state.output.fatal(outputStr, new Parameter(P_NOISE));</span>
+                        break;
+                    }
+<span class="nc" id="L1001">                value += fAdd;</span>
+<span class="nc" id="L1002">                fit = (-value);</span>
+<span class="nc bnc" id="L1003" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1004">            break;</span>
+                        
+                        
+                        
+            case ROSENBROCK:// f8
+                /* Rosenbrock, non-rotated */
+<span class="nc" id="L1010">                fAdd = fOpt;</span>
+<span class="nc bnc" id="L1011" title="All 2 branches missed.">                if (noise == NONE)</span>
+                    {
+                    /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1014" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L1016">                        tmx[i] = scales * (genome[i] - xOpt[i]) + 1;</span>
+                        }
+                    }
+                else
+                    {
+                    /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1022" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L1024">                        tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1025" title="All 2 branches missed.">                        if (tmp &gt; 0.)</span>
+                            {
+<span class="nc" id="L1027">                            fPen += tmp * tmp;</span>
+                            }
+                        }
+<span class="nc" id="L1030">                    fAdd += 100.0 * fPen;</span>
+                    /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1032" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L1034">                        tmx[i] = scales * (genome[i] - 0.75 * xOpt[i]) + 1;</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1039" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize - 1; i++)</span>
+                    {
+<span class="nc" id="L1041">                    tmp = (tmx[i] * tmx[i] - tmx[i + 1]);</span>
+<span class="nc" id="L1042">                    value += tmp * tmp;</span>
+                    }
+<span class="nc" id="L1044">                value *= 1e2;</span>
+<span class="nc bnc" id="L1045" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize - 1; i++)</span>
+                    {
+<span class="nc" id="L1047">                    tmp = (tmx[i] - 1.);</span>
+<span class="nc" id="L1048">                    value += tmp * tmp;</span>
+                    }
+
+<span class="nc bnc" id="L1051" title="All 8 branches missed.">                switch (noise)</span>
+                    {
+                    case NONE:
+<span class="nc" id="L1054">                        break;</span>
+                    case GAUSSIAN:
+<span class="nc" id="L1056">                        value = fGauss(value, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1057">                        break;</span>
+                    case UNIFORM:
+<span class="nc" id="L1059">                        value = fUniform(value, 0.49 + 1.0 / genomeSize, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1060">                        break;</span>
+                    case CAUCHY:
+<span class="nc" id="L1062">                        value = fCauchy(value, 1.0, 0.2, state.random[threadnum]);</span>
+<span class="nc" id="L1063">                        break;</span>
+                    case GAUSSIAN_MODERATE:
+<span class="nc" id="L1065">                        value = fGauss(value, 0.01, state.random[threadnum]);</span>
+<span class="nc" id="L1066">                        break;</span>
+                    case UNIFORM_MODERATE:
+<span class="nc" id="L1068">                        value = fUniform(value, 0.01 * (0.49 + 1. / genomeSize), 0.01, state.random[threadnum]);</span>
+<span class="nc" id="L1069">                        break;</span>
+                    case CAUCHY_MODERATE:
+<span class="nc" id="L1071">                        value = fCauchy(value, 0.01, 0.05, state.random[threadnum]);</span>
+<span class="nc" id="L1072">                        break;</span>
+                    default:
+<span class="nc" id="L1074">                        String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L1075" title="All 2 branches missed.">                        for (i = 0; i &lt; noiseTypes.length; i++)</span>
+<span class="nc" id="L1076">                            outputStr += noiseTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L1077">                        state.output.fatal(outputStr, new Parameter(P_NOISE));</span>
+                        break;
+                    }                       
+                        
+<span class="nc" id="L1081">                value += fAdd;</span>
+
+<span class="nc" id="L1083">                fit = (-value);</span>
+<span class="nc bnc" id="L1084" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1085">            break;</span>
+
+                        
+                        
+                        
+            case ROSENBROCK_ROTATED:// f9
+                /* Rosenbrock, rotated */
+<span class="nc" id="L1092">                fAdd = fOpt;</span>
+
+                /* BOUNDARY HANDLING */
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1097" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1099">                    tmx[i] = 0.5;</span>
+<span class="nc bnc" id="L1100" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1102">                        tmx[i] += linearTF[i][j] * genome[j];</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1107" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize - 1; i++)</span>
+                    {
+<span class="nc" id="L1109">                    tmp = (tmx[i] * tmx[i] - tmx[i + 1]);</span>
+<span class="nc" id="L1110">                    value += tmp * tmp;</span>
+                    }
+<span class="nc" id="L1112">                value *= 1e2;</span>
+<span class="nc bnc" id="L1113" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize - 1; i++)</span>
+                    {
+<span class="nc" id="L1115">                    tmp = (tmx[i] - 1.);</span>
+<span class="nc" id="L1116">                    value += tmp * tmp;</span>
+                    }
+
+<span class="nc" id="L1119">                value += fAdd;</span>
+<span class="nc" id="L1120">                fit = (-value);</span>
+<span class="nc bnc" id="L1121" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1122">            break;</span>
+                        
+                        
+                        
+            case ELLIPSOIDAL_2:// f10
+                /* ellipsoid with monotone transformation, condition 1e6 */
+<span class="nc" id="L1128">                condition = 1e6;</span>
+
+<span class="nc" id="L1130">                fAdd = fOpt;</span>
+                /* BOUNDARY HANDLING */
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1134" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1136">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1137" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1139">                        tmx[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+                    }
+
+<span class="nc" id="L1143">                monotoneTFosc(tmx);</span>
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1145" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1147">                    fAdd += Math.pow(condition, ((double) i) / ((double) (genomeSize - 1))) * tmx[i] * tmx[i];</span>
+                    }
+<span class="nc" id="L1149">                value = fAdd;</span>
+<span class="nc" id="L1150">                fit = (-value);</span>
+<span class="nc bnc" id="L1151" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1152">            break;</span>
+                        
+                        
+                        
+            case DISCUS:// f11
+                        /* DISCUS (tablet) with monotone transformation, condition 1e6 */
+<span class="nc" id="L1158">                condition = 1e6;</span>
+<span class="nc" id="L1159">                fAdd = fOpt;</span>
+                /* BOUNDARY HANDLING */
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1163" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1165">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1166" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1168">                        tmx[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+                    }
+
+<span class="nc" id="L1172">                monotoneTFosc(tmx);</span>
+
+                /* COMPUTATION core */
+<span class="nc" id="L1175">                value = condition * tmx[0] * tmx[0];</span>
+<span class="nc bnc" id="L1176" title="All 2 branches missed.">                for (i = 1; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1178">                    value += tmx[i] * tmx[i];</span>
+                    }
+<span class="nc" id="L1180">                value += fAdd; /* without noise */</span>
+<span class="nc" id="L1181">                fit = (-value);</span>
+<span class="nc bnc" id="L1182" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1183">            break;</span>
+                        
+                        
+                        
+            case BENT_CIGAR:// f12
+                /* bent cigar with asymmetric space distortion, condition 1e6 */
+<span class="nc" id="L1189">                condition = 1e6;</span>
+<span class="nc" id="L1190">                beta = 0.5;</span>
+<span class="nc" id="L1191">                fAdd = fOpt;</span>
+                /* BOUNDARY HANDLING */
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1195" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1197">                    tmpvect[i] = 0.0;</span>
+<span class="nc bnc" id="L1198" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1200">                        tmpvect[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+<span class="nc bnc" id="L1202" title="All 2 branches missed.">                    if (tmpvect[i] &gt; 0)</span>
+                        {
+<span class="nc" id="L1204">                        tmpvect[i] = Math.pow(tmpvect[i], 1 + beta * ((double) i) / ((double) (genomeSize - 1)) * Math.sqrt(tmpvect[i]));</span>
+                        }
+                    }
+
+<span class="nc bnc" id="L1208" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1210">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1211" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1213">                        tmx[i] += rotation[i][j] * tmpvect[j];</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc" id="L1218">                value = tmx[0] * tmx[0];</span>
+<span class="nc bnc" id="L1219" title="All 2 branches missed.">                for (i = 1; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1221">                    value += condition * tmx[i] * tmx[i];</span>
+                    }
+<span class="nc" id="L1223">                value += fAdd;</span>
+<span class="nc" id="L1224">                fit = (-value);</span>
+<span class="nc bnc" id="L1225" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1226">            break;</span>
+                        
+                        
+                        
+            case SHARP_RIDGE:// f13
+                /* sharp ridge */
+<span class="nc" id="L1232">                condition = 10.0;</span>
+<span class="nc" id="L1233">                alpha = 100.0;</span>
+
+<span class="nc" id="L1235">                fAdd = fOpt;</span>
+                /* BOUNDARY HANDLING */
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1239" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1241">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1242" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1244">                        tmx[i] += linearTF[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1249" title="All 2 branches missed.">                for (i = 1; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1251">                    value += tmx[i] * tmx[i];</span>
+                    }
+<span class="nc" id="L1253">                value = alpha * Math.sqrt(value);</span>
+<span class="nc" id="L1254">                value += tmx[0] * tmx[0];</span>
+<span class="nc" id="L1255">                value += fAdd;</span>
+<span class="nc" id="L1256">                fit = (-value);</span>
+<span class="nc bnc" id="L1257" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1258">            break;</span>
+                        
+                        
+                        
+            case DIFFERENT_POWERS:// f14
+                /* sum of different powers, between x^2 and x^6 */
+<span class="nc" id="L1264">                alpha = 4.0;</span>
+<span class="nc" id="L1265">                fAdd = fOpt;</span>
+<span class="nc bnc" id="L1266" title="All 2 branches missed.">                if (noise != NONE)</span>
+                    {
+                    /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1269" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L1271">                        tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1272" title="All 2 branches missed.">                        if (tmp &gt; 0.)</span>
+                            {
+<span class="nc" id="L1274">                            fPen += tmp * tmp;</span>
+                            }
+                        }
+<span class="nc" id="L1277">                    fAdd += 100. * fPen;</span>
+                    }
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1281" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1283">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1284" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1286">                        tmx[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1291" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1293">                    value += Math.pow(Math.abs(tmx[i]), 2. + alpha * ((double) i) / ((double) (genomeSize - 1)));</span>
+                    }
+<span class="nc" id="L1295">                value = Math.sqrt(value);</span>
+<span class="nc bnc" id="L1296" title="All 5 branches missed.">                switch (noise)</span>
+                    {
+                    case NONE:
+<span class="nc" id="L1299">                        break;</span>
+                    case GAUSSIAN:
+<span class="nc" id="L1301">                        value = fGauss(value, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1302">                        break;</span>
+                    case UNIFORM:
+<span class="nc" id="L1304">                        value = fUniform(value, 0.49 + 1.0 / genomeSize, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1305">                        break;</span>
+                    case CAUCHY:
+<span class="nc" id="L1307">                        value = fCauchy(value, 1.0, 0.2, state.random[threadnum]);</span>
+<span class="nc" id="L1308">                        break;</span>
+                    default:
+<span class="nc" id="L1310">                        String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L1311" title="All 2 branches missed.">                        for (i = 0; i &lt; 4; i++)</span>
+<span class="nc" id="L1312">                            outputStr += noiseTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L1313">                        state.output.fatal(outputStr, new Parameter(P_NOISE));</span>
+                        break;
+                    }
+<span class="nc" id="L1316">                value += fAdd;</span>
+<span class="nc" id="L1317">                fit = (-value);</span>
+<span class="nc bnc" id="L1318" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1319">            break;</span>
+                        
+                        
+                        
+            case RASTRIGIN_2:// f15
+                /* Rastrigin with asymmetric non-linear distortion, &quot;condition&quot; 10 */
+<span class="nc" id="L1325">                condition = 10.0;</span>
+<span class="nc" id="L1326">                beta = 0.2;</span>
+<span class="nc" id="L1327">                tmp = tmp2 = 0;</span>
+
+<span class="nc" id="L1329">                fAdd = fOpt;</span>
+                /* BOUNDARY HANDLING */
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1333" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1335">                    tmpvect[i] = 0.0;</span>
+<span class="nc bnc" id="L1336" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1338">                        tmpvect[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+                    }
+
+<span class="nc" id="L1342">                monotoneTFosc(tmpvect);</span>
+<span class="nc bnc" id="L1343" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc bnc" id="L1345" title="All 2 branches missed.">                    if (tmpvect[i] &gt; 0)</span>
+<span class="nc" id="L1346">                        tmpvect[i] = Math.pow(tmpvect[i], 1 + beta * ((double) i) / ((double) (genomeSize - 1)) * Math.sqrt(tmpvect[i]));</span>
+                    }
+<span class="nc bnc" id="L1348" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1350">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1351" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1353">                        tmx[i] += linearTF[i][j] * tmpvect[j];</span>
+                        }
+                    }
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1357" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1359">                    tmp += Math.cos(2. * Math.PI * tmx[i]);</span>
+<span class="nc" id="L1360">                    tmp2 += tmx[i] * tmx[i];</span>
+                    }
+<span class="nc" id="L1362">                value = 10. * ((double) genomeSize - tmp) + tmp2;</span>
+<span class="nc" id="L1363">                value += fAdd;</span>
+<span class="nc" id="L1364">                fit = (-value);</span>
+<span class="nc bnc" id="L1365" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1366">            break;</span>
+                        
+                        
+                        
+            case WEIERSTRASS:// f16
+                /* Weierstrass, condition 100 */
+<span class="nc" id="L1372">                condition = 100.0;</span>
+<span class="nc" id="L1373">                fPen = 0;</span>
+
+<span class="nc" id="L1375">                fAdd = fOpt;</span>
+
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1378" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1380">                    tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1381" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+                        {
+<span class="nc" id="L1383">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc" id="L1386">                fAdd += 10. / (double) genomeSize * fPen;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1389" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1391">                    tmpvect[i] = 0.0;</span>
+<span class="nc bnc" id="L1392" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1394">                        tmpvect[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+                    }
+
+<span class="nc" id="L1398">                monotoneTFosc(tmpvect);</span>
+<span class="nc bnc" id="L1399" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1401">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1402" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1404">                        tmx[i] += linearTF[i][j] * tmpvect[j];</span>
+                        }
+                    }
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1408" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1410">                    tmp = 0.0;</span>
+<span class="nc bnc" id="L1411" title="All 2 branches missed.">                    for (j = 0; j &lt; 12; j++)</span>
+                        {
+<span class="nc" id="L1413">                        tmp += Math.cos(2 * Math.PI * (tmx[i] + 0.5) * bK[j]) * aK[j];</span>
+                        }
+<span class="nc" id="L1415">                    value += tmp;</span>
+                    }
+<span class="nc" id="L1417">                value = 10. * Math.pow(value / (double) genomeSize - f0, 3.);</span>
+<span class="nc" id="L1418">                value += fAdd;</span>
+                ;
+
+<span class="nc" id="L1421">                fit = (-value);</span>
+<span class="nc bnc" id="L1422" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1423">            break;</span>
+                        
+                        
+                        
+            case SCHAFFERS_F7:// f17
+                /*
+                 * Schaffers F7 with asymmetric non-linear transformation, condition
+                 * 10
+                 */
+<span class="nc" id="L1432">                condition = 10.0;</span>
+<span class="nc" id="L1433">                beta = 0.5;</span>
+<span class="nc" id="L1434">                fAdd = fOpt;</span>
+
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1437" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1439">                    tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1440" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+                        {
+<span class="nc" id="L1442">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc" id="L1445">                fAdd += 10. * fPen;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1448" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1450">                    tmpvect[i] = 0.0;</span>
+<span class="nc bnc" id="L1451" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1453">                        tmpvect[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+<span class="nc bnc" id="L1455" title="All 2 branches missed.">                    if (tmpvect[i] &gt; 0)</span>
+<span class="nc" id="L1456">                        tmpvect[i] = Math.pow(tmpvect[i], 1 + beta * ((double) i) / ((double) (genomeSize - 1)) * Math.sqrt(tmpvect[i]));</span>
+                    }
+
+<span class="nc bnc" id="L1459" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1461">                    tmx[i] = 0.0;</span>
+<span class="nc" id="L1462">                    tmp = Math.pow(Math.sqrt(condition), ((double) i) / ((double) (genomeSize - 1)));</span>
+<span class="nc bnc" id="L1463" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1465">                        tmx[i] += tmp * rot2[i][j] * tmpvect[j];</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1470" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize - 1; i++)</span>
+                    {
+<span class="nc" id="L1472">                    tmp = tmx[i] * tmx[i] + tmx[i + 1] * tmx[i + 1];</span>
+<span class="nc" id="L1473">                    value += Math.pow(tmp, 0.25) * (Math.pow(Math.sin(50 * Math.pow(tmp, 0.1)), 2.0) + 1.0);</span>
+                    }
+<span class="nc" id="L1475">                value = Math.pow(value / (double) (genomeSize - 1), 2.);</span>
+<span class="nc bnc" id="L1476" title="All 5 branches missed.">                switch (noise)</span>
+                    {
+                    case NONE:
+<span class="nc" id="L1479">                        break;</span>
+                    case GAUSSIAN:
+<span class="nc" id="L1481">                        value = fGauss(value, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1482">                        break;</span>
+                    case UNIFORM:
+<span class="nc" id="L1484">                        value = fUniform(value, 0.49 + 1.0 / genomeSize, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1485">                        break;</span>
+                    case CAUCHY:
+<span class="nc" id="L1487">                        value = fCauchy(value, 1.0, 0.2, state.random[threadnum]);</span>
+<span class="nc" id="L1488">                        break;</span>
+                    default:
+<span class="nc" id="L1490">                        String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L1491" title="All 2 branches missed.">                        for (i = 0; i &lt; 4; i++)</span>
+<span class="nc" id="L1492">                            outputStr += noiseTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L1493">                        state.output.fatal(outputStr, new Parameter(P_NOISE));</span>
+                        break;
+                    }
+<span class="nc" id="L1496">                value += fAdd;</span>
+<span class="nc" id="L1497">                fit = (-value);</span>
+<span class="nc bnc" id="L1498" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1499">            break;</span>
+                        
+                        
+                        
+            case SCHAFFERS_F7_2:// f18
+                /*
+                 * Schaffers F7 with asymmetric non-linear transformation, condition
+                 * 1000
+                 */
+<span class="nc" id="L1508">                condition = 1e3;</span>
+<span class="nc" id="L1509">                beta = 0.5;</span>
+<span class="nc" id="L1510">                fPen = 0.0;</span>
+<span class="nc" id="L1511">                fAdd = fOpt;</span>
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1513" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1515">                    tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1516" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+                        {
+<span class="nc" id="L1518">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc" id="L1521">                fAdd += 10. * fPen;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1524" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1526">                    tmpvect[i] = 0.0;</span>
+<span class="nc bnc" id="L1527" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1529">                        tmpvect[i] += rotation[i][j] * (genome[j] - xOpt[j]);</span>
+                        }
+<span class="nc bnc" id="L1531" title="All 2 branches missed.">                    if (tmpvect[i] &gt; 0)</span>
+<span class="nc" id="L1532">                        tmpvect[i] = Math.pow(tmpvect[i], 1. + beta * ((double) i) / ((double) (genomeSize - 1)) * Math.sqrt(tmpvect[i]));</span>
+                    }
+
+<span class="nc bnc" id="L1535" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1537">                    tmx[i] = 0.0;</span>
+<span class="nc" id="L1538">                    tmp = Math.pow(Math.sqrt(condition), ((double) i) / ((double) (genomeSize - 1)));</span>
+<span class="nc bnc" id="L1539" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1541">                        tmx[i] += tmp * rot2[i][j] * tmpvect[j];</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1546" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize - 1; i++)</span>
+                    {
+<span class="nc" id="L1548">                    tmp = tmx[i] * tmx[i] + tmx[i + 1] * tmx[i + 1];</span>
+<span class="nc" id="L1549">                    value += Math.pow(tmp, 0.25) * (Math.pow(Math.sin(50. * Math.pow(tmp, 0.1)), 2.) + 1.);</span>
+                    }
+<span class="nc" id="L1551">                value = Math.pow(value / (double) (genomeSize - 1), 2.);</span>
+<span class="nc" id="L1552">                value += fAdd;</span>
+<span class="nc" id="L1553">                fit = (-value);</span>
+<span class="nc bnc" id="L1554" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1555">            break;</span>
+                        
+                        
+                        
+            case GRIEWANK_ROSENBROCK:// f19
+                /* F8f2 sum of Griewank-Rosenbrock 2-D blocks */
+<span class="nc" id="L1561">                fAdd = fOpt;</span>
+<span class="nc bnc" id="L1562" title="All 2 branches missed.">                if (noise == NONE)</span>
+                    {
+                    /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1565" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L1567">                        tmx[i] = 0.5;</span>
+<span class="nc bnc" id="L1568" title="All 2 branches missed.">                        for (j = 0; j &lt; genomeSize; j++)</span>
+                            {
+<span class="nc" id="L1570">                            tmx[i] += linearTF[i][j] * genome[j];</span>
+                            }
+                        }
+                    /* COMPUTATION core */
+<span class="nc bnc" id="L1574" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize - 1; i++)</span>
+                        {
+<span class="nc" id="L1576">                        tmp2 = tmx[i] * tmx[i] - tmx[i + 1];</span>
+<span class="nc" id="L1577">                        f2 = 100. * tmp2 * tmp2;</span>
+<span class="nc" id="L1578">                        tmp2 = 1 - tmx[i];</span>
+<span class="nc" id="L1579">                        f2 += tmp2 * tmp2;</span>
+<span class="nc" id="L1580">                        tmp += f2 / 4000. - Math.cos(f2);</span>
+                        }
+<span class="nc" id="L1582">                    value = 10. + 10. * tmp / (double) (genomeSize - 1);</span>
+                    }
+                else
+                    {
+                    /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1587" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L1589">                        tmp = Math.abs(genome[i]) - 5.0;</span>
+<span class="nc bnc" id="L1590" title="All 2 branches missed.">                        if (tmp &gt; 0.0)</span>
+                            {
+<span class="nc" id="L1592">                            fPen += tmp * tmp;</span>
+                            }
+                        }
+<span class="nc" id="L1595">                    fAdd += 100.0 * fPen;</span>
+
+                    /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1598" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize; i++)</span>
+                        {
+<span class="nc" id="L1600">                        tmx[i] = 0.5;</span>
+<span class="nc bnc" id="L1601" title="All 2 branches missed.">                        for (j = 0; j &lt; genomeSize; j++)</span>
+                            {
+<span class="nc" id="L1603">                            tmx[i] += scales * rotation[i][j] * genome[j];</span>
+                            }
+                        }
+                    /* COMPUTATION core */
+<span class="nc" id="L1607">                    tmp = 0.;</span>
+<span class="nc bnc" id="L1608" title="All 2 branches missed.">                    for (i = 0; i &lt; genomeSize - 1; i++)</span>
+                        {
+<span class="nc" id="L1610">                        f2 = 100. * (tmx[i] * tmx[i] - tmx[i + 1]) * (tmx[i] * tmx[i] - tmx[i + 1]) + (1 - tmx[i]) * (1 - tmx[i]);</span>
+<span class="nc" id="L1611">                        tmp += f2 / 4000. - Math.cos(f2);</span>
+                        }
+<span class="nc" id="L1613">                    value = 1. + 1. * tmp / (double) (genomeSize - 1);</span>
+                    }
+<span class="nc bnc" id="L1615" title="All 5 branches missed.">                switch (noise)</span>
+                    {
+                    case NONE:
+<span class="nc" id="L1618">                        break;</span>
+                    case GAUSSIAN:
+<span class="nc" id="L1620">                        value = fGauss(value, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1621">                        break;</span>
+                    case UNIFORM:
+<span class="nc" id="L1623">                        value = fUniform(value, 0.49 + 1.0 / genomeSize, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1624">                        break;</span>
+                    case CAUCHY:
+<span class="nc" id="L1626">                        value = fCauchy(value, 1.0, 0.2, state.random[threadnum]);</span>
+<span class="nc" id="L1627">                        break;</span>
+                    default:
+<span class="nc" id="L1629">                        String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L1630" title="All 2 branches missed.">                        for (i = 0; i &lt; 4; i++)</span>
+<span class="nc" id="L1631">                            outputStr += noiseTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L1632">                        state.output.fatal(outputStr, new Parameter(P_NOISE));</span>
+                        break;
+                    }
+<span class="nc" id="L1635">                value += fAdd;</span>
+<span class="nc" id="L1636">                fit = (-value);</span>
+<span class="nc bnc" id="L1637" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1638">            break;</span>
+                        
+                        
+                        
+            case SCHWEFEL:// f20
+                /* Schwefel with tridiagonal variable transformation */
+<span class="nc" id="L1644">                condition = 10.0;</span>
+<span class="nc" id="L1645">                fPen = 0.0;</span>
+<span class="nc" id="L1646">                fAdd = fOpt;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1649" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1651">                    tmpvect[i] = 2. * genome[i];</span>
+<span class="nc bnc" id="L1652" title="All 2 branches missed.">                    if (xOpt[i] &lt; 0.)</span>
+<span class="nc" id="L1653">                        tmpvect[i] *= -1.;</span>
+                    }
+
+<span class="nc" id="L1656">                tmx[0] = tmpvect[0];</span>
+<span class="nc bnc" id="L1657" title="All 2 branches missed.">                for (i = 1; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1659">                    tmx[i] = tmpvect[i] + 0.25 * (tmpvect[i - 1] - 2. * Math.abs(xOpt[i - 1]));</span>
+                    }
+
+<span class="nc bnc" id="L1662" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1664">                    tmx[i] -= 2 * Math.abs(xOpt[i]);</span>
+<span class="nc" id="L1665">                    tmx[i] *= Math.pow(Math.sqrt(condition), ((double) i) / ((double) (genomeSize - 1)));</span>
+<span class="nc" id="L1666">                    tmx[i] = 100. * (tmx[i] + 2 * Math.abs(xOpt[i]));</span>
+                    }
+
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1670" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1672">                    tmp = Math.abs(tmx[i]) - 500.0;</span>
+<span class="nc bnc" id="L1673" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+                        {
+<span class="nc" id="L1675">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc" id="L1678">                fAdd += 0.01 * fPen;</span>
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1681" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1683">                    value += tmx[i] * Math.sin(Math.sqrt(Math.abs(tmx[i])));</span>
+                    }
+<span class="nc" id="L1685">                value = 0.01 * ((418.9828872724339) - value / (double) genomeSize);</span>
+<span class="nc" id="L1686">                value += fAdd;/* without noise */</span>
+<span class="nc" id="L1687">                fit = (-value);</span>
+<span class="nc bnc" id="L1688" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1689">            break;</span>
+                        
+                        
+                        
+            case GALLAGHER_GAUSSIAN_101ME:// f21
+                /*
+                 * Gallagher with 101 Gaussian peaks, condition up to 1000, one
+                 * global rotation
+                 */
+<span class="nc" id="L1698">                a = 0.1;</span>
+<span class="nc" id="L1699">                fac = -0.5 / (double) genomeSize;</span>
+<span class="nc" id="L1700">                fAdd = fOpt;</span>
+
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1703" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1705">                    tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1706" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+                        {
+<span class="nc" id="L1708">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc bnc" id="L1711" title="All 2 branches missed.">                if (noise == NONE)</span>
+<span class="nc" id="L1712">                    fAdd += fPen;</span>
+                else
+<span class="nc" id="L1714">                    fAdd += 100. * fPen;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1717" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1719">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1720" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1722">                        tmx[i] += rotation[i][j] * genome[j];</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1727" title="All 2 branches missed.">                if (noise == NONE)</span>
+<span class="nc bnc" id="L1728" title="All 2 branches missed.">                    for (i = 0; i &lt; NHIGHPEAKS21; i++)</span>
+                        {
+<span class="nc" id="L1730">                        tmp2 = 0.0;</span>
+<span class="nc bnc" id="L1731" title="All 2 branches missed.">                        for (j = 0; j &lt; genomeSize; j++)</span>
+                            {
+<span class="nc" id="L1733">                            tmp = (tmx[j] - xLocal[j][i]);</span>
+<span class="nc" id="L1734">                            tmp2 += arrScales[i][j] * tmp * tmp;</span>
+                            }
+<span class="nc" id="L1736">                        tmp2 = peakvalues[i] * Math.exp(fac * tmp2);</span>
+<span class="nc" id="L1737">                        f = Math.max(f, tmp2);</span>
+                        }
+                else
+                    /* COMPUTATION core */
+<span class="nc bnc" id="L1741" title="All 2 branches missed.">                    for (i = 0; i &lt; NHIGHPEAKS21; i++)</span>
+                        {
+<span class="nc" id="L1743">                        tmp2 = 0.;</span>
+<span class="nc bnc" id="L1744" title="All 2 branches missed.">                        for (j = 0; j &lt; genomeSize; j++)</span>
+                            {
+<span class="nc" id="L1746">                            tmp2 += arrScales[i][j] * (tmx[j] - xLocal[j][i]) * (tmx[j] - xLocal[j][i]);</span>
+                            }
+<span class="nc" id="L1748">                        tmp2 = peakvalues[i] * Math.exp(fac * tmp2);</span>
+<span class="nc" id="L1749">                        f = Math.max(f, tmp2);</span>
+                        }
+
+<span class="nc" id="L1752">                f = 10.0 - f;</span>
+                /* monotoneTFosc */
+<span class="nc bnc" id="L1754" title="All 2 branches missed.">                if (f &gt; 0)</span>
+                    {
+<span class="nc" id="L1756">                    value = Math.log(f) / a;</span>
+<span class="nc" id="L1757">                    value = Math.pow(Math.exp(value + 0.49 * (Math.sin(value) + Math.sin(0.79 * value))), a);</span>
+                    }
+<span class="nc bnc" id="L1759" title="All 2 branches missed.">                else if (f &lt; 0)</span>
+                    {
+<span class="nc" id="L1761">                    value = Math.log(-f) / a;</span>
+<span class="nc" id="L1762">                    value = -Math.pow(Math.exp(value + 0.49 * (Math.sin(0.55 * value) + Math.sin(0.31 * value))), a);</span>
+                    }
+                else
+<span class="nc" id="L1765">                    value = f;</span>
+
+<span class="nc" id="L1767">                value *= value;</span>
+<span class="nc bnc" id="L1768" title="All 5 branches missed.">                switch (noise)</span>
+                    {
+                    case NONE:
+<span class="nc" id="L1771">                        break;</span>
+                    case GAUSSIAN:
+<span class="nc" id="L1773">                        value = fGauss(value, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1774">                        break;</span>
+                    case UNIFORM:
+<span class="nc" id="L1776">                        value = fUniform(value, 0.49 + 1.0 / genomeSize, 1.0, state.random[threadnum]);</span>
+<span class="nc" id="L1777">                        break;</span>
+                    case CAUCHY:
+<span class="nc" id="L1779">                        value = fCauchy(value, 1.0, 0.2, state.random[threadnum]);</span>
+<span class="nc" id="L1780">                        break;</span>
+                    default:
+<span class="nc" id="L1782">                        String outputStr = &quot;Invalid value for parameter, or parameter not found.\n&quot; + &quot;Acceptable values are:\n&quot;;</span>
+<span class="nc bnc" id="L1783" title="All 2 branches missed.">                        for (i = 0; i &lt; 4; i++)</span>
+<span class="nc" id="L1784">                            outputStr += noiseTypes[i] + &quot;\n&quot;;</span>
+<span class="nc" id="L1785">                        state.output.fatal(outputStr, new Parameter(P_NOISE));</span>
+                        break;
+                    }
+<span class="nc" id="L1788">                value += fAdd;</span>
+                ; /* without noise */
+
+<span class="nc" id="L1791">                fit = (-value);</span>
+<span class="nc bnc" id="L1792" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1793">            break;</span>
+                        
+                        
+                        
+            case GALLAGHER_GAUSSIAN_21HI:// f22
+                /*
+                 * Gallagher with 21 Gaussian peaks, condition up to 1000, one
+                 * global rotation
+                 */
+<span class="nc" id="L1802">                a = 0.1;</span>
+<span class="nc" id="L1803">                f = 0;</span>
+<span class="nc" id="L1804">                fac = -0.5 / (double) genomeSize;</span>
+<span class="nc" id="L1805">                fPen = 0.0;</span>
+
+<span class="nc" id="L1807">                fAdd = fOpt;</span>
+
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1810" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1812">                    tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1813" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+                        {
+<span class="nc" id="L1815">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc" id="L1818">                fAdd += fPen;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1821" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1823">                    tmx[i] = 0.0;</span>
+<span class="nc bnc" id="L1824" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1826">                        tmx[i] += rotation[i][j] * genome[j];</span>
+                        }
+                    }
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1831" title="All 2 branches missed.">                for (i = 0; i &lt; NHIGHPEAKS22; i++)</span>
+                    {
+<span class="nc" id="L1833">                    tmp2 = 0.0;</span>
+<span class="nc bnc" id="L1834" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1836">                        tmp = (tmx[j] - xLocal[j][i]);</span>
+<span class="nc" id="L1837">                        tmp2 += arrScales[i][j] * tmp * tmp;</span>
+                        }
+<span class="nc" id="L1839">                    tmp2 = peakvalues[i] * Math.exp(fac * tmp2);</span>
+<span class="nc" id="L1840">                    f = Math.max(f, tmp2);</span>
+                    }
+
+<span class="nc" id="L1843">                f = 10. - f;</span>
+<span class="nc bnc" id="L1844" title="All 2 branches missed.">                if (f &gt; 0)</span>
+                    {
+<span class="nc" id="L1846">                    value = Math.log(f) / a;</span>
+<span class="nc" id="L1847">                    value = Math.pow(Math.exp(value + 0.49 * (Math.sin(value) + Math.sin(0.79 * value))), a);</span>
+                    }
+<span class="nc bnc" id="L1849" title="All 2 branches missed.">                else if (f &lt; 0)</span>
+                    {
+<span class="nc" id="L1851">                    value = Math.log(-f) / a;</span>
+<span class="nc" id="L1852">                    value = -Math.pow(Math.exp(value + 0.49 * (Math.sin(0.55 * value) + Math.sin(0.31 * value))), a);</span>
+                    }
+                else
+<span class="nc" id="L1855">                    value = f;</span>
+
+<span class="nc" id="L1857">                value *= value;</span>
+<span class="nc" id="L1858">                value += fAdd;</span>
+                ; /* without noise */
+
+<span class="nc" id="L1861">                fit = (-value);</span>
+<span class="nc bnc" id="L1862" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1863">            break;</span>
+                        
+                        
+                        
+            case KATSUURA:// f23
+                /* Katsuura function */
+<span class="nc" id="L1869">                condition = 100.0;</span>
+<span class="nc" id="L1870">                fAdd = 0;</span>
+<span class="nc" id="L1871">                fPen = 0;</span>
+                double arr;
+<span class="nc" id="L1873">                double prod = 1.0;</span>
+                double[] ptmx,
+                    plinTF,
+                    ptmp;
+
+<span class="nc" id="L1878">                fAdd = fOpt;</span>
+
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1881" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1883">                    tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1884" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+                        {
+<span class="nc" id="L1886">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc" id="L1889">                fAdd += fPen;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+                /* write rotated difference vector into tmx */
+<span class="nc bnc" id="L1893" title="All 2 branches missed.">                for (j = 0; j &lt; genomeSize; j++)</span>
+                    /* store difference vector */
+<span class="nc" id="L1895">                    tmpvect[j] = genome[j] - xOpt[j];</span>
+<span class="nc bnc" id="L1896" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1898">                    tmx[i] = 0.0;</span>
+<span class="nc" id="L1899">                    ptmx = tmx;</span>
+<span class="nc" id="L1900">                    plinTF = linearTF[i];</span>
+<span class="nc" id="L1901">                    ptmp = tmpvect;</span>
+<span class="nc bnc" id="L1902" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+                        // *ptmx += *plinTF++ * *ptmp++;
+<span class="nc" id="L1905">                        ptmx[j] += plinTF[j] * ptmp[j];</span>
+                        }
+                    }
+
+                /*
+                 * for (i = 0; i &lt; genomeSize; i++) { tmx[i] = 0.0; for (j = 0; j &lt;
+                 * genomeSize; j++) { tmx[i] += linearTF[i][j] * (genome[j] -
+                 * xOpt[j]); } }
+                 */
+
+                /* COMPUTATION core */
+<span class="nc bnc" id="L1916" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1918">                    tmp = 0.0;</span>
+<span class="nc bnc" id="L1919" title="All 2 branches missed.">                    for (j = 1; j &lt; 33; j++)</span>
+                        {
+<span class="nc" id="L1921">                        tmp2 = Math.pow(2., (double) j);</span>
+<span class="nc" id="L1922">                        arr = tmx[i] * tmp2;</span>
+<span class="nc" id="L1923">                        tmp += Math.abs(arr - Math.round(arr)) / tmp2;</span>
+                        }
+<span class="nc" id="L1925">                    tmp = 1. + tmp * (double) (i + 1);</span>
+<span class="nc" id="L1926">                    prod *= tmp;</span>
+                    }
+<span class="nc" id="L1928">                value = 10. / (double) genomeSize / (double) genomeSize * (-1. + Math.pow(prod, 10. / Math.pow((double) genomeSize, 1.2)));</span>
+<span class="nc" id="L1929">                value += fAdd;</span>
+<span class="nc" id="L1930">                fit = (-value);</span>
+<span class="nc bnc" id="L1931" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1932">            break;</span>
+                        
+                        
+                        
+            case LUNACEK:// f24
+                /* Lunacek bi-Rastrigin, condition 100 */
+                /* in PPSN 2008, Rastrigin part rotated and scaled */
+<span class="nc" id="L1939">                condition = 100.0;</span>
+<span class="nc" id="L1940">                double mu1 = 2.5;</span>
+                double tmp3,
+                    tmp4;
+<span class="nc" id="L1943">                fPen = tmp2 = tmp3 = tmp4 = 0.0;</span>
+<span class="nc" id="L1944">                double s = 1. - 0.5 / (Math.sqrt((double) (genomeSize + 20)) - 4.1);</span>
+<span class="nc" id="L1945">                double d = 1.;</span>
+<span class="nc" id="L1946">                double mu2 = -Math.sqrt((mu1 * mu1 - d) / s);</span>
+
+<span class="nc" id="L1948">                fAdd = fOpt;</span>
+
+                /* BOUNDARY HANDLING */
+<span class="nc bnc" id="L1951" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1953">                    tmp = Math.abs(genome[i]) - 5.;</span>
+<span class="nc bnc" id="L1954" title="All 2 branches missed.">                    if (tmp &gt; 0.)</span>
+                        {
+<span class="nc" id="L1956">                        fPen += tmp * tmp;</span>
+                        }
+                    }
+<span class="nc" id="L1959">                fAdd += 1e4 * fPen;</span>
+
+                /* TRANSFORMATION IN SEARCH SPACE */
+<span class="nc bnc" id="L1962" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1964">                    tmx[i] = 2. * genome[i];</span>
+<span class="nc bnc" id="L1965" title="All 2 branches missed.">                    if (xOpt[i] &lt; 0.)</span>
+<span class="nc" id="L1966">                        tmx[i] *= -1.;</span>
+                    }
+
+                /* COMPUTATION core */
+<span class="nc" id="L1970">                tmp = 0.0;</span>
+<span class="nc bnc" id="L1971" title="All 2 branches missed.">                for (i = 0; i &lt; genomeSize; i++)</span>
+                    {
+<span class="nc" id="L1973">                    tmp2 += (tmx[i] - mu1) * (tmx[i] - mu1);</span>
+<span class="nc" id="L1974">                    tmp3 += (tmx[i] - mu2) * (tmx[i] - mu2);</span>
+<span class="nc" id="L1975">                    tmp4 = 0.0;</span>
+<span class="nc bnc" id="L1976" title="All 2 branches missed.">                    for (j = 0; j &lt; genomeSize; j++)</span>
+                        {
+<span class="nc" id="L1978">                        tmp4 += linearTF[i][j] * (tmx[j] - mu1);</span>
+                        }
+<span class="nc" id="L1980">                    tmp += Math.cos(2 * Math.PI * tmp4);</span>
+                    }
+<span class="nc" id="L1982">                value = Math.min(tmp2, d * (double) genomeSize + s * tmp3) + 10. * ((double) genomeSize - tmp);</span>
+<span class="nc" id="L1983">                value += fAdd;</span>
+<span class="nc" id="L1984">                fit = (-value);</span>
+<span class="nc bnc" id="L1985" title="All 2 branches missed.">                ((SimpleFitness) (ind.fitness)).setFitness(state, fit, fit == 0.0);</span>
+<span class="nc" id="L1986">            break;</span>
+            default:
+                break;
+            }
+            
+<span class="nc" id="L1991">        ind.evaluated = true;</span>
+<span class="nc" id="L1992">        }</span>
+
+
+    final static public double TOL = 1e-8;
+
+    void gauss(double[] g, MersenneTwisterFast random)
+        {
+        /*
+         * samples N standard normally distributed numbers being the same for a
+         * given seed.
+         */
+<span class="nc" id="L2003">        double[] uniftmp = new double[2 * g.length];</span>
+        int i;
+<span class="nc bnc" id="L2005" title="All 2 branches missed.">        for (i = 0; i &lt; uniftmp.length; i++)</span>
+<span class="nc" id="L2006">            uniftmp[i] = nextDoubleClosedInterval(random);</span>
+<span class="nc bnc" id="L2007" title="All 2 branches missed.">        for (i = 0; i &lt; g.length; i++)</span>
+            {
+
+<span class="nc" id="L2010">            g[i] = Math.sqrt(-2 * Math.log(uniftmp[i])) * Math.cos(2 * Math.PI * uniftmp[g.length + i]);</span>
+<span class="nc bnc" id="L2011" title="All 2 branches missed.">            if (g[i] == 0.0)</span>
+<span class="nc" id="L2012">                g[i] = 1e-99;</span>
+            }
+<span class="nc" id="L2014">        return;</span>
+        }
+
+    void gauss(double[] g, MersenneTwisterFast random, int n)
+        {
+        /*
+         * samples N standard normally distributed numbers being the same for a
+         * given seed.
+         */
+<span class="nc" id="L2023">        double[] uniftmp = new double[2 * g.length];</span>
+        int i;
+<span class="nc bnc" id="L2025" title="All 2 branches missed.">        for (i = 0; i &lt; uniftmp.length; i++)</span>
+<span class="nc" id="L2026">            uniftmp[i] = nextDoubleClosedInterval(random);</span>
+<span class="nc bnc" id="L2027" title="All 2 branches missed.">        for (i = 0; i &lt; n; i++)</span>
+            {
+<span class="nc" id="L2029">            g[i] = Math.sqrt(-2 * Math.log(uniftmp[i])) * Math.cos(2 * Math.PI * uniftmp[n + i]);</span>
+<span class="nc bnc" id="L2030" title="All 2 branches missed.">            if (g[i] == 0.0)</span>
+<span class="nc" id="L2031">                g[i] = 1e-99;</span>
+            }
+<span class="nc" id="L2033">        return;</span>
+        }
+
+    void computeXopt(double[] xOpt, MersenneTwisterFast random)
+        {
+        int i;
+<span class="nc" id="L2039">        int n = xOpt.length;</span>
+<span class="nc bnc" id="L2040" title="All 2 branches missed.">        for (i = 0; i &lt; n; i++)</span>
+            {
+<span class="nc" id="L2042">            xOpt[i] = 8 * (int) Math.floor(1e4 * nextDoubleClosedInterval(random)) / 1e4 - 4;</span>
+<span class="nc bnc" id="L2043" title="All 2 branches missed.">            if (xOpt[i] == 0.0)</span>
+<span class="nc" id="L2044">                xOpt[i] = -1e-5;</span>
+            }
+<span class="nc" id="L2046">        }</span>
+
+    void monotoneTFosc(double[] f)
+        {
+<span class="nc" id="L2050">        double a = 0.1;</span>
+        int i;
+<span class="nc" id="L2052">        int n = f.length;</span>
+<span class="nc bnc" id="L2053" title="All 2 branches missed.">        for (i = 0; i &lt; n; i++)</span>
+            {
+<span class="nc bnc" id="L2055" title="All 2 branches missed.">            if (f[i] &gt; 0)</span>
+                {
+<span class="nc" id="L2057">                f[i] = Math.log(f[i]) / a;</span>
+<span class="nc" id="L2058">                f[i] = Math.pow(Math.exp(f[i] + 0.49 * (Math.sin(f[i]) + Math.sin(0.79 * f[i]))), a);</span>
+                }
+<span class="nc bnc" id="L2060" title="All 2 branches missed.">            else if (f[i] &lt; 0)</span>
+                {
+<span class="nc" id="L2062">                f[i] = Math.log(-f[i]) / a;</span>
+<span class="nc" id="L2063">                f[i] = -Math.pow(Math.exp(f[i] + 0.49 * (Math.sin(0.55 * f[i]) + Math.sin(0.31 * f[i]))), a);</span>
+                }
+            }
+<span class="nc" id="L2066">        }</span>
+
+    double[][] reshape(double[][] b, double[] vector, int m, int n)
+        {
+        int i, j;
+<span class="nc bnc" id="L2071" title="All 2 branches missed.">        for (i = 0; i &lt; m; i++)</span>
+            {
+<span class="nc bnc" id="L2073" title="All 2 branches missed.">            for (j = 0; j &lt; n; j++)</span>
+                {
+<span class="nc" id="L2075">                b[i][j] = vector[j * m + i];</span>
+                }
+            }
+<span class="nc" id="L2078">        return b;</span>
+        }
+
+    void computeRotation(double[][] b, MersenneTwisterFast random, int genomeSize)
+        {
+<span class="nc" id="L2083">        double[] gvect = new double[genomeSize * genomeSize];</span>
+        double prod;
+        int i, j, k; /* Loop over pairs of column vectors */
+
+<span class="nc" id="L2087">        gauss(gvect, random);</span>
+<span class="nc" id="L2088">        reshape(b, gvect, genomeSize, genomeSize);</span>
+        /* 1st coordinate is row, 2nd is column. */
+
+<span class="nc bnc" id="L2091" title="All 2 branches missed.">        for (i = 0; i &lt; genomeSize; i++)</span>
+            {
+<span class="nc bnc" id="L2093" title="All 2 branches missed.">            for (j = 0; j &lt; i; j++)</span>
+                {
+<span class="nc" id="L2095">                prod = 0;</span>
+<span class="nc bnc" id="L2096" title="All 2 branches missed.">                for (k = 0; k &lt; genomeSize; k++)</span>
+                    {
+<span class="nc" id="L2098">                    prod += b[k][i] * b[k][j];</span>
+                    }
+<span class="nc bnc" id="L2100" title="All 2 branches missed.">                for (k = 0; k &lt; genomeSize; k++)</span>
+                    {
+<span class="nc" id="L2102">                    b[k][i] -= prod * b[k][j];</span>
+                    }
+                }
+<span class="nc" id="L2105">            prod = 0;</span>
+<span class="nc bnc" id="L2106" title="All 2 branches missed.">            for (k = 0; k &lt; genomeSize; k++)</span>
+                {
+<span class="nc" id="L2108">                prod += b[k][i] * b[k][i];</span>
+                }
+<span class="nc bnc" id="L2110" title="All 2 branches missed.">            for (k = 0; k &lt; genomeSize; k++)</span>
+                {
+<span class="nc" id="L2112">                b[k][i] /= Math.sqrt(prod);</span>
+                }
+            }
+<span class="nc" id="L2115">        }</span>
+
+    double fGauss(double fTrue, double beta, MersenneTwisterFast random)
+        {
+<span class="nc" id="L2119">        double fVal = fTrue * Math.exp(beta * nextDoubleClosedInterval(random));</span>
+<span class="nc" id="L2120">        fVal += 1.01 * TOL;</span>
+<span class="nc bnc" id="L2121" title="All 2 branches missed.">        if (fTrue &lt; TOL)</span>
+            {
+<span class="nc" id="L2123">            fVal = fTrue;</span>
+            }
+<span class="nc" id="L2125">        return fVal;</span>
+        }
+
+    double fUniform(double fTrue, double alpha, double beta, MersenneTwisterFast random)
+        {
+<span class="nc" id="L2130">        double fVal = Math.pow(nextDoubleClosedInterval(random), beta) * fTrue * Math.max(1.0, Math.pow(1e9 / (fTrue + 1e-99), alpha * nextDoubleClosedInterval(random)));</span>
+<span class="nc" id="L2131">        fVal += 1.01 * TOL;</span>
+<span class="nc bnc" id="L2132" title="All 2 branches missed.">        if (fTrue &lt; TOL)</span>
+            {
+<span class="nc" id="L2134">            fVal = fTrue;</span>
+            }
+<span class="nc" id="L2136">        return fVal;</span>
+        }
+
+    double fCauchy(double fTrue, double alpha, double p, MersenneTwisterFast random)
+        {
+        double fVal;
+<span class="nc" id="L2142">        double tmp = nextDoubleClosedInterval(random) / Math.abs(nextDoubleClosedInterval(random) + 1e-199);</span>
+        /*
+         * tmp is so as to actually do the calls to randn in order for the
+         * number of calls to be the same as in the Matlab code.
+         */
+<span class="nc bnc" id="L2147" title="All 2 branches missed.">        if (nextDoubleClosedInterval(random) &lt; p)</span>
+<span class="nc" id="L2148">            fVal = fTrue + alpha * Math.max(0., 1e3 + tmp);</span>
+        else
+<span class="nc" id="L2150">            fVal = fTrue + alpha * 1e3;</span>
+
+<span class="nc" id="L2152">        fVal += 1.01 * TOL;</span>
+<span class="nc bnc" id="L2153" title="All 2 branches missed.">        if (fTrue &lt; TOL)</span>
+            {
+<span class="nc" id="L2155">            fVal = fTrue;</span>
+            }
+<span class="nc" id="L2157">        return fVal;</span>
+        }
+
+    double computeFopt(MersenneTwisterFast random)
+        {
+<span class="nc" id="L2162">        double[] gval = new double[1];</span>
+<span class="nc" id="L2163">        double[] gval2 = new double[1];</span>
+<span class="nc" id="L2164">        gauss(gval, random, 1);</span>
+<span class="nc" id="L2165">        gauss(gval2, random, 1);</span>
+<span class="nc" id="L2166">        return Math.min(1000.0, Math.max(-1000.0, (Math.round(100.0 * 100.0 * gval[0] / gval2[0]) / 100.0)));</span>
+        }
+
+    double nextDoubleClosedInterval(MersenneTwisterFast random)
+        {
+<span class="nc" id="L2171">        double tmp = random.nextDouble() * 2.0;</span>
+<span class="nc bnc" id="L2172" title="All 2 branches missed.">        while (tmp &gt; 1.0)</span>
+<span class="nc" id="L2173">            tmp = random.nextDouble() * 2.0;</span>
+<span class="nc" id="L2174">        return tmp;</span>
+        }
+    }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

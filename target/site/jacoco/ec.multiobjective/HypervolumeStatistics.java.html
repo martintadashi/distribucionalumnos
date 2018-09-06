@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HypervolumeStatistics.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecj</a> &gt; <a href="index.source.html" class="el_package">ec.multiobjective</a> &gt; <span class="el_source">HypervolumeStatistics.java</span></div><h1>HypervolumeStatistics.java</h1><pre class="source lang-java linenums">/*
+  Copyright 2018 by Sean Luke and George Mason University
+  Licensed under the Academic Free License version 3.0
+  See the file &quot;LICENSE&quot; for more information
+*/
+package ec.multiobjective;
+
+import ec.EvolutionState;
+import ec.Individual;
+import ec.simple.SimpleStatistics;
+import ec.util.Parameter;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/**
+ * Measures the hypervolume of a population's Pareto front.
+ * 
+ * Our implementation follows the WFG algorithm, described in
+ * 
+ * Lyndon While, Lucas Bradstreet, and Luigi Barone, &quot;A Fast Way of Calculating
+ * Exact Hypervolumes,&quot; IEEE Transactions on Evolutionary Computation, 16 (1),
+ * February, 2012.
+ * 
+ * @author Eric O. Scott
+ */
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">public class HypervolumeStatistics extends SimpleStatistics</span>
+    {
+    public final static String P_REFERENCE_POINT = &quot;reference-point&quot;;
+    private double[] referencePoint;
+    
+    public double[] getReferencePoint()
+        {
+<span class="fc" id="L33">        return Arrays.copyOf(referencePoint, referencePoint.length);</span>
+        }
+    
+    @Override
+    public void setup(final EvolutionState state, final Parameter base)
+        {
+<span class="fc" id="L39">        super.setup(state,base);</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if (state.parameters.exists(base.push(P_DO_MESSAGE),null))</span>
+<span class="nc" id="L41">            state.output.warning(&quot;Messages are not printed out by &quot; + this.getClass().getSimpleName(), base.push(P_DO_MESSAGE));</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if (state.parameters.exists(base.push(P_DO_DESCRIPTION),null))</span>
+<span class="nc" id="L43">            state.output.warning(&quot;Descriptions are not printed out by &quot; + this.getClass().getSimpleName(), base.push(P_DO_DESCRIPTION));</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (state.parameters.exists(base.push(P_DO_PER_GENERATION_DESCRIPTION),null))</span>
+<span class="nc" id="L45">            state.output.warning(&quot;Descriptions are not printed out by &quot; + this.getClass().getSimpleName(), base.push(P_DO_PER_GENERATION_DESCRIPTION));</span>
+        
+<span class="fc" id="L47">        referencePoint = state.parameters.getDoubles(base.push(P_REFERENCE_POINT), null, Double.NEGATIVE_INFINITY);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (referencePoint == null)</span>
+<span class="nc" id="L49">            state.output.fatal(&quot;Missing required parameter.&quot;, base.push(P_REFERENCE_POINT));</span>
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        if (doGeneration &amp;&amp; referencePoint.length &gt; 3)</span>
+<span class="fc" id="L51">            state.output.warnOnce(String.format(&quot;You calculating hypervolume on %d objectives at every generation.  Note that hypervolume calculation can very costly for more than a few objectives.&quot;, referencePoint.length), base.push(P_REFERENCE_POINT));</span>
+<span class="fc" id="L52">        }</span>
+    
+    @Override
+    public void postEvaluationStatistics(final EvolutionState state)
+        {
+<span class="nc" id="L57">        super.bypassPostEvaluationStatistics(state);</span>
+        
+<span class="nc" id="L59">        state.output.print(&quot;&quot; + state.generation, statisticslog);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        for(int s = 0; s &lt; state.population.subpops.size(); s++)</span>
+            {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (doGeneration)</span>
+                {
+<span class="nc" id="L64">                ArrayList&lt;Individual&gt; paretoFront = MultiObjectiveFitness.partitionIntoParetoFront(state.population.subpops.get(s).individuals, null, null);</span>
+                try
+                    {
+<span class="nc" id="L67">                    final double hv = hypervolume(paretoFront);</span>
+<span class="nc" id="L68">                    state.output.print(&quot;, &quot; + hv, statisticslog);</span>
+                    }
+<span class="nc" id="L70">                catch (final Exception e)</span>
+                    {
+<span class="nc" id="L72">                    state.output.fatal(e.getMessage());</span>
+<span class="nc" id="L73">                    }</span>
+                }
+            }
+<span class="nc" id="L76">        state.output.print(&quot;\n&quot;, statisticslog);</span>
+<span class="nc" id="L77">        }</span>
+    
+    /** Compute the hypervolume of the Pareto front induced by a collection of points. */
+    public double hypervolume(final ArrayList&lt;Individual&gt; paretoFront)
+        {
+<span class="pc bpc" id="L82" title="2 of 4 branches missed.">        assert(paretoFront != null);</span>
+<span class="fc" id="L83">        double exclusiveSum = 0.0;</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (int i = 0; i &lt; paretoFront.size(); i++)</span>
+<span class="fc" id="L85">            exclusiveSum += exclusiveHypervolume(paretoFront, i);</span>
+<span class="fc" id="L86">        return exclusiveSum;</span>
+        }
+    
+    /** Compute the exclusive hypervolume of the indIDth element of a collection 
+     * of points against the elements whose ID is greater than indID.
+     * 
+     * Note that this does not compute the exclusive hypervolume with respect to
+     * *every* other element in the collection, but only the elements that follow
+     * indID!
+     */
+    private double exclusiveHypervolume(final ArrayList&lt;Individual&gt; paretoFront, final int indID)
+        {
+<span class="pc bpc" id="L98" title="2 of 4 branches missed.">        assert(paretoFront != null);</span>
+<span class="pc bpc" id="L99" title="2 of 4 branches missed.">        assert(indID &gt;= 0);</span>
+<span class="pc bpc" id="L100" title="2 of 4 branches missed.">        assert(indID &lt; paretoFront.size());</span>
+        
+<span class="fc" id="L102">        final Individual ind = paretoFront.get(indID);</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">        if (!(ind.fitness instanceof MultiObjectiveFitness))</span>
+<span class="nc" id="L104">            throw new IllegalStateException(String.format(&quot;%s: found an individual with a %s.  Hypervolume can only be computed for %s.&quot;, this.getClass().getSimpleName(), ind.fitness.getClass().getSimpleName(), MultiObjectiveFitness.class.getSimpleName()));</span>
+        
+<span class="fc" id="L106">        final MultiObjectiveFitness indFitness = (MultiObjectiveFitness) ind.fitness;</span>
+<span class="fc" id="L107">        final MultiObjectiveFitness refFitness = (MultiObjectiveFitness) ind.fitness.clone();</span>
+<span class="fc" id="L108">        refFitness.objectives = referencePoint;</span>
+        
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (!indFitness.paretoDominates(refFitness))</span>
+<span class="fc" id="L111">            throw new IllegalStateException(String.format(&quot;%s: found an individual (fitness: %s) that does not dominate the reference point (%s).  Cowardly refusing to compute a negative hypervolume contribution for this individual.  You probably need to choosing a different reference pointor check the maximization/minimization setting for the objectives.&quot;, this.getClass().getSimpleName(), Arrays.toString(indFitness.objectives), Arrays.toString(referencePoint)));</span>
+        
+<span class="fc" id="L113">        final ArrayList&lt;Individual&gt; limitSet = limitSet(paretoFront, indID);</span>
+<span class="fc" id="L114">        final double ihv = inclusiveHypervolume(ind);</span>
+<span class="pc bpc" id="L115" title="2 of 4 branches missed.">        assert(ihv &gt;= 0);</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        final double result = limitSet.isEmpty() ?</span>
+            ihv :
+<span class="fc" id="L118">            ihv - hypervolume(MultiObjectiveFitness.partitionIntoParetoFront(limitSet, null, null));</span>
+<span class="pc bpc" id="L119" title="2 of 4 branches missed.">        assert(result &gt;= 0);</span>
+<span class="fc" id="L120">        return result;</span>
+        }
+    
+    /** Compute the hypervolume covered by a single individual. */
+    public double inclusiveHypervolume(final Individual ind)
+        {
+<span class="pc bpc" id="L126" title="2 of 4 branches missed.">        assert(ind != null);</span>
+<span class="pc bpc" id="L127" title="2 of 4 branches missed.">        assert(ind.fitness instanceof MultiObjectiveFitness);</span>
+<span class="fc" id="L128">        final MultiObjectiveFitness fitness = (MultiObjectiveFitness) ind.fitness;</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">        if (fitness.objectives.length != referencePoint.length)</span>
+<span class="nc" id="L130">            throw new IllegalStateException(String.format(&quot;%s: %s has %d dimensions, but we encountered an individual with an %d-dimensional fitness.&quot;, this.getClass().getSimpleName(), P_REFERENCE_POINT, referencePoint.length, fitness.objectives.length));</span>
+<span class="fc" id="L131">        double product = 1.0;</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        for (int i = 0; i &lt; fitness.objectives.length; i++)</span>
+<span class="fc" id="L133">            product *= Math.abs(fitness.objectives[i] - referencePoint[i]);</span>
+<span class="fc" id="L134">        return product;</span>
+        }
+    
+    /** Compute a set of points that define the boundary of the *intersection* 
+     * between an individual's inclusive hypervolume and the area dominated by
+     * all the points in the front that follow indID (i.e. that have an index 
+     * greater than indID). */
+    private ArrayList&lt;Individual&gt; limitSet(final ArrayList&lt;Individual&gt; paretoFront, final int indID)
+        {
+<span class="pc bpc" id="L143" title="2 of 4 branches missed.">        assert(paretoFront != null);</span>
+<span class="pc bpc" id="L144" title="2 of 4 branches missed.">        assert(indID &gt;= 0);</span>
+<span class="pc bpc" id="L145" title="2 of 4 branches missed.">        assert(indID &lt; paretoFront.size());</span>
+        
+<span class="fc" id="L147">        final Individual contributingPoint = paretoFront.get(indID);</span>
+<span class="pc bpc" id="L148" title="2 of 4 branches missed.">        assert(contributingPoint != null);</span>
+<span class="pc bpc" id="L149" title="2 of 4 branches missed.">        assert(contributingPoint.fitness instanceof MultiObjectiveFitness);</span>
+<span class="fc" id="L150">        final MultiObjectiveFitness contributingFitness = (MultiObjectiveFitness) contributingPoint.fitness;</span>
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">        if (contributingFitness.objectives.length != referencePoint.length)</span>
+<span class="nc" id="L152">            throw new IllegalStateException(String.format(&quot;%s: %s has %d dimensions, but we encountered an individual with an %d-dimensional fitness.&quot;, this.getClass().getSimpleName(), P_REFERENCE_POINT, referencePoint.length, contributingFitness.objectives.length));</span>
+
+<span class="fc" id="L154">        final ArrayList&lt;Individual&gt; set = new ArrayList&lt;Individual&gt;(paretoFront.size());</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        for (int i = indID + 1; i &lt; paretoFront.size(); i++)</span>
+            {
+<span class="fc" id="L157">            final MultiObjectiveFitness refFitness = (MultiObjectiveFitness) paretoFront.get(i).fitness;</span>
+<span class="fc" id="L158">            final double[] newPoint = new double[referencePoint.length];</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">            for (int j = 0; j &lt; newPoint.length; j++)</span>
+                {
+<span class="fc bfc" id="L161" title="All 2 branches covered.">                newPoint[j] = contributingFitness.isMaximizing(j) ? </span>
+<span class="fc" id="L162">                    Math.min(contributingFitness.getObjective(j), refFitness.getObjective(j)) :</span>
+<span class="fc" id="L163">                    Math.max(contributingFitness.getObjective(j), refFitness.getObjective(j));</span>
+                }
+<span class="fc" id="L165">            final Individual newPointInd = (Individual) contributingPoint.clone();</span>
+<span class="fc" id="L166">            newPointInd.fitness = (MultiObjectiveFitness) contributingFitness.clone();</span>
+<span class="fc" id="L167">            ((MultiObjectiveFitness)newPointInd.fitness).objectives = newPoint;</span>
+<span class="fc" id="L168">            set.add(newPointInd);</span>
+            }
+<span class="fc" id="L170">        return set;</span>
+        }
+
+    /** Logs the best individual of the run. */
+    @Override
+    public void finalStatistics(final EvolutionState state, final int result)
+        {
+<span class="nc" id="L177">        bypassFinalStatistics(state, result);  // just call super.super.finalStatistics(...)</span>
+
+<span class="nc bnc" id="L179" title="All 2 branches missed.">        if (!doFinal)</span>
+<span class="nc" id="L180">            return;</span>
+<span class="nc" id="L181">        state.output.print(&quot;&quot; + state.generation, statisticslog);</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">        for (int s = 0; s &lt; state.population.subpops.size(); s++)</span>
+            {
+<span class="nc" id="L184">            ArrayList&lt;Individual&gt; paretoFront = MultiObjectiveFitness.partitionIntoParetoFront(state.population.subpops.get(s).individuals, null, null);</span>
+<span class="nc" id="L185">            final double hv = hypervolume(paretoFront);</span>
+<span class="nc" id="L186">            state.output.println(&quot;, &quot; + hv, statisticslog);</span>
+            }
+<span class="nc" id="L188">        state.output.print(&quot;\n&quot;, statisticslog);</span>
+<span class="nc" id="L189">        }</span>
+    }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

@@ -100,6 +100,7 @@
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/push/Atan.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/util/Checkpoint.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/Evaluator.java
+/home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/gp/ge/breed/GECrossoverPipeline.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/multiobjective/nsga3/SelectorTools.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/eda/dovs/DOVSInitializer.java
@@ -393,7 +394,6 @@
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/tutorial4/DoubleData.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/multiplexerslow/func/D2.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/multiobjective/MultiObjectiveStatistics.java
-/home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/p1e1/Test.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/gp/koza/KozaNodeSelector.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/spatial/SpatialMultiPopCoevolutionaryEvaluator.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/singlestate/SingleStateBreeder.java
@@ -507,6 +507,7 @@
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/gp/GPData.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/breed/RepeatPipeline.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/tutorial4/Y.java
+/home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/gp/GPTree.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/edge/EdgeData.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/multiplexerslow/func/D3.java

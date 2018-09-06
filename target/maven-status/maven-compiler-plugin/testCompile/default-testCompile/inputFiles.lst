@@ -2,13 +2,10 @@
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/eda/pbil/PBILSpeciesTest.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/EvolutionStateTest.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/multiobjective/HypervolumeStatisticsTest.java
-/home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/app/AppsTest.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/util/MiscTest.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/multiobjective/spea2/SPEA2BreederTest.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/multiobjective/nsga2/NSGA2BreederTest.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/test/StubExchanger.java
-/home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/app/SPEA2AppsTest.java
-/home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/app/bbob/BBOBenchmarksTest.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/test/StubEvaluator.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/test/TestStatistics.java
 /home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/test/java/ec/test/StubFinisher.java

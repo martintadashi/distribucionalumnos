@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Empleado.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecj</a> &gt; <a href="index.source.html" class="el_package">ec.app.p1e1</a> &gt; <span class="el_source">Empleado.java</span></div><h1>Empleado.java</h1><pre class="source lang-java linenums">package ec.app.p1e1;
+
+import com.google.gson.Gson;
+
+public class Empleado {
+
+    private final static String TAG = &quot;Empleado&quot;;
+
+    private int id;             // entre 1 y E
+    private float habilidad;    // entre 0 y 1
+    private int sueldo;         // sueldo diario
+    private int dedicacion;     // dedicacion horaria diaria
+
+<span class="nc" id="L14">    public Empleado(int id) {</span>
+<span class="nc" id="L15">        this.id = id;</span>
+<span class="nc" id="L16">    }</span>
+
+    public int getId() {
+<span class="nc" id="L19">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="nc" id="L23">        this.id = id;</span>
+<span class="nc" id="L24">    }</span>
+
+    public float getHabilidad() {
+<span class="nc" id="L27">        return habilidad;</span>
+    }
+
+    public void setHabilidad(float habilidad) {
+<span class="nc" id="L31">        this.habilidad = habilidad;</span>
+<span class="nc" id="L32">    }</span>
+
+    public int getSueldo() {
+<span class="nc" id="L35">        return sueldo;</span>
+    }
+
+    public void setSueldo(int sueldo) {
+<span class="nc" id="L39">        this.sueldo = sueldo;</span>
+<span class="nc" id="L40">    }</span>
+
+    public int getDedicacion() {
+<span class="nc" id="L43">        return dedicacion;</span>
+    }
+
+    public void setDedicacion(int dedicacion) {
+<span class="nc" id="L47">        this.dedicacion = dedicacion;</span>
+<span class="nc" id="L48">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L52">        Gson gson = new Gson();</span>
+<span class="nc" id="L53">        return gson.toJson(this);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

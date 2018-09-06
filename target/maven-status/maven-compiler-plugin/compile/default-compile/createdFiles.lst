@@ -375,7 +375,6 @@ ec/app/twobox/func/Sub.class
 ec/eda/dovs/CornerMap.class
 ec/spatial/Spatial1DSubpopulation.class
 ec/gp/GPProblem.class
-Test.class
 ec/app/multiplexer/func/A2.class
 ec/app/multiplexer/func/D2.class
 ec/simple/SimpleEvolutionState.class
@@ -477,6 +476,7 @@ ec/app/parity/func/D27.class
 ec/app/edge/func/BStart.class
 ec/gp/GPNodeGatherer.class
 ec/app/majority/func/If.class
+ec/vector/IntegerVectorSpeciesP1E1.class
 ec/app/twobox/func/H0.class
 ec/app/tutorial4/Y.class
 ec/display/ControlPanel$1.class
@@ -523,6 +523,7 @@ ec/app/parity/func/D30.class
 ec/vector/breed/VectorCrossoverPipeline.class
 ec/app/multiplexerslow/func/D4.class
 ec/gp/GPTree.class
+ec/vector/IntegerVectorIndividualP1E1.class
 ec/app/gpsemantics/func/SemanticExtra.class
 ec/steadystate/SteadyStateExchangerForm.class
 ec/pso/PSOBreeder.class

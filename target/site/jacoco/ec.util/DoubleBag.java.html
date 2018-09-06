@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DoubleBag.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecj</a> &gt; <a href="index.source.html" class="el_package">ec.util</a> &gt; <span class="el_source">DoubleBag.java</span></div><h1>DoubleBag.java</h1><pre class="source lang-java linenums">/*
+  Copyright 2006 by Sean Luke and George Mason University
+  Licensed under the Academic Free License version 3.0
+  See the file &quot;LICENSE&quot; for more information
+*/
+
+package ec.util;
+
+/** Maintains a simple array (objs) of doubles and the number of doubles (numObjs) in the array
+    (the array can be bigger than this number).  You are encouraged to access the doubles directly;
+    they are stored in positions [0 ... numObjs-1].  If you wish to extend the array, you should call
+    the resize method.
+    
+    &lt;p&gt;DoubleBag is approximately to double what Bag is to Object.  However, for obvious reasons, DoubleBag is not
+    a java.util.Collection subclass and is purposely simple (it doesn't have an Iterator for example).
+    
+    &lt;p&gt;DoubleBag is not synchronized, and so should not be accessed from different threads without locking on it
+    or some appropriate lock double first.  DoubleBag also has an unusual, fast method for removing doubles
+    called remove(...), which removes the double simply by swapping the topmost double into its
+    place.  This means that after remove(...) is called, the DoubleBag may no longer have the same order
+    (hence the reason it's called a &quot;DoubleBag&quot; rather than some variant on &quot;Vector&quot; or &quot;Array&quot; or &quot;List&quot;).  You can
+    guarantee order by calling removeNondestructively(...) instead if you wish, but this is O(n) in the worst case.
+*/
+
+public class DoubleBag implements java.io.Serializable, Cloneable, Indexed
+    {
+    private static final long serialVersionUID = 1;
+
+    public double[] objs;
+    public int numObjs;
+    
+    /** Creates a DoubleBag with a given initial capacity. */
+<span class="nc" id="L33">    public DoubleBag(int capacity) { numObjs = 0; objs = new double[capacity]; }</span>
+
+<span class="fc" id="L35">    public DoubleBag() { numObjs = 0; objs = new double[1]; }</span>
+    
+    /** Adds the doubles from the other DoubleBag without copying them.  The size of the
+        new DoubleBag is the minimum necessary size to hold the doubles.  If the Other DoubleBag is
+        null, a new empty DoubleBag is created. */
+    public DoubleBag(final DoubleBag other)
+<span class="nc" id="L41">        {</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (other==null) { numObjs = 0; objs = new double[1]; }</span>
+        else
+            {
+<span class="nc" id="L45">            numObjs = other.numObjs;</span>
+<span class="nc" id="L46">            objs = new double[numObjs];</span>
+<span class="nc" id="L47">            System.arraycopy(other.objs,0,objs,0,numObjs);</span>
+            }
+<span class="nc" id="L49">        }</span>
+    
+    /** Creates a DoubleBag with the given elements. If the Other array is
+        null, a new empty DoubleBag is created. */
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    public DoubleBag(double[] other) { this(); if (other!=null) addAll(other); }</span>
+
+    public int size()
+        {
+<span class="fc" id="L57">        return numObjs;</span>
+        }
+    
+    public boolean isEmpty()
+        {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        return (numObjs&lt;=0);</span>
+        }
+    
+<span class="nc" id="L65">    public boolean addAll(double[] other) { return addAll(numObjs, other); }</span>
+
+    public boolean addAll(final int index, final double[] other)
+        {
+        // throws NullPointerException if other == null,
+        // ArrayArrayIndexOutOfBoundsException if index &lt; 0,
+        // and ArrayIndexOutOfBoundsException if index &gt; numObjs
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (index &gt; numObjs) </span>
+<span class="nc" id="L73">            throw new ArrayIndexOutOfBoundsException(index);</span>
+        // { throwArrayIndexOutOfBoundsException(index); }
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (other.length == 0) return false;</span>
+        // make DoubleBag big enough
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (numObjs+other.length &gt; objs.length)</span>
+<span class="nc" id="L78">            resize(numObjs+other.length);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (index != numObjs)   // scoot over elements if we're inserting in the middle</span>
+<span class="nc" id="L80">            System.arraycopy(objs,index,objs,index+other.length,numObjs - index);</span>
+<span class="nc" id="L81">        System.arraycopy(other,0,objs,index,other.length);</span>
+<span class="nc" id="L82">        numObjs += other.length;</span>
+<span class="nc" id="L83">        return true;</span>
+        }
+    
+<span class="nc" id="L86">    public boolean addAll(final DoubleBag other) { return addAll(numObjs,other); }</span>
+
+    public boolean addAll(final int index, final DoubleBag other)
+        {
+        // throws NullPointerException if other == null,
+        // ArrayArrayIndexOutOfBoundsException if index &lt; 0,
+        // and ArrayIndexOutOfBoundsException if index &gt; numObjs
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (index &gt; numObjs) </span>
+<span class="nc" id="L94">            throw new ArrayIndexOutOfBoundsException(index);</span>
+        //{ throwArrayIndexOutOfBoundsException(index); }
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (other.numObjs &lt;= 0) return false;</span>
+        // make DoubleBag big enough
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        if (numObjs+other.numObjs &gt; objs.length)</span>
+<span class="nc" id="L99">            resize(numObjs+other.numObjs);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (index != numObjs)   // scoot over elements if we're inserting in the middle</span>
+<span class="nc" id="L101">            System.arraycopy(objs,index,objs,index+other.size(),numObjs - index);</span>
+<span class="nc" id="L102">        System.arraycopy(other.objs,0,objs,index,other.numObjs);</span>
+<span class="nc" id="L103">        numObjs += other.numObjs;</span>
+<span class="nc" id="L104">        return true;</span>
+        }
+
+    public Object clone() throws CloneNotSupportedException
+        {
+<span class="nc" id="L109">        DoubleBag b = (DoubleBag)(super.clone());</span>
+<span class="nc" id="L110">        b.objs = (double[]) objs.clone();</span>
+<span class="nc" id="L111">        return b;</span>
+        }
+        
+    public void resize(int toAtLeast)
+        {
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        if (objs.length &gt;= toAtLeast)  // already at least as big as requested</span>
+<span class="nc" id="L117">            return;</span>
+
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (objs.length * 2 &gt; toAtLeast)  // worth doubling</span>
+<span class="nc" id="L120">            toAtLeast = objs.length * 2;</span>
+
+        // now resize
+<span class="nc" id="L123">        double[] newobjs = new double[toAtLeast];</span>
+<span class="nc" id="L124">        System.arraycopy(objs,0,newobjs,0,numObjs);</span>
+<span class="nc" id="L125">        objs=newobjs;</span>
+<span class="nc" id="L126">        }</span>
+    
+    /** Resizes the objs array to max(numObjs, desiredLength), unless that value is greater than or equal to objs.length,
+        in which case no resizing is done (this operation only shrinks -- use resize() instead).
+        This is an O(n) operation, so use it sparingly. */
+    public void shrink(int desiredLength)
+        {
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if (desiredLength &lt; numObjs) desiredLength = numObjs;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (desiredLength &gt;= objs.length) return;  // no reason to bother</span>
+<span class="nc" id="L135">        double[] newobjs = new double[desiredLength];</span>
+<span class="nc" id="L136">        System.arraycopy(objs,0,newobjs,0,numObjs);</span>
+<span class="nc" id="L137">        objs = newobjs;</span>
+<span class="nc" id="L138">        }</span>
+    
+    
+    /** Returns 0 if the DoubleBag is empty, else returns the topmost double. */
+    public double top()
+        {
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (numObjs&lt;=0) return 0;</span>
+<span class="nc" id="L145">        else return objs[numObjs-1];</span>
+        }
+    
+    /** Returns 0 if the DoubleBag is empty, else removes and returns the topmost double. */
+    public double pop()
+        {
+        // this curious arrangement makes me small enough to be inlined (35 bytes; right at the limit)
+<span class="nc" id="L152">        int numObjs = this.numObjs;</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (numObjs&lt;=0) return 0;</span>
+<span class="nc" id="L154">        double ret = objs[--numObjs];</span>
+<span class="nc" id="L155">        this.numObjs = numObjs;</span>
+<span class="nc" id="L156">        return ret;</span>
+        }
+    
+    /** Synonym for add(obj) -- try to use add instead unless you
+        want to think of the DoubleBag as a stack. */
+    public boolean push(final double obj)
+        {
+<span class="nc bnc" id="L163" title="All 2 branches missed.">        if (numObjs &gt;= objs.length) doubleCapacityPlusOne();</span>
+<span class="nc" id="L164">        objs[numObjs++] = obj;</span>
+<span class="nc" id="L165">        return true;</span>
+        /*
+        // this curious arrangement makes me small enough to be inlined (35 bytes)
+        int numObjs = this.numObjs;
+        if (numObjs &gt;= objs.length) doubleCapacityPlusOne();
+        objs[numObjs] = obj;
+        this.numObjs = numObjs+1;
+        return true;
+        */
+        }
+        
+    public boolean add(final double obj)
+        {
+<span class="fc bfc" id="L178" title="All 2 branches covered.">        if (numObjs &gt;= objs.length) doubleCapacityPlusOne();</span>
+<span class="fc" id="L179">        objs[numObjs++] = obj;</span>
+<span class="fc" id="L180">        return true;</span>
+        /*
+        // this curious arrangement makes me small enough to be inlined (35 bytes)
+        int numObjs = this.numObjs;
+        if (numObjs &gt;= objs.length) doubleCapacityPlusOne();
+        objs[numObjs] = obj;
+        this.numObjs = numObjs+1;
+        return true;
+        */
+        }
+    
+    // private function used by add and push in order to get them below
+    // 35 bytes -- always doubles the capacity and adds one
+    void doubleCapacityPlusOne()
+        {
+<span class="fc" id="L195">        double[] newobjs = new double[numObjs*2+1];</span>
+<span class="fc" id="L196">        System.arraycopy(objs,0,newobjs,0,numObjs);</span>
+<span class="fc" id="L197">        objs=newobjs;</span>
+<span class="fc" id="L198">        }</span>
+
+    public boolean contains(final double o)
+        {
+<span class="nc" id="L202">        int numObjs = this.numObjs;</span>
+<span class="nc" id="L203">        double[] objs = this.objs;</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        for(int x=0;x&lt;numObjs;x++)</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">            if (o==objs[x]) return true;</span>
+<span class="nc" id="L206">        return false;</span>
+        }
+        
+    public double get(final int index)
+        {
+<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (index&gt;=numObjs) //  || index &lt; 0)</span>
+<span class="nc" id="L212">            throw new ArrayIndexOutOfBoundsException(index);</span>
+        //throwArrayIndexOutOfBoundsException(index);
+<span class="nc" id="L214">        return objs[index];</span>
+        }
+
+    public Object getValue(final int index)
+        {
+<span class="nc" id="L219">        return new Double(get(index));</span>
+        }
+
+    public double set(final int index, final double element)
+        {
+<span class="nc bnc" id="L224" title="All 2 branches missed.">        if (index&gt;=numObjs) // || index &lt; 0)</span>
+<span class="nc" id="L225">            throw new ArrayIndexOutOfBoundsException(index);</span>
+        //throwArrayIndexOutOfBoundsException(index);
+<span class="nc" id="L227">        double returnval = objs[index];</span>
+<span class="nc" id="L228">        objs[index] = element;</span>
+<span class="nc" id="L229">        return returnval;</span>
+        }
+
+    public Object setValue(final int index, final Object value)
+        {
+<span class="nc" id="L234">        Double old = new Double(get(index));</span>
+<span class="nc" id="L235">        Double newval = null;</span>
+<span class="nc" id="L236">        try { newval = (Double)value; }</span>
+<span class="nc" id="L237">        catch (ClassCastException e) { throw new IllegalArgumentException(&quot;Expected a Double&quot;); }</span>
+<span class="nc" id="L238">        set(index,newval.doubleValue());</span>
+<span class="nc" id="L239">        return old;</span>
+        }
+
+    /** Removes the double at the given index, shifting the other doubles down. */
+    public double removeNondestructively(final int index)
+        {
+<span class="nc bnc" id="L245" title="All 2 branches missed.">        if (index&gt;=numObjs) // || index &lt; 0)</span>
+<span class="nc" id="L246">            throw new ArrayIndexOutOfBoundsException(index);</span>
+        // throwArrayIndexOutOfBoundsException(index);
+<span class="nc" id="L248">        double ret = objs[index];</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">        if (index &lt; numObjs - 1)  // it's not the topmost double, must swap down</span>
+<span class="nc" id="L250">            System.arraycopy(objs, index+1, objs, index, numObjs - index - 1);</span>
+<span class="nc" id="L251">        numObjs--;</span>
+<span class="nc" id="L252">        return ret;</span>
+        }
+    
+    /** Removes the double at the given index, moving the topmost double into its position. */
+    public double remove(final int index)
+        {
+<span class="nc" id="L258">        int _numObjs = numObjs;</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">        if (index&gt;=_numObjs) // || index &lt; 0)</span>
+<span class="nc" id="L260">            throw new ArrayIndexOutOfBoundsException(index);</span>
+        //throwArrayIndexOutOfBoundsException(index);
+<span class="nc" id="L262">        double[] _objs = this.objs;</span>
+<span class="nc" id="L263">        double ret = _objs[index];</span>
+<span class="nc" id="L264">        _objs[index] = _objs[_numObjs-1];</span>
+<span class="nc" id="L265">        numObjs--;</span>
+<span class="nc" id="L266">        return ret;</span>
+        }
+        
+    /** Sorts the doubles into ascending numerical order. */
+<span class="nc" id="L270">    public void sort() {java.util.Arrays.sort(objs, 0, numObjs);}</span>
+
+
+    /** Replaces all elements in the bag with the provided object. */
+    public void fill(double o)
+        {
+        // teeny bit faster
+<span class="nc" id="L277">        double[] objs = this.objs;</span>
+<span class="nc" id="L278">        int numObjs = this.numObjs;</span>
+        
+<span class="nc bnc" id="L280" title="All 2 branches missed.">        for(int x=0; x &lt; numObjs; x++)</span>
+<span class="nc" id="L281">            objs[x] = o;</span>
+<span class="nc" id="L282">        }</span>
+
+    /** Shuffles (randomizes the order of) the DoubleBag */
+    public void shuffle(java.util.Random random)
+        {
+        // teeny bit faster
+<span class="nc" id="L288">        double[] objs = this.objs;</span>
+<span class="nc" id="L289">        int numObjs = this.numObjs;</span>
+        double obj;
+        int rand;
+        
+<span class="nc bnc" id="L293" title="All 2 branches missed.">        for(int x=numObjs-1; x &gt;= 1 ; x--)</span>
+            {
+<span class="nc" id="L295">            rand = random.nextInt(x+1);</span>
+<span class="nc" id="L296">            obj = objs[x];</span>
+<span class="nc" id="L297">            objs[x] = objs[rand];</span>
+<span class="nc" id="L298">            objs[rand] = obj;</span>
+            }
+<span class="nc" id="L300">        }</span>
+    
+    /** Shuffles (randomizes the order of) the DoubleBag */
+    public void shuffle(ec.util.MersenneTwisterFast random)
+        {
+        // teeny bit faster
+<span class="nc" id="L306">        double[] objs = this.objs;</span>
+<span class="nc" id="L307">        int numObjs = this.numObjs;</span>
+        double obj;
+        int rand;
+        
+<span class="nc bnc" id="L311" title="All 2 branches missed.">        for(int x=numObjs-1; x &gt;= 1 ; x--)</span>
+            {
+<span class="nc" id="L313">            rand = random.nextInt(x+1);</span>
+<span class="nc" id="L314">            obj = objs[x];</span>
+<span class="nc" id="L315">            objs[x] = objs[rand];</span>
+<span class="nc" id="L316">            objs[rand] = obj;</span>
+            }
+<span class="nc" id="L318">        }</span>
+    
+    /** Reverses order of the elements in the DoubleBag */
+    public void reverse()
+        {
+        // teeny bit faster
+<span class="nc" id="L324">        double[] objs = this.objs;</span>
+<span class="nc" id="L325">        int numObjs = this.numObjs;</span>
+<span class="nc" id="L326">        int l = numObjs / 2;</span>
+        double obj;
+<span class="nc bnc" id="L328" title="All 2 branches missed.">        for(int x=0; x &lt; l; x++)</span>
+            {
+<span class="nc" id="L330">            obj = objs[x];</span>
+<span class="nc" id="L331">            objs[x] = objs[numObjs - x - 1];</span>
+<span class="nc" id="L332">            objs[numObjs - x - 1] = obj;</span>
+            }
+<span class="nc" id="L334">        }</span>
+
+    //protected void throwArrayIndexOutOfBoundsException(final int index)
+    //    {
+    //    throw new ArrayIndexOutOfBoundsException(&quot;&quot;+index);
+    //    }
+        
+    /** Removes all numbers in the DoubleBag.  This is done by clearing the internal array but 
+        not replacing it with a new, smaller one. */
+    public void clear()
+        {
+<span class="nc" id="L345">        numObjs = 0;</span>
+<span class="nc" id="L346">        }</span>
+        
+    /**    
+           Copies 'len' elements from the Bag into the provided array.
+           The 'len' elements start at index 'fromStart' in the Bag, and
+           are copied into the provided array starting at 'toStat'.
+    */ 
+    public void copyIntoArray(int fromStart, double[] to, int toStart, int len)
+        {
+<span class="nc" id="L355">        System.arraycopy(objs, fromStart, to, toStart, len);</span>
+<span class="nc" id="L356">        }</span>
+
+    public double[] toArray()
+        {
+<span class="fc" id="L360">        double[] o = new double[numObjs];</span>
+<span class="fc" id="L361">        System.arraycopy(objs,0,o,0,numObjs);</span>
+<span class="fc" id="L362">        return o;</span>
+        }
+        
+    public Double[] toDoubleArray()
+        {
+<span class="nc" id="L367">        Double[] o = new Double[numObjs];</span>
+<span class="nc bnc" id="L368" title="All 2 branches missed.">        for(int i = 0; i &lt; numObjs; i++)</span>
+<span class="nc" id="L369">            o[i] = new Double(objs[i]);</span>
+<span class="nc" id="L370">        return o;</span>
+        }
+
+    public Class componentType()
+        {
+<span class="nc" id="L375">        return Double.TYPE;</span>
+        }
+    }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

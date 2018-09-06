@@ -1,0 +1,657 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+ecj,ec.app.ant.func,Right,59,0,5,0,18,0,9,0,5,0
+ecj,ec.app.ant.func,IfFoodAhead,389,0,26,0,43,0,21,0,5,0
+ecj,ec.app.ant.func,Left,59,0,5,0,18,0,9,0,5,0
+ecj,ec.app.ant.func,Progn4,105,0,0,0,13,0,5,0,5,0
+ecj,ec.app.ant.func,Move,271,0,38,0,38,0,27,0,5,0
+ecj,ec.app.ant.func,Progn3,81,0,0,0,11,0,5,0,5,0
+ecj,ec.app.ant.func,Progn2,57,0,0,0,9,0,5,0,5,0
+ecj,ec.eda.amalgam,AMALGAMDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.eda.amalgam,AMALGAMBreeder,99,0,8,0,17,0,7,0,3,0
+ecj,ec.eda.amalgam,AMALGAMSpecies,1759,0,152,0,277,0,92,0,16,0
+ecj,ec.eda.amalgam,AMALGAMSpecies.new Comparator() {...},12,0,0,0,2,0,2,0,2,0
+ecj,ec.es,ESSelection,108,0,8,0,17,0,9,0,5,0
+ecj,ec.es,MuCommaLambdaBreeder,1286,0,86,0,145,0,49,0,6,0
+ecj,ec.es,MuCommaLambdaBreeder.new Comparator() {...},28,0,4,0,6,0,4,0,2,0
+ecj,ec.es,MuLambdaBreederThread,17,0,0,0,3,0,2,0,2,0
+ecj,ec.es,MuPlusLambdaBreeder,46,0,4,0,6,0,5,0,3,0
+ecj,ec.es,ESDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.app.lid.func,LidJ,8,0,0,0,4,0,4,0,4,0
+ecj,ec.app.lid.func,LidX,8,0,0,0,4,0,4,0,4,0
+ecj,ec.app.sum,Sum,74,0,8,0,15,0,7,0,3,0
+ecj,ec.app.edge.func,Double,136,0,2,0,24,0,5,0,4,0
+ecj,ec.app.edge.func,Bud,194,0,4,0,35,0,6,0,4,0
+ecj,ec.app.edge.func,One,21,0,0,0,7,0,4,0,4,0
+ecj,ec.app.edge.func,Reverse,45,0,0,0,10,0,4,0,4,0
+ecj,ec.app.edge.func,BLoop,136,0,2,0,24,0,5,0,4,0
+ecj,ec.app.edge.func,BAccept,35,0,0,0,8,0,4,0,4,0
+ecj,ec.app.edge.func,BStart,35,0,0,0,8,0,4,0,4,0
+ecj,ec.app.edge.func,Start,35,0,0,0,8,0,4,0,4,0
+ecj,ec.app.edge.func,Accept,35,0,0,0,8,0,4,0,4,0
+ecj,ec.app.edge.func,Loop,136,0,2,0,24,0,5,0,4,0
+ecj,ec.app.edge.func,BBud,194,0,4,0,35,0,6,0,4,0
+ecj,ec.app.edge.func,Zero,21,0,0,0,7,0,4,0,4,0
+ecj,ec.app.edge.func,Epsilon,21,0,0,0,7,0,4,0,4,0
+ecj,ec.app.edge.func,Split,199,0,4,0,36,0,6,0,4,0
+ecj,ec.app.ecsuite,ECSuite,1487,1753,167,2,247,16,104,3,11,3
+ecj,ec.app.moosuite,MooSuite,1000,0,86,0,161,0,53,0,4,0
+ecj,ec.app.majority,CA,285,0,32,0,52,0,25,0,9,0
+ecj,ec.app.majority,MajorityData,15,0,0,0,5,0,2,0,2,0
+ecj,ec.app.majority,MajorityGA,1068,0,64,0,97,0,42,0,10,0
+ecj,ec.app.majority,MajorityGP,565,0,62,0,91,0,40,0,9,0
+ecj,ec.app.xor,XOR,222,0,16,0,29,0,10,0,2,0
+ecj,ec.vector.breed,ListCrossoverPipeline,934,0,80,0,143,0,49,0,9,0
+ecj,ec.vector.breed,MultipleVectorCrossoverPipeline,296,0,24,0,45,0,19,0,7,0
+ecj,ec.vector.breed,VectorCrossoverPipeline,274,0,26,0,49,0,20,0,7,0
+ecj,ec.vector.breed,VectorMutationPipeline,59,0,4,0,11,0,6,0,4,0
+ecj,ec.vector.breed,GeneDuplicationPipeline,144,0,10,0,27,0,9,0,4,0
+ecj,ec.coevolve,GuruComparator,38,0,0,0,3,0,3,0,3,0
+ecj,ec.coevolve,CompetitiveEvaluator,1378,0,113,0,227,0,72,0,14,0
+ecj,ec.coevolve,NRandomTwoWayCompetitiveEvaluatorThread,21,0,0,0,2,0,2,0,2,0
+ecj,ec.coevolve,IndComparator,19,0,0,0,3,0,3,0,3,0
+ecj,ec.coevolve,EncapsulatedIndividual,9,0,0,0,4,0,1,0,1,0
+ecj,ec.coevolve,CompetitiveEvaluatorThread,3,0,0,0,1,0,1,0,1,0
+ecj,ec.coevolve,MultiPopCoevolutionaryEvaluator,1163,221,122,20,147,38,76,7,9,3
+ecj,ec.coevolve,RoundRobinCompetitiveEvaluatorThread,21,0,0,0,2,0,2,0,2,0
+ecj,ec.coevolve,NRandomOneWayCompetitiveEvaluatorThread,21,0,0,0,2,0,2,0,2,0
+ecj,ec,Subpopulation,770,27,73,1,127,6,50,3,13,3
+ecj,ec,Finisher,0,3,0,0,0,1,0,1,0,1
+ecj,ec,Problem,29,4,0,0,13,2,10,2,10,2
+ecj,ec,Initializer,0,3,0,0,0,1,0,1,0,1
+ecj,ec,Exchanger,5,3,0,0,4,1,4,1,4,1
+ecj,ec,BreedingPipeline,525,69,74,6,74,14,51,2,11,2
+ecj,ec,SelectionMethod,108,3,12,0,21,1,12,1,6,1
+ecj,ec,Individual,244,30,2,2,53,7,18,5,17,4
+ecj,ec,Statistics,394,82,51,5,66,11,46,2,18,2
+ecj,ec,Species,84,97,0,0,20,16,4,3,4,3
+ecj,ec,Evolve,994,17,96,0,186,4,59,1,11,1
+ecj,ec,Breeder,0,3,0,0,0,1,0,1,0,1
+ecj,ec,EvolutionState,175,324,25,13,36,66,24,5,6,4
+ecj,ec,ECDefaults,3,5,0,0,1,1,1,1,1,1
+ecj,ec,Evaluator,57,34,3,1,13,7,6,2,4,2
+ecj,ec,Population,479,41,38,2,73,7,30,3,11,2
+ecj,ec,Fitness,462,51,42,6,85,16,41,8,19,6
+ecj,ec,BreedingSource,60,21,3,1,13,5,9,2,7,2
+ecj,ec.app.edge,Edge.new Comparator() {...},61,0,14,0,9,0,9,0,2,0
+ecj,ec.app.edge,EdgeData,9,0,0,0,2,0,2,0,2,0
+ecj,ec.app.edge,Edge,1907,0,179,0,267,0,104,0,13,0
+ecj,ec.app.multiplexer,Fast,1762,0,0,0,7,0,2,0,2,0
+ecj,ec.app.multiplexer,MultiplexerData,82,0,4,0,20,0,7,0,5,0
+ecj,ec.app.multiplexer,Multiplexer,241,0,22,0,46,0,14,0,3,0
+ecj,ec.app.twobox,TwoBoxData,9,0,0,0,2,0,2,0,2,0
+ecj,ec.app.twobox,TwoBox,380,0,18,0,49,0,13,0,4,0
+ecj,ec.app.hiff,HIFF,225,0,24,0,39,0,18,0,6,0
+ecj,ec.app.royaltree,RoyalTree,194,0,22,0,41,0,16,0,5,0
+ecj,ec.vector,ShortVectorIndividual,1332,0,151,0,204,0,103,0,24,0
+ecj,ec.vector,FloatVectorSpecies,1429,0,152,0,209,0,89,0,13,0
+ecj,ec.vector,IntegerVectorIndividualP1E1,1317,0,151,0,204,0,103,0,24,0
+ecj,ec.vector,VectorDefaults,3,5,0,0,1,1,1,1,1,1
+ecj,ec.vector,GeneVectorSpecies,32,0,0,0,7,0,2,0,2,0
+ecj,ec.vector,BitVectorSpecies,171,0,14,0,32,0,11,0,4,0
+ecj,ec.vector,IntegerVectorIndividual,1229,88,147,4,187,17,96,7,18,6
+ecj,ec.vector,LongVectorIndividual,1385,0,163,0,218,0,111,0,26,0
+ecj,ec.vector,DoubleVectorIndividual,2056,58,230,7,333,12,150,5,28,3
+ecj,ec.vector,VectorIndividual,27,3,0,0,13,1,11,1,11,1
+ecj,ec.vector,Gene,91,0,0,0,19,0,14,0,14,0
+ecj,ec.vector,ByteVectorIndividual,1332,0,151,0,204,0,103,0,24,0
+ecj,ec.vector,VectorSpecies,1266,347,134,28,175,58,86,13,9,9
+ecj,ec.vector,FloatVectorIndividual,2160,0,237,0,344,0,155,0,31,0
+ecj,ec.vector,BitVectorIndividual,851,0,91,0,149,0,69,0,21,0
+ecj,ec.vector,GeneVectorIndividual,936,0,94,0,152,0,70,0,21,0
+ecj,ec.vector,IntegerVectorSpecies,600,315,82,26,87,53,55,9,4,6
+ecj,ec.vector,IntegerVectorSpeciesP1E1,1323,0,132,0,211,0,84,0,18,0
+ecj,ec.app.parity.func,Or,34,0,2,0,7,0,5,0,4,0
+ecj,ec.app.parity.func,Nand,43,0,2,0,9,0,5,0,4,0
+ecj,ec.app.parity.func,And,35,0,2,0,7,0,5,0,4,0
+ecj,ec.app.parity.func,D29,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D28,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D27,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D26,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D31,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D30,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D19,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D18,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D17,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D16,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D15,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D25,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D24,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D23,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D22,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D21,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D20,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D14,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D13,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D12,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D11,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D10,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D0,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D1,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D2,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D3,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D8,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D9,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D4,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D5,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D6,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,D7,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.parity.func,Nor,42,0,2,0,9,0,5,0,4,0
+ecj,ec.de,Rand1EitherOrDEBreeder,231,0,30,0,30,0,18,0,3,0
+ecj,ec.de,Best1BinDEBreeder,199,0,22,0,27,0,14,0,3,0
+ecj,ec.de,DEEvaluator,129,0,14,0,16,0,9,0,2,0
+ecj,ec.de,DEBreeder,473,0,58,0,69,0,36,0,7,0
+ecj,ec.app.bbob,BBOBenchmarks,7585,0,668,0,1052,0,386,0,14,0
+ecj,ec.app.cartpole,CartPole,331,0,24,0,60,0,17,0,5,0
+ecj,ec.app.parity,ParityData,9,0,0,0,2,0,2,0,2,0
+ecj,ec.app.parity,Parity,177,0,20,0,29,0,13,0,3,0
+ecj,ec.app.singular,Singular,108,0,4,0,13,0,5,0,3,0
+ecj,ec.app.regression.func,KornsERC,22,0,4,0,5,0,5,0,3,0
+ecj,ec.app.regression.func,Sin,28,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,X5,31,0,2,0,9,0,5,0,4,0
+ecj,ec.app.regression.func,X4,31,0,2,0,9,0,5,0,4,0
+ecj,ec.app.regression.func,X1,31,0,2,0,9,0,5,0,4,0
+ecj,ec.app.regression.func,X3,31,0,2,0,9,0,5,0,4,0
+ecj,ec.app.regression.func,X2,31,0,2,0,9,0,5,0,4,0
+ecj,ec.app.regression.func,Div,52,0,2,0,11,0,5,0,4,0
+ecj,ec.app.regression.func,Add,43,0,0,0,9,0,4,0,4,0
+ecj,ec.app.regression.func,Mul,43,0,0,0,9,0,4,0,4,0
+ecj,ec.app.regression.func,X,17,0,0,0,6,0,4,0,4,0
+ecj,ec.app.regression.func,Inv,29,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,Cube,33,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,Tan,28,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,Log,36,0,2,0,7,0,5,0,4,0
+ecj,ec.app.regression.func,NegExp,30,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,VladERCC,38,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,VladERCA,52,0,0,0,10,0,6,0,6,0
+ecj,ec.app.regression.func,VladERCB,38,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,Sqrt,28,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,Sub,43,0,0,0,9,0,4,0,4,0
+ecj,ec.app.regression.func,Tanh,28,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,Exp,28,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,RegERC,114,0,6,0,26,0,13,0,10,0
+ecj,ec.app.regression.func,KeijzerERC,17,0,0,0,4,0,3,0,3,0
+ecj,ec.app.regression.func,Square,30,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,Cos,28,0,0,0,7,0,4,0,4,0
+ecj,ec.app.regression.func,Neg,29,0,0,0,7,0,4,0,4,0
+ecj,ec.app.gui,SimpleXYSeriesChartStatistics,111,0,8,0,16,0,7,0,3,0
+ecj,ec.app.gui,SimpleBarChartStatistics,108,0,8,0,16,0,7,0,3,0
+ecj,ec.app.multiplexerslow,Multiplexer,174,0,14,0,25,0,10,0,3,0
+ecj,ec.app.multiplexerslow,MultiplexerData,9,0,0,0,2,0,2,0,2,0
+ecj,ec.pso,Particle,1792,0,264,0,340,0,152,0,20,0
+ecj,ec.pso,PSOBreeder,377,0,30,0,51,0,18,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT0,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT1,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT2,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT3,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT4,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT5,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT6,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT7,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT8,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeT9,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeNode,14,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF3,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF4,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF5,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF6,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF7,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF8,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF9,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF0,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF1,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.ordertree.func,OrderTreeF2,7,0,0,0,3,0,3,0,3,0
+ecj,ec.display,StatisticsChartPane,95,0,6,0,26,0,9,0,6,0
+ecj,ec.display,ParameterValue,21,0,0,0,5,0,3,0,3,0
+ecj,ec.display,ControlPanel,2152,0,96,0,488,0,82,0,34,0
+ecj,ec.display,ParametersPanel.new FocusAdapter() {...},43,0,0,0,7,0,2,0,2,0
+ecj,ec.display,ParametersPanel.new TableModelListener() {...},69,0,6,0,12,0,5,0,2,0
+ecj,ec.display,ParametersPanel.new TreeSelectionListener() {...},233,0,22,0,39,0,13,0,2,0
+ecj,ec.display,ParametersPanel,244,0,10,0,54,0,13,0,8,0
+ecj,ec.display,SubpopulationPanel.new ListSelectionListener() {...},61,0,2,0,7,0,3,0,2,0
+ecj,ec.display,Console,1254,0,46,0,248,0,61,0,38,0
+ecj,ec.display,StatisticsChartPane.new ContainerAdapter() {...},19,0,2,0,5,0,3,0,2,0
+ecj,ec.display,Console.new ActionListener() {...},358,0,8,0,70,0,6,0,2,0
+ecj,ec.display,Console.new ActionListener() {...},9,0,0,0,3,0,2,0,2,0
+ecj,ec.display,Console.new Runnable() {...},650,0,56,0,107,0,36,0,8,0
+ecj,ec.display,Console.new ActionListener() {...},68,0,2,0,14,0,3,0,2,0
+ecj,ec.display,Console.new ActionListener() {...},60,0,2,0,13,0,3,0,2,0
+ecj,ec.display,Console.new ActionListener() {...},43,0,2,0,11,0,3,0,2,0
+ecj,ec.display,Console.new ActionListener() {...},94,0,6,0,21,0,5,0,2,0
+ecj,ec.display,Console.new ActionListener() {...},51,0,4,0,10,0,4,0,2,0
+ecj,ec.display,Console.new ActionListener() {...},81,0,8,0,16,0,6,0,2,0
+ecj,ec.display,Console.6.new FileFilter() {...},47,0,10,0,13,0,8,0,3,0
+ecj,ec.display,ControlPanel.new KeyAdapter() {...},14,0,2,0,4,0,3,0,2,0
+ecj,ec.display,ControlPanel.new ItemListener() {...},27,0,0,0,4,0,2,0,2,0
+ecj,ec.display,ControlPanel.new KeyAdapter() {...},46,0,4,0,7,0,4,0,2,0
+ecj,ec.display,ControlPanel.new FocusListener() {...},11,0,0,0,4,0,3,0,3,0
+ecj,ec.display,ControlPanel.new FocusListener() {...},24,0,0,0,5,0,3,0,3,0
+ecj,ec.display,ControlPanel.new KeyAdapter() {...},43,0,4,0,6,0,4,0,2,0
+ecj,ec.display,ControlPanel.new KeyAdapter() {...},46,0,4,0,7,0,4,0,2,0
+ecj,ec.display,ControlPanel.new FocusListener() {...},24,0,0,0,5,0,3,0,3,0
+ecj,ec.display,ControlPanel.new FocusListener() {...},24,0,0,0,5,0,3,0,3,0
+ecj,ec.display,EvolutionStateEvent,4,0,0,0,2,0,1,0,1,0
+ecj,ec.display,SubpopulationPanel,390,0,22,0,75,0,22,0,11,0
+ecj,ec.display,ControlPanel.new FocusListener() {...},21,0,0,0,4,0,3,0,3,0
+ecj,ec.display,ControlPanel.new KeyAdapter() {...},43,0,4,0,6,0,4,0,2,0
+ecj,ec.display,ControlPanel.new ItemListener() {...},14,0,2,0,4,0,3,0,2,0
+ecj,ec.display,ControlPanel.new ActionListener() {...},10,0,0,0,3,0,2,0,2,0
+ecj,ec.display,ControlPanel.new ItemListener() {...},46,0,2,0,6,0,3,0,2,0
+ecj,ec.display,ControlPanel.new ItemListener() {...},22,0,2,0,5,0,3,0,2,0
+ecj,ec.display,ControlPanel.new FocusListener() {...},21,0,0,0,4,0,3,0,3,0
+ecj,ec.display,ControlPanel.new KeyAdapter() {...},43,0,4,0,6,0,4,0,2,0
+ecj,ec.display,ControlPanel.new KeyAdapter() {...},44,0,4,0,6,0,4,0,2,0
+ecj,ec.display,ControlPanel.new ActionListener() {...},55,0,4,0,15,0,4,0,2,0
+ecj,ec.display,ControlPanel.new ItemListener() {...},96,0,10,0,26,0,7,0,2,0
+ecj,ec.app.push,Regression,358,0,40,0,61,0,24,0,4,0
+ecj,ec.app.push,Print,18,0,2,0,6,0,3,0,2,0
+ecj,ec.app.push,Atan,24,0,2,0,8,0,3,0,2,0
+ecj,ec.exchange,InterPopulationExchange,807,0,60,0,86,0,38,0,8,0
+ecj,ec.exchange,IslandExchangeServer,1436,0,112,0,247,0,62,0,6,0
+ecj,ec.exchange,InterPopulationExchange.IPEInformation,3,0,0,0,1,0,1,0,1,0
+ecj,ec.exchange,IslandExchange,1380,0,82,0,282,0,57,0,16,0
+ecj,ec.exchange,IslandExchangeServer.IslandExchangeIslandInfo,3,0,0,0,1,0,1,0,1,0
+ecj,ec.exchange,IslandExchangeMailbox,546,0,28,0,110,0,18,0,4,0
+ecj,ec.multiobjective.spea2,SPEA2Breeder.BreedingState,9,29,0,0,0,1,2,2,2,2
+ecj,ec.multiobjective.spea2,SPEA2Breeder,57,667,10,60,11,111,12,37,2,12
+ecj,ec.multiobjective.spea2,SPEA2MultiObjectiveFitness,178,14,2,2,24,2,9,3,8,2
+ecj,ec.util,DataPipe,223,0,12,0,40,0,18,0,12,0
+ecj,ec.util,BadParameterException,11,0,0,0,1,0,1,0,1,0
+ecj,ec.util,Output.Announcement,0,6,0,0,0,3,0,1,0,1
+ecj,ec.util,ParamClassLoadException,11,0,0,0,1,0,1,0,1,0
+ecj,ec.util,IntBag,783,0,66,0,152,0,70,0,37,0
+ecj,ec.util,Output,1038,458,101,35,172,85,111,26,47,22
+ecj,ec.util,ReflectedObject.new ReflectedObject() {...},6,0,0,0,2,0,2,0,2,0
+ecj,ec.util,MersenneTwisterFast,4300,644,301,25,527,79,174,16,22,5
+ecj,ec.util,ThreadPool,359,15,12,0,63,4,21,1,15,1
+ecj,ec.util,ReflectedObject,903,0,116,0,143,0,80,0,22,0
+ecj,ec.util,ParameterDatabaseEvent,22,0,0,0,8,0,4,0,4,0
+ecj,ec.util,Code,1786,0,252,0,332,0,162,0,21,0
+ecj,ec.util,ParameterDatabaseTreeModel,61,0,8,0,19,0,11,0,7,0
+ecj,ec.util,ParameterDatabase,4068,1045,420,128,761,239,299,85,68,42
+ecj,ec.util,Checkpoint,136,0,2,0,17,0,4,0,3,0
+ecj,ec.util,DecodeReturn,51,0,0,0,7,0,5,0,5,0
+ecj,ec.util,Parameter,186,32,25,3,35,8,20,3,6,3
+ecj,ec.util,OutputException,4,0,0,0,1,0,1,0,1,0
+ecj,ec.util,ThreadPool.Node,219,0,12,0,49,0,12,0,6,0
+ecj,ec.util,ParameterDatabaseTreeNode,126,0,20,0,40,0,17,0,7,0
+ecj,ec.util,Output.OutputExitException,0,4,0,0,0,2,0,1,0,1
+ecj,ec.util,DoubleBag,672,68,60,2,132,12,60,6,30,5
+ecj,ec.util,Version,60,0,6,0,8,0,5,0,2,0
+ecj,ec.util,QuickSort,2082,0,200,0,331,0,131,0,31,0
+ecj,ec.util,ThreadPool.new Runnable() {...},10,0,0,0,2,0,2,0,2,0
+ecj,ec.util,LogRestarter,0,3,0,0,0,1,0,1,0,1
+ecj,ec.util,Misc,21,46,4,12,2,9,5,7,1,3
+ecj,ec.util,ParameterDatabase.new Comparator() {...},19,0,0,0,4,0,2,0,2,0
+ecj,ec.util,Log,112,92,8,4,20,23,10,3,5,2
+ecj,ec.util,DataPipe.new InputStream() {...},25,0,0,0,4,0,4,0,4,0
+ecj,ec.util,DataPipe.new OutputStream() {...},27,0,0,0,4,0,4,0,4,0
+ecj,ec.util,Log.new LogRestarter() {...},10,6,0,0,3,1,2,1,2,1
+ecj,ec.util,Log.new LogRestarter() {...},43,6,4,0,5,1,4,1,2,1
+ecj,ec.util,Log.new LogRestarter() {...},40,0,4,0,5,0,5,0,3,0
+ecj,ec.util,Log.new LogRestarter() {...},10,6,0,0,3,1,2,1,2,1
+ecj,ec.util,RandomChoice,1227,0,216,0,223,0,129,0,21,0
+ecj,ec.util,LocalHost,72,0,14,0,20,0,9,0,2,0
+ecj,ec.util,Lexer,112,0,10,0,21,0,11,0,6,0
+ecj,ec.util,MersenneTwister,1628,0,198,0,253,0,127,0,28,0
+ecj,ec.app.nk,NK,209,0,20,0,35,0,13,0,3,0
+ecj,ec.display.chart,ChartableStatistics,38,0,0,0,6,0,2,0,2,0
+ecj,ec.display.chart,StatisticsChartPaneTab,147,0,6,0,36,0,9,0,6,0
+ecj,ec.display.chart,XYSeriesChartStatistics,50,0,0,0,10,0,5,0,5,0
+ecj,ec.display.chart,BarChartStatistics,54,0,2,0,9,0,5,0,4,0
+ecj,ec.display.chart,StatisticsChartPaneTab.new ActionListener() {...},136,0,4,0,28,0,4,0,2,0
+ecj,ec.display.chart,StatisticsChartPaneTab.new ActionListener() {...},21,0,0,0,4,0,2,0,2,0
+ecj,ec.gp.ge.breed,GECrossoverPipeline,84,0,8,0,9,0,7,0,3,0
+ecj,ec.gp.ge.breed,GETruncationPipeline,88,0,6,0,16,0,7,0,4,0
+ecj,ec.app.lawnmower.func,Mow,130,0,15,0,22,0,13,0,4,0
+ecj,ec.app.lawnmower.func,LawnERC,221,0,14,0,48,0,18,0,11,0
+ecj,ec.app.lawnmower.func,V8a,56,0,0,0,11,0,4,0,4,0
+ecj,ec.app.lawnmower.func,Progn2,30,0,0,0,6,0,4,0,4,0
+ecj,ec.app.lawnmower.func,Frog,159,0,7,0,27,0,9,0,4,0
+ecj,ec.app.lawnmower.func,Left,53,0,5,0,18,0,8,0,4,0
+ecj,ec.gp,ADFContext,185,0,16,0,32,0,15,0,7,0
+ecj,ec.gp,GPBreedingPipeline,24,0,4,0,5,0,4,0,2,0
+ecj,ec.gp,GPNode.new GPNodeGatherer() {...},32,0,10,0,2,0,7,0,2,0
+ecj,ec.gp,GPNode.new Iterator() {...},98,0,14,0,25,0,12,0,5,0
+ecj,ec.gp,GPNode.new Iterator() {...},61,0,8,0,17,0,9,0,5,0
+ecj,ec.gp,GPNode.new GPNodeGatherer() {...},8,0,0,0,1,0,2,0,2,0
+ecj,ec.gp,GPNodeConstraints,252,0,18,0,37,0,13,0,4,0
+ecj,ec.gp,GPInitializer,631,0,42,0,108,0,28,0,7,0
+ecj,ec.gp,GPNodeBuilder,493,0,42,0,84,0,30,0,9,0
+ecj,ec.gp,GPFunctionSet,761,0,68,0,128,0,41,0,7,0
+ecj,ec.gp,GPIndividual,625,0,56,0,96,0,44,0,16,0
+ecj,ec.gp,GPSpecies,117,0,4,0,25,0,8,0,6,0
+ecj,ec.gp,GPAtomicType,30,0,4,0,5,0,5,0,3,0
+ecj,ec.gp,GPTreeConstraints,350,0,24,0,51,0,17,0,5,0
+ecj,ec.gp,GPType,82,0,6,0,14,0,7,0,4,0
+ecj,ec.gp,GPNodeGatherer,5,0,0,0,2,0,2,0,2,0
+ecj,ec.gp,GPTree,534,0,46,0,95,0,42,0,19,0
+ecj,ec.gp,GPData,17,0,0,0,7,0,5,0,5,0
+ecj,ec.gp,GPSetType,278,0,24,0,42,0,16,0,4,0
+ecj,ec.gp,ERC,193,0,20,0,36,0,21,0,11,0
+ecj,ec.gp,GPDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.gp,GPProblem,74,0,0,0,18,0,4,0,4,0
+ecj,ec.gp,ADFStack,425,0,34,0,70,0,28,0,11,0
+ecj,ec.gp,GPNode,2820,0,314,0,403,0,222,0,65,0
+ecj,ec.gp,ADFArgument,142,0,8,0,26,0,13,0,9,0
+ecj,ec.gp,ADM,42,0,2,0,7,0,3,0,2,0
+ecj,ec.gp,ADF,532,0,44,0,75,0,33,0,11,0
+ecj,ec.eda.cmaes,CMAESInitializer,149,0,12,0,23,0,8,0,2,0
+ecj,ec.eda.cmaes,CMAESDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.eda.cmaes,CMAESBreeder,72,0,6,0,13,0,6,0,3,0
+ecj,ec.eda.cmaes,CMAESSpecies,2201,0,136,0,257,0,74,0,6,0
+ecj,ec.app.p1e1,Empleado,42,0,0,0,17,0,10,0,10,0
+ecj,ec.app.p1e1,p1e1,202,0,24,0,34,0,14,0,2,0
+ecj,ec.app.p1e1,Tarea,28,0,0,0,11,0,6,0,6,0
+ecj,ec.rule.breed,RuleMutationPipeline,75,0,4,0,14,0,7,0,5,0
+ecj,ec.rule.breed,RuleCrossoverPipeline,523,0,44,0,75,0,29,0,7,0
+ecj,ec.app.lid,Lid,217,0,12,0,34,0,10,0,4,0
+ecj,ec.gp.breed,MutateOneNodePipeline,436,0,40,0,75,0,27,0,7,0
+ecj,ec.gp.breed,MutateAllNodesPipeline,559,0,50,0,95,0,33,0,8,0
+ecj,ec.gp.breed,SizeFairCrossoverPipeline.new Comparator() {...},39,0,6,0,11,0,5,0,2,0
+ecj,ec.gp.breed,RehangPipeline,478,0,54,0,93,0,37,0,10,0
+ecj,ec.gp.breed,SizeFairCrossoverPipeline,1487,0,170,0,242,0,95,0,10,0
+ecj,ec.gp.breed,SizeFairCrossoverPipeline.NodeInfo,19,0,0,0,8,0,4,0,4,0
+ecj,ec.gp.breed,MutateDemotePipeline,976,0,90,0,164,0,59,0,14,0
+ecj,ec.gp.breed,MutateSwapPipeline,614,0,70,0,103,0,46,0,11,0
+ecj,ec.gp.breed,MutateERCPipeline,235,0,22,0,44,0,18,0,7,0
+ecj,ec.gp.breed,SizeFairCrossoverPipeline.RouletteWheelSelector,216,0,24,0,36,0,15,0,3,0
+ecj,ec.gp.breed,InternalCrossoverPipeline,666,0,90,0,123,0,53,0,8,0
+ecj,ec.gp.breed,MutatePromotePipeline,361,0,42,0,67,0,30,0,9,0
+ecj,ec.gp.breed,GPBreedDefaults,7,0,0,0,2,0,2,0,2,0
+ecj,ec.gp.build,GPBuildDefaults,7,0,0,0,2,0,2,0,2,0
+ecj,ec.gp.build,PTC1,281,0,28,0,56,0,19,0,5,0
+ecj,ec.gp.build,PTC2,543,0,48,0,113,0,30,0,6,0
+ecj,ec.gp.build,UniformGPNodeStorage,12,0,0,0,3,0,3,0,3,0
+ecj,ec.gp.build,RandomBranch,254,0,28,0,46,0,19,0,5,0
+ecj,ec.gp.build,RandTree.ArityObject,6,0,0,0,1,0,1,0,1,0
+ecj,ec.gp.build,RandTree,911,0,127,0,196,0,77,0,13,0
+ecj,ec.gp.build,PTCFunctionSet,389,0,40,0,50,0,26,0,6,0
+ecj,ec.gp.build,Uniform,1580,0,120,0,192,0,74,0,14,0
+ecj,ec.app.gpsemantics.func,SemanticN8,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN7,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN9,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN4,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN3,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN6,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN5,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN0,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN2,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN1,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticJ,11,0,0,0,5,0,5,0,5,0
+ecj,ec.app.gpsemantics.func,SemanticNode,19,0,0,0,4,0,4,0,4,0
+ecj,ec.app.gpsemantics.func,SemanticX13,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX12,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX11,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX10,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX16,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX15,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX14,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX0,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX9,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX6,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX5,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX8,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX7,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX2,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX1,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX4,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticX3,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN15,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN14,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN13,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN12,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN16,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN11,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticN10,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.gpsemantics.func,SemanticExtra,15,0,0,0,3,0,3,0,3,0
+ecj,ec.display.portrayal,IndividualPortrayal,4,0,0,0,2,0,1,0,1,0
+ecj,ec.display.portrayal,SimpleIndividualPortrayal.new LogRestarter() {...},7,0,0,0,3,0,3,0,3,0
+ecj,ec.display.portrayal,SimpleIndividualPortrayal,63,0,0,0,15,0,4,0,4,0
+ecj,ec.app.tutorial3,OurSelection,170,0,14,0,28,0,11,0,4,0
+ecj,ec.app.tutorial3,MyStatistics,168,0,8,0,29,0,7,0,3,0
+ecj,ec.app.tutorial3,OddRosenbrock,103,0,6,0,13,0,6,0,3,0
+ecj,ec.gp.koza,MutationPipeline,470,0,44,0,86,0,29,0,7,0
+ecj,ec.gp.koza,GPKozaDefaults,7,0,0,0,2,0,2,0,2,0
+ecj,ec.gp.koza,KozaBuilder,354,0,38,0,62,0,23,0,4,0
+ecj,ec.gp.koza,KozaShortStatistics,539,0,38,0,62,0,26,0,7,0
+ecj,ec.gp.koza,FullBuilder,32,0,0,0,3,0,3,0,3,0
+ecj,ec.gp.koza,KozaFitness,257,0,18,0,48,0,27,0,18,0
+ecj,ec.gp.koza,GrowBuilder,34,0,0,0,4,0,3,0,3,0
+ecj,ec.gp.koza,HalfBuilder,102,0,4,0,13,0,6,0,4,0
+ecj,ec.gp.koza,KozaNodeSelector,268,0,22,0,50,0,17,0,6,0
+ecj,ec.gp.koza,CrossoverPipeline,1155,0,116,0,166,0,66,0,8,0
+ecj,ec.app.tutorial4,Add,43,0,0,0,9,0,4,0,4,0
+ecj,ec.app.tutorial4,MultiValuedRegression,123,0,8,0,23,0,7,0,3,0
+ecj,ec.app.tutorial4,Mul,43,0,0,0,9,0,4,0,4,0
+ecj,ec.app.tutorial4,X,17,0,0,0,6,0,4,0,4,0
+ecj,ec.app.tutorial4,Y,17,0,0,0,6,0,4,0,4,0
+ecj,ec.app.tutorial4,DoubleData,9,0,0,0,2,0,2,0,2,0
+ecj,ec.app.tutorial4,Sub,43,0,0,0,9,0,4,0,4,0
+ecj,ec.simple,SimpleExchanger,15,0,0,0,8,0,8,0,8,0
+ecj,ec.simple,SimpleEvaluator.SimpleEvaluatorThread,164,0,12,0,30,0,8,0,2,0
+ecj,ec.simple,SimpleBreeder,1170,290,98,28,142,37,61,14,6,6
+ecj,ec.simple,SimpleEvaluator,676,0,66,0,110,0,41,0,8,0
+ecj,ec.simple,SimpleBreeder.EliteComparator,38,0,0,0,3,0,3,0,3,0
+ecj,ec.simple,SimpleEvolutionState,232,0,20,0,47,0,14,0,4,0
+ecj,ec.simple,SimpleFitness,144,40,11,5,30,9,18,6,11,5
+ecj,ec.simple,SimpleShortStatistics,1094,0,126,0,136,0,79,0,16,0
+ecj,ec.simple,SimpleInitializer,34,0,0,0,9,0,4,0,4,0
+ecj,ec.simple,SimpleStatistics,431,97,64,2,49,16,39,2,6,2
+ecj,ec.simple,SimpleBreederThread,17,0,0,0,3,0,2,0,2,0
+ecj,ec.simple,SimpleDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.simple,SimpleFinisher,5,0,0,0,3,0,3,0,3,0
+ecj,ec.app.tutorial1,MaxOnes,73,0,12,0,13,0,8,0,2,0
+ecj,ec.app.twobox.func,Sub,43,0,0,0,9,0,4,0,4,0
+ecj,ec.app.twobox.func,W1,22,0,0,0,7,0,4,0,4,0
+ecj,ec.app.twobox.func,W0,22,0,0,0,7,0,4,0,4,0
+ecj,ec.app.twobox.func,L0,22,0,0,0,7,0,4,0,4,0
+ecj,ec.app.twobox.func,L1,22,0,0,0,7,0,4,0,4,0
+ecj,ec.app.twobox.func,H0,22,0,0,0,7,0,4,0,4,0
+ecj,ec.app.twobox.func,H1,22,0,0,0,7,0,4,0,4,0
+ecj,ec.app.twobox.func,Div,52,0,2,0,11,0,5,0,4,0
+ecj,ec.app.twobox.func,Add,43,0,0,0,9,0,4,0,4,0
+ecj,ec.app.twobox.func,Mul,48,0,2,0,10,0,5,0,4,0
+ecj,ec.app.tutorial2,AddSubtract,79,0,12,0,15,0,8,0,2,0
+ecj,ec.app.tutorial2,OurMutatorPipeline,111,0,10,0,18,0,9,0,4,0
+ecj,ec.app.klandscapes,KLandscapes,699,0,70,0,107,0,44,0,9,0
+ecj,ec.select,SUSSelection,288,0,20,0,44,0,16,0,6,0
+ecj,ec.select,BoltzmannSelection,191,0,14,0,29,0,12,0,5,0
+ecj,ec.select,BestSelection,430,0,36,0,61,0,25,0,7,0
+ecj,ec.select,MultiSelection,328,0,26,0,53,0,21,0,8,0
+ecj,ec.select,SelectDefaults,3,5,0,0,1,1,1,1,1,1
+ecj,ec.select,BestSelection.new SortComparatorL() {...},41,0,0,0,5,0,3,0,3,0
+ecj,ec.select,TopSelection,124,0,14,0,31,0,13,0,6,0
+ecj,ec.select,RandomSelection,93,7,10,0,15,2,9,2,4,2
+ecj,ec.select,FitProportionateSelection,91,0,4,0,15,0,7,0,5,0
+ecj,ec.select,FirstSelection,74,0,10,0,16,0,11,0,6,0
+ecj,ec.select,AnnealedSelection,214,0,22,0,37,0,17,0,6,0
+ecj,ec.select,GreedyOverselection.new SortComparatorL() {...},41,0,0,0,5,0,3,0,3,0
+ecj,ec.select,GreedyOverselection,318,0,22,0,51,0,17,0,6,0
+ecj,ec.select,SigmaScalingSelection,217,0,16,0,31,0,13,0,5,0
+ecj,ec.select,TournamentSelection,212,0,18,0,35,0,18,0,9,0
+ecj,ec.app.multiplexer.func,D1,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,D0,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,D7,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,D6,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,D3,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,D2,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,D5,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,D4,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,And,108,0,10,0,23,0,9,0,4,0
+ecj,ec.app.multiplexer.func,A0,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,A2,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,A1,40,0,4,0,10,0,6,0,4,0
+ecj,ec.app.multiplexer.func,Not,60,0,6,0,12,0,7,0,4,0
+ecj,ec.app.multiplexer.func,Or,108,0,10,0,23,0,9,0,4,0
+ecj,ec.app.multiplexer.func,If,178,0,14,0,34,0,11,0,4,0
+ecj,ec.gp.push,PushDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.gp.push,Nonterminal,8,0,0,0,4,0,4,0,4,0
+ecj,ec.gp.push,PushBuilder,198,0,12,0,41,0,11,0,5,0
+ecj,ec.gp.push,Terminal,796,0,63,0,106,0,44,0,12,0
+ecj,ec.gp.push,PushProblem,210,0,14,0,39,0,19,0,12,0
+ecj,ec.gp.push,PushInstruction,20,0,0,0,7,0,4,0,4,0
+ecj,ec.rule,RuleConstraints,82,0,6,0,14,0,7,0,4,0
+ecj,ec.rule,RuleSetConstraints,591,0,60,0,92,0,36,0,6,0
+ecj,ec.rule,Rule,155,0,4,0,31,0,21,0,19,0
+ecj,ec.rule,RuleIndividual,514,0,46,0,80,0,40,0,17,0
+ecj,ec.rule,RuleDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.rule,RuleSet,957,0,96,0,156,0,78,0,30,0
+ecj,ec.rule,RuleSpecies,45,0,2,0,9,0,5,0,4,0
+ecj,ec.rule,RuleInitializer,306,0,16,0,51,0,12,0,4,0
+ecj,ec.steadystate,SteadyStateEvaluator,111,0,12,0,28,0,14,0,8,0
+ecj,ec.steadystate,SteadyStateDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.steadystate,SteadyStateEvolutionState,820,0,98,0,138,0,56,0,7,0
+ecj,ec.steadystate,SteadyStateBreeder,348,0,22,0,48,0,18,0,7,0
+ecj,ec.steadystate,QueueIndividual,9,0,0,0,4,0,1,0,1,0
+ecj,ec.app.multiplexerslow.func,A1,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,A0,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,A2,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,D0,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,D2,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,D1,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,D4,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,D3,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,D6,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,D5,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,D7,18,0,0,0,5,0,4,0,4,0
+ecj,ec.app.multiplexerslow.func,And,35,0,2,0,7,0,5,0,4,0
+ecj,ec.app.multiplexerslow.func,If,47,0,2,0,8,0,5,0,4,0
+ecj,ec.app.multiplexerslow.func,Or,34,0,2,0,7,0,5,0,4,0
+ecj,ec.app.multiplexerslow.func,Not,26,0,0,0,6,0,4,0,4,0
+ecj,ec.multiobjective,HypervolumeStatistics,338,374,42,52,29,62,40,17,2,8
+ecj,ec.multiobjective,MultiObjectiveDefaults,3,5,0,0,1,1,1,1,1,1
+ecj,ec.multiobjective,MultiObjectiveFitness.new SortComparator() {...},91,0,12,0,15,0,9,0,3,0
+ecj,ec.multiobjective,MultiObjectiveStatistics,440,0,48,0,63,0,28,0,4,0
+ecj,ec.multiobjective,MultiObjectiveFitness,688,550,77,49,109,89,63,32,19,13
+ecj,ec.gp.ge,GESpecies.BigTreeException,3,0,0,0,1,0,1,0,1,0
+ecj,ec.gp.ge,GEProblem,353,0,24,0,74,0,26,0,14,0
+ecj,ec.gp.ge,GEIndividual,86,0,4,0,16,0,4,0,2,0
+ecj,ec.gp.ge,GrammarNode,111,0,16,0,23,0,12,0,4,0
+ecj,ec.gp.ge,GrammarFunctionNode,91,0,6,0,15,0,10,0,7,0
+ecj,ec.gp.ge,GESpecies.new Comparator() {...},22,0,4,0,5,0,4,0,2,0
+ecj,ec.gp.ge,GEDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.gp.ge,GrammarRuleNode,93,0,10,0,22,0,11,0,6,0
+ecj,ec.gp.ge,GrammarParser,809,0,64,0,157,0,50,0,18,0
+ecj,ec.gp.ge,GESpecies,1283,0,102,0,244,0,69,0,18,0
+ecj,ec.app.klandscapes.func,KLandscapeTree,14,0,0,0,3,0,3,0,3,0
+ecj,ec.app.klandscapes.func,KLandscapeTreeA,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.klandscapes.func,KLandscapeTreeB,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.klandscapes.func,KLandscapeTreeW,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.klandscapes.func,KLandscapeTreeX,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.klandscapes.func,KLandscapeTreeY,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.klandscapes.func,KLandscapeTreeZ,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.sat,SAT,140,0,10,0,32,0,8,0,3,0
+ecj,ec.app.sat,SAT.Clause,73,0,10,0,13,0,7,0,2,0
+ecj,ec.eda.dovs,DOVSSpecies,468,0,34,0,75,0,25,0,8,0
+ecj,ec.eda.dovs,HyperboxSpecies,482,0,38,0,87,0,24,0,5,0
+ecj,ec.eda.dovs,DOVSBreeder,87,0,6,0,16,0,6,0,3,0
+ecj,ec.eda.dovs,DOVSEvaluator,461,0,44,0,77,0,24,0,2,0
+ecj,ec.eda.dovs,DOVSInitializer,133,0,8,0,20,0,6,0,2,0
+ecj,ec.eda.dovs,DOVSDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.eda.dovs,DOVSFitness,107,0,2,0,24,0,6,0,5,0
+ecj,ec.eda.dovs,CornerMap.Pair,13,0,0,0,3,0,3,0,3,0
+ecj,ec.eda.dovs,CornerMap,281,0,38,0,62,0,26,0,7,0
+ecj,ec.eval,MetaProblem,1180,0,110,0,183,0,63,0,8,0
+ecj,ec.eval,Slave,1445,0,132,0,269,0,73,0,6,0
+ecj,ec.eval,SlaveConnection,665,0,34,0,119,0,28,0,11,0
+ecj,ec.eval,Job,80,0,8,0,13,0,7,0,3,0
+ecj,ec.eval,SlaveMonitor.new Runnable() {...},182,0,16,0,34,0,10,0,2,0
+ecj,ec.eval,SlaveMonitor,811,0,42,0,168,0,38,0,17,0
+ecj,ec.eval,MasterProblem,470,0,48,0,96,0,45,0,21,0
+ecj,ec.eval,SlaveConnection.new Runnable() {...},12,0,2,0,2,0,3,0,2,0
+ecj,ec.eval,SlaveConnection.new Runnable() {...},12,0,2,0,2,0,3,0,2,0
+ecj,ec.eval,Slave.new Runnable() {...},41,0,0,0,2,0,2,0,2,0
+ecj,ec.app.majority.func,Nor,55,0,0,0,11,0,4,0,4,0
+ecj,ec.app.majority.func,Not,34,0,0,0,8,0,4,0,4,0
+ecj,ec.app.majority.func,WW,64,0,4,0,16,0,7,0,5,0
+ecj,ec.app.majority.func,EEE,64,0,4,0,16,0,7,0,5,0
+ecj,ec.app.majority.func,Xor,51,0,0,0,11,0,4,0,4,0
+ecj,ec.app.majority.func,Or,51,0,0,0,11,0,4,0,4,0
+ecj,ec.app.majority.func,Nand,55,0,0,0,11,0,4,0,4,0
+ecj,ec.app.majority.func,If,80,0,0,0,14,0,4,0,4,0
+ecj,ec.app.majority.func,EE,64,0,4,0,16,0,7,0,5,0
+ecj,ec.app.majority.func,W,64,0,4,0,16,0,7,0,5,0
+ecj,ec.app.majority.func,X,64,0,4,0,16,0,7,0,5,0
+ecj,ec.app.majority.func,E,64,0,4,0,16,0,7,0,5,0
+ecj,ec.app.majority.func,And,51,0,0,0,11,0,4,0,4,0
+ecj,ec.app.majority.func,WWW,64,0,4,0,16,0,7,0,5,0
+ecj,ec.multiobjective.nsga3,ReferencePoint,174,0,14,0,37,0,18,0,11,0
+ecj,ec.multiobjective.nsga3,SelectorTools,976,0,98,0,154,0,63,0,14,0
+ecj,ec.multiobjective.nsga3,NSGA3MultiObjectiveFitness,111,0,6,0,21,0,14,0,11,0
+ecj,ec.multiobjective.nsga3,NSGA3Breeder,153,0,12,0,29,0,10,0,4,0
+ecj,ec.app.coevolve1,CompetitiveMaxOnes,264,0,34,0,44,0,21,0,4,0
+ecj,ec.multiobjective.nsga2,NSGA2Breeder.BreedingState,9,29,0,0,0,1,2,2,2,2
+ecj,ec.multiobjective.nsga2,NSGA2MultiObjectiveFitness,170,3,10,0,26,1,14,1,9,1
+ecj,ec.multiobjective.nsga2,NSGA2Breeder.new Comparator() {...},0,16,0,0,0,2,0,2,0,2
+ecj,ec.multiobjective.nsga2,NSGA2Breeder.new Comparator() {...},0,23,0,0,0,3,0,2,0,2
+ecj,ec.multiobjective.nsga2,NSGA2Breeder,117,397,6,32,15,69,7,21,2,7
+ecj,ec.app.coevolve2,CoevolutionaryECSuite,326,18,36,0,50,4,21,2,3,2
+ecj,ec.evolve,RandomRestarts,190,0,22,0,35,0,16,0,5,0
+ecj,ec.app.gpsemantics,Semantic,320,0,40,0,58,0,27,0,7,0
+ecj,ec.app.ant,Ant,590,0,61,0,93,0,37,0,5,0
+ecj,ec.breed,CheckingPipeline,120,0,8,0,27,0,10,0,6,0
+ecj,ec.breed,GenerationSwitchPipeline,149,0,16,0,31,0,14,0,6,0
+ecj,ec.breed,BufferedBreedingPipeline,113,0,8,0,23,0,11,0,7,0
+ecj,ec.breed,MultiBreedingPipeline,189,0,20,0,38,0,16,0,6,0
+ecj,ec.breed,UniquePipeline,237,0,16,0,42,0,16,0,8,0
+ecj,ec.breed,RepeatPipeline,161,0,22,0,34,0,17,0,6,0
+ecj,ec.breed,BreedDefaults,3,5,0,0,1,1,1,1,1,1
+ecj,ec.breed,ReproductionPipeline,50,0,2,0,13,0,6,0,5,0
+ecj,ec.breed,ForceBreedingPipeline,110,0,12,0,23,0,12,0,6,0
+ecj,ec.breed,FirstCopyPipeline,105,0,6,0,23,0,9,0,6,0
+ecj,ec.breed,StubPipeline,61,0,0,0,15,0,5,0,5,0
+ecj,ec.breed,InitializationPipeline,34,22,3,1,7,7,3,4,1,4
+ecj,ec.app.mona,Mona,197,0,10,0,32,0,11,0,6,0
+ecj,ec.app.mona,MonaStatistics,92,0,8,0,14,0,7,0,3,0
+ecj,ec.app.mona,MonaVectorIndividual,41,0,2,0,7,0,3,0,2,0
+ecj,ec.app.mona,Picture,679,0,20,0,130,0,26,0,16,0
+ecj,ec.app.lawnmower,Lawnmower,493,0,42,0,76,0,26,0,5,0
+ecj,ec.app.lawnmower,LawnmowerData,15,0,0,0,5,0,2,0,2,0
+ecj,ec.app.highdimension,HighDimension,101,0,8,0,20,0,7,0,3,0
+ecj,ec.singlestate,SingleStateEvolutionState,469,0,60,0,87,0,35,0,5,0
+ecj,ec.singlestate,SingleStateDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.singlestate,SingleStateBreeder,386,0,30,0,50,0,19,0,4,0
+ecj,ec.spatial,SpatialMultiPopCoevolutionaryEvaluator,50,0,2,0,6,0,3,0,2,0
+ecj,ec.spatial,Spatial1DSubpopulation,173,0,24,0,32,0,17,0,5,0
+ecj,ec.spatial,SpatialTournamentSelection,185,0,18,0,31,0,13,0,4,0
+ecj,ec.spatial,SpatialDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.spatial,SpatialBreeder,220,0,20,0,32,0,13,0,3,0
+ecj,ec.app.ordertree,OrderTree,171,0,27,0,38,0,20,0,5,0
+ecj,ec.neat,NEATInitializer,116,0,10,0,20,0,7,0,2,0
+ecj,ec.neat,NEATSubspecies,692,0,74,0,150,0,56,0,19,0
+ecj,ec.neat,NEATNode,586,0,34,0,161,0,39,0,22,0
+ecj,ec.neat,NEATNode.NodeType,38,0,0,0,2,0,4,0,4,0
+ecj,ec.neat,NEATNode.NodePlace,58,0,0,0,2,0,4,0,4,0
+ecj,ec.neat,NEATSpecies.MutationType,38,0,0,0,2,0,4,0,4,0
+ecj,ec.neat,NEATNetwork,747,0,98,0,146,0,65,0,16,0
+ecj,ec.neat,NEATSubspecies.new Comparator() {...},30,0,4,0,8,0,4,0,2,0
+ecj,ec.neat,NEATGene,473,0,26,0,103,0,25,0,12,0
+ecj,ec.neat,NEATSpecies,1438,0,98,0,258,0,68,0,19,0
+ecj,ec.neat,NEATIndividual,2446,0,302,0,499,0,180,0,29,0
+ecj,ec.neat,NEATDefaults,8,0,0,0,2,0,2,0,2,0
+ecj,ec.neat,NEATBreeder,54,0,4,0,10,0,5,0,3,0
+ecj,ec.neat,NEATSpecies.new Comparator() {...},40,0,4,0,8,0,4,0,2,0
+ecj,ec.neat,NEATInnovation,277,0,12,0,84,0,16,0,10,0
+ecj,ec.neat,NEATNode.FunctionType,28,0,0,0,2,0,4,0,4,0
+ecj,ec.parsimony,ProportionalTournamentSelection,71,0,8,0,12,0,8,0,4,0
+ecj,ec.parsimony,BucketTournamentSelection,382,0,34,0,57,0,24,0,7,0
+ecj,ec.parsimony,DoubleTournamentSelection,569,0,70,0,78,0,42,0,7,0
+ecj,ec.parsimony,BucketTournamentSelection.new Comparator() {...},24,0,4,0,6,0,4,0,2,0
+ecj,ec.parsimony,RatioBucketTournamentSelection.new Comparator() {...},24,0,4,0,6,0,4,0,2,0
+ecj,ec.parsimony,LexicographicTournamentSelection,29,0,6,0,4,0,6,0,3,0
+ecj,ec.parsimony,RatioBucketTournamentSelection,381,0,32,0,59,0,24,0,8,0
+ecj,ec.parsimony,TarpeianStatistics,173,0,18,0,25,0,13,0,4,0
+ecj,ec.eda.pbil,PBILBreeder,72,0,6,0,13,0,6,0,3,0
+ecj,ec.eda.pbil,PBILSpecies,96,555,14,50,5,72,15,25,1,7
+ecj,ec.app.royaltree.func,RoyalTreeX,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.royaltree.func,RoyalTreeE,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.royaltree.func,RoyalTreeD,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.royaltree.func,RoyalTreeC,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.royaltree.func,RoyalTreeB,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.royaltree.func,RoyalTreeA,7,0,0,0,3,0,3,0,3,0
+ecj,ec.app.royaltree.func,RoyalTreeNode,14,0,0,0,3,0,3,0,3,0
+ecj,ec.app.regression,Regression,339,0,34,0,54,0,21,0,4,0
+ecj,ec.app.regression,Benchmarks,3556,0,188,0,283,0,157,0,15,0
+ecj,ec.app.regression,Quintic,23,0,0,0,2,0,2,0,2,0
+ecj,ec.app.regression,RegressionData,9,0,0,0,2,0,2,0,2,0
+ecj,ec.app.regression,Sextic,29,0,0,0,2,0,2,0,2,0

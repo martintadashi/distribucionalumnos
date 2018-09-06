@@ -7,9 +7,9 @@ quit-on-run-complete = true
 pop.subpop.0.size = 100
 generations = 10000
 
-pop.subpop.0.species = ec.vector.IntegerVectorSpecies
+pop.subpop.0.species = ec.vector.IntegerVectorSpeciesP1E1
 
-pop.subpop.0.species.ind = ec.vector.IntegerVectorIndividual
+pop.subpop.0.species.ind = ec.vector.IntegerVectorIndividualP1E1
 # valores min y max de los elementos del vector
 pop.subpop.0.species.min-gene = 1
 pop.subpop.0.species.max-gene = 5
