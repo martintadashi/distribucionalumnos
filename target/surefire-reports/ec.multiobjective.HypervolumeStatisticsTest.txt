@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ec.multiobjective.HypervolumeStatisticsTest
 -------------------------------------------------------------------------------
-Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 sec - in ec.multiobjective.HypervolumeStatisticsTest
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.075 sec - in ec.multiobjective.HypervolumeStatisticsTest

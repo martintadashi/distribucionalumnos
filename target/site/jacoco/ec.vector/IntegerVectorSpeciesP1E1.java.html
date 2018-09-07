@@ -23,7 +23,7 @@ import java.io.*;
 /**
  * IntegerVectorSpeciesP1E1 is a subclass of VectorSpecies with special constraints
  * for integral vectors, namely ByteVectorIndividual, ShortVectorIndividual,
- * IntegerVectorIndividual, and LongVectorIndividual.
+ * IntegerVectorIndividualP1E1, and LongVectorIndividual.
  *
  * &lt;p&gt;IntegerVectorSpeciesP1E1 can specify a number of parameters globally, per-segment, and per-gene.
  * See &lt;a href=&quot;VectorSpecies.html&quot;&gt;VectorSpecies&lt;/a&gt; for information on how to this works.
@@ -77,7 +77,7 @@ import java.io.*;
  &lt;font size=-1&gt;0.0 &amp;lt;= double &amp;lt;= 1.0 &lt;/font&gt;&lt;/td&gt;
  *  &lt;td valign=top&gt;(the probability that a random walk will continue.  Random walks go up or down by 1.0 until the coin flip comes up false.)&lt;/td&gt;
  * &lt;/tr&gt;
- * 
+ *
  &lt;tr&gt;&lt;td&gt;&amp;nbsp;
  &lt;tr&gt;&lt;td valign=top style=&quot;white-space: nowrap&quot;&gt;&lt;i&gt;base&lt;/i&gt;.&lt;tt&gt;mutation-bounded&lt;/tt&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;or&lt;/i&gt;&lt;br&gt;
  &lt;tr&gt;&lt;td valign=top style=&quot;white-space: nowrap&quot;&gt;&lt;i&gt;base&lt;/i&gt;.&lt;tt&gt;segment&lt;/tt&gt;.&lt;i&gt;segment-number&lt;/i&gt;.&lt;tt&gt;mutation-bounded&lt;/tt&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;or&lt;/i&gt;&lt;br&gt;
@@ -87,9 +87,9 @@ import java.io.*;
  * &lt;/tr&gt;
  * &lt;/table&gt;
  * @author Sean Luke, Rafal Kicinger
- * @version 1.0 
+ * @version 1.0
  */
- 
+
 <span class="nc" id="L93">public class IntegerVectorSpeciesP1E1 extends VectorSpecies</span>
     {
     public final static String RUTA_TAREAS=&quot;ruta-tareas&quot;;
@@ -97,17 +97,17 @@ import java.io.*;
 
     public final static String P_MINGENE = &quot;min-gene&quot;;
     public final static String P_MAXGENE = &quot;max-gene&quot;;
-    
+
     public final static String P_NUM_SEGMENTS = &quot;num-segments&quot;;
-        
+
     public final static String P_SEGMENT_TYPE = &quot;segment-type&quot;;
 
     public final static String P_SEGMENT_START = &quot;start&quot;;
-        
+
     public final static String P_SEGMENT_END = &quot;end&quot;;
 
     public final static String P_SEGMENT = &quot;segment&quot;;
-        
+
     public final static String P_MUTATIONTYPE = &quot;mutation-type&quot;;
 
     public final static String P_RANDOM_WALK_PROBABILITY = &quot;random-walk-probability&quot;;
@@ -196,7 +196,7 @@ import java.io.*;
     public int getF() {
 <span class="nc" id="L197">        return F;</span>
     }
-    
+
     public long maxGene(int gene)
         {
 <span class="nc" id="L202">        long[] m = maxGene;</span>
@@ -204,7 +204,7 @@ import java.io.*;
 <span class="nc" id="L204">            gene = m.length - 1;</span>
 <span class="nc" id="L205">        return m[gene];</span>
         }
-    
+
     public long minGene(int gene)
         {
 <span class="nc" id="L210">        long[] m = minGene;</span>
@@ -212,7 +212,7 @@ import java.io.*;
 <span class="nc" id="L212">            gene = m.length - 1;</span>
 <span class="nc" id="L213">        return m[gene];</span>
         }
-    
+
     public int mutationType(int gene)
         {
 <span class="nc" id="L218">        int[] m = mutationType;</span>
@@ -243,7 +243,7 @@ import java.io.*;
 <span class="nc bnc" id="L243" title="All 4 branches missed.">            return (geneVal &lt;= Byte.MAX_VALUE &amp;&amp; geneVal &gt;= Byte.MIN_VALUE);</span>
 <span class="nc bnc" id="L244" title="All 2 branches missed.">        else if (i_prototype instanceof ShortVectorIndividual)</span>
 <span class="nc bnc" id="L245" title="All 4 branches missed.">            return (geneVal &lt;= Short.MAX_VALUE &amp;&amp; geneVal &gt;= Short.MIN_VALUE);</span>
-<span class="nc bnc" id="L246" title="All 2 branches missed.">        else if (i_prototype instanceof IntegerVectorIndividual)</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">        else if (i_prototype instanceof IntegerVectorIndividualP1E1)</span>
 <span class="nc bnc" id="L247" title="All 4 branches missed.">            return (geneVal &lt;= Integer.MAX_VALUE &amp;&amp; geneVal &gt;= Integer.MIN_VALUE);</span>
 <span class="nc bnc" id="L248" title="All 2 branches missed.">        else if (i_prototype instanceof LongVectorIndividual)</span>
 <span class="nc" id="L249">            return true;  // geneVal is valid for all longs</span>
@@ -256,7 +256,7 @@ import java.io.*;
 <span class="nc bnc" id="L256" title="All 4 branches missed.">            return (geneVal &lt;= Byte.MAX_VALUE &amp;&amp; geneVal &gt;= Byte.MIN_VALUE);</span>
 <span class="nc bnc" id="L257" title="All 2 branches missed.">        else if (i_prototype instanceof ShortVectorIndividual)</span>
 <span class="nc bnc" id="L258" title="All 4 branches missed.">            return (geneVal &lt;= Short.MAX_VALUE &amp;&amp; geneVal &gt;= Short.MIN_VALUE);</span>
-<span class="nc bnc" id="L259" title="All 2 branches missed.">        else if (i_prototype instanceof IntegerVectorIndividual)</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">        else if (i_prototype instanceof IntegerVectorIndividualP1E1)</span>
 <span class="nc bnc" id="L260" title="All 4 branches missed.">            return (geneVal &lt;= Integer.MAX_VALUE &amp;&amp; geneVal &gt;= Integer.MIN_VALUE);</span>
 <span class="nc bnc" id="L261" title="All 2 branches missed.">        else if (i_prototype instanceof LongVectorIndividual)</span>
 <span class="nc" id="L262">            return true;  // geneVal is valid for all longs</span>

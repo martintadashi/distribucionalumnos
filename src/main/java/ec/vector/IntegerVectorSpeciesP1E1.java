@@ -23,7 +23,7 @@ import java.io.*;
 /**
  * IntegerVectorSpeciesP1E1 is a subclass of VectorSpecies with special constraints
  * for integral vectors, namely ByteVectorIndividual, ShortVectorIndividual,
- * IntegerVectorIndividual, and LongVectorIndividual.
+ * IntegerVectorIndividualP1E1, and LongVectorIndividual.
  *
  * <p>IntegerVectorSpeciesP1E1 can specify a number of parameters globally, per-segment, and per-gene.
  * See <a href="VectorSpecies.html">VectorSpecies</a> for information on how to this works.
@@ -77,7 +77,7 @@ import java.io.*;
  <font size=-1>0.0 &lt;= double &lt;= 1.0 </font></td>
  *  <td valign=top>(the probability that a random walk will continue.  Random walks go up or down by 1.0 until the coin flip comes up false.)</td>
  * </tr>
- * 
+ *
  <tr><td>&nbsp;
  <tr><td valign=top style="white-space: nowrap"><i>base</i>.<tt>mutation-bounded</tt>&nbsp;&nbsp;&nbsp;<i>or</i><br>
  <tr><td valign=top style="white-space: nowrap"><i>base</i>.<tt>segment</tt>.<i>segment-number</i>.<tt>mutation-bounded</tt>&nbsp;&nbsp;&nbsp;<i>or</i><br>
@@ -87,9 +87,9 @@ import java.io.*;
  * </tr>
  * </table>
  * @author Sean Luke, Rafal Kicinger
- * @version 1.0 
+ * @version 1.0
  */
- 
+
 public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     {
     public final static String RUTA_TAREAS="ruta-tareas";
@@ -97,17 +97,17 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
 
     public final static String P_MINGENE = "min-gene";
     public final static String P_MAXGENE = "max-gene";
-    
+
     public final static String P_NUM_SEGMENTS = "num-segments";
-        
+
     public final static String P_SEGMENT_TYPE = "segment-type";
 
     public final static String P_SEGMENT_START = "start";
-        
+
     public final static String P_SEGMENT_END = "end";
 
     public final static String P_SEGMENT = "segment";
-        
+
     public final static String P_MUTATIONTYPE = "mutation-type";
 
     public final static String P_RANDOM_WALK_PROBABILITY = "random-walk-probability";
@@ -196,7 +196,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     public int getF() {
         return F;
     }
-    
+
     public long maxGene(int gene)
         {
         long[] m = maxGene;
@@ -204,7 +204,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
             gene = m.length - 1;
         return m[gene];
         }
-    
+
     public long minGene(int gene)
         {
         long[] m = minGene;
@@ -212,7 +212,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
             gene = m.length - 1;
         return m[gene];
         }
-    
+
     public int mutationType(int gene)
         {
         int[] m = mutationType;
@@ -243,7 +243,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
             return (geneVal <= Byte.MAX_VALUE && geneVal >= Byte.MIN_VALUE);
         else if (i_prototype instanceof ShortVectorIndividual)
             return (geneVal <= Short.MAX_VALUE && geneVal >= Short.MIN_VALUE);
-        else if (i_prototype instanceof IntegerVectorIndividual)
+        else if (i_prototype instanceof IntegerVectorIndividualP1E1)
             return (geneVal <= Integer.MAX_VALUE && geneVal >= Integer.MIN_VALUE);
         else if (i_prototype instanceof LongVectorIndividual)
             return true;  // geneVal is valid for all longs
@@ -256,7 +256,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
             return (geneVal <= Byte.MAX_VALUE && geneVal >= Byte.MIN_VALUE);
         else if (i_prototype instanceof ShortVectorIndividual)
             return (geneVal <= Short.MAX_VALUE && geneVal >= Short.MIN_VALUE);
-        else if (i_prototype instanceof IntegerVectorIndividual)
+        else if (i_prototype instanceof IntegerVectorIndividualP1E1)
             return (geneVal <= Integer.MAX_VALUE && geneVal >= Integer.MIN_VALUE);
         else if (i_prototype instanceof LongVectorIndividual)
             return true;  // geneVal is valid for all longs
