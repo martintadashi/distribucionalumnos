@@ -2,3 +2,21 @@ Se instala maven y se compila  con: mvn clean package -e -X
 La estructura de carpetas se divide entre java y resorces, las clases en el primero y lo demas en el segundo (archivo de parametros y de lectura).
 Se lee el stacktrace desde: /target/surefire-reports
 Se borran los app, por que usan la clase integerVectorSpecies y da problema con nuestra lectura de archivos: tutorial2, highdimension, regression
+
+
+CREAR UN NUEVO INTEGERVECTORSPECIES nuestro que nadie mas llama
+SIno trabajar devuelta con la version vieja
+
+
+
+
+
+WARNING:
+IntegerVectorSpeciesP1E1 is using gaussian, polynomial, or integer randomwalk mutation as its global mutation type, but mutation-bounded is not defined.  Assuming 'true'
+WARNING:
+The 'crossover-prob' parameter may only be used with any-point crossover.  It states the probability that a particular gene will be crossed over.  If you were looking for the probability of crossover happening at *all*, look at the 'likelihood' parameter.
+PARAMETER: pop.subpop.0.species.crossover-prob
+     ALSO: vector.species.crossover-prob
+FATAL ERROR:
+This IntegerVectorSpeciesP1E1 has a prototype of the kind: ec.vector.IntegerVectorIndividualP1E1, but doesn't have a min-gene[0] value within the range of this prototype's genome's data types
+

@@ -190,6 +190,7 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
             if (doMessage && !silentPrint) state.output.message("Subpop " + x + " best fitness of generation" + 
                 (best_i[x].evaluated ? " " : " (evaluated flag not set): ") +
                 best_i[x].fitness.fitnessToStringForHumans());
+
                 
             // describe the winner if there is a description
             if (doGeneration && doPerGenerationDescription) 
@@ -218,6 +219,7 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
             if (doFinal) state.output.println("Subpopulation " + x + ":",statisticslog);
             if (doFinal) best_of_run[x].printIndividualForHumans(state,statisticslog);
             if (doMessage && !silentPrint) state.output.message("Subpop " + x + " best fitness of run: " + best_of_run[x].fitness.fitnessToStringForHumans());
+                best_of_run[x].printIndividualForHumans(state,0);
             
             // finally describe the winner if there is a description
             if (doFinal && doDescription) 

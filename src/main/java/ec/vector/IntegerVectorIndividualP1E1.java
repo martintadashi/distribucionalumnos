@@ -113,6 +113,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
         if (len != genome.length || len != i.genome.length)
             state.output.warnOnce("Genome lengths are not the same.  Vector crossover will only be done in overlapping region.");
 
+        //System.out.print("defaultCrossover, crossoverType: " + s.crossoverType);
         switch(s.crossoverType)
             {
             case VectorSpecies.C_ONE_POINT:

@@ -300,6 +300,9 @@ public class Subpopulation implements Cloneable, Setup
                     }
                 }  // oh well, we tried to cut down the duplicates
             individuals.add(newInd);
+            //Muestro ppoblacion inicial
+            //System.out.println("Ind "+x);
+            //newInd.printIndividualForHumans(state,0);
             }
         }
     

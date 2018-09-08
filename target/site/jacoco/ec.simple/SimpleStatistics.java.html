@@ -190,40 +190,42 @@ import java.io.File;
 <span class="nc bnc" id="L190" title="All 6 branches missed.">            if (doMessage &amp;&amp; !silentPrint) state.output.message(&quot;Subpop &quot; + x + &quot; best fitness of generation&quot; + </span>
                 (best_i[x].evaluated ? &quot; &quot; : &quot; (evaluated flag not set): &quot;) +
 <span class="nc" id="L192">                best_i[x].fitness.fitnessToStringForHumans());</span>
+
                 
             // describe the winner if there is a description
-<span class="nc bnc" id="L195" title="All 4 branches missed.">            if (doGeneration &amp;&amp; doPerGenerationDescription) </span>
+<span class="nc bnc" id="L196" title="All 4 branches missed.">            if (doGeneration &amp;&amp; doPerGenerationDescription) </span>
                 {
-<span class="nc bnc" id="L197" title="All 2 branches missed.">                if (state.evaluator.p_problem instanceof SimpleProblemForm)</span>
-<span class="nc" id="L198">                    ((SimpleProblemForm)(state.evaluator.p_problem.clone())).describe(state, best_i[x], x, 0, statisticslog);   </span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">                if (state.evaluator.p_problem instanceof SimpleProblemForm)</span>
+<span class="nc" id="L199">                    ((SimpleProblemForm)(state.evaluator.p_problem.clone())).describe(state, best_i[x], x, 0, statisticslog);   </span>
                 }   
             }
-<span class="nc" id="L201">        }</span>
+<span class="nc" id="L202">        }</span>
 
     /** Allows MultiObjectiveStatistics etc. to call super.super.finalStatistics(...) without
         calling super.finalStatistics(...) */
     protected void bypassFinalStatistics(EvolutionState state, int result)
-<span class="nc" id="L206">        { super.finalStatistics(state, result); }</span>
+<span class="nc" id="L207">        { super.finalStatistics(state, result); }</span>
 
     /** Logs the best individual of the run. */
     public void finalStatistics(final EvolutionState state, final int result)
         {
-<span class="nc" id="L211">        super.finalStatistics(state,result);</span>
+<span class="nc" id="L212">        super.finalStatistics(state,result);</span>
         
         // for now we just print the best fitness 
         
-<span class="nc bnc" id="L215" title="All 2 branches missed.">        if (doFinal) state.output.println(&quot;\nBest Individual of Run:&quot;,statisticslog);</span>
-<span class="nc bnc" id="L216" title="All 2 branches missed.">        for(int x = 0; x&lt; state.population.subpops.size(); x++ )</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        if (doFinal) state.output.println(&quot;\nBest Individual of Run:&quot;,statisticslog);</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        for(int x = 0; x&lt; state.population.subpops.size(); x++ )</span>
             {
-<span class="nc bnc" id="L218" title="All 2 branches missed.">            if (doFinal) state.output.println(&quot;Subpopulation &quot; + x + &quot;:&quot;,statisticslog);</span>
-<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (doFinal) best_of_run[x].printIndividualForHumans(state,statisticslog);</span>
-<span class="nc bnc" id="L220" title="All 4 branches missed.">            if (doMessage &amp;&amp; !silentPrint) state.output.message(&quot;Subpop &quot; + x + &quot; best fitness of run: &quot; + best_of_run[x].fitness.fitnessToStringForHumans());</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            if (doFinal) state.output.println(&quot;Subpopulation &quot; + x + &quot;:&quot;,statisticslog);</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">            if (doFinal) best_of_run[x].printIndividualForHumans(state,statisticslog);</span>
+<span class="nc bnc" id="L221" title="All 4 branches missed.">            if (doMessage &amp;&amp; !silentPrint) state.output.message(&quot;Subpop &quot; + x + &quot; best fitness of run: &quot; + best_of_run[x].fitness.fitnessToStringForHumans());</span>
+<span class="nc" id="L222">                best_of_run[x].printIndividualForHumans(state,0);</span>
             
             // finally describe the winner if there is a description
-<span class="nc bnc" id="L223" title="All 4 branches missed.">            if (doFinal &amp;&amp; doDescription) </span>
-<span class="nc bnc" id="L224" title="All 2 branches missed.">                if (state.evaluator.p_problem instanceof SimpleProblemForm)</span>
-<span class="nc" id="L225">                    ((SimpleProblemForm)(state.evaluator.p_problem.clone())).describe(state, best_of_run[x], x, 0, statisticslog);      </span>
+<span class="nc bnc" id="L225" title="All 4 branches missed.">            if (doFinal &amp;&amp; doDescription) </span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">                if (state.evaluator.p_problem instanceof SimpleProblemForm)</span>
+<span class="nc" id="L227">                    ((SimpleProblemForm)(state.evaluator.p_problem.clone())).describe(state, best_of_run[x], x, 0, statisticslog);      </span>
             }
-<span class="nc" id="L227">        }</span>
+<span class="nc" id="L229">        }</span>
     }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

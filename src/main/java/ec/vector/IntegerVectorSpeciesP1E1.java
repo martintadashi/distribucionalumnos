@@ -164,6 +164,8 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     protected Empleado[] empleados;
     protected Tarea[] tareas;
     protected int F;
+    protected  float maxSueldoReal=0;
+    protected  float horasTotal=0;
 
     public Empleado[] getEmpleados() {
         return empleados;
@@ -176,6 +178,8 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     public Tarea[] getTareas() {
         return tareas;
     }
+
+    public float getHorasTotal() { return horasTotal; }
 
     public void setTareas(Tarea[] tareas) {
         tareas = tareas;
@@ -196,6 +200,9 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     public int getF() {
         return F;
     }
+    public float getMaxSueldoReal() {
+            return maxSueldoReal;
+        }
 
     public long maxGene(int gene)
         {
@@ -284,7 +291,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
 
             try {
                 String ruta_tareas = state.parameters.getStringWithDefault(base.push(RUTA_TAREAS), def.push(RUTA_TAREAS), null);
-                System.out.println("Ruta del archivo tareas.cvs: " + ruta_tareas);
+                //System.out.println("Ruta del archivo tareas.cvs: " + ruta_tareas);
                 File fin = new File(ruta_tareas);
                 FileInputStream fis = new FileInputStream(fin);
 
@@ -310,7 +317,9 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                 }
 
                 br.close();
-
+                for (Tarea t:tareas){
+                    horasTotal+=t.getEsfuerzo();
+                }
             } catch (NullPointerException e) {
                 state.output.fatal(e + ", error al leer el archivo de tareas");
             } catch (FileNotFoundException e) {
@@ -321,12 +330,12 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
         }
 
         if (empleados == null || empleados.length == 0) {
-            empleados = new Empleado[genomeSize];
+            empleados = new Empleado[5];
 
 
             try {
                 String ruta_empleados = state.parameters.getStringWithDefault(base.push(RUTA_EMPLEADOS), def.push(RUTA_EMPLEADOS), null);
-                System.out.println(ruta_empleados);
+                //System.out.println(ruta_empleados);
                 File fin = new File(ruta_empleados);
                 FileInputStream fis = new FileInputStream(fin);
 
@@ -365,6 +374,16 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                 }
 
                 br.close();
+                float sueldoReal;
+                for (int iEmpleados = 0; iEmpleados < empleados.length; iEmpleados++) {
+                    sueldoReal= empleados[iEmpleados].getSueldo()/((0.5F+empleados[iEmpleados].getHabilidad())*empleados[iEmpleados].getDedicacion());
+                    System.out.println("Sueldo real empleado "+iEmpleados+ ": "+sueldoReal);
+                    if (sueldoReal> maxSueldoReal){
+                        maxSueldoReal=sueldoReal;
+                    }
+
+
+                }
 
             } catch (NullPointerException e) {
                 state.output.fatal(e + ", error al leer el archivo de empleados");

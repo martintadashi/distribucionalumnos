@@ -5,7 +5,7 @@ state = ec.simple.SimpleEvolutionState
 quit-on-run-complete = true
 
 pop.subpop.0.size = 100
-generations = 10
+generations = 10000
 
 pop.subpop.0.species = ec.vector.IntegerVectorSpeciesP1E1
 
@@ -18,13 +18,14 @@ pop.subpop.0.species.fitness = ec.simple.SimpleFitness
 
 pop.subpop.0.species.genome-size = 8
 
-pop.subpop.0.species.crossover-type = one
+pop.subpop.0.species.crossover-type = any
 pop.subpop.0.species.crossover-prob = 0.5
 
 # agregar otra mutacion??
-pop.subpop.0.species.mutation-type = random-walk
-pop.subpop.0.species.mutation-prob = 0.01
-pop.subpop.0.species.random-walk-probability = 0.9
+pop.subpop.0.species.mutation-bounded =true
+pop.subpop.0.species.mutation-type = reset
+pop.subpop.0.species.mutation-prob = 0.02
+#pop.subpop.0.species.random-walk-probability = 0.5
 
 pop.subpop.0.species.mutation-stdev = 0.01
 
