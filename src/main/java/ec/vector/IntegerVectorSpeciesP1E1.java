@@ -93,8 +93,8 @@ import java.io.*;
 public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     {
     public final static String RUTA_TAREAS="ruta-tareas";
-    public final static String RUTA_CANT_TAREAS="practico_cantidad_tareas";
-    public final static String RUTA_CANT_EMPLEADOS="practico_cantidad_empleados";
+    public final static String RUTA_CANT_TAREAS="ruta-cantidad-tareas";
+    public final static String RUTA_CANT_EMPLEADOS="ruta-cantidad-empleados";
     public final static String RUTA_EMPLEADOS="ruta-empleados";
 
     public final static String P_MINGENE = "min-gene";
@@ -300,7 +300,8 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
 
             try {
                 String ruta_cant_empleados = state.parameters.getStringWithDefault(base.push(RUTA_CANT_EMPLEADOS), def.push(RUTA_CANT_EMPLEADOS), null);
-                //System.out.println("Ruta del archivo de cant empleados.cvs: " + ruta_cant_empleados);
+                //ruta_cant_empleados ="practico_cantidad_empleados";
+                System.out.println("Ruta del archivo de ruta-cantidad-empleados: " + ruta_cant_empleados);
                 File fin = new File(ruta_cant_empleados);
                 FileInputStream fis = new FileInputStream(fin);
 
@@ -312,7 +313,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
 
             try {
                 String ruta_cant_tareas = state.parameters.getStringWithDefault(base.push(RUTA_CANT_TAREAS), def.push(RUTA_CANT_TAREAS), null);
-                //System.out.println("Ruta del archivo de cant tareas.cvs: " + ruta_cant_tareas);
+                System.out.println("Ruta del archivo de ruta-cantidad-tareas: " + ruta_cant_tareas);
                 File fin = new File(ruta_cant_tareas);
                 FileInputStream fis = new FileInputStream(fin);
 

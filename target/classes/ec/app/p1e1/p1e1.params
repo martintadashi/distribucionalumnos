@@ -38,5 +38,7 @@ pop.subpop.0.species.pipe.source.0.source.0.size = 2
 
 
 
-pop.subpop.0.species.ruta-empleados=empleados.csv
-pop.subpop.0.species.ruta-tareas=tareas.csv
+pop.subpop.0.species.ruta-empleados=empleados
+pop.subpop.0.species.ruta-tareas=tareas
+pop.subpop.0.species.ruta-cantidad-empleados = practico_cantidad_empleados
+pop.subpop.0.species.ruta-cantidad-tareas = practico_cantidad_tareas

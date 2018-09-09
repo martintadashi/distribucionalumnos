@@ -93,6 +93,8 @@ import java.io.*;
 <span class="nc" id="L93">public class IntegerVectorSpeciesP1E1 extends VectorSpecies</span>
     {
     public final static String RUTA_TAREAS=&quot;ruta-tareas&quot;;
+    public final static String RUTA_CANT_TAREAS=&quot;ruta-cantidad-tareas&quot;;
+    public final static String RUTA_CANT_EMPLEADOS=&quot;ruta-cantidad-empleados&quot;;
     public final static String RUTA_EMPLEADOS=&quot;ruta-empleados&quot;;
 
     public final static String P_MINGENE = &quot;min-gene&quot;;
@@ -164,305 +166,324 @@ import java.io.*;
     protected Empleado[] empleados;
     protected Tarea[] tareas;
     protected int F;
-<span class="nc" id="L167">    protected  float maxSueldoReal=0;</span>
-<span class="nc" id="L168">    protected  float minSueldoReal=0;</span>
-<span class="nc" id="L169">    protected  float horasTotal=0;</span>
+
+<span class="nc" id="L170">    protected float maxSueldoReal = 0;</span>
+<span class="nc" id="L171">    protected float minSueldoReal = 0;</span>
+<span class="nc" id="L172">    protected float horasTotal = 0;</span>
+<span class="nc" id="L173">    protected int cantTareas = 0;</span>
+<span class="nc" id="L174">    protected int cantEmpleados = 0;</span>
 
     public Empleado[] getEmpleados() {
-<span class="nc" id="L172">        return empleados;</span>
+<span class="nc" id="L177">        return empleados;</span>
     }
 
     public void setEmpleados(Empleado[] empleados) {
-<span class="nc" id="L176">        empleados = empleados;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L181">        empleados = empleados;</span>
+<span class="nc" id="L182">    }</span>
 
     public Tarea[] getTareas() {
-<span class="nc" id="L180">        return tareas;</span>
+<span class="nc" id="L185">        return tareas;</span>
     }
 
-<span class="nc" id="L183">    public float getHorasTotal() { return horasTotal; }</span>
+    public float getHorasTotal() {
+<span class="nc" id="L189">        return horasTotal;</span>
+    }
 
     public void setTareas(Tarea[] tareas) {
-<span class="nc" id="L186">        tareas = tareas;</span>
-<span class="nc" id="L187">    }</span>
+<span class="nc" id="L193">        tareas = tareas;</span>
+<span class="nc" id="L194">    }</span>
 
     public int [] getEmpleadosPorCadaTarea(){
-<span class="nc" id="L190">        return empleados_por_tarea;</span>
+<span class="nc" id="L197">        return empleados_por_tarea;</span>
     }
 
     public int getCantEmpleados() {
-<span class="nc bnc" id="L194" title="All 2 branches missed.">        return (empleados == null) ? 0 : empleados.length;</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">        return (empleados == null) ? 0 : empleados.length;</span>
     }
 
     public int getCantTareas() {
-<span class="nc bnc" id="L198" title="All 2 branches missed.">        return (tareas == null) ? 0 : tareas.length;</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">        return (tareas == null) ? 0 : tareas.length;</span>
     }
 
     public int getF() {
-<span class="nc" id="L202">        return F;</span>
-    }
-    public float getMaxSueldoReal() {
-<span class="nc" id="L205">            return maxSueldoReal;</span>
-        }
-    public float getMinSueldoReal() {
-<span class="nc" id="L208">        return minSueldoReal;</span>
+<span class="nc" id="L209">        return F;</span>
     }
 
+    public float getMaxSueldoReal() {
+<span class="nc" id="L213">            return maxSueldoReal;</span>
+        }
+
+    public float getMinSueldoReal() {
+<span class="nc" id="L217">        return minSueldoReal;</span>
+    }
 
     public long maxGene(int gene)
         {
-<span class="nc" id="L214">        long[] m = maxGene;</span>
-<span class="nc bnc" id="L215" title="All 2 branches missed.">        if (m.length &lt;= gene)</span>
-<span class="nc" id="L216">            gene = m.length - 1;</span>
-<span class="nc" id="L217">        return m[gene];</span>
-        }
-
-    public long minGene(int gene)
-        {
-<span class="nc" id="L222">        long[] m = minGene;</span>
+<span class="nc" id="L222">        long[] m = maxGene;</span>
 <span class="nc bnc" id="L223" title="All 2 branches missed.">        if (m.length &lt;= gene)</span>
 <span class="nc" id="L224">            gene = m.length - 1;</span>
 <span class="nc" id="L225">        return m[gene];</span>
         }
 
-    public int mutationType(int gene)
+    public long minGene(int gene)
         {
-<span class="nc" id="L230">        int[] m = mutationType;</span>
+<span class="nc" id="L230">        long[] m = minGene;</span>
 <span class="nc bnc" id="L231" title="All 2 branches missed.">        if (m.length &lt;= gene)</span>
 <span class="nc" id="L232">            gene = m.length - 1;</span>
 <span class="nc" id="L233">        return m[gene];</span>
         }
 
-    public double randomWalkProbability(int gene)
+    public int mutationType(int gene)
         {
-<span class="nc" id="L238">        double[] m = randomWalkProbability;</span>
+<span class="nc" id="L238">        int[] m = mutationType;</span>
 <span class="nc bnc" id="L239" title="All 2 branches missed.">        if (m.length &lt;= gene)</span>
 <span class="nc" id="L240">            gene = m.length - 1;</span>
 <span class="nc" id="L241">        return m[gene];</span>
         }
 
-    public boolean mutationIsBounded(int gene)
+    public double randomWalkProbability(int gene)
         {
-<span class="nc" id="L246">        boolean[] m = mutationIsBounded;</span>
+<span class="nc" id="L246">        double[] m = randomWalkProbability;</span>
 <span class="nc bnc" id="L247" title="All 2 branches missed.">        if (m.length &lt;= gene)</span>
 <span class="nc" id="L248">            gene = m.length - 1;</span>
 <span class="nc" id="L249">        return m[gene];</span>
         }
 
+    public boolean mutationIsBounded(int gene)
+        {
+<span class="nc" id="L254">        boolean[] m = mutationIsBounded;</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        if (m.length &lt;= gene)</span>
+<span class="nc" id="L256">            gene = m.length - 1;</span>
+<span class="nc" id="L257">        return m[gene];</span>
+        }
+
     public boolean inNumericalTypeRange(double geneVal)
         {
-<span class="nc bnc" id="L254" title="All 2 branches missed.">        if (i_prototype instanceof ByteVectorIndividual)</span>
-<span class="nc bnc" id="L255" title="All 4 branches missed.">            return (geneVal &lt;= Byte.MAX_VALUE &amp;&amp; geneVal &gt;= Byte.MIN_VALUE);</span>
-<span class="nc bnc" id="L256" title="All 2 branches missed.">        else if (i_prototype instanceof ShortVectorIndividual)</span>
-<span class="nc bnc" id="L257" title="All 4 branches missed.">            return (geneVal &lt;= Short.MAX_VALUE &amp;&amp; geneVal &gt;= Short.MIN_VALUE);</span>
-<span class="nc bnc" id="L258" title="All 2 branches missed.">        else if (i_prototype instanceof IntegerVectorIndividualP1E1)</span>
-<span class="nc bnc" id="L259" title="All 4 branches missed.">            return (geneVal &lt;= Integer.MAX_VALUE &amp;&amp; geneVal &gt;= Integer.MIN_VALUE);</span>
-<span class="nc bnc" id="L260" title="All 2 branches missed.">        else if (i_prototype instanceof LongVectorIndividual)</span>
-<span class="nc" id="L261">            return true;  // geneVal is valid for all longs</span>
-<span class="nc" id="L262">        else return false;  // dunno what the individual is...</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">        if (i_prototype instanceof ByteVectorIndividual)</span>
+<span class="nc bnc" id="L263" title="All 4 branches missed.">            return (geneVal &lt;= Byte.MAX_VALUE &amp;&amp; geneVal &gt;= Byte.MIN_VALUE);</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">        else if (i_prototype instanceof ShortVectorIndividual)</span>
+<span class="nc bnc" id="L265" title="All 4 branches missed.">            return (geneVal &lt;= Short.MAX_VALUE &amp;&amp; geneVal &gt;= Short.MIN_VALUE);</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">        else if (i_prototype instanceof IntegerVectorIndividualP1E1)</span>
+<span class="nc bnc" id="L267" title="All 4 branches missed.">            return (geneVal &lt;= Integer.MAX_VALUE &amp;&amp; geneVal &gt;= Integer.MIN_VALUE);</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">        else if (i_prototype instanceof LongVectorIndividual)</span>
+<span class="nc" id="L269">            return true;  // geneVal is valid for all longs</span>
+<span class="nc" id="L270">        else return false;  // dunno what the individual is...</span>
         }
 
     public boolean inNumericalTypeRange(long geneVal)
         {
-<span class="nc bnc" id="L267" title="All 2 branches missed.">        if (i_prototype instanceof ByteVectorIndividual)</span>
-<span class="nc bnc" id="L268" title="All 4 branches missed.">            return (geneVal &lt;= Byte.MAX_VALUE &amp;&amp; geneVal &gt;= Byte.MIN_VALUE);</span>
-<span class="nc bnc" id="L269" title="All 2 branches missed.">        else if (i_prototype instanceof ShortVectorIndividual)</span>
-<span class="nc bnc" id="L270" title="All 4 branches missed.">            return (geneVal &lt;= Short.MAX_VALUE &amp;&amp; geneVal &gt;= Short.MIN_VALUE);</span>
-<span class="nc bnc" id="L271" title="All 2 branches missed.">        else if (i_prototype instanceof IntegerVectorIndividualP1E1)</span>
-<span class="nc bnc" id="L272" title="All 4 branches missed.">            return (geneVal &lt;= Integer.MAX_VALUE &amp;&amp; geneVal &gt;= Integer.MIN_VALUE);</span>
-<span class="nc bnc" id="L273" title="All 2 branches missed.">        else if (i_prototype instanceof LongVectorIndividual)</span>
-<span class="nc" id="L274">            return true;  // geneVal is valid for all longs</span>
-<span class="nc" id="L275">        else return false;  // dunno what the individual is...</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">        if (i_prototype instanceof ByteVectorIndividual)</span>
+<span class="nc bnc" id="L276" title="All 4 branches missed.">            return (geneVal &lt;= Byte.MAX_VALUE &amp;&amp; geneVal &gt;= Byte.MIN_VALUE);</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">        else if (i_prototype instanceof ShortVectorIndividual)</span>
+<span class="nc bnc" id="L278" title="All 4 branches missed.">            return (geneVal &lt;= Short.MAX_VALUE &amp;&amp; geneVal &gt;= Short.MIN_VALUE);</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">        else if (i_prototype instanceof IntegerVectorIndividualP1E1)</span>
+<span class="nc bnc" id="L280" title="All 4 branches missed.">            return (geneVal &lt;= Integer.MAX_VALUE &amp;&amp; geneVal &gt;= Integer.MIN_VALUE);</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">        else if (i_prototype instanceof LongVectorIndividual)</span>
+<span class="nc" id="L282">            return true;  // geneVal is valid for all longs</span>
+<span class="nc" id="L283">        else return false;  // dunno what the individual is...</span>
         }
     
     public void setup(final EvolutionState state, final Parameter base) {
-<span class="nc" id="L279">        Parameter def = defaultBase();</span>
+<span class="nc" id="L287">        Parameter def = defaultBase();</span>
 
-<span class="nc" id="L281">        setupGenome(state, base);</span>
+<span class="nc" id="L289">        setupGenome(state, base);</span>
 
         // create the arrays
-<span class="nc" id="L284">        minGene = new long[genomeSize + 1];</span>
-<span class="nc" id="L285">        maxGene = new long[genomeSize + 1];</span>
-<span class="nc" id="L286">        mutationType = fill(new int[genomeSize + 1], -1);</span>
-<span class="nc" id="L287">        mutationIsBounded = new boolean[genomeSize + 1];</span>
-<span class="nc" id="L288">        randomWalkProbability = new double[genomeSize + 1];</span>
-
+<span class="nc" id="L292">        minGene = new long[genomeSize + 1];</span>
+<span class="nc" id="L293">        maxGene = new long[genomeSize + 1];</span>
+<span class="nc" id="L294">        mutationType = fill(new int[genomeSize + 1], -1);</span>
+<span class="nc" id="L295">        mutationIsBounded = new boolean[genomeSize + 1];</span>
+<span class="nc" id="L296">        randomWalkProbability = new double[genomeSize + 1];</span>
 
         // Cargo los empleados y las tareas de los archivos
-<span class="nc bnc" id="L292" title="All 4 branches missed.">        if (tareas == null || tareas.length == 0) {</span>
-
-
-<span class="nc" id="L295">            tareas = new Tarea[genomeSize];</span>
+<span class="nc bnc" id="L299" title="All 4 branches missed.">        if (tareas == null || tareas.length == 0) {</span>
 
             try {
-<span class="nc" id="L298">                String ruta_tareas = state.parameters.getStringWithDefault(base.push(RUTA_TAREAS), def.push(RUTA_TAREAS), null);</span>
-                //System.out.println(&quot;Ruta del archivo tareas.cvs: &quot; + ruta_tareas);
-<span class="nc" id="L300">                File fin = new File(ruta_tareas);</span>
-<span class="nc" id="L301">                FileInputStream fis = new FileInputStream(fin);</span>
+<span class="nc" id="L302">                String ruta_cant_empleados = state.parameters.getStringWithDefault(base.push(RUTA_CANT_EMPLEADOS), def.push(RUTA_CANT_EMPLEADOS), null);</span>
+                //ruta_cant_empleados =&quot;practico_cantidad_empleados&quot;;
+<span class="nc" id="L304">                System.out.println(&quot;Ruta del archivo de ruta-cantidad-empleados: &quot; + ruta_cant_empleados);</span>
+<span class="nc" id="L305">                File fin = new File(ruta_cant_empleados);</span>
+<span class="nc" id="L306">                FileInputStream fis = new FileInputStream(fin);</span>
 
-<span class="nc" id="L303">                BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
+<span class="nc" id="L308">                BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
+<span class="nc" id="L309">                cantEmpleados = Integer.parseInt(br.readLine());</span>
+<span class="nc" id="L310">            } catch (Exception e) {</span>
+<span class="nc" id="L311">                state.output.fatal(e + &quot;, error al leer el archivo de cant empleados&quot;);</span>
+<span class="nc" id="L312">            }</span>
+
+            try {
+<span class="nc" id="L315">                String ruta_cant_tareas = state.parameters.getStringWithDefault(base.push(RUTA_CANT_TAREAS), def.push(RUTA_CANT_TAREAS), null);</span>
+<span class="nc" id="L316">                System.out.println(&quot;Ruta del archivo de ruta-cantidad-tareas: &quot; + ruta_cant_tareas);</span>
+<span class="nc" id="L317">                File fin = new File(ruta_cant_tareas);</span>
+<span class="nc" id="L318">                FileInputStream fis = new FileInputStream(fin);</span>
+
+<span class="nc" id="L320">                BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
+<span class="nc" id="L321">                cantTareas = Integer.parseInt(br.readLine());</span>
+<span class="nc" id="L322">            } catch (Exception e) {</span>
+<span class="nc" id="L323">                state.output.fatal(e + &quot;, error al leer el archivo de cant tareas&quot;);</span>
+<span class="nc" id="L324">            }</span>
+
+<span class="nc" id="L326">            tareas = new Tarea[cantTareas];</span>
+<span class="nc" id="L327">            empleados = new Empleado[cantEmpleados];</span>
+
+            try {
+<span class="nc" id="L330">                String ruta_tareas = state.parameters.getStringWithDefault(base.push(RUTA_TAREAS), def.push(RUTA_TAREAS), null);</span>
+                //System.out.println(&quot;Ruta del archivo tareas.cvs: &quot; + ruta_tareas);
+<span class="nc" id="L332">                File fin = new File(ruta_tareas);</span>
+<span class="nc" id="L333">                FileInputStream fis = new FileInputStream(fin);</span>
+
+<span class="nc" id="L335">                BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
 
                 // 1er linea
-<span class="nc" id="L306">                F = Integer.parseInt(br.readLine());</span>
+<span class="nc" id="L338">                F = Integer.parseInt(br.readLine());</span>
 
 
                 // 2da linea
-<span class="nc" id="L310">                int index = 0;</span>
-<span class="nc" id="L311">                String[] line_tokens = br.readLine().split(&quot; &quot;);</span>
-<span class="nc bnc" id="L312" title="All 2 branches missed.">                for (String id : line_tokens) {</span>
-<span class="nc" id="L313">                    tareas[index] = new Tarea(Integer.parseInt(id));</span>
-<span class="nc" id="L314">                    index++;</span>
+<span class="nc" id="L342">                int index = 0;</span>
+<span class="nc" id="L343">                String[] line_tokens = br.readLine().split(&quot; &quot;);</span>
+<span class="nc bnc" id="L344" title="All 2 branches missed.">                for (String id : line_tokens) {</span>
+<span class="nc" id="L345">                    tareas[index] = new Tarea(Integer.parseInt(id));</span>
+<span class="nc" id="L346">                    index++;</span>
                 }
 
                 // 3er linea
-<span class="nc" id="L318">                index = 0;</span>
-<span class="nc" id="L319">                line_tokens = br.readLine().split(&quot; &quot;);</span>
-<span class="nc bnc" id="L320" title="All 2 branches missed.">                for (String dias : line_tokens) {</span>
-<span class="nc" id="L321">                    tareas[index].setEsfuerzo(Integer.parseInt(dias));</span>
-<span class="nc" id="L322">                    index++;</span>
+<span class="nc" id="L350">                index = 0;</span>
+<span class="nc" id="L351">                line_tokens = br.readLine().split(&quot; &quot;);</span>
+<span class="nc bnc" id="L352" title="All 2 branches missed.">                for (String dias : line_tokens) {</span>
+<span class="nc" id="L353">                    tareas[index].setEsfuerzo(Integer.parseInt(dias));</span>
+<span class="nc" id="L354">                    index++;</span>
                 }
 
-<span class="nc" id="L325">                br.close();</span>
-<span class="nc bnc" id="L326" title="All 2 branches missed.">                for (Tarea t:tareas){</span>
-<span class="nc" id="L327">                    horasTotal+=t.getEsfuerzo();</span>
+<span class="nc" id="L357">                br.close();</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">                for (Tarea t:tareas){</span>
+<span class="nc" id="L359">                    horasTotal+=t.getEsfuerzo();</span>
                 }
-<span class="nc" id="L329">            } catch (NullPointerException e) {</span>
-<span class="nc" id="L330">                state.output.fatal(e + &quot;, error al leer el archivo de tareas&quot;);</span>
-<span class="nc" id="L331">            } catch (FileNotFoundException e) {</span>
-<span class="nc" id="L332">                state.output.fatal(e + &quot;, error al leer el archivo de tareas&quot;);</span>
-<span class="nc" id="L333">            } catch (IOException e) {</span>
-<span class="nc" id="L334">                state.output.fatal(e + &quot;, error al leer el archivo de tareas&quot;);</span>
-<span class="nc" id="L335">            }</span>
+<span class="nc" id="L361">            } catch (Exception e) {</span>
+<span class="nc" id="L362">                state.output.fatal(e + &quot;, error al leer el archivo de tareas&quot;);</span>
+<span class="nc" id="L363">            }</span>
         }
 
-<span class="nc bnc" id="L338" title="All 4 branches missed.">        if (empleados == null || empleados.length == 0) {</span>
-<span class="nc" id="L339">            empleados = new Empleado[5];</span>
-
+<span class="nc bnc" id="L366" title="All 4 branches missed.">        if (empleados == null || empleados.length == 0) {</span>
 
             try {
-<span class="nc" id="L343">                String ruta_empleados = state.parameters.getStringWithDefault(base.push(RUTA_EMPLEADOS), def.push(RUTA_EMPLEADOS), null);</span>
+<span class="nc" id="L369">                String ruta_empleados = state.parameters.getStringWithDefault(base.push(RUTA_EMPLEADOS), def.push(RUTA_EMPLEADOS), null);</span>
                 //System.out.println(ruta_empleados);
-<span class="nc" id="L345">                File fin = new File(ruta_empleados);</span>
-<span class="nc" id="L346">                FileInputStream fis = new FileInputStream(fin);</span>
+<span class="nc" id="L371">                File fin = new File(ruta_empleados);</span>
+<span class="nc" id="L372">                FileInputStream fis = new FileInputStream(fin);</span>
 
-<span class="nc" id="L348">                BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
+<span class="nc" id="L374">                BufferedReader br = new BufferedReader(new InputStreamReader(fis));</span>
 
                 // 1er linea
-<span class="nc" id="L351">                int index = 0;</span>
-<span class="nc" id="L352">                String[] line_tokens = br.readLine().split(&quot; &quot;);</span>
-<span class="nc bnc" id="L353" title="All 2 branches missed.">                for (String id : line_tokens) {</span>
-<span class="nc" id="L354">                    empleados[index] = new Empleado(Integer.parseInt(id));</span>
-<span class="nc" id="L355">                    index++;</span>
+<span class="nc" id="L377">                int index = 0;</span>
+<span class="nc" id="L378">                String[] line_tokens = br.readLine().split(&quot; &quot;);</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">                for (String id : line_tokens) {</span>
+<span class="nc" id="L380">                    empleados[index] = new Empleado(Integer.parseInt(id));</span>
+<span class="nc" id="L381">                    index++;</span>
                 }
 
                 // 2da linea
-<span class="nc" id="L359">                index = 0;</span>
-<span class="nc" id="L360">                line_tokens = br.readLine().split(&quot; &quot;);</span>
-<span class="nc bnc" id="L361" title="All 2 branches missed.">                for (String dedicacion : line_tokens) {</span>
-<span class="nc" id="L362">                    empleados[index].setDedicacion(Integer.parseInt(dedicacion));</span>
-<span class="nc" id="L363">                    index++;</span>
+<span class="nc" id="L385">                index = 0;</span>
+<span class="nc" id="L386">                line_tokens = br.readLine().split(&quot; &quot;);</span>
+<span class="nc bnc" id="L387" title="All 2 branches missed.">                for (String dedicacion : line_tokens) {</span>
+<span class="nc" id="L388">                    empleados[index].setDedicacion(Integer.parseInt(dedicacion));</span>
+<span class="nc" id="L389">                    index++;</span>
                 }
 
                 // 3er linea
-<span class="nc" id="L367">                index = 0;</span>
-<span class="nc" id="L368">                line_tokens = br.readLine().split(&quot; &quot;);</span>
-<span class="nc bnc" id="L369" title="All 2 branches missed.">                for (String habilidad : line_tokens) {</span>
-<span class="nc" id="L370">                    empleados[index].setHabilidad(Float.parseFloat(habilidad));</span>
-<span class="nc" id="L371">                    index++;</span>
+<span class="nc" id="L393">                index = 0;</span>
+<span class="nc" id="L394">                line_tokens = br.readLine().split(&quot; &quot;);</span>
+<span class="nc bnc" id="L395" title="All 2 branches missed.">                for (String habilidad : line_tokens) {</span>
+<span class="nc" id="L396">                    empleados[index].setHabilidad(Float.parseFloat(habilidad));</span>
+<span class="nc" id="L397">                    index++;</span>
                 }
 
                 // 4ta linea
-<span class="nc" id="L375">                index = 0;</span>
-<span class="nc" id="L376">                line_tokens = br.readLine().split(&quot; &quot;);</span>
-<span class="nc bnc" id="L377" title="All 2 branches missed.">                for (String sueldo : line_tokens) {</span>
-<span class="nc" id="L378">                    empleados[index].setSueldo(Integer.parseInt(sueldo));</span>
-<span class="nc" id="L379">                    index++;</span>
+<span class="nc" id="L401">                index = 0;</span>
+<span class="nc" id="L402">                line_tokens = br.readLine().split(&quot; &quot;);</span>
+<span class="nc bnc" id="L403" title="All 2 branches missed.">                for (String sueldo : line_tokens) {</span>
+<span class="nc" id="L404">                    empleados[index].setSueldo(Integer.parseInt(sueldo));</span>
+<span class="nc" id="L405">                    index++;</span>
                 }
 
-<span class="nc" id="L382">                br.close();</span>
+<span class="nc" id="L408">                br.close();</span>
                 float sueldoReal;
-<span class="nc bnc" id="L384" title="All 2 branches missed.">                for (int iEmpleados = 0; iEmpleados &lt; empleados.length; iEmpleados++) {</span>
-<span class="nc" id="L385">                    sueldoReal= empleados[iEmpleados].getSueldo()/((0.5F+empleados[iEmpleados].getHabilidad())*empleados[iEmpleados].getDedicacion());</span>
-<span class="nc" id="L386">                    System.out.println(&quot;Sueldo real empleado &quot;+iEmpleados+ &quot;: &quot;+sueldoReal);</span>
-<span class="nc bnc" id="L387" title="All 2 branches missed.">                    if (sueldoReal&gt; maxSueldoReal){</span>
-<span class="nc" id="L388">                        maxSueldoReal=sueldoReal;</span>
+<span class="nc bnc" id="L410" title="All 2 branches missed.">                for (int iEmpleados = 0; iEmpleados &lt; empleados.length; iEmpleados++) {</span>
+<span class="nc" id="L411">                    sueldoReal= empleados[iEmpleados].getSueldo()/((0.5F+empleados[iEmpleados].getHabilidad())*empleados[iEmpleados].getDedicacion());</span>
+<span class="nc" id="L412">                    System.out.println(&quot;Sueldo real empleado &quot;+iEmpleados+ &quot;: &quot;+sueldoReal);</span>
+<span class="nc bnc" id="L413" title="All 2 branches missed.">                    if (sueldoReal&gt; maxSueldoReal){</span>
+<span class="nc" id="L414">                        maxSueldoReal=sueldoReal;</span>
                     }
-<span class="nc bnc" id="L390" title="All 2 branches missed.">                    if (sueldoReal&lt; minSueldoReal){</span>
-<span class="nc" id="L391">                        minSueldoReal=sueldoReal;</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">                    if (sueldoReal&lt; minSueldoReal){</span>
+<span class="nc" id="L417">                        minSueldoReal=sueldoReal;</span>
                     }
-
                 }
 
-<span class="nc" id="L396">            } catch (NullPointerException e) {</span>
-<span class="nc" id="L397">                state.output.fatal(e + &quot;, error al leer el archivo de empleados&quot;);</span>
-<span class="nc" id="L398">            } catch (FileNotFoundException e) {</span>
-<span class="nc" id="L399">                state.output.fatal(e + &quot;, error al leer el archivo de empleados&quot;);</span>
-<span class="nc" id="L400">            } catch (IOException e) {</span>
-<span class="nc" id="L401">                state.output.fatal(e + &quot;, error al leer el archivo de empleados&quot;);</span>
-<span class="nc" id="L402">            }</span>
+<span class="nc" id="L421">            } catch (Exception e) {</span>
+<span class="nc" id="L422">                state.output.fatal(e + &quot;, error al leer el archivo de empleados&quot;);</span>
+<span class="nc" id="L423">            }</span>
         }
         
 
         // LOADING GLOBAL MIN/MAX GENES
-<span class="nc" id="L407">        long _minGene = state.parameters.getLongWithDefault(base.push(P_MINGENE),def.push(P_MINGENE),0);</span>
-<span class="nc" id="L408">        long _maxGene = state.parameters.getLong(base.push(P_MAXGENE),def.push(P_MAXGENE), _minGene);</span>
-<span class="nc bnc" id="L409" title="All 2 branches missed.">        if (_maxGene &lt; _minGene)</span>
-<span class="nc" id="L410">            state.output.fatal(&quot;IntegerVectorSpeciesP1E1 must have a default min-gene which is &lt;= the default max-gene&quot;,</span>
-<span class="nc" id="L411">                base.push(P_MAXGENE),def.push(P_MAXGENE));</span>
-<span class="nc" id="L412">        fill(minGene, _minGene);</span>
-<span class="nc" id="L413">        fill(maxGene, _maxGene);</span>
+<span class="nc" id="L428">        long _minGene = state.parameters.getLongWithDefault(base.push(P_MINGENE),def.push(P_MINGENE),0);</span>
+<span class="nc" id="L429">        long _maxGene = state.parameters.getLong(base.push(P_MAXGENE),def.push(P_MAXGENE), _minGene);</span>
+<span class="nc bnc" id="L430" title="All 2 branches missed.">        if (_maxGene &lt; _minGene)</span>
+<span class="nc" id="L431">            state.output.fatal(&quot;IntegerVectorSpeciesP1E1 must have a default min-gene which is &lt;= the default max-gene&quot;,</span>
+<span class="nc" id="L432">                base.push(P_MAXGENE),def.push(P_MAXGENE));</span>
+<span class="nc" id="L433">        fill(minGene, _minGene);</span>
+<span class="nc" id="L434">        fill(maxGene, _maxGene);</span>
 
 
         /// MUTATION
         
         
-<span class="nc" id="L419">        String mtype = state.parameters.getStringWithDefault(base.push(P_MUTATIONTYPE), def.push(P_MUTATIONTYPE), null);</span>
-<span class="nc" id="L420">        int _mutationType = C_RESET_MUTATION;</span>
-<span class="nc bnc" id="L421" title="All 2 branches missed.">        if (mtype == null)</span>
-<span class="nc" id="L422">            state.output.warning(&quot;No global mutation type given for IntegerVectorSpeciesP1E1, assuming 'reset' mutation&quot;,</span>
-<span class="nc" id="L423">                base.push(P_MUTATIONTYPE), def.push(P_MUTATIONTYPE));</span>
-<span class="nc bnc" id="L424" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RESET_MUTATION))</span>
-<span class="nc" id="L425">            _mutationType = C_RESET_MUTATION; // redundant</span>
-<span class="nc bnc" id="L426" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RANDOM_WALK_MUTATION))</span>
-<span class="nc" id="L427">            _mutationType = C_RANDOM_WALK_MUTATION;</span>
+<span class="nc" id="L440">        String mtype = state.parameters.getStringWithDefault(base.push(P_MUTATIONTYPE), def.push(P_MUTATIONTYPE), null);</span>
+<span class="nc" id="L441">        int _mutationType = C_RESET_MUTATION;</span>
+<span class="nc bnc" id="L442" title="All 2 branches missed.">        if (mtype == null)</span>
+<span class="nc" id="L443">            state.output.warning(&quot;No global mutation type given for IntegerVectorSpeciesP1E1, assuming 'reset' mutation&quot;,</span>
+<span class="nc" id="L444">                base.push(P_MUTATIONTYPE), def.push(P_MUTATIONTYPE));</span>
+<span class="nc bnc" id="L445" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RESET_MUTATION))</span>
+<span class="nc" id="L446">            _mutationType = C_RESET_MUTATION; // redundant</span>
+<span class="nc bnc" id="L447" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RANDOM_WALK_MUTATION))</span>
+<span class="nc" id="L448">            _mutationType = C_RANDOM_WALK_MUTATION;</span>
         else
-<span class="nc" id="L429">            state.output.fatal(&quot;IntegerVectorSpeciesP1E1 given a bad mutation type: &quot;</span>
-<span class="nc" id="L430">                + mtype, base.push(P_MUTATIONTYPE), def.push(P_MUTATIONTYPE));</span>
-<span class="nc" id="L431">        fill(mutationType, _mutationType);</span>
+<span class="nc" id="L450">            state.output.fatal(&quot;IntegerVectorSpeciesP1E1 given a bad mutation type: &quot;</span>
+<span class="nc" id="L451">                + mtype, base.push(P_MUTATIONTYPE), def.push(P_MUTATIONTYPE));</span>
+<span class="nc" id="L452">        fill(mutationType, _mutationType);</span>
 
-<span class="nc bnc" id="L433" title="All 2 branches missed.">        if (_mutationType == C_RANDOM_WALK_MUTATION)</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">        if (_mutationType == C_RANDOM_WALK_MUTATION)</span>
             {
-<span class="nc" id="L435">            double _randomWalkProbability = state.parameters.getDoubleWithMax(base.push(P_RANDOM_WALK_PROBABILITY),def.push(P_RANDOM_WALK_PROBABILITY), 0.0, 1.0);</span>
-<span class="nc bnc" id="L436" title="All 2 branches missed.">            if (_randomWalkProbability &lt;= 0)</span>
-<span class="nc" id="L437">                state.output.fatal(&quot;If it's going to use random walk mutation as its global mutation type, IntegerVectorSpeciesP1E1 must a random walk mutation probability between 0.0 and 1.0.&quot;,</span>
-<span class="nc" id="L438">                    base.push(P_RANDOM_WALK_PROBABILITY), def.push(P_RANDOM_WALK_PROBABILITY));</span>
-<span class="nc" id="L439">            fill(randomWalkProbability, _randomWalkProbability);</span>
+<span class="nc" id="L456">            double _randomWalkProbability = state.parameters.getDoubleWithMax(base.push(P_RANDOM_WALK_PROBABILITY),def.push(P_RANDOM_WALK_PROBABILITY), 0.0, 1.0);</span>
+<span class="nc bnc" id="L457" title="All 2 branches missed.">            if (_randomWalkProbability &lt;= 0)</span>
+<span class="nc" id="L458">                state.output.fatal(&quot;If it's going to use random walk mutation as its global mutation type, IntegerVectorSpeciesP1E1 must a random walk mutation probability between 0.0 and 1.0.&quot;,</span>
+<span class="nc" id="L459">                    base.push(P_RANDOM_WALK_PROBABILITY), def.push(P_RANDOM_WALK_PROBABILITY));</span>
+<span class="nc" id="L460">            fill(randomWalkProbability, _randomWalkProbability);</span>
 
-<span class="nc bnc" id="L441" title="All 2 branches missed.">            if (!state.parameters.exists(base.push(P_MUTATION_BOUNDED), def.push(P_MUTATION_BOUNDED)))</span>
-<span class="nc" id="L442">                state.output.warning(&quot;IntegerVectorSpeciesP1E1 is using gaussian, polynomial, or integer randomwalk mutation as its global mutation type, but &quot; + P_MUTATION_BOUNDED + &quot; is not defined.  Assuming 'true'&quot;);</span>
-<span class="nc" id="L443">            boolean _mutationIsBounded = state.parameters.getBoolean(base.push(P_MUTATION_BOUNDED), def.push(P_MUTATION_BOUNDED), true);</span>
-<span class="nc" id="L444">            fill(mutationIsBounded, _mutationIsBounded);</span>
-<span class="nc" id="L445">            mutationIsBoundedDefined = true;</span>
+<span class="nc bnc" id="L462" title="All 2 branches missed.">            if (!state.parameters.exists(base.push(P_MUTATION_BOUNDED), def.push(P_MUTATION_BOUNDED)))</span>
+<span class="nc" id="L463">                state.output.warning(&quot;IntegerVectorSpeciesP1E1 is using gaussian, polynomial, or integer randomwalk mutation as its global mutation type, but &quot; + P_MUTATION_BOUNDED + &quot; is not defined.  Assuming 'true'&quot;);</span>
+<span class="nc" id="L464">            boolean _mutationIsBounded = state.parameters.getBoolean(base.push(P_MUTATION_BOUNDED), def.push(P_MUTATION_BOUNDED), true);</span>
+<span class="nc" id="L465">            fill(mutationIsBounded, _mutationIsBounded);</span>
+<span class="nc" id="L466">            mutationIsBoundedDefined = true;</span>
             }
 
 
-<span class="nc" id="L449">        super.setup(state, base);</span>
+<span class="nc" id="L470">        super.setup(state, base);</span>
 
 
         // VERIFY
-<span class="nc bnc" id="L453" title="All 2 branches missed.">        for(int x=0; x&lt; genomeSize + 1; x++)</span>
+<span class="nc bnc" id="L474" title="All 2 branches missed.">        for(int x=0; x&lt; genomeSize + 1; x++)</span>
             {
-<span class="nc bnc" id="L455" title="All 2 branches missed.">            if (maxGene[x] &lt; minGene[x])</span>
-<span class="nc" id="L456">                state.output.fatal(&quot;IntegerVectorSpeciesP1E1 must have a min-gene[&quot;+x+&quot;] which is &lt;= the max-gene[&quot;+x+&quot;]&quot;);</span>
+<span class="nc bnc" id="L476" title="All 2 branches missed.">            if (maxGene[x] &lt; minGene[x])</span>
+<span class="nc" id="L477">                state.output.fatal(&quot;IntegerVectorSpeciesP1E1 must have a min-gene[&quot;+x+&quot;] which is &lt;= the max-gene[&quot;+x+&quot;]&quot;);</span>
             
             // check to see if these longs are within the data type of the particular individual
-<span class="nc bnc" id="L459" title="All 2 branches missed.">            if (!inNumericalTypeRange(minGene[x]))</span>
-<span class="nc" id="L460">                state.output.fatal(&quot;This IntegerVectorSpeciesP1E1 has a prototype of the kind: &quot; </span>
-<span class="nc" id="L461">                    + i_prototype.getClass().getName() +</span>
+<span class="nc bnc" id="L480" title="All 2 branches missed.">            if (!inNumericalTypeRange(minGene[x]))</span>
+<span class="nc" id="L481">                state.output.fatal(&quot;This IntegerVectorSpeciesP1E1 has a prototype of the kind: &quot; </span>
+<span class="nc" id="L482">                    + i_prototype.getClass().getName() +</span>
                     &quot;, but doesn't have a min-gene[&quot;+x+&quot;] value within the range of this prototype's genome's data types&quot;);
-<span class="nc bnc" id="L463" title="All 2 branches missed.">            if (!inNumericalTypeRange(maxGene[x]))</span>
-<span class="nc" id="L464">                state.output.fatal(&quot;This IntegerVectorSpeciesP1E1 has a prototype of the kind: &quot; </span>
-<span class="nc" id="L465">                    + i_prototype.getClass().getName() +</span>
+<span class="nc bnc" id="L484" title="All 2 branches missed.">            if (!inNumericalTypeRange(maxGene[x]))</span>
+<span class="nc" id="L485">                state.output.fatal(&quot;This IntegerVectorSpeciesP1E1 has a prototype of the kind: &quot; </span>
+<span class="nc" id="L486">                    + i_prototype.getClass().getName() +</span>
                     &quot;, but doesn't have a max-gene[&quot;+x+&quot;] value within the range of this prototype's genome's data types&quot;);
             }
 
@@ -474,97 +495,97 @@ import java.io.*;
         for(int i = 0; i &lt; minGene.length; i++)
         System.out.println(&quot;Min: &quot; + minGene[i] + &quot;, Max: &quot; + maxGene[i]);
         */
-<span class="nc" id="L477">        }</span>
+<span class="nc" id="L498">        }</span>
 
 
     protected void loadParametersForGene(EvolutionState state, int index, Parameter base, Parameter def, String postfix)
         {       
-<span class="nc" id="L482">        super.loadParametersForGene(state, index, base, def, postfix);</span>
+<span class="nc" id="L503">        super.loadParametersForGene(state, index, base, def, postfix);</span>
         
-<span class="nc" id="L484">        boolean minValExists = state.parameters.exists(base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
-<span class="nc" id="L485">        boolean maxValExists = state.parameters.exists(base.push(P_MAXGENE).push(postfix), def.push(P_MAXGENE).push(postfix));</span>
+<span class="nc" id="L505">        boolean minValExists = state.parameters.exists(base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
+<span class="nc" id="L506">        boolean maxValExists = state.parameters.exists(base.push(P_MAXGENE).push(postfix), def.push(P_MAXGENE).push(postfix));</span>
         
-<span class="nc bnc" id="L487" title="All 4 branches missed.">        if ((maxValExists &amp;&amp; !(minValExists)))</span>
-<span class="nc" id="L488">            state.output.warning(&quot;Max Gene specified but not Min Gene&quot;, base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
+<span class="nc bnc" id="L508" title="All 4 branches missed.">        if ((maxValExists &amp;&amp; !(minValExists)))</span>
+<span class="nc" id="L509">            state.output.warning(&quot;Max Gene specified but not Min Gene&quot;, base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
                 
-<span class="nc bnc" id="L490" title="All 4 branches missed.">        if ((minValExists &amp;&amp; !(maxValExists)))</span>
-<span class="nc" id="L491">            state.output.warning(&quot;Min Gene specified but not Max Gene&quot;, base.push(P_MAXGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
+<span class="nc bnc" id="L511" title="All 4 branches missed.">        if ((minValExists &amp;&amp; !(maxValExists)))</span>
+<span class="nc" id="L512">            state.output.warning(&quot;Min Gene specified but not Max Gene&quot;, base.push(P_MAXGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
 
-<span class="nc bnc" id="L493" title="All 2 branches missed.">        if (minValExists)</span>
+<span class="nc bnc" id="L514" title="All 2 branches missed.">        if (minValExists)</span>
             {        
-<span class="nc" id="L495">            long minVal = state.parameters.getLongWithDefault(base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix), 0);</span>
+<span class="nc" id="L516">            long minVal = state.parameters.getLongWithDefault(base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix), 0);</span>
 
             //check if the value is in range
-<span class="nc bnc" id="L498" title="All 2 branches missed.">            if (!inNumericalTypeRange(minVal))</span>
-<span class="nc" id="L499">                state.output.error(&quot;Min Gene Value out of range for data type &quot; + i_prototype.getClass().getName(),</span>
-<span class="nc" id="L500">                    base.push(P_MINGENE).push(postfix), </span>
-<span class="nc" id="L501">                    base.push(P_MINGENE).push(postfix));</span>
-<span class="nc" id="L502">            else minGene[index] = minVal;</span>
+<span class="nc bnc" id="L519" title="All 2 branches missed.">            if (!inNumericalTypeRange(minVal))</span>
+<span class="nc" id="L520">                state.output.error(&quot;Min Gene Value out of range for data type &quot; + i_prototype.getClass().getName(),</span>
+<span class="nc" id="L521">                    base.push(P_MINGENE).push(postfix), </span>
+<span class="nc" id="L522">                    base.push(P_MINGENE).push(postfix));</span>
+<span class="nc" id="L523">            else minGene[index] = minVal;</span>
 
-<span class="nc bnc" id="L504" title="All 2 branches missed.">            if (dynamicInitialSize)</span>
-<span class="nc" id="L505">                state.output.warnOnce(&quot;Using dynamic initial sizing, but per-gene or per-segment min-gene declarations.  This is probably wrong.  You probably want to use global min/max declarations.&quot;,</span>
-<span class="nc" id="L506">                    base.push(P_MINGENE).push(postfix), </span>
-<span class="nc" id="L507">                    base.push(P_MINGENE).push(postfix));</span>
+<span class="nc bnc" id="L525" title="All 2 branches missed.">            if (dynamicInitialSize)</span>
+<span class="nc" id="L526">                state.output.warnOnce(&quot;Using dynamic initial sizing, but per-gene or per-segment min-gene declarations.  This is probably wrong.  You probably want to use global min/max declarations.&quot;,</span>
+<span class="nc" id="L527">                    base.push(P_MINGENE).push(postfix), </span>
+<span class="nc" id="L528">                    base.push(P_MINGENE).push(postfix));</span>
             }
             
-<span class="nc bnc" id="L510" title="All 2 branches missed.">        if (maxValExists)</span>
+<span class="nc bnc" id="L531" title="All 2 branches missed.">        if (maxValExists)</span>
             {
-<span class="nc" id="L512">            long maxVal = state.parameters.getLongWithDefault(base.push(P_MAXGENE).push(postfix), def.push(P_MAXGENE).push(postfix), 0);</span>
+<span class="nc" id="L533">            long maxVal = state.parameters.getLongWithDefault(base.push(P_MAXGENE).push(postfix), def.push(P_MAXGENE).push(postfix), 0);</span>
                 
             //check if the value is in range
-<span class="nc bnc" id="L515" title="All 2 branches missed.">            if (!inNumericalTypeRange(maxVal))</span>
-<span class="nc" id="L516">                state.output.error(&quot;Max Gene Value out of range for data type &quot; + i_prototype.getClass().getName(),</span>
-<span class="nc" id="L517">                    base.push(P_MAXGENE).push(postfix), </span>
-<span class="nc" id="L518">                    base.push(P_MAXGENE).push(postfix));</span>
-<span class="nc" id="L519">            else maxGene[index] = maxVal;</span>
+<span class="nc bnc" id="L536" title="All 2 branches missed.">            if (!inNumericalTypeRange(maxVal))</span>
+<span class="nc" id="L537">                state.output.error(&quot;Max Gene Value out of range for data type &quot; + i_prototype.getClass().getName(),</span>
+<span class="nc" id="L538">                    base.push(P_MAXGENE).push(postfix), </span>
+<span class="nc" id="L539">                    base.push(P_MAXGENE).push(postfix));</span>
+<span class="nc" id="L540">            else maxGene[index] = maxVal;</span>
 
-<span class="nc bnc" id="L521" title="All 2 branches missed.">            if (dynamicInitialSize)</span>
-<span class="nc" id="L522">                state.output.warnOnce(&quot;Using dynamic initial sizing, but per-gene or per-segment max-gene declarations.  This is probably wrong.  You probably want to use global min/max declarations.&quot;,</span>
-<span class="nc" id="L523">                    base.push(P_MAXGENE).push(postfix), </span>
-<span class="nc" id="L524">                    base.push(P_MAXGENE).push(postfix));</span>
+<span class="nc bnc" id="L542" title="All 2 branches missed.">            if (dynamicInitialSize)</span>
+<span class="nc" id="L543">                state.output.warnOnce(&quot;Using dynamic initial sizing, but per-gene or per-segment max-gene declarations.  This is probably wrong.  You probably want to use global min/max declarations.&quot;,</span>
+<span class="nc" id="L544">                    base.push(P_MAXGENE).push(postfix), </span>
+<span class="nc" id="L545">                    base.push(P_MAXGENE).push(postfix));</span>
             }
 
 
         /// MUTATION
 
-<span class="nc" id="L530">        String mtype = state.parameters.getStringWithDefault(base.push(P_MUTATIONTYPE).push(postfix), def.push(P_MUTATIONTYPE).push(postfix), null);</span>
-<span class="nc" id="L531">        int mutType = -1;</span>
-<span class="nc bnc" id="L532" title="All 2 branches missed.">        if (mtype == null) { }  // we're cool</span>
-<span class="nc bnc" id="L533" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RESET_MUTATION))</span>
-<span class="nc" id="L534">            mutType = mutationType[index] = C_RESET_MUTATION; </span>
-<span class="nc bnc" id="L535" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RANDOM_WALK_MUTATION))</span>
+<span class="nc" id="L551">        String mtype = state.parameters.getStringWithDefault(base.push(P_MUTATIONTYPE).push(postfix), def.push(P_MUTATIONTYPE).push(postfix), null);</span>
+<span class="nc" id="L552">        int mutType = -1;</span>
+<span class="nc bnc" id="L553" title="All 2 branches missed.">        if (mtype == null) { }  // we're cool</span>
+<span class="nc bnc" id="L554" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RESET_MUTATION))</span>
+<span class="nc" id="L555">            mutType = mutationType[index] = C_RESET_MUTATION; </span>
+<span class="nc bnc" id="L556" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RANDOM_WALK_MUTATION))</span>
             {
-<span class="nc" id="L537">            mutType = mutationType[index] = C_RANDOM_WALK_MUTATION;</span>
-<span class="nc" id="L538">            state.output.warnOnce(&quot;Integer Random Walk Mutation used in IntegerVectorSpeciesP1E1.  Be advised that during initialization these genes will only be set to integer values.&quot;);</span>
+<span class="nc" id="L558">            mutType = mutationType[index] = C_RANDOM_WALK_MUTATION;</span>
+<span class="nc" id="L559">            state.output.warnOnce(&quot;Integer Random Walk Mutation used in IntegerVectorSpeciesP1E1.  Be advised that during initialization these genes will only be set to integer values.&quot;);</span>
             }
         else
-<span class="nc" id="L541">            state.output.error(&quot;IntegerVectorSpeciesP1E1 given a bad mutation type: &quot; + mtype, </span>
-<span class="nc" id="L542">                base.push(P_MUTATIONTYPE).push(postfix), def.push(P_MUTATIONTYPE).push(postfix));</span>
+<span class="nc" id="L562">            state.output.error(&quot;IntegerVectorSpeciesP1E1 given a bad mutation type: &quot; + mtype, </span>
+<span class="nc" id="L563">                base.push(P_MUTATIONTYPE).push(postfix), def.push(P_MUTATIONTYPE).push(postfix));</span>
 
 
-<span class="nc bnc" id="L545" title="All 2 branches missed.">        if (mutType == C_RANDOM_WALK_MUTATION)</span>
+<span class="nc bnc" id="L566" title="All 2 branches missed.">        if (mutType == C_RANDOM_WALK_MUTATION)</span>
             {
-<span class="nc bnc" id="L547" title="All 2 branches missed.">            if (state.parameters.exists(base.push(P_RANDOM_WALK_PROBABILITY).push(postfix),def.push(P_RANDOM_WALK_PROBABILITY).push(postfix)))</span>
+<span class="nc bnc" id="L568" title="All 2 branches missed.">            if (state.parameters.exists(base.push(P_RANDOM_WALK_PROBABILITY).push(postfix),def.push(P_RANDOM_WALK_PROBABILITY).push(postfix)))</span>
                 {
-<span class="nc" id="L549">                randomWalkProbability[index] = state.parameters.getDoubleWithMax(base.push(P_RANDOM_WALK_PROBABILITY).push(postfix),def.push(P_RANDOM_WALK_PROBABILITY).push(postfix), 0.0, 1.0);</span>
-<span class="nc bnc" id="L550" title="All 2 branches missed.">                if (randomWalkProbability[index] &lt;= 0)</span>
-<span class="nc" id="L551">                    state.output.error(&quot;If it's going to use random walk mutation as a per-gene or per-segment type, IntegerVectorSpeciesP1E1 must a random walk mutation probability between 0.0 and 1.0.&quot;,</span>
-<span class="nc" id="L552">                        base.push(P_RANDOM_WALK_PROBABILITY).push(postfix), def.push(P_RANDOM_WALK_PROBABILITY).push(postfix));</span>
+<span class="nc" id="L570">                randomWalkProbability[index] = state.parameters.getDoubleWithMax(base.push(P_RANDOM_WALK_PROBABILITY).push(postfix),def.push(P_RANDOM_WALK_PROBABILITY).push(postfix), 0.0, 1.0);</span>
+<span class="nc bnc" id="L571" title="All 2 branches missed.">                if (randomWalkProbability[index] &lt;= 0)</span>
+<span class="nc" id="L572">                    state.output.error(&quot;If it's going to use random walk mutation as a per-gene or per-segment type, IntegerVectorSpeciesP1E1 must a random walk mutation probability between 0.0 and 1.0.&quot;,</span>
+<span class="nc" id="L573">                        base.push(P_RANDOM_WALK_PROBABILITY).push(postfix), def.push(P_RANDOM_WALK_PROBABILITY).push(postfix));</span>
                 }
             else
-<span class="nc" id="L555">                state.output.error(&quot;If IntegerVectorSpeciesP1E1 is going to use polynomial mutation as a per-gene or per-segment type, either the global or per-gene/per-segment random walk mutation probability must be defined.&quot;,</span>
-<span class="nc" id="L556">                    base.push(P_RANDOM_WALK_PROBABILITY).push(postfix), def.push(P_RANDOM_WALK_PROBABILITY).push(postfix));</span>
+<span class="nc" id="L576">                state.output.error(&quot;If IntegerVectorSpeciesP1E1 is going to use polynomial mutation as a per-gene or per-segment type, either the global or per-gene/per-segment random walk mutation probability must be defined.&quot;,</span>
+<span class="nc" id="L577">                    base.push(P_RANDOM_WALK_PROBABILITY).push(postfix), def.push(P_RANDOM_WALK_PROBABILITY).push(postfix));</span>
 
-<span class="nc bnc" id="L558" title="All 2 branches missed.">            if (state.parameters.exists(base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix)))</span>
+<span class="nc bnc" id="L579" title="All 2 branches missed.">            if (state.parameters.exists(base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix)))</span>
                 {
-<span class="nc" id="L560">                mutationIsBounded[index] = state.parameters.getBoolean(base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix), true);</span>
+<span class="nc" id="L581">                mutationIsBounded[index] = state.parameters.getBoolean(base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix), true);</span>
                 }
-<span class="nc bnc" id="L562" title="All 2 branches missed.">            else if (!mutationIsBoundedDefined)</span>
-<span class="nc" id="L563">                state.output.fatal(&quot;If IntegerVectorSpeciesP1E1 is going to use gaussian, polynomial, or integer random walk mutation as a per-gene or per-segment type, the mutation bounding must be defined.&quot;,</span>
-<span class="nc" id="L564">                    base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix));</span>
+<span class="nc bnc" id="L583" title="All 2 branches missed.">            else if (!mutationIsBoundedDefined)</span>
+<span class="nc" id="L584">                state.output.fatal(&quot;If IntegerVectorSpeciesP1E1 is going to use gaussian, polynomial, or integer random walk mutation as a per-gene or per-segment type, the mutation bounding must be defined.&quot;,</span>
+<span class="nc" id="L585">                    base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix));</span>
 
             }           
-<span class="nc" id="L567">        }</span>
+<span class="nc" id="L588">        }</span>
 
 
 
