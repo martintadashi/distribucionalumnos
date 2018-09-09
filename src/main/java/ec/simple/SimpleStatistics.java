@@ -186,8 +186,10 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
             }
 
             // now test to see if it's the new best_of_run
-            if (best_of_run[x] == null || best_i[x].fitness.betterThan(best_of_run[x].fitness))
+            if (best_of_run[x] == null || best_i[x].fitness.betterThan(best_of_run[x].fitness)) {
                 best_of_run[x] = (Individual) (best_i[x].clone());
+                state.setBestFitnessGeneration(state.generation);
+            }
         }
 
         // print the best-of-generation individual
@@ -252,23 +254,28 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
 
                     HashMap<Integer, List<Integer>> sol = new HashMap<Integer, List<Integer>>();
                     for (int i = 0; i < ind.genome.length; i++) {
+
                         if (sol.containsKey(ind.genome[i])) {
                             sol.get(ind.genome[i]).add(i);
+                            //System.out.println("Se agrega a la lista de "+(ind.genome[i]+1)+" la tarea  "+(i+1));
                         } else {
                             List<Integer> tareas = new ArrayList<Integer>();
                             tareas.add(i);
                             sol.put(ind.genome[i], tareas);
+                            //System.out.println("Se crea la lista de "+(ind.genome[i]+1)+" yse agrega la tarea  "+(i+1));
+
                         }
                     }
-
-                    for (int i = 1; i < sol.size(); i++) {
+                    //System.out.println("sol.size.(): "+sol.size());
+                    for (int i: sol.keySet()) {
                         if (sol.containsKey(i)) {
                             String tareasAImprimir = "";
                             for (Integer t: sol.get(i)) {
-                                tareasAImprimir += " " + t.toString();
+                                tareasAImprimir += " " + (String.valueOf(t+1));
                             }
                             Integer idEmpleado = i + 1;
-                            bw.write(idEmpleado + tareasAImprimir);
+                            //System.out.println("idEmpleado: "+idEmpleado +"\ttareasAImprimir: "+ tareasAImprimir);
+                            bw.write("e"+idEmpleado + tareasAImprimir);
                             bw.newLine();
                         }
                     }
@@ -277,6 +284,7 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
                 } catch (IOException e) {
                     System.out.println("Error al escribir el csv con la solución");
                 }
+
             }
         }
     }

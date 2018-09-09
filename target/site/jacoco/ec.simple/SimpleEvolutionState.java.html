@@ -77,48 +77,46 @@ import ec.util.Checkpoint;
             }
 
         // SHOULD WE QUIT?
-<span class="nc bnc" id="L80" title="All 8 branches missed.">        if ((numGenerations != UNDEFINED &amp;&amp; generation &gt;= numGenerations-1) ||</span>
-            (numEvaluations != UNDEFINED &amp;&amp; evaluations &gt;= numEvaluations))
-            {
-<span class="nc" id="L83">            return R_FAILURE;</span>
-            }
+<span class="nc bnc" id="L80" title="All 8 branches missed.">        if ((numGenerations != UNDEFINED &amp;&amp; generation &gt;= numGenerations-1) || (numEvaluations != UNDEFINED &amp;&amp; evaluations &gt;= numEvaluations)) {</span>
+<span class="nc" id="L81">            return R_FAILURE;</span>
+        }
  
         // INCREMENT GENERATION AND CHECKPOINT
-<span class="nc" id="L87">        generation++;</span>
+<span class="nc" id="L85">        generation++;</span>
        
         // PRE-BREEDING EXCHANGING
-<span class="nc" id="L90">        statistics.prePreBreedingExchangeStatistics(this);</span>
-<span class="nc" id="L91">        population = exchanger.preBreedingExchangePopulation(this);</span>
-<span class="nc" id="L92">        statistics.postPreBreedingExchangeStatistics(this);</span>
+<span class="nc" id="L88">        statistics.prePreBreedingExchangeStatistics(this);</span>
+<span class="nc" id="L89">        population = exchanger.preBreedingExchangePopulation(this);</span>
+<span class="nc" id="L90">        statistics.postPreBreedingExchangeStatistics(this);</span>
 
-<span class="nc" id="L94">        String exchangerWantsToShutdown = exchanger.runComplete(this);</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (exchangerWantsToShutdown!=null)</span>
+<span class="nc" id="L92">        String exchangerWantsToShutdown = exchanger.runComplete(this);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (exchangerWantsToShutdown!=null)</span>
             { 
-<span class="nc" id="L97">            output.message(exchangerWantsToShutdown);</span>
-<span class="nc" id="L98">            return R_SUCCESS;</span>
+<span class="nc" id="L95">            output.message(exchangerWantsToShutdown);</span>
+<span class="nc" id="L96">            return R_SUCCESS;</span>
             }
 
         
         // BREEDING
-<span class="nc" id="L103">        statistics.preBreedingStatistics(this);</span>
-<span class="nc" id="L104">        population = breeder.breedPopulation(this);</span>
-<span class="nc" id="L105">        statistics.postBreedingStatistics(this);</span>
+<span class="nc" id="L101">        statistics.preBreedingStatistics(this);</span>
+<span class="nc" id="L102">        population = breeder.breedPopulation(this);</span>
+<span class="nc" id="L103">        statistics.postBreedingStatistics(this);</span>
             
        
         // POST-BREEDING EXCHANGING
-<span class="nc" id="L109">        statistics.prePostBreedingExchangeStatistics(this);</span>
-<span class="nc" id="L110">        population = exchanger.postBreedingExchangePopulation(this);</span>
-<span class="nc" id="L111">        statistics.postPostBreedingExchangeStatistics(this);</span>
+<span class="nc" id="L107">        statistics.prePostBreedingExchangeStatistics(this);</span>
+<span class="nc" id="L108">        population = exchanger.postBreedingExchangePopulation(this);</span>
+<span class="nc" id="L109">        statistics.postPostBreedingExchangeStatistics(this);</span>
 
-<span class="nc bnc" id="L113" title="All 4 branches missed.">        if (checkpoint &amp;&amp; (generation - 1) % checkpointModulo == 0) </span>
+<span class="nc bnc" id="L111" title="All 4 branches missed.">        if (checkpoint &amp;&amp; (generation - 1) % checkpointModulo == 0) </span>
             {
-<span class="nc" id="L115">            output.message(&quot;Checkpointing&quot;);</span>
-<span class="nc" id="L116">            statistics.preCheckpointStatistics(this);</span>
-<span class="nc" id="L117">            Checkpoint.setCheckpoint(this);</span>
-<span class="nc" id="L118">            statistics.postCheckpointStatistics(this);</span>
+<span class="nc" id="L113">            output.message(&quot;Checkpointing&quot;);</span>
+<span class="nc" id="L114">            statistics.preCheckpointStatistics(this);</span>
+<span class="nc" id="L115">            Checkpoint.setCheckpoint(this);</span>
+<span class="nc" id="L116">            statistics.postCheckpointStatistics(this);</span>
             }
 
-<span class="nc" id="L121">        return R_NOTDONE;</span>
+<span class="nc" id="L119">        return R_NOTDONE;</span>
         }
 
     /**
@@ -126,13 +124,13 @@ import ec.util.Checkpoint;
      */
     public void finish(int result) 
         {
-<span class="nc" id="L129">        output.message(&quot;Total Evaluations &quot; + evaluations);</span>
+<span class="nc" id="L127">        output.message(&quot;Total Evaluations &quot; + evaluations);</span>
         /* finish up -- we completed. */
-<span class="nc" id="L131">        statistics.finalStatistics(this,result);</span>
-<span class="nc" id="L132">        finisher.finishPopulation(this,result);</span>
-<span class="nc" id="L133">        exchanger.closeContacts(this,result);</span>
-<span class="nc" id="L134">        evaluator.closeContacts(this,result);</span>
-<span class="nc" id="L135">        }</span>
+<span class="nc" id="L129">        statistics.finalStatistics(this,result);</span>
+<span class="nc" id="L130">        finisher.finishPopulation(this,result);</span>
+<span class="nc" id="L131">        exchanger.closeContacts(this,result);</span>
+<span class="nc" id="L132">        evaluator.closeContacts(this,result);</span>
+<span class="nc" id="L133">        }</span>
 
     }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

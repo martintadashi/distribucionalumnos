@@ -340,7 +340,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                 int index = 0;
                 String[] line_tokens = br.readLine().split(" ");
                 for (String id : line_tokens) {
-                    tareas[index] = new Tarea(Integer.parseInt(id));
+                    tareas[index] = new Tarea(Integer.parseInt((String) id.substring(1,2)));
                     index++;
                 }
 
@@ -375,7 +375,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                 int index = 0;
                 String[] line_tokens = br.readLine().split(" ");
                 for (String id : line_tokens) {
-                    empleados[index] = new Empleado(Integer.parseInt(id));
+                    empleados[index] = new Empleado(Integer.parseInt((String) id.substring(1,2)));
                     index++;
                 }
 
@@ -407,7 +407,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                 float sueldoReal;
                 for (int iEmpleados = 0; iEmpleados < empleados.length; iEmpleados++) {
                     sueldoReal= empleados[iEmpleados].getSueldo()/((0.5F+empleados[iEmpleados].getHabilidad())*empleados[iEmpleados].getDedicacion());
-                    //System.out.println("Sueldo real empleado "+iEmpleados+ ": "+sueldoReal);
+                    System.out.println("Sueldo real empleado "+iEmpleados+ ": "+sueldoReal);
                     if (sueldoReal> maxSueldoReal){
                         maxSueldoReal=sueldoReal;
                     }

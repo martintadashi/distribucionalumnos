@@ -6,7 +6,7 @@ quit-on-run-complete = true
 
 pop.subpop.0.size = 100
 generations = 10000
-breed.elite.0 = 2
+breed.elite.0 = 1
 
 pop.subpop.0.species = ec.vector.IntegerVectorSpeciesP1E1
 
@@ -24,21 +24,35 @@ pop.subpop.0.species.crossover-prob = 0.5
 
 # agregar otra mutacion??
 pop.subpop.0.species.mutation-bounded =true
-pop.subpop.0.species.mutation-type = reset
-pop.subpop.0.species.mutation-prob = 0.02
-#pop.subpop.0.species.random-walk-probability = 0.5
 
-pop.subpop.0.species.mutation-stdev = 0.01
+#pop.subpop.0.species.mutation-type = reset
+#pop.subpop.0.species.mutation-prob = 0.02
+#pop.subpop.0.species.mutation-stdev = 0.01
+
+pop.subpop.0.species.mutation-type = random-walk
+pop.subpop.0.species.random-walk-probability = 0.5
+pop.subpop.0.species.mutation-prob = 0.01
+pop.subpop.0.species.duplicate-retries = 5
+
+
+
 
 pop.subpop.0.species.pipe = ec.vector.breed.VectorMutationPipeline
-pop.subpop.0.species.pipe.source.0 = ec.vector.breed.VectorCrossoverPipeline
-pop.subpop.0.species.pipe.source.0.source.0 = ec.select.TournamentSelection
-pop.subpop.0.species.pipe.source.0.source.1 = same
-pop.subpop.0.species.pipe.source.0.source.0.size = 2
+
+pop.subpop.0.species.pipe.source.0 = ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0.pipe.mutation =reset
+pop.subpop.0.species.pipe.source.0.pipe.mutation-prob = 0.02
+pop.subpop.0.species.pipe.source.0.pipe.mutation-stdev = 0.01
+pop.subpop.0.species.pipe.source.0.pipe.duplicate-retries = 5
+
+pop.subpop.0.species.pipe.source.0.source.0 = ec.vector.breed.VectorCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.source.0.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.source.0.source.1 = same
+pop.subpop.0.species.pipe.source.0.source.0.source.0.size = 2
 
 
 
-pop.subpop.0.species.ruta-empleados=empleados
-pop.subpop.0.species.ruta-tareas=tareas
+pop.subpop.0.species.ruta-empleados=practico_empleados
+pop.subpop.0.species.ruta-tareas=practico_tareas
 pop.subpop.0.species.ruta-cantidad-empleados = practico_cantidad_empleados
 pop.subpop.0.species.ruta-cantidad-tareas = practico_cantidad_tareas

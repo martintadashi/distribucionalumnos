@@ -340,7 +340,7 @@ import java.io.*;
 <span class="nc" id="L340">                int index = 0;</span>
 <span class="nc" id="L341">                String[] line_tokens = br.readLine().split(&quot; &quot;);</span>
 <span class="nc bnc" id="L342" title="All 2 branches missed.">                for (String id : line_tokens) {</span>
-<span class="nc" id="L343">                    tareas[index] = new Tarea(Integer.parseInt(id));</span>
+<span class="nc" id="L343">                    tareas[index] = new Tarea(Integer.parseInt((String) id.substring(1,2)));</span>
 <span class="nc" id="L344">                    index++;</span>
                 }
 
@@ -375,7 +375,7 @@ import java.io.*;
 <span class="nc" id="L375">                int index = 0;</span>
 <span class="nc" id="L376">                String[] line_tokens = br.readLine().split(&quot; &quot;);</span>
 <span class="nc bnc" id="L377" title="All 2 branches missed.">                for (String id : line_tokens) {</span>
-<span class="nc" id="L378">                    empleados[index] = new Empleado(Integer.parseInt(id));</span>
+<span class="nc" id="L378">                    empleados[index] = new Empleado(Integer.parseInt((String) id.substring(1,2)));</span>
 <span class="nc" id="L379">                    index++;</span>
                 }
 
@@ -407,7 +407,7 @@ import java.io.*;
                 float sueldoReal;
 <span class="nc bnc" id="L408" title="All 2 branches missed.">                for (int iEmpleados = 0; iEmpleados &lt; empleados.length; iEmpleados++) {</span>
 <span class="nc" id="L409">                    sueldoReal= empleados[iEmpleados].getSueldo()/((0.5F+empleados[iEmpleados].getHabilidad())*empleados[iEmpleados].getDedicacion());</span>
-                    //System.out.println(&quot;Sueldo real empleado &quot;+iEmpleados+ &quot;: &quot;+sueldoReal);
+<span class="nc" id="L410">                    System.out.println(&quot;Sueldo real empleado &quot;+iEmpleados+ &quot;: &quot;+sueldoReal);</span>
 <span class="nc bnc" id="L411" title="All 2 branches missed.">                    if (sueldoReal&gt; maxSueldoReal){</span>
 <span class="nc" id="L412">                        maxSueldoReal=sueldoReal;</span>
                     }

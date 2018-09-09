@@ -46,11 +46,12 @@ import java.util.HashMap;
     {
     public static final String P_MUTATION = &quot;mutate&quot;;
     public static final int NUM_SOURCES = 1;
+    //public int cantMutaciones=0;
 
-<span class="nc" id="L50">    public Parameter defaultBase() { return VectorDefaults.base().push(P_MUTATION); }</span>
+<span class="nc" id="L51">    public Parameter defaultBase() { return VectorDefaults.base().push(P_MUTATION); }</span>
     
     /** Returns 1 */
-<span class="nc" id="L53">    public int numSources() { return NUM_SOURCES; }</span>
+<span class="nc" id="L54">    public int numSources() { return NUM_SOURCES; }</span>
 
     public int produce(final int min,
         final int max,
@@ -59,26 +60,31 @@ import java.util.HashMap;
         final EvolutionState state,
         final int thread, HashMap&lt;String, Object&gt; misc)
         {
-<span class="nc" id="L62">        int start = inds.size();</span>
+<span class="nc" id="L63">        int start = inds.size();</span>
         
         // grab individuals from our source and stick 'em right into inds.
         // we'll modify them from there
-<span class="nc" id="L66">        int n = sources[0].produce(min,max,subpopulation,inds, state,thread, misc);</span>
+<span class="nc" id="L67">        int n = sources[0].produce(min,max,subpopulation,inds, state,thread, misc);</span>
 
         // should we use them straight?
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (!state.random[thread].nextBoolean(likelihood))</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (!state.random[thread].nextBoolean(likelihood))</span>
             {
-<span class="nc" id="L71">            return n;</span>
+<span class="nc" id="L72">            return n;</span>
             }
 
         // else mutate 'em
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        for(int q=start;q&lt;n+start;q++)</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for(int q=start;q&lt;n+start;q++)</span>
             {
-<span class="nc" id="L77">            ((VectorIndividual)inds.get(q)).defaultMutate(state,thread);</span>
-<span class="nc" id="L78">            ((VectorIndividual)inds.get(q)).evaluated=false;</span>
+                //cantMutaciones++;
+                //System.out.print(&quot;ANTES DE MUTAR con (&quot;+cantMutaciones+&quot;)\t&quot;);
+                //inds.get(q).printIndividualForHumans(state,0);
+<span class="nc" id="L81">            ((VectorIndividual)inds.get(q)).defaultMutate(state,thread);</span>
+<span class="nc" id="L82">            ((VectorIndividual)inds.get(q)).evaluated=false;</span>
+                //System.out.print(&quot;DESPUES DE MUTAR (&quot;+cantMutaciones+&quot;)\t&quot;);
+            //inds.get(q).printIndividualForHumans(state,0);
             }
 
-<span class="nc" id="L81">        return n;</span>
+<span class="nc" id="L87">        return n;</span>
         }
 
     }

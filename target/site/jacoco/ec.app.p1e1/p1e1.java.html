@@ -83,11 +83,11 @@ import ec.vector.*;
 
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
 <span class="nc bnc" id="L85" title="All 2 branches missed.">                if(diasDeTrabajoParaCadaEmpleado[posMax]&gt;t_spe.getF()){</span>
-<span class="nc" id="L86">                    System.out.print(&quot;Se penaliza   \t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF() +&quot; se agrega costo: &quot;+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ &quot; a su costo: &quot;+ costoProyecto);</span>
+                    //System.out.print(&quot;Se penaliza   \t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF() +&quot; se agrega costo: &quot;+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ &quot; a su costo: &quot;+ costoProyecto);
 <span class="nc" id="L87">                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();</span>
-<span class="nc" id="L88">                    System.out.println(&quot; total: &quot;+costoProyecto);</span>
+                    //System.out.println(&quot; total: &quot;+costoProyecto);
                 } else{
-<span class="nc" id="L90">                    System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);</span>
+                    //System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);
                 }
                 //System.out.println(&quot;\tAl individuo: &quot;+ind2.genotypeToString());
 
@@ -96,9 +96,11 @@ import ec.vector.*;
 <span class="nc bnc" id="L96" title="All 2 branches missed.">                boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] &lt;= t_spe.getF(); // factible??</span>
                 //ideal = ideal &amp;&amp; (((SimpleFitness) ind2.fitness).getMinFitness() &gt; costoProyecto);
 <span class="nc bnc" id="L98" title="All 4 branches missed.">                ideal =  ideal &amp;&amp; (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">                ideal = ideal || state.generation - state.getBestFitnessGeneration() &gt; (int) state.numGenerations/10;</span>
+                //System.out.println(&quot;state.generation: &quot; + state.generation + &quot;,getBestFitnessGeneration(): &quot; + state.getBestFitnessGeneration() + &quot;, state.numGenerations: &quot; + state.numGenerations);
                 //System.out.println(&quot;ideal= &quot;+ideal+&quot;  horasDeTrabajoParaCadaEmpleado[posMax]&quot;+ horasDeTrabajoParaCadaEmpleado[posMax]);
-<span class="nc" id="L100">                ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), ideal);</span>
-<span class="nc" id="L101">                ind2.evaluated = true;</span>
+<span class="nc" id="L102">                ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), ideal);</span>
+<span class="nc" id="L103">                ind2.evaluated = true;</span>
 
                 //ind.printIndividualForHumans(state,0);
                 /*
@@ -112,6 +114,6 @@ import ec.vector.*;
                 */
             }
         }
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L117">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

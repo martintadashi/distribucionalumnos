@@ -46,6 +46,7 @@ public class VectorMutationPipeline extends BreedingPipeline
     {
     public static final String P_MUTATION = "mutate";
     public static final int NUM_SOURCES = 1;
+    //public int cantMutaciones=0;
 
     public Parameter defaultBase() { return VectorDefaults.base().push(P_MUTATION); }
     
@@ -74,8 +75,13 @@ public class VectorMutationPipeline extends BreedingPipeline
         // else mutate 'em
         for(int q=start;q<n+start;q++)
             {
+                //cantMutaciones++;
+                //System.out.print("ANTES DE MUTAR con ("+cantMutaciones+")\t");
+                //inds.get(q).printIndividualForHumans(state,0);
             ((VectorIndividual)inds.get(q)).defaultMutate(state,thread);
             ((VectorIndividual)inds.get(q)).evaluated=false;
+                //System.out.print("DESPUES DE MUTAR ("+cantMutaciones+")\t");
+            //inds.get(q).printIndividualForHumans(state,0);
             }
 
         return n;

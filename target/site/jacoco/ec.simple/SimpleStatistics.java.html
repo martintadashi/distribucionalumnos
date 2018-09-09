@@ -186,100 +186,108 @@ import ec.vector.IntegerVectorSpeciesP1E1;
             }
 
             // now test to see if it's the new best_of_run
-<span class="nc bnc" id="L189" title="All 4 branches missed.">            if (best_of_run[x] == null || best_i[x].fitness.betterThan(best_of_run[x].fitness))</span>
+<span class="nc bnc" id="L189" title="All 4 branches missed.">            if (best_of_run[x] == null || best_i[x].fitness.betterThan(best_of_run[x].fitness)) {</span>
 <span class="nc" id="L190">                best_of_run[x] = (Individual) (best_i[x].clone());</span>
+<span class="nc" id="L191">                state.setBestFitnessGeneration(state.generation);</span>
+            }
         }
 
         // print the best-of-generation individual
-<span class="nc bnc" id="L194" title="All 2 branches missed.">        if (doGeneration) state.output.println(&quot;\nGeneration: &quot; + state.generation, statisticslog);</span>
-<span class="nc bnc" id="L195" title="All 2 branches missed.">        if (doGeneration) state.output.println(&quot;Best Individual:&quot;, statisticslog);</span>
-<span class="nc bnc" id="L196" title="All 2 branches missed.">        for (int x = 0; x &lt; state.population.subpops.size(); x++) {</span>
-<span class="nc bnc" id="L197" title="All 2 branches missed.">            if (doGeneration) state.output.println(&quot;Subpopulation &quot; + x + &quot;:&quot;, statisticslog);</span>
-<span class="nc bnc" id="L198" title="All 2 branches missed.">            if (doGeneration) best_i[x].printIndividualForHumans(state, statisticslog);</span>
-<span class="nc bnc" id="L199" title="All 6 branches missed.">            if (doMessage &amp;&amp; !silentPrint) state.output.message(&quot;Subpop &quot; + x + &quot; best fitness of generation&quot; +</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (doGeneration) state.output.println(&quot;\nGeneration: &quot; + state.generation, statisticslog);</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">        if (doGeneration) state.output.println(&quot;Best Individual:&quot;, statisticslog);</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        for (int x = 0; x &lt; state.population.subpops.size(); x++) {</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            if (doGeneration) state.output.println(&quot;Subpopulation &quot; + x + &quot;:&quot;, statisticslog);</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            if (doGeneration) best_i[x].printIndividualForHumans(state, statisticslog);</span>
+<span class="nc bnc" id="L201" title="All 6 branches missed.">            if (doMessage &amp;&amp; !silentPrint) state.output.message(&quot;Subpop &quot; + x + &quot; best fitness of generation&quot; +</span>
                     (best_i[x].evaluated ? &quot; &quot; : &quot; (evaluated flag not set): &quot;) +
-<span class="nc" id="L201">                    best_i[x].fitness.fitnessToStringForHumans());</span>
+<span class="nc" id="L203">                    best_i[x].fitness.fitnessToStringForHumans());</span>
 
 
             // describe the winner if there is a description
-<span class="nc bnc" id="L205" title="All 4 branches missed.">            if (doGeneration &amp;&amp; doPerGenerationDescription) {</span>
-<span class="nc bnc" id="L206" title="All 2 branches missed.">                if (state.evaluator.p_problem instanceof SimpleProblemForm)</span>
-<span class="nc" id="L207">                    ((SimpleProblemForm) (state.evaluator.p_problem.clone())).describe(state, best_i[x], x, 0, statisticslog);</span>
+<span class="nc bnc" id="L207" title="All 4 branches missed.">            if (doGeneration &amp;&amp; doPerGenerationDescription) {</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">                if (state.evaluator.p_problem instanceof SimpleProblemForm)</span>
+<span class="nc" id="L209">                    ((SimpleProblemForm) (state.evaluator.p_problem.clone())).describe(state, best_i[x], x, 0, statisticslog);</span>
             }
         }
-<span class="nc" id="L210">    }</span>
+<span class="nc" id="L212">    }</span>
 
     /**
      * Allows MultiObjectiveStatistics etc. to call super.super.finalStatistics(...) without
      * calling super.finalStatistics(...)
      */
     protected void bypassFinalStatistics(EvolutionState state, int result) {
-<span class="nc" id="L217">        super.finalStatistics(state, result);</span>
-<span class="nc" id="L218">    }</span>
+<span class="nc" id="L219">        super.finalStatistics(state, result);</span>
+<span class="nc" id="L220">    }</span>
 
     /**
      * Logs the best individual of the run.
      */
     public void finalStatistics(final EvolutionState state, final int result) {
-<span class="nc" id="L224">        super.finalStatistics(state, result);</span>
+<span class="nc" id="L226">        super.finalStatistics(state, result);</span>
 
-<span class="nc bnc" id="L226" title="All 2 branches missed.">        if (doFinal) state.output.println(&quot;\nBest Individual of Run:&quot;, statisticslog);</span>
-<span class="nc bnc" id="L227" title="All 2 branches missed.">        for (int x = 0; x &lt; state.population.subpops.size(); x++) {</span>
-<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (doFinal) state.output.println(&quot;Subpopulation &quot; + x + &quot;:&quot;, statisticslog);</span>
-<span class="nc bnc" id="L229" title="All 2 branches missed.">            if (doFinal) best_of_run[x].printIndividualForHumans(state, statisticslog);</span>
-<span class="nc bnc" id="L230" title="All 4 branches missed.">            if (doMessage &amp;&amp; !silentPrint)</span>
-<span class="nc" id="L231">                state.output.message(&quot;Subpop &quot; + x + &quot; best fitness of run: &quot; + best_of_run[x].fitness.fitnessToStringForHumans());</span>
-<span class="nc" id="L232">            best_of_run[x].printIndividualForHumans(state, 0);</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">        if (doFinal) state.output.println(&quot;\nBest Individual of Run:&quot;, statisticslog);</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">        for (int x = 0; x &lt; state.population.subpops.size(); x++) {</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (doFinal) state.output.println(&quot;Subpopulation &quot; + x + &quot;:&quot;, statisticslog);</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (doFinal) best_of_run[x].printIndividualForHumans(state, statisticslog);</span>
+<span class="nc bnc" id="L232" title="All 4 branches missed.">            if (doMessage &amp;&amp; !silentPrint)</span>
+<span class="nc" id="L233">                state.output.message(&quot;Subpop &quot; + x + &quot; best fitness of run: &quot; + best_of_run[x].fitness.fitnessToStringForHumans());</span>
+<span class="nc" id="L234">            best_of_run[x].printIndividualForHumans(state, 0);</span>
 
             // finally describe the winner if there is a description
-<span class="nc bnc" id="L235" title="All 4 branches missed.">            if (doFinal &amp;&amp; doDescription) {</span>
-<span class="nc bnc" id="L236" title="All 2 branches missed.">                if (state.evaluator.p_problem instanceof SimpleProblemForm) {</span>
-<span class="nc" id="L237">                    ((SimpleProblemForm) (state.evaluator.p_problem.clone())).describe(state, best_of_run[x], x, 0, statisticslog);</span>
+<span class="nc bnc" id="L237" title="All 4 branches missed.">            if (doFinal &amp;&amp; doDescription) {</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">                if (state.evaluator.p_problem instanceof SimpleProblemForm) {</span>
+<span class="nc" id="L239">                    ((SimpleProblemForm) (state.evaluator.p_problem.clone())).describe(state, best_of_run[x], x, 0, statisticslog);</span>
                 }
             }
 
-<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (!(best_of_run[x] instanceof IntegerVectorIndividualP1E1)) {</span>
-<span class="nc" id="L242">                state.output.fatal(&quot;Error. No es un vector de enteros!&quot;, null);</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (!(best_of_run[x] instanceof IntegerVectorIndividualP1E1)) {</span>
+<span class="nc" id="L244">                state.output.fatal(&quot;Error. No es un vector de enteros!&quot;, null);</span>
             } else {
 
                 //Genero el archivo CSV con la solución
                 try {
-<span class="nc" id="L247">                    File fout = new File(&quot;solucion.csv&quot;);</span>
-<span class="nc" id="L248">                    FileOutputStream fos = new FileOutputStream(fout);</span>
-<span class="nc" id="L249">                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));</span>
+<span class="nc" id="L249">                    File fout = new File(&quot;solucion.csv&quot;);</span>
+<span class="nc" id="L250">                    FileOutputStream fos = new FileOutputStream(fout);</span>
+<span class="nc" id="L251">                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));</span>
 
-<span class="nc" id="L251">                    IntegerVectorIndividualP1E1 ind = (IntegerVectorIndividualP1E1) best_of_run[x];</span>
+<span class="nc" id="L253">                    IntegerVectorIndividualP1E1 ind = (IntegerVectorIndividualP1E1) best_of_run[x];</span>
 
-<span class="nc" id="L253">                    HashMap&lt;Integer, List&lt;Integer&gt;&gt; sol = new HashMap&lt;Integer, List&lt;Integer&gt;&gt;();</span>
-<span class="nc bnc" id="L254" title="All 2 branches missed.">                    for (int i = 0; i &lt; ind.genome.length; i++) {</span>
-<span class="nc bnc" id="L255" title="All 2 branches missed.">                        if (sol.containsKey(ind.genome[i])) {</span>
-<span class="nc" id="L256">                            sol.get(ind.genome[i]).add(i);</span>
+<span class="nc" id="L255">                    HashMap&lt;Integer, List&lt;Integer&gt;&gt; sol = new HashMap&lt;Integer, List&lt;Integer&gt;&gt;();</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">                    for (int i = 0; i &lt; ind.genome.length; i++) {</span>
+
+<span class="nc bnc" id="L258" title="All 2 branches missed.">                        if (sol.containsKey(ind.genome[i])) {</span>
+<span class="nc" id="L259">                            sol.get(ind.genome[i]).add(i);</span>
+                            //System.out.println(&quot;Se agrega a la lista de &quot;+(ind.genome[i]+1)+&quot; la tarea  &quot;+(i+1));
                         } else {
-<span class="nc" id="L258">                            List&lt;Integer&gt; tareas = new ArrayList&lt;Integer&gt;();</span>
-<span class="nc" id="L259">                            tareas.add(i);</span>
-<span class="nc" id="L260">                            sol.put(ind.genome[i], tareas);</span>
+<span class="nc" id="L262">                            List&lt;Integer&gt; tareas = new ArrayList&lt;Integer&gt;();</span>
+<span class="nc" id="L263">                            tareas.add(i);</span>
+<span class="nc" id="L264">                            sol.put(ind.genome[i], tareas);</span>
+                            //System.out.println(&quot;Se crea la lista de &quot;+(ind.genome[i]+1)+&quot; yse agrega la tarea  &quot;+(i+1));
+
                         }
                     }
-
-<span class="nc bnc" id="L264" title="All 2 branches missed.">                    for (int i = 1; i &lt; sol.size(); i++) {</span>
-<span class="nc bnc" id="L265" title="All 2 branches missed.">                        if (sol.containsKey(i)) {</span>
-<span class="nc" id="L266">                            String tareasAImprimir = &quot;&quot;;</span>
-<span class="nc bnc" id="L267" title="All 2 branches missed.">                            for (Integer t: sol.get(i)) {</span>
-<span class="nc" id="L268">                                tareasAImprimir += &quot; &quot; + t.toString();</span>
-<span class="nc" id="L269">                            }</span>
-<span class="nc" id="L270">                            Integer idEmpleado = i + 1;</span>
-<span class="nc" id="L271">                            bw.write(idEmpleado + tareasAImprimir);</span>
-<span class="nc" id="L272">                            bw.newLine();</span>
+                    //System.out.println(&quot;sol.size.(): &quot;+sol.size());
+<span class="nc bnc" id="L270" title="All 2 branches missed.">                    for (int i: sol.keySet()) {</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">                        if (sol.containsKey(i)) {</span>
+<span class="nc" id="L272">                            String tareasAImprimir = &quot;&quot;;</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">                            for (Integer t: sol.get(i)) {</span>
+<span class="nc" id="L274">                                tareasAImprimir += &quot; &quot; + (String.valueOf(t+1));</span>
+<span class="nc" id="L275">                            }</span>
+<span class="nc" id="L276">                            Integer idEmpleado = i + 1;</span>
+                            //System.out.println(&quot;idEmpleado: &quot;+idEmpleado +&quot;\ttareasAImprimir: &quot;+ tareasAImprimir);
+<span class="nc" id="L278">                            bw.write(&quot;e&quot;+idEmpleado + tareasAImprimir);</span>
+<span class="nc" id="L279">                            bw.newLine();</span>
                         }
-                    }
+<span class="nc" id="L281">                    }</span>
 
-<span class="nc" id="L276">                    bw.close();</span>
-<span class="nc" id="L277">                } catch (IOException e) {</span>
-<span class="nc" id="L278">                    System.out.println(&quot;Error al escribir el csv con la solución&quot;);</span>
-<span class="nc" id="L279">                }</span>
+<span class="nc" id="L283">                    bw.close();</span>
+<span class="nc" id="L284">                } catch (IOException e) {</span>
+<span class="nc" id="L285">                    System.out.println(&quot;Error al escribir el csv con la solución&quot;);</span>
+<span class="nc" id="L286">                }</span>
+
             }
         }
-<span class="nc" id="L282">    }</span>
+<span class="nc" id="L290">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

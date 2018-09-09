@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ec.EvolutionStateTest" time="0.025" tests="17" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ec.EvolutionStateTest" time="0.034" tests="17" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
@@ -60,21 +60,21 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testSynchronizedIncrementEvaluations1" classname="ec.EvolutionStateTest" time="0.01"/>
+  <testcase name="testSynchronizedIncrementEvaluations1" classname="ec.EvolutionStateTest" time="0.016"/>
   <testcase name="testSynchronizedIncrementEvaluations2" classname="ec.EvolutionStateTest" time="0.001"/>
   <testcase name="testSynchronizedIncrementEvaluations3" classname="ec.EvolutionStateTest" time="0"/>
   <testcase name="testSynchronizedIncrementEvaluations4" classname="ec.EvolutionStateTest" time="0.001"/>
-  <testcase name="testSynchronizedIncrementEvaluations5" classname="ec.EvolutionStateTest" time="0.002"/>
+  <testcase name="testSynchronizedIncrementEvaluations5" classname="ec.EvolutionStateTest" time="0"/>
   <testcase name="testSynchronizedIncrementEvaluations6" classname="ec.EvolutionStateTest" time="0"/>
-  <testcase name="testSynchronizedIncrementEvaluations7" classname="ec.EvolutionStateTest" time="0.01"/>
+  <testcase name="testSynchronizedIncrementEvaluations7" classname="ec.EvolutionStateTest" time="0"/>
   <testcase name="testSynchronizedIncrementEvaluations8" classname="ec.EvolutionStateTest" time="0"/>
-  <testcase name="testSetup" classname="ec.EvolutionStateTest" time="0.001"/>
+  <testcase name="testSetup" classname="ec.EvolutionStateTest" time="0"/>
   <testcase name="testIncrementEvaluations1" classname="ec.EvolutionStateTest" time="0"/>
   <testcase name="testIncrementEvaluations2" classname="ec.EvolutionStateTest" time="0"/>
   <testcase name="testIncrementEvaluations3" classname="ec.EvolutionStateTest" time="0"/>
   <testcase name="testIncrementEvaluations4" classname="ec.EvolutionStateTest" time="0"/>
-  <testcase name="testIncrementEvaluations5" classname="ec.EvolutionStateTest" time="0"/>
-  <testcase name="testIncrementEvaluations6" classname="ec.EvolutionStateTest" time="0"/>
-  <testcase name="testIncrementEvaluations7" classname="ec.EvolutionStateTest" time="0"/>
-  <testcase name="testIncrementEvaluations8" classname="ec.EvolutionStateTest" time="0"/>
+  <testcase name="testIncrementEvaluations5" classname="ec.EvolutionStateTest" time="0.001"/>
+  <testcase name="testIncrementEvaluations6" classname="ec.EvolutionStateTest" time="0.001"/>
+  <testcase name="testIncrementEvaluations7" classname="ec.EvolutionStateTest" time="0.003"/>
+  <testcase name="testIncrementEvaluations8" classname="ec.EvolutionStateTest" time="0.001"/>
 </testsuite>

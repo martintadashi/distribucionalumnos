@@ -279,8 +279,16 @@ public class EvolutionState implements Singleton
     public final static String P_INNOVATIONNUMBER = "innovation-number";
     final static String P_CHECKPOINTPREFIX_OLD = "prefix";
 
-    
-    
+    public int bestFitnessGeneration = 0;
+
+    public int getBestFitnessGeneration() {
+        return bestFitnessGeneration;
+    }
+
+    public void setBestFitnessGeneration(int bestFitnessGeneration) {
+        this.bestFitnessGeneration = bestFitnessGeneration;
+    }
+
 
     /** This will be called to create your evolution state; immediately
         after the constructor is called,

@@ -77,11 +77,9 @@ public class SimpleEvolutionState extends EvolutionState
             }
 
         // SHOULD WE QUIT?
-        if ((numGenerations != UNDEFINED && generation >= numGenerations-1) ||
-            (numEvaluations != UNDEFINED && evaluations >= numEvaluations))
-            {
+        if ((numGenerations != UNDEFINED && generation >= numGenerations-1) || (numEvaluations != UNDEFINED && evaluations >= numEvaluations)) {
             return R_FAILURE;
-            }
+        }
  
         // INCREMENT GENERATION AND CHECKPOINT
         generation++;
