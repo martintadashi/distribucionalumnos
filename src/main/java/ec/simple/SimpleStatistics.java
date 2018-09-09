@@ -7,10 +7,18 @@
 
 package ec.simple;
 import ec.*;
+import ec.app.p1e1.Empleado;
+import ec.app.p1e1.Tarea;
 import ec.steadystate.*;
-import java.io.IOException;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import ec.util.*;
-import java.io.File;
+import ec.vector.IntegerVectorIndividualP1E1;
+import ec.vector.IntegerVectorSpeciesP1E1;
 
 /* 
  * SimpleStatistics.java
@@ -67,28 +75,40 @@ import java.io.File;
  */
 
 public class SimpleStatistics extends Statistics implements SteadyStateStatisticsForm //, ec.eval.ProvidesBestSoFar
-    {
-    public Individual[] getBestSoFar() { return best_of_run; }
+{
+    public Individual[] getBestSoFar() {
+        return best_of_run;
+    }
 
-    /** log file parameter */
+    /**
+     * log file parameter
+     */
     public static final String P_STATISTICS_FILE = "file";
-    
-    /** compress? */
+
+    /**
+     * compress?
+     */
     public static final String P_COMPRESS = "gzip";
-    
+
     public static final String P_DO_FINAL = "do-final";
     public static final String P_DO_GENERATION = "do-generation";
     public static final String P_DO_MESSAGE = "do-message";
     public static final String P_DO_DESCRIPTION = "do-description";
     public static final String P_DO_PER_GENERATION_DESCRIPTION = "do-per-generation-description";
 
-    /** The Statistics' log */
+    /**
+     * The Statistics' log
+     */
     public int statisticslog = 0;  // stdout
 
-    /** The best individual we've found so far */
+    /**
+     * The best individual we've found so far
+     */
     public Individual[] best_of_run = null;
-        
-    /** Should we compress the file? */
+
+    /**
+     * Should we compress the file?
+     */
     public boolean compress;
     public boolean doFinal;
     public boolean doGeneration;
@@ -96,135 +116,169 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
     public boolean doDescription;
     public boolean doPerGenerationDescription;
 
-    public void setup(final EvolutionState state, final Parameter base)
-        {
-        super.setup(state,base);
-        
-        compress = state.parameters.getBoolean(base.push(P_COMPRESS),null,false);
-                
-        File statisticsFile = state.parameters.getFile(base.push(P_STATISTICS_FILE),null);
+    public void setup(final EvolutionState state, final Parameter base) {
+        super.setup(state, base);
 
-        doFinal = state.parameters.getBoolean(base.push(P_DO_FINAL),null,true);
-        doGeneration = state.parameters.getBoolean(base.push(P_DO_GENERATION),null,true);
-        doMessage = state.parameters.getBoolean(base.push(P_DO_MESSAGE),null,true);
-        doDescription = state.parameters.getBoolean(base.push(P_DO_DESCRIPTION),null,true);
-        doPerGenerationDescription = state.parameters.getBoolean(base.push(P_DO_PER_GENERATION_DESCRIPTION),null,false);
+        compress = state.parameters.getBoolean(base.push(P_COMPRESS), null, false);
 
-        if (silentFile)
-            {
+        File statisticsFile = state.parameters.getFile(base.push(P_STATISTICS_FILE), null);
+
+        doFinal = state.parameters.getBoolean(base.push(P_DO_FINAL), null, true);
+        doGeneration = state.parameters.getBoolean(base.push(P_DO_GENERATION), null, true);
+        doMessage = state.parameters.getBoolean(base.push(P_DO_MESSAGE), null, true);
+        doDescription = state.parameters.getBoolean(base.push(P_DO_DESCRIPTION), null, true);
+        doPerGenerationDescription = state.parameters.getBoolean(base.push(P_DO_PER_GENERATION_DESCRIPTION), null, false);
+
+        if (silentFile) {
             statisticslog = Output.NO_LOGS;
-            }
-        else if (statisticsFile!=null)
-            {
-            try
-                {
+        } else if (statisticsFile != null) {
+            try {
                 statisticslog = state.output.addLog(statisticsFile, !compress, compress);
-                }
-            catch (IOException i)
-                {
+            } catch (IOException i) {
                 state.output.fatal("An IOException occurred while trying to create the log " + statisticsFile + ":\n" + i);
-                }
             }
-        else state.output.warning("No statistics file specified, printing to stdout at end.", base.push(P_STATISTICS_FILE));
-        }
+        } else
+            state.output.warning("No statistics file specified, printing to stdout at end.", base.push(P_STATISTICS_FILE));
+    }
 
-    public void postInitializationStatistics(final EvolutionState state)
-        {
+    public void postInitializationStatistics(final EvolutionState state) {
         super.postInitializationStatistics(state);
-        
+
         // set up our best_of_run array -- can't do this in setup, because
         // we don't know if the number of subpopulations has been determined yet
         best_of_run = new Individual[state.population.subpops.size()];
-        }
+    }
 
-    /** Allows MultiObjectiveStatistics etc. to call super.super.postEvaluationStatistics(...) without
-        calling super.postEvaluationStatistics(...) */
-    protected void bypassPostEvaluationStatistics(EvolutionState state)
-        { super.postEvaluationStatistics(state); }
-
-    /** Logs the best individual of the generation. */
-    boolean warned = false;
-    public void postEvaluationStatistics(final EvolutionState state)
-        {
+    /**
+     * Allows MultiObjectiveStatistics etc. to call super.super.postEvaluationStatistics(...) without
+     * calling super.postEvaluationStatistics(...)
+     */
+    protected void bypassPostEvaluationStatistics(EvolutionState state) {
         super.postEvaluationStatistics(state);
-        
+    }
+
+    /**
+     * Logs the best individual of the generation.
+     */
+    boolean warned = false;
+
+    public void postEvaluationStatistics(final EvolutionState state) {
+        super.postEvaluationStatistics(state);
+
         // for now we just print the best fitness per subpopulation.
         Individual[] best_i = new Individual[state.population.subpops.size()];  // quiets compiler complaints
-        for(int x = 0; x< state.population.subpops.size(); x++)
-            {
+        for (int x = 0; x < state.population.subpops.size(); x++) {
             best_i[x] = state.population.subpops.get(x).individuals.get(0);
-            for(int y = 1; y< state.population.subpops.get(x).individuals.size(); y++)
-                {
-                if (state.population.subpops.get(x).individuals.get(y) == null)
-                    {
-                    if (!warned)
-                        {
+            for (int y = 1; y < state.population.subpops.get(x).individuals.size(); y++) {
+                if (state.population.subpops.get(x).individuals.get(y) == null) {
+                    if (!warned) {
                         state.output.warnOnce("Null individuals found in subpopulation");
                         warned = true;  // we do this rather than relying on warnOnce because it is much faster in a tight loop
-                        }
                     }
-                else if (best_i[x] == null || state.population.subpops.get(x).individuals.get(y).fitness.betterThan(best_i[x].fitness))
+                } else if (best_i[x] == null || state.population.subpops.get(x).individuals.get(y).fitness.betterThan(best_i[x].fitness))
                     best_i[x] = state.population.subpops.get(x).individuals.get(y);
-                if (best_i[x] == null)
-                    {
-                    if (!warned)
-                        {
+                if (best_i[x] == null) {
+                    if (!warned) {
                         state.output.warnOnce("Null individuals found in subpopulation");
                         warned = true;  // we do this rather than relying on warnOnce because it is much faster in a tight loop
-                        }
                     }
                 }
-        
-            // now test to see if it's the new best_of_run
-            if (best_of_run[x]==null || best_i[x].fitness.betterThan(best_of_run[x].fitness))
-                best_of_run[x] = (Individual)(best_i[x].clone());
             }
-        
-        // print the best-of-generation individual
-        if (doGeneration) state.output.println("\nGeneration: " + state.generation,statisticslog);
-        if (doGeneration) state.output.println("Best Individual:",statisticslog);
-        for(int x = 0; x< state.population.subpops.size(); x++)
-            {
-            if (doGeneration) state.output.println("Subpopulation " + x + ":",statisticslog);
-            if (doGeneration) best_i[x].printIndividualForHumans(state,statisticslog);
-            if (doMessage && !silentPrint) state.output.message("Subpop " + x + " best fitness of generation" + 
-                (best_i[x].evaluated ? " " : " (evaluated flag not set): ") +
-                best_i[x].fitness.fitnessToStringForHumans());
 
-                
-            // describe the winner if there is a description
-            if (doGeneration && doPerGenerationDescription) 
-                {
-                if (state.evaluator.p_problem instanceof SimpleProblemForm)
-                    ((SimpleProblemForm)(state.evaluator.p_problem.clone())).describe(state, best_i[x], x, 0, statisticslog);   
-                }   
-            }
+            // now test to see if it's the new best_of_run
+            if (best_of_run[x] == null || best_i[x].fitness.betterThan(best_of_run[x].fitness))
+                best_of_run[x] = (Individual) (best_i[x].clone());
         }
 
-    /** Allows MultiObjectiveStatistics etc. to call super.super.finalStatistics(...) without
-        calling super.finalStatistics(...) */
-    protected void bypassFinalStatistics(EvolutionState state, int result)
-        { super.finalStatistics(state, result); }
+        // print the best-of-generation individual
+        if (doGeneration) state.output.println("\nGeneration: " + state.generation, statisticslog);
+        if (doGeneration) state.output.println("Best Individual:", statisticslog);
+        for (int x = 0; x < state.population.subpops.size(); x++) {
+            if (doGeneration) state.output.println("Subpopulation " + x + ":", statisticslog);
+            if (doGeneration) best_i[x].printIndividualForHumans(state, statisticslog);
+            if (doMessage && !silentPrint) state.output.message("Subpop " + x + " best fitness of generation" +
+                    (best_i[x].evaluated ? " " : " (evaluated flag not set): ") +
+                    best_i[x].fitness.fitnessToStringForHumans());
 
-    /** Logs the best individual of the run. */
-    public void finalStatistics(final EvolutionState state, final int result)
-        {
-        super.finalStatistics(state,result);
-        
-        // for now we just print the best fitness 
-        
-        if (doFinal) state.output.println("\nBest Individual of Run:",statisticslog);
-        for(int x = 0; x< state.population.subpops.size(); x++ )
-            {
-            if (doFinal) state.output.println("Subpopulation " + x + ":",statisticslog);
-            if (doFinal) best_of_run[x].printIndividualForHumans(state,statisticslog);
-            if (doMessage && !silentPrint) state.output.message("Subpop " + x + " best fitness of run: " + best_of_run[x].fitness.fitnessToStringForHumans());
-                best_of_run[x].printIndividualForHumans(state,0);
-            
-            // finally describe the winner if there is a description
-            if (doFinal && doDescription) 
+
+            // describe the winner if there is a description
+            if (doGeneration && doPerGenerationDescription) {
                 if (state.evaluator.p_problem instanceof SimpleProblemForm)
-                    ((SimpleProblemForm)(state.evaluator.p_problem.clone())).describe(state, best_of_run[x], x, 0, statisticslog);      
+                    ((SimpleProblemForm) (state.evaluator.p_problem.clone())).describe(state, best_i[x], x, 0, statisticslog);
             }
         }
     }
+
+    /**
+     * Allows MultiObjectiveStatistics etc. to call super.super.finalStatistics(...) without
+     * calling super.finalStatistics(...)
+     */
+    protected void bypassFinalStatistics(EvolutionState state, int result) {
+        super.finalStatistics(state, result);
+    }
+
+    /**
+     * Logs the best individual of the run.
+     */
+    public void finalStatistics(final EvolutionState state, final int result) {
+        super.finalStatistics(state, result);
+
+        if (doFinal) state.output.println("\nBest Individual of Run:", statisticslog);
+        for (int x = 0; x < state.population.subpops.size(); x++) {
+            if (doFinal) state.output.println("Subpopulation " + x + ":", statisticslog);
+            if (doFinal) best_of_run[x].printIndividualForHumans(state, statisticslog);
+            if (doMessage && !silentPrint)
+                state.output.message("Subpop " + x + " best fitness of run: " + best_of_run[x].fitness.fitnessToStringForHumans());
+            best_of_run[x].printIndividualForHumans(state, 0);
+
+            // finally describe the winner if there is a description
+            if (doFinal && doDescription) {
+                if (state.evaluator.p_problem instanceof SimpleProblemForm) {
+                    ((SimpleProblemForm) (state.evaluator.p_problem.clone())).describe(state, best_of_run[x], x, 0, statisticslog);
+                }
+            }
+
+            if (!(best_of_run[x] instanceof IntegerVectorIndividualP1E1)) {
+                state.output.fatal("Error. No es un vector de enteros!", null);
+            } else {
+
+                //Genero el archivo CSV con la solución
+                try {
+                    File fout = new File("solucion.csv");
+                    FileOutputStream fos = new FileOutputStream(fout);
+                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+
+                    IntegerVectorIndividualP1E1 ind = (IntegerVectorIndividualP1E1) best_of_run[x];
+
+                    HashMap<Integer, List<Integer>> sol = new HashMap<Integer, List<Integer>>();
+                    for (int i = 0; i < ind.genome.length; i++) {
+                        if (sol.containsKey(ind.genome[i])) {
+                            sol.get(ind.genome[i]).add(i);
+                        } else {
+                            List<Integer> tareas = new ArrayList<Integer>();
+                            tareas.add(i);
+                            sol.put(ind.genome[i], tareas);
+                        }
+                    }
+
+                    for (int i = 1; i < sol.size(); i++) {
+                        if (sol.containsKey(i)) {
+                            String tareasAImprimir = "";
+                            for (Integer t: sol.get(i)) {
+                                tareasAImprimir += " " + t.toString();
+                            }
+                            Integer idEmpleado = i + 1;
+                            bw.write(idEmpleado + tareasAImprimir);
+                            bw.newLine();
+                        }
+                    }
+
+                    bw.close();
+                } catch (IOException e) {
+                    System.out.println("Error al escribir el csv con la solución");
+                }
+            }
+        }
+    }
+}
+

@@ -93,6 +93,8 @@ import java.io.*;
 public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     {
     public final static String RUTA_TAREAS="ruta-tareas";
+    public final static String RUTA_CANT_TAREAS="practico_cantidad_tareas";
+    public final static String RUTA_CANT_EMPLEADOS="practico_cantidad_empleados";
     public final static String RUTA_EMPLEADOS="ruta-empleados";
 
     public final static String P_MINGENE = "min-gene";
@@ -164,8 +166,10 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     protected Empleado[] empleados;
     protected Tarea[] tareas;
     protected int F;
-    protected  float maxSueldoReal=0;
-    protected  float horasTotal=0;
+    protected float maxSueldoReal = 0;
+    protected float horasTotal = 0;
+    protected int cantTareas = 0;
+    protected int cantEmpleados = 0;
 
     public Empleado[] getEmpleados() {
         return empleados;
@@ -179,7 +183,9 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
         return tareas;
     }
 
-    public float getHorasTotal() { return horasTotal; }
+    public float getHorasTotal() {
+        return horasTotal;
+    }
 
     public void setTareas(Tarea[] tareas) {
         tareas = tareas;
@@ -200,6 +206,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     public int getF() {
         return F;
     }
+
     public float getMaxSueldoReal() {
             return maxSueldoReal;
         }
@@ -282,12 +289,35 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
         mutationIsBounded = new boolean[genomeSize + 1];
         randomWalkProbability = new double[genomeSize + 1];
 
-
         // Cargo los empleados y las tareas de los archivos
         if (tareas == null || tareas.length == 0) {
 
+            try {
+                String ruta_cant_empleados = state.parameters.getStringWithDefault(base.push(RUTA_CANT_EMPLEADOS), def.push(RUTA_CANT_EMPLEADOS), null);
+                //System.out.println("Ruta del archivo de cant empleados.cvs: " + ruta_cant_empleados);
+                File fin = new File(ruta_cant_empleados);
+                FileInputStream fis = new FileInputStream(fin);
 
-            tareas = new Tarea[genomeSize];
+                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+                cantEmpleados = Integer.parseInt(br.readLine());
+            } catch (Exception e) {
+                state.output.fatal(e + ", error al leer el archivo de cant empleados");
+            }
+
+            try {
+                String ruta_cant_tareas = state.parameters.getStringWithDefault(base.push(RUTA_CANT_TAREAS), def.push(RUTA_CANT_TAREAS), null);
+                //System.out.println("Ruta del archivo de cant tareas.cvs: " + ruta_cant_tareas);
+                File fin = new File(ruta_cant_tareas);
+                FileInputStream fis = new FileInputStream(fin);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+                cantTareas = Integer.parseInt(br.readLine());
+            } catch (Exception e) {
+                state.output.fatal(e + ", error al leer el archivo de cant tareas");
+            }
+
+            tareas = new Tarea[cantTareas];
+            empleados = new Empleado[cantEmpleados];
 
             try {
                 String ruta_tareas = state.parameters.getStringWithDefault(base.push(RUTA_TAREAS), def.push(RUTA_TAREAS), null);
@@ -320,18 +350,12 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                 for (Tarea t:tareas){
                     horasTotal+=t.getEsfuerzo();
                 }
-            } catch (NullPointerException e) {
-                state.output.fatal(e + ", error al leer el archivo de tareas");
-            } catch (FileNotFoundException e) {
-                state.output.fatal(e + ", error al leer el archivo de tareas");
-            } catch (IOException e) {
+            } catch (Exception e) {
                 state.output.fatal(e + ", error al leer el archivo de tareas");
             }
         }
 
         if (empleados == null || empleados.length == 0) {
-            empleados = new Empleado[5];
-
 
             try {
                 String ruta_empleados = state.parameters.getStringWithDefault(base.push(RUTA_EMPLEADOS), def.push(RUTA_EMPLEADOS), null);
@@ -381,15 +405,9 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                     if (sueldoReal> maxSueldoReal){
                         maxSueldoReal=sueldoReal;
                     }
-
-
                 }
 
-            } catch (NullPointerException e) {
-                state.output.fatal(e + ", error al leer el archivo de empleados");
-            } catch (FileNotFoundException e) {
-                state.output.fatal(e + ", error al leer el archivo de empleados");
-            } catch (IOException e) {
+            } catch (Exception e) {
                 state.output.fatal(e + ", error al leer el archivo de empleados");
             }
         }
