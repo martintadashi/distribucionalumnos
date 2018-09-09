@@ -3,24 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="50f67880-fd28-4fde-b368-6ab48eb12f70" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/empleados.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out.stat" beforeDir="false" afterPath="$PROJECT_DIR$/out.stat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practico_cantidad_empleados" beforeDir="false" afterPath="$PROJECT_DIR$/practico_cantidad_empleados" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practico_cantidad_tareas" beforeDir="false" afterPath="$PROJECT_DIR$/practico_cantidad_tareas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tareas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ec/app/p1e1/p1e1.params" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/app/p1e1/p1e1.params" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ec/simple/SimpleStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/simple/SimpleStatistics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ec/app/p1e1/p1e1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/app/p1e1/p1e1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ec/vector/IntegerVectorSpeciesP1E1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/vector/IntegerVectorSpeciesP1E1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ecj-26.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecj-26.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/jacoco.exec" beforeDir="false" afterPath="$PROJECT_DIR$/target/jacoco.exec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/index.source.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/p1e1.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/p1e1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/p1e1.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/p1e1.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleStatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleStatistics.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleStatistics.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/index.source.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorSpeciesP1E1.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorSpeciesP1E1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorSpeciesP1E1.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorSpeciesP1E1.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector/index.html" afterDir="false" />
@@ -44,12 +38,11 @@
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.multiobjective.HypervolumeStatisticsTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.multiobjective.HypervolumeStatisticsTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.multiobjective.nsga2.NSGA2BreederTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.multiobjective.nsga2.NSGA2BreederTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.multiobjective.spea2.SPEA2BreederTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.multiobjective.spea2.SPEA2BreederTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.simple.SimpleBreederTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.simple.SimpleBreederTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.util.MiscTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.util.MiscTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.util.ParameterDatabaseTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.util.ParameterDatabaseTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefire6168672598574884857tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefire_03116125969721398496tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefirebooter3905009718485519024.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefire3724831140779651122tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefire_07338268719856349860tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefirebooter9021841752849212194.jar" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -94,11 +87,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="p1e1.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="p1e1.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+            <state relative-caret-position="495">
+              <caret line="33" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -140,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntegerVectorSpeciesP1E1.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IntegerVectorSpeciesP1E1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="315" column="76" selection-start-line="315" selection-start-column="76" selection-end-line="315" selection-end-column="76" />
+            <state relative-caret-position="282">
+              <caret line="302" column="16" selection-start-line="302" selection-start-column="16" selection-end-line="302" selection-end-column="16" />
               <folding>
                 <element signature="e#8051#8052#0" expanded="true" />
                 <element signature="e#8083#8084#0" expanded="true" />
@@ -176,8 +169,8 @@
       <file leaf-file-name="p1e1.params" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="74" selection-start-line="42" selection-start-column="74" selection-end-line="42" selection-end-column="74" />
+            <state relative-caret-position="285">
+              <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -186,7 +179,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>individual</find>
       <find>IntegerVectorIndividual</find>
       <find>min-gene</find>
       <find>cross</find>
@@ -216,6 +208,7 @@
       <find />
       <find>ruta</find>
       <find>empleados.cvs</find>
+      <find>&quot;habilidad&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>IntegerVectorSpeciesP1E1</replace>
@@ -247,9 +240,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java" />
         <option value="$PROJECT_DIR$/src/main/java/ec/simple/SimpleStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/ec/Subpopulation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" />
         <option value="$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params" />
         <option value="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" />
       </list>
     </option>
   </component>
@@ -921,16 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ec/simple/SimpleStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2497">
@@ -943,15 +926,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="74" selection-start-line="42" selection-start-column="74" selection-end-line="42" selection-end-column="74" />
+        <state relative-caret-position="285">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="315" column="76" selection-start-line="315" selection-start-column="76" selection-end-line="315" selection-end-column="76" />
+        <state relative-caret-position="282">
+          <caret line="302" column="16" selection-start-line="302" selection-start-column="16" selection-end-line="302" selection-end-column="16" />
           <folding>
             <element signature="e#8051#8052#0" expanded="true" />
             <element signature="e#8083#8084#0" expanded="true" />
@@ -975,6 +958,16 @@
             <element signature="e#8798#8799#0" expanded="true" />
             <element signature="e#8837#8838#0" expanded="true" />
             <element signature="e#8873#8874#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

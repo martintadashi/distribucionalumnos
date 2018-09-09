@@ -28,6 +28,10 @@ public class p1e1 extends Problem implements SimpleProblemForm
             //Cargo las tareas y los empleados
             Tarea[] tareas = t_spe.getTareas();
             Empleado[] empleados = t_spe.getEmpleados();
+            //System.out.println("Empleados.length: "+empleados.length);
+//            for (int iEmpleado = 0; iEmpleado < empleados.length; iEmpleado++) {
+//                System.out.println("\t"+empleados[iEmpleado].toString());
+//            }
 
             //Corroboro que el fitnes de mi individuo extienda de SimpleFitness
             if (!(ind2.fitness instanceof SimpleFitness)) {
@@ -56,10 +60,12 @@ public class p1e1 extends Problem implements SimpleProblemForm
                 for (int i = 0; i < empleadosPorTarea.length; i++) {
                     //Consigo la tarea con la que voy a trabajar
                     Tarea tarea = tareas[i];
-                    //System.out.println("i= "+i+"   empleadosPorTarea[i]= "+empleadosPorTarea[i]);
+                    //System.out.println("empleadosPorTarea["+i+"]= "+empleadosPorTarea[i]);
                     //Encuentro al empleado que tiene asignada esa tarea
                     Empleado empleado = empleados[empleadosPorTarea[i]];
                     //Sumo las horas que le va a tomar al empleado (segun su habilidad) completar el esfuerzo de la tarea
+                    //System.out.println("Tarea: "+tarea.toString());
+                    //System.out.println("Empleado: "+empleado.toString());
                     float horasTrabajadasPorTarea = tarea.getEsfuerzo() / ((float) 0.5 + empleado.getHabilidad());
                     horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;
                 }
@@ -77,11 +83,13 @@ public class p1e1 extends Problem implements SimpleProblemForm
 
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
                 if(diasDeTrabajoParaCadaEmpleado[posMax]>t_spe.getF()){
-                    System.out.println("Se penaliza   \t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ " a su costo: "+ costoProyecto);
+                    System.out.print("Se penaliza   \t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ " a su costo: "+ costoProyecto);
                     costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();
+                    System.out.println(" total: "+costoProyecto);
                 } else{
                     System.out.println("NO SE PENALIZA\t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
                 }
+                //System.out.println("\tAl individuo: "+ind2.genotypeToString());
 
 
 
@@ -92,7 +100,7 @@ public class p1e1 extends Problem implements SimpleProblemForm
                 ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), ideal);
                 ind2.evaluated = true;
 
-                ind.printIndividualForHumans(state,0);
+                //ind.printIndividualForHumans(state,0);
                 /*
                 System.out.print("\t Dias trabajados: (");
 
