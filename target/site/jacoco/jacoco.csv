@@ -99,7 +99,7 @@ ecj,ec.vector,FloatVectorIndividual,2160,0,237,0,344,0,155,0,31,0
 ecj,ec.vector,BitVectorIndividual,851,0,91,0,149,0,69,0,21,0
 ecj,ec.vector,GeneVectorIndividual,936,0,94,0,152,0,70,0,21,0
 ecj,ec.vector,IntegerVectorSpecies,600,315,82,26,87,53,55,9,4,6
-ecj,ec.vector,IntegerVectorSpeciesP1E1,1399,0,138,0,220,0,89,0,20,0
+ecj,ec.vector,IntegerVectorSpeciesP1E1,1413,0,140,0,224,0,91,0,21,0
 ecj,ec.app.parity.func,Or,34,0,2,0,7,0,5,0,4,0
 ecj,ec.app.parity.func,Nand,43,0,2,0,9,0,5,0,4,0
 ecj,ec.app.parity.func,And,35,0,2,0,7,0,5,0,4,0
@@ -340,7 +340,7 @@ ecj,ec.eda.cmaes,CMAESDefaults,8,0,0,0,2,0,2,0,2,0
 ecj,ec.eda.cmaes,CMAESBreeder,72,0,6,0,13,0,6,0,3,0
 ecj,ec.eda.cmaes,CMAESSpecies,2201,0,136,0,257,0,74,0,6,0
 ecj,ec.app.p1e1,Empleado,42,0,0,0,17,0,10,0,10,0
-ecj,ec.app.p1e1,p1e1,215,0,26,0,36,0,15,0,2,0
+ecj,ec.app.p1e1,p1e1,277,0,26,0,40,0,15,0,2,0
 ecj,ec.app.p1e1,Tarea,28,0,0,0,11,0,6,0,6,0
 ecj,ec.rule.breed,RuleMutationPipeline,75,0,4,0,14,0,7,0,5,0
 ecj,ec.rule.breed,RuleCrossoverPipeline,523,0,44,0,75,0,29,0,7,0

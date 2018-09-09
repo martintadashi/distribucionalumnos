@@ -16,62 +16,78 @@ public class p1e1 extends Problem implements SimpleProblemForm
             state.output.fatal("Error. No es un vector de enteros!", null);
 
         } else {
+            //consigo el individuo y lo casteo como la clase con la que lo voy a trabajar
             IntegerVectorIndividualP1E1 ind2 = (IntegerVectorIndividualP1E1) ind;
+            //Consigo la especie del individuo
             IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) ind2.species;
-
+            //Creo un arreglo en el que tener el genoma del individuo
             int[] empleadosPorTarea = ((IntegerVectorIndividualP1E1) ind).genome;
-
             // Fitness
             int costoProyecto = 0;
             int posMax = 0;
+            //Cargo las tareas y los empleados
             Tarea[] tareas = t_spe.getTareas();
             Empleado[] empleados = t_spe.getEmpleados();
 
+            //Corroboro que el fitnes de mi individuo extienda de SimpleFitness
             if (!(ind2.fitness instanceof SimpleFitness)) {
                 state.output.fatal("Error. No es un SimpleFitness", null);
             }
-            //Calculo del fitnes
+            //Si llegue hasta aca el individuo es correcto
+
+
 //            System.out.println("tareas.length: "+tareas.length);
 //            System.out.println(" empleadosPorTarea.length: "+ empleadosPorTarea.length);
 //            System.out.println("empleados.length: "+empleados.length);
+
+            //Corroboro que el tamaño de los arreglos fitness
             if (tareas.length == empleadosPorTarea.length && tareas.length > empleados.length) {
                 //System.out.println("Entramos al evaluate.else.calculo");
 
                 float[] horasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];
+                float[] diasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];
+
                 //Inicializa las horas trabajadas en cero
                 for (int i = 0; i < horasDeTrabajoParaCadaEmpleado.length; i++) {
                     horasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;
+                    diasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;
                 }
-                //Calcula las horas de cada empleado
+                //Recorro cada Calcula las horas de cada empleado
                 for (int i = 0; i < empleadosPorTarea.length; i++) {
+                    //Consigo la tarea con la que voy a trabajar
                     Tarea tarea = tareas[i];
                     //System.out.println("i= "+i+"   empleadosPorTarea[i]= "+empleadosPorTarea[i]);
+                    //Encuentro al empleado que tiene asignada esa tarea
                     Empleado empleado = empleados[empleadosPorTarea[i]];
+                    //Sumo las horas que le va a tomar al empleado (segun su habilidad) completar el esfuerzo de la tarea
                     float horasTrabajadasPorTarea = tarea.getEsfuerzo() / ((float) 0.5 + empleado.getHabilidad());
                     horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;
                 }
-
+                //Con todas las horas cargadas en todos los empleados calculo los dias que trabaja cada uno y cuanto nos cuesta
                 for (int i = 0; i < horasDeTrabajoParaCadaEmpleado.length; i++) {
                     Empleado empleado = empleados[i];
-                    horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] / empleado.getDedicacion()));
-                    costoProyecto += horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] * empleado.getSueldo();
-                    if (horasDeTrabajoParaCadaEmpleado[i] > horasDeTrabajoParaCadaEmpleado[posMax]) {
+                    diasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] / empleado.getDedicacion()));
+                    costoProyecto += diasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] * empleado.getSueldo();
+                    //Guardo la posicion del empleado que trabaje mas dias
+                    if (diasDeTrabajoParaCadaEmpleado[i] > diasDeTrabajoParaCadaEmpleado[posMax]) {
                         posMax = i;
                     }
                 }
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
-                //TODO conseguir el mejor valor para esto
-                if(horasDeTrabajoParaCadaEmpleado[posMax]>t_spe.getF()){
-                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();
+                if(diasDeTrabajoParaCadaEmpleado[posMax]>t_spe.getF()){
+                    System.out.println("Se penaliza|\t El individuo demora "+horasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal()));
+                    costoProyecto-=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();
+                } else{
+                    System.out.println("NO SE PENALIZA|\t El individuo demora "+horasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
                 }
 
-                // horasDeTrabajoParaCadaEmpleado pasa a ser en días en vez de horas.
 
-                boolean ideal = horasDeTrabajoParaCadaEmpleado[posMax] <= t_spe.getF(); // factible??
+
+                boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] <= t_spe.getF(); // factible??
                 //ideal = ideal && (((SimpleFitness) ind2.fitness).getMinFitness() > costoProyecto);
-                ideal = ideal && 3700 == costoProyecto;
+                ideal =  ideal && (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;
                 //System.out.println("ideal= "+ideal+"  horasDeTrabajoParaCadaEmpleado[posMax]"+ horasDeTrabajoParaCadaEmpleado[posMax]);
-                ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), false);
+                ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), ideal);
                 ind2.evaluated = true;
             }
         }
