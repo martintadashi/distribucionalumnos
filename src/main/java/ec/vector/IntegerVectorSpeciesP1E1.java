@@ -166,7 +166,9 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     protected Empleado[] empleados;
     protected Tarea[] tareas;
     protected int F;
+
     protected float maxSueldoReal = 0;
+    protected float minSueldoReal = 0;
     protected float horasTotal = 0;
     protected int cantTareas = 0;
     protected int cantEmpleados = 0;
@@ -210,6 +212,10 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
     public float getMaxSueldoReal() {
             return maxSueldoReal;
         }
+
+    public float getMinSueldoReal() {
+        return minSueldoReal;
+    }
 
     public long maxGene(int gene)
         {
@@ -330,6 +336,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                 // 1er linea
                 F = Integer.parseInt(br.readLine());
 
+
                 // 2da linea
                 int index = 0;
                 String[] line_tokens = br.readLine().split(" ");
@@ -404,6 +411,9 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
                     System.out.println("Sueldo real empleado "+iEmpleados+ ": "+sueldoReal);
                     if (sueldoReal> maxSueldoReal){
                         maxSueldoReal=sueldoReal;
+                    }
+                    if (sueldoReal< minSueldoReal){
+                        minSueldoReal=sueldoReal;
                     }
                 }
 

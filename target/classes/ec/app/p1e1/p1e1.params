@@ -6,6 +6,7 @@ quit-on-run-complete = true
 
 pop.subpop.0.size = 100
 generations = 10000
+breed.elite.0 = 2
 
 pop.subpop.0.species = ec.vector.IntegerVectorSpeciesP1E1
 

@@ -16,65 +16,94 @@ import ec.vector.*;
 <span class="nc" id="L16">            state.output.fatal(&quot;Error. No es un vector de enteros!&quot;, null);</span>
 
         } else {
-<span class="nc" id="L19">            IntegerVectorIndividualP1E1 ind2 = (IntegerVectorIndividualP1E1) ind;</span>
-<span class="nc" id="L20">            IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) ind2.species;</span>
-
-<span class="nc" id="L22">            int[] empleadosPorTarea = ((IntegerVectorIndividualP1E1) ind).genome;</span>
-
+            //consigo el individuo y lo casteo como la clase con la que lo voy a trabajar
+<span class="nc" id="L20">            IntegerVectorIndividualP1E1 ind2 = (IntegerVectorIndividualP1E1) ind;</span>
+            //Consigo la especie del individuo
+<span class="nc" id="L22">            IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) ind2.species;</span>
+            //Creo un arreglo en el que tener el genoma del individuo
+<span class="nc" id="L24">            int[] empleadosPorTarea = ((IntegerVectorIndividualP1E1) ind).genome;</span>
             // Fitness
-<span class="nc" id="L25">            int costoProyecto = 0;</span>
-<span class="nc" id="L26">            int posMax = 0;</span>
-<span class="nc" id="L27">            Tarea[] tareas = t_spe.getTareas();</span>
-<span class="nc" id="L28">            Empleado[] empleados = t_spe.getEmpleados();</span>
+<span class="nc" id="L26">            int costoProyecto = 0;</span>
+<span class="nc" id="L27">            int posMax = 0;</span>
+            //Cargo las tareas y los empleados
+<span class="nc" id="L29">            Tarea[] tareas = t_spe.getTareas();</span>
+<span class="nc" id="L30">            Empleado[] empleados = t_spe.getEmpleados();</span>
 
-<span class="nc bnc" id="L30" title="All 2 branches missed.">            if (!(ind2.fitness instanceof SimpleFitness)) {</span>
-<span class="nc" id="L31">                state.output.fatal(&quot;Error. No es un SimpleFitness&quot;, null);</span>
+            //Corroboro que el fitnes de mi individuo extienda de SimpleFitness
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (!(ind2.fitness instanceof SimpleFitness)) {</span>
+<span class="nc" id="L34">                state.output.fatal(&quot;Error. No es un SimpleFitness&quot;, null);</span>
             }
-            //Calculo del fitnes
+            //Si llegue hasta aca el individuo es correcto
+
+
 //            System.out.println(&quot;tareas.length: &quot;+tareas.length);
 //            System.out.println(&quot; empleadosPorTarea.length: &quot;+ empleadosPorTarea.length);
 //            System.out.println(&quot;empleados.length: &quot;+empleados.length);
-<span class="nc bnc" id="L37" title="All 4 branches missed.">            if (tareas.length == empleadosPorTarea.length &amp;&amp; tareas.length &gt; empleados.length) {</span>
-                //System.out.println(&quot;Entramos al evaluate.else.calculo&quot;);
 
-<span class="nc" id="L40">                float[] horasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];</span>
+            //Corroboro que el tamaño de los arreglos fitness
+<span class="nc bnc" id="L44" title="All 4 branches missed.">            if (tareas.length == empleadosPorTarea.length &amp;&amp; tareas.length &gt; empleados.length) {</span>
+                //System.out.println(&quot;INICIA INDIVIDUO&quot;);
+
+<span class="nc" id="L47">                float[] horasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];</span>
+<span class="nc" id="L48">                float[] diasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];</span>
+
                 //Inicializa las horas trabajadas en cero
-<span class="nc bnc" id="L42" title="All 2 branches missed.">                for (int i = 0; i &lt; horasDeTrabajoParaCadaEmpleado.length; i++) {</span>
-<span class="nc" id="L43">                    horasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                for (int i = 0; i &lt; horasDeTrabajoParaCadaEmpleado.length; i++) {</span>
+<span class="nc" id="L52">                    horasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;</span>
+<span class="nc" id="L53">                    diasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;</span>
                 }
-                //Calcula las horas de cada empleado
-<span class="nc bnc" id="L46" title="All 2 branches missed.">                for (int i = 0; i &lt; empleadosPorTarea.length; i++) {</span>
-<span class="nc" id="L47">                    Tarea tarea = tareas[i];</span>
+                //Recorro cada Calcula las horas de cada empleado
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                for (int i = 0; i &lt; empleadosPorTarea.length; i++) {</span>
+                    //Consigo la tarea con la que voy a trabajar
+<span class="nc" id="L58">                    Tarea tarea = tareas[i];</span>
                     //System.out.println(&quot;i= &quot;+i+&quot;   empleadosPorTarea[i]= &quot;+empleadosPorTarea[i]);
-<span class="nc" id="L49">                    Empleado empleado = empleados[empleadosPorTarea[i]];</span>
-<span class="nc" id="L50">                    float horasTrabajadasPorTarea = tarea.getEsfuerzo() / ((float) 0.5 + empleado.getHabilidad());</span>
-<span class="nc" id="L51">                    horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;</span>
+                    //Encuentro al empleado que tiene asignada esa tarea
+<span class="nc" id="L61">                    Empleado empleado = empleados[empleadosPorTarea[i]];</span>
+                    //Sumo las horas que le va a tomar al empleado (segun su habilidad) completar el esfuerzo de la tarea
+<span class="nc" id="L63">                    float horasTrabajadasPorTarea = tarea.getEsfuerzo() / ((float) 0.5 + empleado.getHabilidad());</span>
+<span class="nc" id="L64">                    horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;</span>
                 }
-
-<span class="nc bnc" id="L54" title="All 2 branches missed.">                for (int i = 0; i &lt; horasDeTrabajoParaCadaEmpleado.length; i++) {</span>
-<span class="nc" id="L55">                    Empleado empleado = empleados[i];</span>
-<span class="nc" id="L56">                    horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] / empleado.getDedicacion()));</span>
-<span class="nc" id="L57">                    costoProyecto += horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] * empleado.getSueldo();</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">                    if (horasDeTrabajoParaCadaEmpleado[i] &gt; horasDeTrabajoParaCadaEmpleado[posMax]) {</span>
-<span class="nc" id="L59">                        posMax = i;</span>
+                //Con todas las horas cargadas en todos los empleados calculo los dias que trabaja cada uno y cuanto nos cuesta
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                for (int i = 0; i &lt; diasDeTrabajoParaCadaEmpleado.length; i++) {</span>
+<span class="nc" id="L68">                    Empleado empleado = empleados[i];</span>
+<span class="nc" id="L69">                    diasDeTrabajoParaCadaEmpleado[i] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[i] / empleado.getDedicacion()));</span>
+<span class="nc" id="L70">                    costoProyecto += diasDeTrabajoParaCadaEmpleado[i] * empleado.getSueldo();</span>
+                    //System.out.println(&quot;\t Dias trabajados por el empleado &quot;+i+&quot; : &quot;+diasDeTrabajoParaCadaEmpleado[i]);
+                    //Guardo la posicion del empleado que trabaje mas dias
+<span class="nc bnc" id="L73" title="All 2 branches missed.">                    if (diasDeTrabajoParaCadaEmpleado[i] &gt; diasDeTrabajoParaCadaEmpleado[posMax]) {</span>
+<span class="nc" id="L74">                        posMax = i;</span>
                     }
                 }
+
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
-                //TODO conseguir el mejor valor para esto
-<span class="nc bnc" id="L64" title="All 2 branches missed.">                if(horasDeTrabajoParaCadaEmpleado[posMax]&gt;t_spe.getF()){</span>
-<span class="nc" id="L65">                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                if(diasDeTrabajoParaCadaEmpleado[posMax]&gt;t_spe.getF()){</span>
+<span class="nc" id="L80">                    System.out.println(&quot;Se penaliza   \t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF() +&quot; se agrega costo: &quot;+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ &quot; a su costo: &quot;+ costoProyecto);</span>
+<span class="nc" id="L81">                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();</span>
+                } else{
+<span class="nc" id="L83">                    System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);</span>
                 }
 
-                // horasDeTrabajoParaCadaEmpleado pasa a ser en días en vez de horas.
 
-<span class="nc bnc" id="L70" title="All 2 branches missed.">                boolean ideal = horasDeTrabajoParaCadaEmpleado[posMax] &lt;= t_spe.getF(); // factible??</span>
+
+<span class="nc bnc" id="L88" title="All 2 branches missed.">                boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] &lt;= t_spe.getF(); // factible??</span>
                 //ideal = ideal &amp;&amp; (((SimpleFitness) ind2.fitness).getMinFitness() &gt; costoProyecto);
-<span class="nc bnc" id="L72" title="All 4 branches missed.">                ideal = ideal &amp;&amp; 3700 == costoProyecto;</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">                ideal =  ideal &amp;&amp; (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;</span>
                 //System.out.println(&quot;ideal= &quot;+ideal+&quot;  horasDeTrabajoParaCadaEmpleado[posMax]&quot;+ horasDeTrabajoParaCadaEmpleado[posMax]);
-<span class="nc" id="L74">                ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), false);</span>
-<span class="nc" id="L75">                ind2.evaluated = true;</span>
+<span class="nc" id="L92">                ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), ideal);</span>
+<span class="nc" id="L93">                ind2.evaluated = true;</span>
+
+<span class="nc" id="L95">                ind.printIndividualForHumans(state,0);</span>
+                /*
+                System.out.print(&quot;\t Dias trabajados: (&quot;);
+                 
+                for (int i = 0; i &lt; horasDeTrabajoParaCadaEmpleado.length; i++) {
+                    System.out.print(diasDeTrabajoParaCadaEmpleado[i]+&quot;, &quot;);
+                }
+                System.out.println(&quot;)&quot;);
+                System.out.println(&quot;FINALIZA INDIVIDUO&quot;);
+                */
             }
         }
-<span class="nc" id="L78">    }</span>
+<span class="nc" id="L107">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
