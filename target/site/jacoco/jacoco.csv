@@ -340,7 +340,7 @@ ecj,ec.eda.cmaes,CMAESDefaults,8,0,0,0,2,0,2,0,2,0
 ecj,ec.eda.cmaes,CMAESBreeder,72,0,6,0,13,0,6,0,3,0
 ecj,ec.eda.cmaes,CMAESSpecies,2201,0,136,0,257,0,74,0,6,0
 ecj,ec.app.p1e1,Empleado,42,0,0,0,17,0,10,0,10,0
-ecj,ec.app.p1e1,p1e1,277,0,26,0,40,0,15,0,2,0
+ecj,ec.app.p1e1,p1e1,279,0,26,0,41,0,15,0,2,0
 ecj,ec.app.p1e1,Tarea,28,0,0,0,11,0,6,0,6,0
 ecj,ec.rule.breed,RuleMutationPipeline,75,0,4,0,14,0,7,0,5,0
 ecj,ec.rule.breed,RuleCrossoverPipeline,523,0,44,0,75,0,29,0,7,0

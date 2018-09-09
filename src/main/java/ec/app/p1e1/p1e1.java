@@ -42,7 +42,7 @@ public class p1e1 extends Problem implements SimpleProblemForm
 
             //Corroboro que el tamaño de los arreglos fitness
             if (tareas.length == empleadosPorTarea.length && tareas.length > empleados.length) {
-                //System.out.println("Entramos al evaluate.else.calculo");
+                //System.out.println("INICIA INDIVIDUO");
 
                 float[] horasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];
                 float[] diasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];
@@ -64,21 +64,23 @@ public class p1e1 extends Problem implements SimpleProblemForm
                     horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;
                 }
                 //Con todas las horas cargadas en todos los empleados calculo los dias que trabaja cada uno y cuanto nos cuesta
-                for (int i = 0; i < horasDeTrabajoParaCadaEmpleado.length; i++) {
+                for (int i = 0; i < diasDeTrabajoParaCadaEmpleado.length; i++) {
                     Empleado empleado = empleados[i];
-                    diasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] / empleado.getDedicacion()));
-                    costoProyecto += diasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] * empleado.getSueldo();
+                    diasDeTrabajoParaCadaEmpleado[i] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[i] / empleado.getDedicacion()));
+                    costoProyecto += diasDeTrabajoParaCadaEmpleado[i] * empleado.getSueldo();
+                    //System.out.println("\t Dias trabajados por el empleado "+i+" : "+diasDeTrabajoParaCadaEmpleado[i]);
                     //Guardo la posicion del empleado que trabaje mas dias
                     if (diasDeTrabajoParaCadaEmpleado[i] > diasDeTrabajoParaCadaEmpleado[posMax]) {
                         posMax = i;
                     }
                 }
+
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
                 if(diasDeTrabajoParaCadaEmpleado[posMax]>t_spe.getF()){
-                    System.out.println("Se penaliza|\t El individuo demora "+horasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal()));
-                    costoProyecto-=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();
+                    System.out.println("Se penaliza   \t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ " a su costo: "+ costoProyecto);
+                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();
                 } else{
-                    System.out.println("NO SE PENALIZA|\t El individuo demora "+horasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
+                    System.out.println("NO SE PENALIZA\t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
                 }
 
 
@@ -89,6 +91,17 @@ public class p1e1 extends Problem implements SimpleProblemForm
                 //System.out.println("ideal= "+ideal+"  horasDeTrabajoParaCadaEmpleado[posMax]"+ horasDeTrabajoParaCadaEmpleado[posMax]);
                 ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), ideal);
                 ind2.evaluated = true;
+
+                ind.printIndividualForHumans(state,0);
+                /*
+                System.out.print("\t Dias trabajados: (");
+
+                for (int i = 0; i < horasDeTrabajoParaCadaEmpleado.length; i++) {
+                    System.out.print(diasDeTrabajoParaCadaEmpleado[i]+", ");
+                }
+                System.out.println(")");
+                System.out.println("FINALIZA INDIVIDUO");
+                */
             }
         }
     }
