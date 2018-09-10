@@ -4,6 +4,7 @@
 import sys
 import random
 import math
+from decimal import Decimal
 
 try:
     #Sanity check
@@ -40,12 +41,12 @@ try:
 	
 	# se convierten a entero
 	dedicacion_diaria_diponible_empleado = map(int, dedicacion_diaria_diponible_empleado)
-	sueldo_diario_empleado = map(int, sueldo_diario_empleado)
+	sueldo_diario_empleado = map(Decimal, sueldo_diario_empleado)
 	deadLine=int(deadLine)
-	esfuerzo_requerido_tarea = map(int, esfuerzo_requerido_tarea)
+	esfuerzo_requerido_tarea = map(Decimal, esfuerzo_requerido_tarea)
 	
 	# se convierte a float
-	habilidad_empleados = map(float, habilidad_empleados)	
+	habilidad_empleados = map(Decimal, habilidad_empleados)	
 		
 	# se levanta la solucion del archivo
 	matriz_solucion=[]
@@ -103,7 +104,7 @@ try:
 		tiempo_en_horas=0
 		for i in range(1,len(empleados_tareas)):
 			indice_tarea = nombres_tareas.index(empleados_tareas[i])
-			tiempo_en_horas=tiempo_en_horas+(esfuerzo_requerido_tarea[indice_tarea] / (0.5 + habilidad_empleados[indice_empleado]))
+			tiempo_en_horas=tiempo_en_horas+(esfuerzo_requerido_tarea[indice_tarea] / (Decimal(0.5) + habilidad_empleados[indice_empleado]))
 		tiempo_en_dias= int(math.ceil(tiempo_en_horas/dedicacion_diaria_diponible_empleado[indice_empleado]))
 		costo_total=costo_total+sueldo_diario_empleado[indice_empleado]*tiempo_en_dias
 		if(tiempo_en_dias>maximo_tiempo):

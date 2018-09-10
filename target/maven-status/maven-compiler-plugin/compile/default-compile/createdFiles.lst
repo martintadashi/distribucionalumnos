@@ -404,6 +404,7 @@ ec/multiobjective/MultiObjectiveDefaults.class
 ec/util/ParameterDatabase.class
 ec/es/MuCommaLambdaBreeder.class
 ec/util/MersenneTwister.class
+ec/vector/VectorSpeciesP1E1.class
 ec/de/Rand1EitherOrDEBreeder.class
 ec/display/ControlPanel$7.class
 ec/eda/dovs/DOVSFitness.class

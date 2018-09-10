@@ -1,0 +1,30 @@
+#! /bin/bash
+#ejercicio2 <tareas> <empleados> <solución> <cant_tareas> <cant_empleados>
+#ejercicio2 	$1	$2	     $3		 $4		$5
+
+RUTA_AL_JAR=target/
+NOMBRE_JAR=ecj-26.jar
+RUTA_AL_PARAMS=app/p1e1/
+NOMBRE_PARAMS=p1e1.params
+
+#Muevo los archivos a leer a la carpeta con el jar
+echo "Muevo los archivos de lectura a ./"
+mv $1 ./
+mv $2 ./
+mv $4 ./
+mv $5 ./
+#Ejecuto la app
+echo "Ejecuto: java -jar "$RUTA_AL_JAR$NOMBRE_JAR" -from "$RUTA_AL_PARAMS$NOMBRE_PARAMS 
+java -jar $RUTA_AL_JAR$NOMBRE_JAR -from $RUTA_AL_PARAMS$NOMBRE_PARAMS
+#Muevo la solucion la ruta que nos dieron al la ruta que lo piden
+echo "Muevo solucion.csv a "$3
+mv solucion.csv $3
+
+
+#Le pasamos dos parametros e imprime el que esta en la posicion 1 y 2
+
+#echo "Hola" $1;
+#echo "Hola" $2;
+#echo "Nombre del fichero:" $0;
+#echo "Numero de parametros": $#;
+#echo "Todos los parametros menos el 0": $*;

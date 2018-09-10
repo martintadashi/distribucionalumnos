@@ -90,7 +90,7 @@ import java.io.*;
  * @version 1.0
  */
 
-public class IntegerVectorSpeciesP1E1 extends VectorSpecies
+public class IntegerVectorSpeciesP1E1 extends VectorSpeciesP1E1
     {
     public final static String RUTA_TAREAS="ruta-tareas";
     public final static String RUTA_CANT_TAREAS="ruta-cantidad-tareas";
@@ -306,6 +306,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(fis));
                 cantEmpleados = Integer.parseInt(br.readLine());
+                br.close();
             } catch (Exception e) {
                 state.output.fatal(e + ", error al leer el archivo de cant empleados");
             }
@@ -318,6 +319,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(fis));
                 cantTareas = Integer.parseInt(br.readLine());
+                br.close();
             } catch (Exception e) {
                 state.output.fatal(e + ", error al leer el archivo de cant tareas");
             }
@@ -423,8 +425,8 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpecies
         
 
         // LOADING GLOBAL MIN/MAX GENES
-        long _minGene = state.parameters.getLongWithDefault(base.push(P_MINGENE),def.push(P_MINGENE),0);
-        long _maxGene = state.parameters.getLong(base.push(P_MAXGENE),def.push(P_MAXGENE), _minGene);
+        long _minGene = 0;
+        long _maxGene = cantEmpleados-1;
         if (_maxGene < _minGene)
             state.output.fatal("IntegerVectorSpeciesP1E1 must have a default min-gene which is <= the default max-gene",
                 base.push(P_MAXGENE),def.push(P_MAXGENE));

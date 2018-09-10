@@ -3,52 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="50f67880-fd28-4fde-b368-6ab48eb12f70" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generador.py" beforeDir="false" afterPath="$PROJECT_DIR$/generador.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out.stat" beforeDir="false" afterPath="$PROJECT_DIR$/out.stat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practico_cantidad_empleados" beforeDir="false" afterPath="$PROJECT_DIR$/practico_cantidad_empleados" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practico_cantidad_tareas" beforeDir="false" afterPath="$PROJECT_DIR$/practico_cantidad_tareas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practico_empleados" beforeDir="false" afterPath="$PROJECT_DIR$/practico_empleados" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practico_tareas" beforeDir="false" afterPath="$PROJECT_DIR$/practico_tareas" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solucion.csv" beforeDir="false" afterPath="$PROJECT_DIR$/solucion.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solucionp1e1.out" beforeDir="false" afterPath="$PROJECT_DIR$/solucionp1e1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ec/EvolutionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/EvolutionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ec/simple/SimpleEvolutionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/simple/SimpleEvolutionState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ec/simple/SimpleStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/simple/SimpleStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ec/vector/breed/VectorMutationPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ec/vector/breed/VectorMutationPipeline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ec/EvolutionState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/EvolutionState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ec/app/p1e1/p1e1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/app/p1e1/p1e1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ec/app/p1e1/p1e1.params" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/app/p1e1/p1e1.params" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ec/simple/SimpleEvolutionState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/simple/SimpleEvolutionState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ec/simple/SimpleStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/simple/SimpleStatistics.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ec/vector/IntegerVectorSpeciesP1E1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/vector/IntegerVectorSpeciesP1E1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ec/vector/breed/VectorMutationPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ec/vector/breed/VectorMutationPipeline.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ecj-26.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ecj-26.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/jacoco.exec" beforeDir="false" afterPath="$PROJECT_DIR$/target/jacoco.exec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/index.source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/p1e1.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/p1e1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/p1e1.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.app.p1e1/p1e1.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleEvolutionState.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleEvolutionState.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleEvolutionState.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleEvolutionState.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleStatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleStatistics.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/SimpleStatistics.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.simple/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.simple/index.source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector.breed/VectorMutationPipeline.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector.breed/VectorMutationPipeline.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector.breed/VectorMutationPipeline.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector.breed/VectorMutationPipeline.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector.breed/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector.breed/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector.breed/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector.breed/index.source.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorIndividualP1E1.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorIndividualP1E1.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorSpeciesP1E1.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorSpeciesP1E1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorSpeciesP1E1.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector/IntegerVectorSpeciesP1E1.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec.vector/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec.vector/index.source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec/EvolutionState.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec/EvolutionState.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec/EvolutionState.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec/EvolutionState.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/site/jacoco/ec/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/ec/index.source.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/jacoco-sessions.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/jacoco-sessions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/site/jacoco/jacoco.csv" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/jacoco.csv" afterDir="false" />
@@ -71,9 +42,10 @@
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.simple.SimpleBreederTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.simple.SimpleBreederTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.util.MiscTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.util.MiscTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/ec.util.ParameterDatabaseTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ec.util.ParameterDatabaseTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefire6355168264011684638tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefire_06122635082192945383tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefirebooter8342054775137657397.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefire8790991827814427950tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefire_07832782689221769143tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefirebooter2472220207314713298.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/verificador.py" beforeDir="false" afterPath="$PROJECT_DIR$/verificador.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -117,11 +89,11 @@
     <favorites_list name="ecj" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="p1e1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
+            <state relative-caret-position="1335">
               <caret line="98" column="116" selection-start-line="98" selection-start-column="116" selection-end-line="98" selection-end-column="116" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -130,24 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EvolutionState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ec/EvolutionState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="281" selection-start-line="281" selection-end-line="281" />
-              <folding>
-                <element signature="e#12182#12183#0" expanded="true" />
-                <element signature="e#12234#12235#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SimpleStatistics.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ec/simple/SimpleStatistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="277" column="39" selection-start-line="277" selection-start-column="39" selection-end-line="277" selection-end-column="39" />
+            <state relative-caret-position="501">
+              <caret line="273" column="54" selection-start-line="273" selection-start-column="54" selection-end-line="273" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#SimpleStatistics#0" />
@@ -162,8 +121,6 @@
                 <element signature="docComment;method#bypassPostEvaluationStatistics#0;class#SimpleStatistics#0" />
                 <element signature="docComment;field#warned#0;class#SimpleStatistics#0" />
                 <element signature="docComment;method#bypassFinalStatistics#0;class#SimpleStatistics#0" />
-                <element signature="e#9119#9120#0" expanded="true" />
-                <element signature="e#9171#9172#0" expanded="true" />
                 <element signature="docComment;method#finalStatistics#0;class#SimpleStatistics#0" />
               </folding>
             </state>
@@ -173,7 +130,7 @@
       <file leaf-file-name="SimpleEvolutionState.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ec/simple/SimpleEvolutionState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
+            <state relative-caret-position="1110">
               <caret line="79" selection-start-line="79" selection-end-line="79" />
             </state>
           </provider>
@@ -182,32 +139,30 @@
       <file leaf-file-name="IntegerVectorSpeciesP1E1.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="342" column="91" lean-forward="true" selection-start-line="342" selection-start-column="91" selection-end-line="342" selection-end-column="91" />
+            <state relative-caret-position="282">
+              <caret line="28" column="49" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntegerVectorIndividualP1E1.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="797">
+              <caret line="141" column="87" selection-start-line="141" selection-start-column="87" selection-end-line="141" selection-end-column="87" />
               <folding>
-                <element signature="e#8051#8052#0" expanded="true" />
-                <element signature="e#8083#8084#0" expanded="true" />
-                <element signature="e#8137#8138#0" expanded="true" />
-                <element signature="e#8174#8175#0" expanded="true" />
-                <element signature="e#8208#8209#0" expanded="true" />
-                <element signature="e#8237#8238#0" expanded="true" />
-                <element signature="e#8273#8274#0" expanded="true" />
-                <element signature="e#8306#8307#0" expanded="true" />
-                <element signature="e#8351#8352#0" expanded="true" />
-                <element signature="e#8382#8383#0" expanded="true" />
-                <element signature="e#8429#8430#0" expanded="true" />
-                <element signature="e#8471#8472#0" expanded="true" />
-                <element signature="e#8508#8509#0" expanded="true" />
-                <element signature="e#8573#8574#0" expanded="true" />
-                <element signature="e#8607#8608#0" expanded="true" />
-                <element signature="e#8666#8667#0" expanded="true" />
-                <element signature="e#8691#8692#0" expanded="true" />
-                <element signature="e#8715#8716#0" expanded="true" />
-                <element signature="e#8754#8755#0" expanded="true" />
-                <element signature="e#8798#8799#0" expanded="true" />
-                <element signature="e#8837#8838#0" expanded="true" />
-                <element signature="e#8873#8874#0" expanded="true" />
+                <element signature="e#4123#4124#0" expanded="true" />
+                <element signature="e#4207#4208#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VectorSpeciesP1E1.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/VectorSpeciesP1E1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="350" column="34" selection-start-line="350" selection-start-column="34" selection-end-line="350" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -215,57 +170,31 @@
       <file leaf-file-name="p1e1.params" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="781">
-              <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VectorMutationPipeline.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/breed/VectorMutationPipeline.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="83" column="15" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VectorIndividual.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/VectorIndividual.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="96" selection-start-line="96" selection-end-line="96" />
+            <state relative-caret-position="285">
+              <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find />
-      <find>ruta</find>
-      <find>empleados.cvs</find>
-      <find>&quot;habilidad&quot;</find>
-      <find>populate(</find>
-      <find>System</find>
-      <find />
-      <find>EvolutionState</find>
-      <find />
-      <find />
-      <find>best_of_run</find>
-      <find>mutation-probabi</find>
-      <find>mutation-prob</find>
-      <find>cantGeneracionesSinAvance</find>
-      <find>SimpleStatistics</find>
       <find>generation</find>
       <find>integer</find>
       <find>IntegerVectorSpeciesP1E1</find>
       <find>generations</find>
-      <find />
+      <find>.source.0</find>
       <find>mutationProbability</find>
       <find>min</find>
-      <find />
+      <find>ec.vector.breed</find>
       <find>mutation</find>
       <find>default</find>
       <find>V_RANDOM_WALK</find>
@@ -273,11 +202,27 @@
       <find>ind</find>
       <find>evaluations</find>
       <find>V_RANDOM_WALK_MUTATION</find>
+      <find>maxg</find>
+      <find>genomeSize</find>
+      <find>P_MINGENE</find>
+      <find>.clo</find>
+      <find>ruta</find>
+      <find>integerV</find>
+      <find>cant</find>
+      <find>P_GENOMESIZE</find>
+      <find>integervectorS</find>
+      <find>_maxGene</find>
+      <find>maxgen</find>
+      <find>maxGene</find>
+      <find>vectorSpecies</find>
+      <find>VectorSpecies</find>
+      <find>canttare</find>
     </findStrings>
     <replaceStrings>
       <replace>IntegerVectorSpeciesP1E1</replace>
       <replace>.source.0.source.0</replace>
       <replace>IntegerVectorIndividualP1E1</replace>
+      <replace>VectorSpeciesP1E1</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/main/resources/</dir>
@@ -303,7 +248,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/ec/app/p1e1/empleados.csv" />
         <option value="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpecies.java" />
         <option value="$PROJECT_DIR$/src/test/java/ec/coevolve/MultiPopCoevolutionaryEvaluatorTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java" />
         <option value="$PROJECT_DIR$/src/main/java/ec/Subpopulation.java" />
         <option value="$PROJECT_DIR$/src/main/java/ec/simple/SimpleEvolutionState.java" />
         <option value="$PROJECT_DIR$/src/main/java/ec/EvolutionState.java" />
@@ -311,7 +255,11 @@
         <option value="$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java" />
         <option value="$PROJECT_DIR$/src/main/java/ec/vector/breed/VectorMutationPipeline.java" />
         <option value="$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/vector/VectorSpecies.java" />
         <option value="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/vector/FloatVectorSpecies.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ec/vector/VectorSpeciesP1E1.java" />
         <option value="$PROJECT_DIR$/src/main/java/ec/simple/SimpleStatistics.java" />
       </list>
     </option>
@@ -335,10 +283,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="65" />
-    <option name="y" value="-4" />
-    <option name="width" value="1855" />
-    <option name="height" value="1084" />
+    <option name="x" value="-1856" />
+    <option name="y" value="-11" />
+    <option name="width" value="1857" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -388,7 +336,17 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ec" type="462c0819:PsiDirectoryNode" />
-              <item name="simple" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="distribucionalumnos" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ec" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="p1e1" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -410,7 +368,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="ec.vector.breed.VectorMutationPipeline&#9;PSI&#9;JAVA://ec.vector.breed.VectorMutationPipeline&#10;integer&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java&#10;crossover&#9;PSI&#9;JAVA://ec.gp.koza.CrossoverPipeline&#10;populate&#9;PSI&#9;JAVA://ec.Population#populate&#10;integervectorindividualp1&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java&#10;MultiPopCoevolutionaryEvaluatorTest&#9;PSI&#9;JAVA://ec.coevolve.MultiPopCoevolutionaryEvaluatorTest&#10;IntegerVectorSpeciesP&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java&#10;simplefi&#9;PSI&#9;JAVA://ec.simple.SimpleFitness&#10;tareas&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/p1e1/tareas.csv&#10;IntegerVectorSpecies&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorSpecies.java&#10;p1e1.p&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/resources/ec/app/p1e1/p1e1.params&#10;p1e1&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/p1e1/p1e1.java" />
+    <property name="SearchEverywhereHistoryKey" value="FloatVectorSpecies&#9;PSI&#9;JAVA://ec.vector.FloatVectorSpecies&#10;ec.vector.breed.VectorMutationPipeline&#9;PSI&#9;JAVA://ec.vector.breed.VectorMutationPipeline&#10;integer&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java&#10;crossover&#9;PSI&#9;JAVA://ec.gp.koza.CrossoverPipeline&#10;populate&#9;PSI&#9;JAVA://ec.Population#populate&#10;integervectorindividualp1&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java&#10;MultiPopCoevolutionaryEvaluatorTest&#9;PSI&#9;JAVA://ec.coevolve.MultiPopCoevolutionaryEvaluatorTest&#10;IntegerVectorSpeciesP&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java&#10;simplefi&#9;PSI&#9;JAVA://ec.simple.SimpleFitness&#10;tareas&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/p1e1/tareas.csv&#10;IntegerVectorSpecies&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/vector/IntegerVectorSpecies.java&#10;p1e1.p&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/resources/ec/app/p1e1/p1e1.params&#10;p1e1&#9;FILE&#9;file:///home/fmatonte/Desktop/AlgoritmosEvolutivos/p1e1/distribucionalumnos/src/main/java/ec/app/p1e1/p1e1.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -555,77 +513,41 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="-1856" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3297414" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3297414" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5002764" side_tool="true" weight="0.3297414" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32946378" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997236" weight="0.3297414" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.058189657" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4997236" weight="0.3297414" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989224" weight="0.13930348" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.4698276" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" order="2" sideWeight="0.5010776" side_tool="true" weight="0.20508568" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11553344" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3297414" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3297414" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997236" weight="0.3297414" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5002764" side_tool="true" weight="0.3297414" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4997236" weight="0.3297414" />
-      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.32946378" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11774461" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3297414" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.4698276" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -647,10 +569,6 @@
           <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
           <folding>
             <element signature="docComment;class#IntegerVectorIndividual#0" />
-            <element signature="e#4168#4169#0" expanded="true" />
-            <element signature="e#4200#4201#0" expanded="true" />
-            <element signature="e#4325#4326#0" expanded="true" />
-            <element signature="e#4354#4355#0" expanded="true" />
             <element signature="method#defaultCrossover#0;class#IntegerVectorIndividual#0" />
             <element signature="docComment;method#split#0;class#IntegerVectorIndividual#0" />
             <element signature="method#split#0;class#IntegerVectorIndividual#0" />
@@ -707,10 +625,6 @@
           <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
           <folding>
             <element signature="docComment;class#IntegerVectorIndividual#0" />
-            <element signature="e#4168#4169#0" expanded="true" />
-            <element signature="e#4200#4201#0" expanded="true" />
-            <element signature="e#4325#4326#0" expanded="true" />
-            <element signature="e#4354#4355#0" expanded="true" />
             <element signature="method#defaultCrossover#0;class#IntegerVectorIndividual#0" />
             <element signature="docComment;method#split#0;class#IntegerVectorIndividual#0" />
             <element signature="method#split#0;class#IntegerVectorIndividual#0" />
@@ -759,33 +673,15 @@
     <entry file="file://$PROJECT_DIR$/libs/ecj/docs/manual/manual.tex" />
     <entry file="file://$PROJECT_DIR$/make.out" />
     <entry file="file://$PROJECT_DIR$/Makefile" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/tareas.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/empleados.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/tareas.csv" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/empleados.csv" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/tareas.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/Test.java" />
     <entry file="file://$PROJECT_DIR$/mvn.out">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -793,34 +689,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ec/app/bbob/BBOBenchmarksTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="7" column="6" selection-start-line="7" selection-end-line="7" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpecies.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="314" column="79" lean-forward="true" selection-start-line="314" selection-start-column="79" selection-end-line="314" selection-end-column="79" />
-          <folding>
-            <element signature="e#8015#8016#0" expanded="true" />
-            <element signature="e#8057#8058#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ec/app/bbob/BBOBenchmarksTest.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/ec/coevolve/MultiPopCoevolutionaryEvaluatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="41" column="92" selection-start-line="41" selection-start-column="92" selection-end-line="41" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -828,9 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,21 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
-          <folding>
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#286#287#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="106" column="71" selection-start-line="106" selection-start-column="64" selection-end-line="106" selection-end-column="71" />
-          <folding>
-            <element signature="e#4123#4124#0" expanded="true" />
-            <element signature="e#4207#4208#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -950,34 +805,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/VectorSpecies.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="360" selection-start-line="360" selection-end-line="360" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ec/spatial/SpatialTournamentSelection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
           <caret line="88" column="46" lean-forward="true" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
-          <folding>
-            <element signature="e#4372#4373#0" expanded="true" />
-            <element signature="e#4440#4441#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/VectorIndividual.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
+        <state relative-caret-position="1380">
           <caret line="96" selection-start-line="96" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/breed/VectorMutationPipeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="83" column="15" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/simple/SimpleEvolutionState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/EvolutionState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="172" column="18" selection-start-line="172" selection-start-column="18" selection-end-line="172" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpecies.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="88" column="55" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/FloatVectorSpecies.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="155" column="53" selection-start-line="155" selection-start-column="53" selection-end-line="155" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="28" column="49" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/VectorSpecies.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+          <folding>
+            <element signature="docComment;class#VectorSpecies#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorIndividualP1E1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="797">
+          <caret line="141" column="87" selection-start-line="141" selection-start-column="87" selection-end-line="141" selection-end-column="87" />
+          <folding>
+            <element signature="e#4123#4124#0" expanded="true" />
+            <element signature="e#4207#4208#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/VectorSpeciesP1E1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="350" column="34" selection-start-line="350" selection-start-column="34" selection-end-line="350" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ec/app/p1e1/p1e1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
+        <state relative-caret-position="1335">
           <caret line="98" column="116" selection-start-line="98" selection-start-column="116" selection-end-line="98" selection-end-column="116" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -985,73 +906,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/EvolutionState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="281" selection-start-line="281" selection-end-line="281" />
-          <folding>
-            <element signature="e#12182#12183#0" expanded="true" />
-            <element signature="e#12234#12235#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/simple/SimpleEvolutionState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/breed/VectorMutationPipeline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="83" column="15" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ec/app/p1e1/p1e1.params">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ec/vector/IntegerVectorSpeciesP1E1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="342" column="91" lean-forward="true" selection-start-line="342" selection-start-column="91" selection-end-line="342" selection-end-column="91" />
-          <folding>
-            <element signature="e#8051#8052#0" expanded="true" />
-            <element signature="e#8083#8084#0" expanded="true" />
-            <element signature="e#8137#8138#0" expanded="true" />
-            <element signature="e#8174#8175#0" expanded="true" />
-            <element signature="e#8208#8209#0" expanded="true" />
-            <element signature="e#8237#8238#0" expanded="true" />
-            <element signature="e#8273#8274#0" expanded="true" />
-            <element signature="e#8306#8307#0" expanded="true" />
-            <element signature="e#8351#8352#0" expanded="true" />
-            <element signature="e#8382#8383#0" expanded="true" />
-            <element signature="e#8429#8430#0" expanded="true" />
-            <element signature="e#8471#8472#0" expanded="true" />
-            <element signature="e#8508#8509#0" expanded="true" />
-            <element signature="e#8573#8574#0" expanded="true" />
-            <element signature="e#8607#8608#0" expanded="true" />
-            <element signature="e#8666#8667#0" expanded="true" />
-            <element signature="e#8691#8692#0" expanded="true" />
-            <element signature="e#8715#8716#0" expanded="true" />
-            <element signature="e#8754#8755#0" expanded="true" />
-            <element signature="e#8798#8799#0" expanded="true" />
-            <element signature="e#8837#8838#0" expanded="true" />
-            <element signature="e#8873#8874#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ec/simple/SimpleStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="277" column="39" selection-start-line="277" selection-start-column="39" selection-end-line="277" selection-end-column="39" />
+        <state relative-caret-position="501">
+          <caret line="273" column="54" selection-start-line="273" selection-start-column="54" selection-end-line="273" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#SimpleStatistics#0" />
@@ -1066,8 +924,6 @@
             <element signature="docComment;method#bypassPostEvaluationStatistics#0;class#SimpleStatistics#0" />
             <element signature="docComment;field#warned#0;class#SimpleStatistics#0" />
             <element signature="docComment;method#bypassFinalStatistics#0;class#SimpleStatistics#0" />
-            <element signature="e#9119#9120#0" expanded="true" />
-            <element signature="e#9171#9172#0" expanded="true" />
             <element signature="docComment;method#finalStatistics#0;class#SimpleStatistics#0" />
           </folding>
         </state>

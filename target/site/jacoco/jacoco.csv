@@ -90,6 +90,7 @@ ecj,ec.vector,GeneVectorSpecies,32,0,0,0,7,0,2,0,2,0
 ecj,ec.vector,BitVectorSpecies,171,0,14,0,32,0,11,0,4,0
 ecj,ec.vector,IntegerVectorIndividual,1229,88,147,4,187,17,96,7,18,6
 ecj,ec.vector,LongVectorIndividual,1385,0,163,0,218,0,111,0,26,0
+ecj,ec.vector,VectorSpeciesP1E1,1691,0,158,0,252,0,97,0,18,0
 ecj,ec.vector,DoubleVectorIndividual,2056,58,230,7,333,12,150,5,28,3
 ecj,ec.vector,VectorIndividual,27,3,0,0,13,1,11,1,11,1
 ecj,ec.vector,Gene,91,0,0,0,19,0,14,0,14,0
@@ -99,7 +100,7 @@ ecj,ec.vector,FloatVectorIndividual,2160,0,237,0,344,0,155,0,31,0
 ecj,ec.vector,BitVectorIndividual,851,0,91,0,149,0,69,0,21,0
 ecj,ec.vector,GeneVectorIndividual,936,0,94,0,152,0,70,0,21,0
 ecj,ec.vector,IntegerVectorSpecies,600,315,82,26,87,53,55,9,4,6
-ecj,ec.vector,IntegerVectorSpeciesP1E1,1468,0,140,0,234,0,91,0,21,0
+ecj,ec.vector,IntegerVectorSpeciesP1E1,1458,0,140,0,236,0,91,0,21,0
 ecj,ec.app.parity.func,Or,34,0,2,0,7,0,5,0,4,0
 ecj,ec.app.parity.func,Nand,43,0,2,0,9,0,5,0,4,0
 ecj,ec.app.parity.func,And,35,0,2,0,7,0,5,0,4,0

@@ -116,7 +116,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
         //System.out.print("defaultCrossover, crossoverType: " + s.crossoverType);
         switch(s.crossoverType)
             {
-            case VectorSpecies.C_ONE_POINT:
+            case VectorSpeciesP1E1.C_ONE_POINT:
                 //                point = state.random[thread].nextInt((len / s.chunksize)+1);
                 // we want to go from 0 ... len-1 
                 // so that there is only ONE case of NO-OP crossover, not TWO
@@ -128,7 +128,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
                     genome[x] = tmp; 
                     }
                 break;
-            case VectorSpecies.C_ONE_POINT_NO_NOP:
+            case VectorSpeciesP1E1.C_ONE_POINT_NO_NOP:
                 point = state.random[thread].nextInt((len / s.chunksize) - 1) + 1;  // so it goes from 1 .. len-1
                 for(int x=0;x<point*s.chunksize;x++)
                     { 
@@ -137,7 +137,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
                     genome[x] = tmp; 
                     }
                 break;
-            case VectorSpecies.C_TWO_POINT: 
+            case VectorSpeciesP1E1.C_TWO_POINT:
                 {
                 //                int point0 = state.random[thread].nextInt((len / s.chunksize)+1);
                 //                point = state.random[thread].nextInt((len / s.chunksize)+1);
@@ -166,7 +166,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
                     }
                 }
             break;
-            case VectorSpecies.C_TWO_POINT_NO_NOP: 
+            case VectorSpeciesP1E1.C_TWO_POINT_NO_NOP:
                 {
                 point = state.random[thread].nextInt((len / s.chunksize));
                 int point0 = 0;
@@ -181,7 +181,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
                     }
                 }
             break;
-            case VectorSpecies.C_ANY_POINT:
+            case VectorSpeciesP1E1.C_ANY_POINT:
                 for(int x=0;x<len/s.chunksize;x++) 
                     if (state.random[thread].nextBoolean(s.crossoverProbability))
                         for(int y=x*s.chunksize;y<(x+1)*s.chunksize;y++)
@@ -191,7 +191,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
                             genome[y] = tmp;
                             }
                 break;
-            case VectorSpecies.C_LINE_RECOMB:
+            case VectorSpeciesP1E1.C_LINE_RECOMB:
                 {
                 double alpha = state.random[thread].nextDouble() * (1 + 2*s.lineDistance) - s.lineDistance;
                 double beta = state.random[thread].nextDouble() * (1 + 2*s.lineDistance) - s.lineDistance;
@@ -211,7 +211,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
                     }
                 }
             break;
-            case VectorSpecies.C_INTERMED_RECOMB:
+            case VectorSpeciesP1E1.C_INTERMED_RECOMB:
                 {
                 long t,u;
                 long min, max;

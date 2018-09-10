@@ -116,7 +116,7 @@ import java.io.*;
         //System.out.print(&quot;defaultCrossover, crossoverType: &quot; + s.crossoverType);
 <span class="nc bnc" id="L117" title="All 8 branches missed.">        switch(s.crossoverType)</span>
             {
-            case VectorSpecies.C_ONE_POINT:
+            case VectorSpeciesP1E1.C_ONE_POINT:
                 //                point = state.random[thread].nextInt((len / s.chunksize)+1);
                 // we want to go from 0 ... len-1 
                 // so that there is only ONE case of NO-OP crossover, not TWO
@@ -128,7 +128,7 @@ import java.io.*;
 <span class="nc" id="L128">                    genome[x] = tmp; </span>
                     }
 <span class="nc" id="L130">                break;</span>
-            case VectorSpecies.C_ONE_POINT_NO_NOP:
+            case VectorSpeciesP1E1.C_ONE_POINT_NO_NOP:
 <span class="nc" id="L132">                point = state.random[thread].nextInt((len / s.chunksize) - 1) + 1;  // so it goes from 1 .. len-1</span>
 <span class="nc bnc" id="L133" title="All 2 branches missed.">                for(int x=0;x&lt;point*s.chunksize;x++)</span>
                     { 
@@ -137,7 +137,7 @@ import java.io.*;
 <span class="nc" id="L137">                    genome[x] = tmp; </span>
                     }
 <span class="nc" id="L139">                break;</span>
-            case VectorSpecies.C_TWO_POINT: 
+            case VectorSpeciesP1E1.C_TWO_POINT:
                 {
                 //                int point0 = state.random[thread].nextInt((len / s.chunksize)+1);
                 //                point = state.random[thread].nextInt((len / s.chunksize)+1);
@@ -166,7 +166,7 @@ import java.io.*;
                     }
                 }
 <span class="nc" id="L168">            break;</span>
-            case VectorSpecies.C_TWO_POINT_NO_NOP: 
+            case VectorSpeciesP1E1.C_TWO_POINT_NO_NOP:
                 {
 <span class="nc" id="L171">                point = state.random[thread].nextInt((len / s.chunksize));</span>
 <span class="nc" id="L172">                int point0 = 0;</span>
@@ -181,7 +181,7 @@ import java.io.*;
                     }
                 }
 <span class="nc" id="L183">            break;</span>
-            case VectorSpecies.C_ANY_POINT:
+            case VectorSpeciesP1E1.C_ANY_POINT:
 <span class="nc bnc" id="L185" title="All 2 branches missed.">                for(int x=0;x&lt;len/s.chunksize;x++) </span>
 <span class="nc bnc" id="L186" title="All 2 branches missed.">                    if (state.random[thread].nextBoolean(s.crossoverProbability))</span>
 <span class="nc bnc" id="L187" title="All 2 branches missed.">                        for(int y=x*s.chunksize;y&lt;(x+1)*s.chunksize;y++)</span>
@@ -191,7 +191,7 @@ import java.io.*;
 <span class="nc" id="L191">                            genome[y] = tmp;</span>
                             }
 <span class="nc" id="L193">                break;</span>
-            case VectorSpecies.C_LINE_RECOMB:
+            case VectorSpeciesP1E1.C_LINE_RECOMB:
                 {
 <span class="nc" id="L196">                double alpha = state.random[thread].nextDouble() * (1 + 2*s.lineDistance) - s.lineDistance;</span>
 <span class="nc" id="L197">                double beta = state.random[thread].nextDouble() * (1 + 2*s.lineDistance) - s.lineDistance;</span>
@@ -211,7 +211,7 @@ import java.io.*;
                     }
                 }
 <span class="nc" id="L213">            break;</span>
-            case VectorSpecies.C_INTERMED_RECOMB:
+            case VectorSpeciesP1E1.C_INTERMED_RECOMB:
                 {
                 long t,u;
                 long min, max;

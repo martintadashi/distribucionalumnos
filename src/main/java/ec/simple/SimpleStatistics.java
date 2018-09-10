@@ -271,7 +271,7 @@ public class SimpleStatistics extends Statistics implements SteadyStateStatistic
                         if (sol.containsKey(i)) {
                             String tareasAImprimir = "";
                             for (Integer t: sol.get(i)) {
-                                tareasAImprimir += " " + (String.valueOf(t+1));
+                                tareasAImprimir += " t" + (String.valueOf(t+1));
                             }
                             Integer idEmpleado = i + 1;
                             //System.out.println("idEmpleado: "+idEmpleado +"\ttareasAImprimir: "+ tareasAImprimir);
