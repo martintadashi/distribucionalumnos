@@ -1,0 +1,36 @@
+#! /bin/bash
+#ejercicio2 <tareas> <empleados> <solución> <cant_tareas> <cant_empleados>
+#ejercicio2 	$1	$2	     $3		 $4		$5
+RUTA_AL_JAR=target/
+NOMBRE_JAR=ecj-26.jar
+RUTA_AL_PARAMS=app/p1e1/
+NOMBRE_PARAMS=p1e1.params
+for i in {1} ; do
+	CANT_EMPLEADOS=$((1 + RANDOM % 50))
+	CANT_TAREAS=$(($CANT_EMPLEADOS + RANDOM % 50))    
+	echo =============================
+    echo "Number $i: $(date +%Y-%m-%d-%H:%M:%S)"
+	#Genero una instancia
+	#./generador <cant_tereas> <cant_empleados> <archivo_salida>	
+	python generador.py $CANT_TAREAS $CANT_EMPLEADOS practico
+	echo "Corro el generador para "$CANT_TAREAS" y "$CANT_EMPLEADOS
+	#Corro el Jar
+	echo "Ejecuto: java -jar "$RUTA_AL_JAR$NOMBRE_JAR" -from "$RUTA_AL_PARAMS$NOMBRE_PARAMS 
+	java -jar $RUTA_AL_JAR$NOMBRE_JAR -from $RUTA_AL_PARAMS$NOMBRE_PARAMS
+	#Lo verifico
+	echo "python verificador.py practico_tareas practico_empleados solucion.csv"
+	python verificador.py practico_tareas practico_empleados solucion.csv
+
+done | tee timing.log
+
+
+
+
+
+
+
+
+
+
+
+

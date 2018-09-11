@@ -89,14 +89,14 @@ import ec.vector.*;
                 } else{
                     //System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);
                 }
-                //System.out.println(&quot;\tAl individuo: &quot;+ind2.genotypeToString());
+                //System.out.println(&quot;\tAl individuo: &quot;);
 
 
 
 <span class="nc bnc" id="L96" title="All 2 branches missed.">                boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] &lt;= t_spe.getF(); // factible??</span>
                 //ideal = ideal &amp;&amp; (((SimpleFitness) ind2.fitness).getMinFitness() &gt; costoProyecto);
 <span class="nc bnc" id="L98" title="All 4 branches missed.">                ideal =  ideal &amp;&amp; (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;</span>
-<span class="nc bnc" id="L99" title="All 4 branches missed.">                ideal = ideal || state.generation - state.getBestFitnessGeneration() &gt; (int) state.numGenerations/10;</span>
+                //ideal = ideal || state.generation - state.getBestFitnessGeneration() &gt; (int) state.numGenerations/10;
                 //System.out.println(&quot;state.generation: &quot; + state.generation + &quot;,getBestFitnessGeneration(): &quot; + state.getBestFitnessGeneration() + &quot;, state.numGenerations: &quot; + state.numGenerations);
                 //System.out.println(&quot;ideal= &quot;+ideal+&quot;  horasDeTrabajoParaCadaEmpleado[posMax]&quot;+ horasDeTrabajoParaCadaEmpleado[posMax]);
 <span class="nc" id="L102">                ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), ideal);</span>

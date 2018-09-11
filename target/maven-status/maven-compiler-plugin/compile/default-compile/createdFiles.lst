@@ -461,6 +461,7 @@ ec/app/royaltree/RoyalTree.class
 ec/display/Console$5.class
 ec/app/majority/func/Xor.class
 ec/BreedingPipeline.class
+ec/simple/SimpleEvolutionStateP1E1.class
 ec/gp/koza/CrossoverPipeline.class
 ec/display/ControlPanel$2.class
 ec/app/lawnmower/func/LawnERC.class

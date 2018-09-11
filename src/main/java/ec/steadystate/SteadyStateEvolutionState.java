@@ -10,7 +10,8 @@ import ec.*;
 import ec.util.Parameter;
 import ec.util.Checkpoint;
 //import ec.eval.MasterProblem;
-import java.util.*; 
+import java.io.IOException;
+import java.util.*;
 
 /* 
  * SteadyStateEvolutionState.java
@@ -193,7 +194,7 @@ public class SteadyStateEvolutionState extends EvolutionState
                 { 
                 if ( partiallyFullSubpop )   // is population full?
                     {
-                    ind = population.subpops.get(whichSubpop).species.newIndividual(this, 0);  // unthreaded
+                        ind = population.subpops.get(whichSubpop).species.newIndividual(this, 0);  // unthreaded
                     }
                 else  
                     { 

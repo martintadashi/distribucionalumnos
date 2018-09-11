@@ -9,9 +9,9 @@ package ec.simple;
 import ec.*;
 import ec.util.Checkpoint;
 
-/* 
+/*
  * SimpleEvolutionState.java
- * 
+ *
  * Created: Tue Aug 10 22:14:46 1999
  * By: Sean Luke
  */
@@ -35,13 +35,13 @@ import ec.util.Checkpoint;
  * most applications of Genetic Algorithms and Genetic Programming.
  *
  * @author Sean Luke
- * @version 1.0 
+ * @version 1.0
  */
 
-public class SimpleEvolutionState extends EvolutionState
-    {
+public class SimpleEvolutionStateP1E1 extends EvolutionState
+{
     public void startFresh()
-        {
+    {
         output.message("Setting up");
         setup(this,null);  // a garbage Parameter
 
@@ -56,35 +56,35 @@ public class SimpleEvolutionState extends EvolutionState
         // an attempt is made to connect to island models etc.
         exchanger.initializeContacts(this);
         evaluator.initializeContacts(this);
-        }
+    }
 
     public int evolve()
-        {
-        if (generation >= 0)
+    {
+        if (generation > 0)
             //TODO DESCOMENTAR
-            output.message("Generation " + generation +"\tEvaluations So Far " + evaluations);
+            //output.message("Generation " + generation +"\tEvaluations So Far " + evaluations);
 
-        // EVALUATION
-        statistics.preEvaluationStatistics(this);
+            // EVALUATION
+            statistics.preEvaluationStatistics(this);
         evaluator.evaluatePopulation(this);
         statistics.postEvaluationStatistics(this);
 
         // SHOULD WE QUIT?
         String runCompleteMessage = evaluator.runComplete(this);
         if ((runCompleteMessage != null) && quitOnRunComplete)
-            {
+        {
             output.message(runCompleteMessage);
             return R_SUCCESS;
-            }
+        }
 
         // SHOULD WE QUIT?
         if ((numGenerations != UNDEFINED && generation >= numGenerations-1) || (numEvaluations != UNDEFINED && evaluations >= numEvaluations)) {
             return R_FAILURE;
         }
- 
+
         // INCREMENT GENERATION AND CHECKPOINT
         generation++;
-       
+
         // PRE-BREEDING EXCHANGING
         statistics.prePreBreedingExchangeStatistics(this);
         population = exchanger.preBreedingExchangePopulation(this);
@@ -92,45 +92,45 @@ public class SimpleEvolutionState extends EvolutionState
 
         String exchangerWantsToShutdown = exchanger.runComplete(this);
         if (exchangerWantsToShutdown!=null)
-            { 
+        {
             output.message(exchangerWantsToShutdown);
             return R_SUCCESS;
-            }
+        }
 
-        
+
         // BREEDING
         statistics.preBreedingStatistics(this);
         population = breeder.breedPopulation(this);
         statistics.postBreedingStatistics(this);
-            
-       
+
+
         // POST-BREEDING EXCHANGING
         statistics.prePostBreedingExchangeStatistics(this);
         population = exchanger.postBreedingExchangePopulation(this);
         statistics.postPostBreedingExchangeStatistics(this);
 
-        if (checkpoint && (generation - 1) % checkpointModulo == 0) 
-            {
+        if (checkpoint && (generation - 1) % checkpointModulo == 0)
+        {
             output.message("Checkpointing");
             statistics.preCheckpointStatistics(this);
             Checkpoint.setCheckpoint(this);
             statistics.postCheckpointStatistics(this);
-            }
+        }
 
         return R_NOTDONE;
-        }
+    }
 
     /**
      * @param result
      */
-    public void finish(int result) 
-        {
+    public void finish(int result)
+    {
         output.message("Total Evaluations " + evaluations);
         /* finish up -- we completed. */
         statistics.finalStatistics(this,result);
         finisher.finishPopulation(this,result);
         exchanger.closeContacts(this,result);
         evaluator.closeContacts(this,result);
-        }
-
     }
+
+}

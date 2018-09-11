@@ -1,0 +1,56 @@
+=============================
+Number {1}: 2018-09-10-18:20:25
+Corro el generador para 80 y 47
+Ejecuto: java -jar target/ecj-26.jar -from app/p1e1/p1e1.params
+Sueldo real empleado 0: 150.0
+Sueldo real empleado 1: 184.28572
+Sueldo real empleado 2: 214.99998
+Sueldo real empleado 3: 180.53978
+Sueldo real empleado 4: 181.37256
+Sueldo real empleado 5: 188.6076
+Sueldo real empleado 6: 185.53192
+Sueldo real empleado 7: 165.2381
+Sueldo real empleado 8: 155.55556
+Sueldo real empleado 9: 215.7143
+Sueldo real empleado 10: 177.89474
+Sueldo real empleado 11: 204.34782
+Sueldo real empleado 12: 195.78313
+Sueldo real empleado 13: 173.80952
+Sueldo real empleado 14: 216.66666
+Sueldo real empleado 15: 158.78635
+Sueldo real empleado 16: 173.12312
+Sueldo real empleado 17: 198.79517
+Sueldo real empleado 18: 147.18468
+Sueldo real empleado 19: 154.94313
+Sueldo real empleado 20: 212.2807
+Sueldo real empleado 21: 167.29166
+Sueldo real empleado 22: 193.11424
+Sueldo real empleado 23: 162.7155
+Sueldo real empleado 24: 179.023
+Sueldo real empleado 25: 221.53847
+Sueldo real empleado 26: 147.651
+Sueldo real empleado 27: 186.17021
+Sueldo real empleado 28: 151.02042
+Sueldo real empleado 29: 179.71939
+Sueldo real empleado 30: 170.6383
+Sueldo real empleado 31: 152.11823
+Sueldo real empleado 32: 169.73685
+Sueldo real empleado 33: 259.6154
+Sueldo real empleado 34: 152.94118
+Sueldo real empleado 35: 213.18408
+Sueldo real empleado 36: 180.80807
+Sueldo real empleado 37: 163.84616
+Sueldo real empleado 38: 178.92473
+Sueldo real empleado 39: 196.50204
+Sueldo real empleado 40: 215.46547
+Sueldo real empleado 41: 188.75
+Sueldo real empleado 42: 163.97058
+Sueldo real empleado 43: 182.11382
+Sueldo real empleado 44: 169.72478
+Sueldo real empleado 45: 203.33333
+Sueldo real empleado 46: 212.66667
+Evaluated: T
+Fitness: -3531841.0
+28 37 8 26 31 8 0 26 16 18 34 34 0 18 32 8 26 28 31 31 34 28 26 18 28 26 26 34 18 26 31 18 18 15 18 31 18 34 26 26 28 42 26 31 34 18 26 18 26 26 0 26 28 26 0 18 18 19 18 34 18 18 0 8 8 0 0 31 18 26 31 26 26 8 26 18 42 28 26 0
+python verificador.py practico_tareas practico_empleados solucion.csv
+No cumple con el tiempo máximo de finalización (1581 > 66).

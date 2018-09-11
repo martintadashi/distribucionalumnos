@@ -634,10 +634,10 @@ import ec.*;
     public Individual newIndividual(final EvolutionState state, int thread) 
         
         {
-<span class="fc" id="L637">        VectorIndividual newind = (VectorIndividual)(super.newIndividual(state, thread));</span>
+<span class="nc" id="L637">        VectorIndividual newind = (VectorIndividual)(super.newIndividual(state, thread));</span>
 
-<span class="pc bpc" id="L639" title="1 of 2 branches missed.">        if (genomeResizeAlgorithm == C_NONE)</span>
-<span class="fc" id="L640">            newind.reset( state, thread );</span>
+<span class="nc bnc" id="L639" title="All 2 branches missed.">        if (genomeResizeAlgorithm == C_NONE)</span>
+<span class="nc" id="L640">            newind.reset( state, thread );</span>
 <span class="nc bnc" id="L641" title="All 2 branches missed.">        else if (genomeResizeAlgorithm == C_UNIFORM)</span>
             {
 <span class="nc" id="L643">            int size = state.random[thread].nextInt(maxInitialSize - minInitialSize + 1) + minInitialSize;</span>
@@ -650,7 +650,7 @@ import ec.*;
 <span class="nc" id="L650">            newind.reset(state, thread, size);</span>
             }
                         
-<span class="fc" id="L653">        return newind;</span>
+<span class="nc" id="L653">        return newind;</span>
         }
 
 

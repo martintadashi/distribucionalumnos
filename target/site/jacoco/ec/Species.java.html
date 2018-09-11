@@ -6,7 +6,10 @@
 
 
 package ec;
+import ec.app.p1e1.Tarea;
 import ec.util.*;
+import ec.vector.IntegerVectorIndividualP1E1;
+
 import java.io.*;
 import java.util.*;
 
@@ -75,7 +78,7 @@ import java.util.*;
  * @version 1.0 
  */
 
-<span class="fc" id="L78">public abstract class Species implements Prototype</span>
+<span class="fc" id="L81">public abstract class Species implements Prototype</span>
     {
     public static final String P_INDIVIDUAL = &quot;ind&quot;;
     public static final String P_PIPE = &quot;pipe&quot;;
@@ -94,21 +97,21 @@ import java.util.*;
         {
         try
             {
-<span class="nc" id="L97">            Species myobj = (Species) (super.clone());</span>
-<span class="nc" id="L98">            myobj.i_prototype = (Individual) i_prototype.clone();</span>
-<span class="nc" id="L99">            myobj.f_prototype = (Fitness) f_prototype.clone();</span>
-<span class="nc" id="L100">            myobj.pipe_prototype = (BreedingSource) pipe_prototype.clone();</span>
-<span class="nc" id="L101">            return myobj;</span>
+<span class="nc" id="L100">            Species myobj = (Species) (super.clone());</span>
+<span class="nc" id="L101">            myobj.i_prototype = (Individual) i_prototype.clone();</span>
+<span class="nc" id="L102">            myobj.f_prototype = (Fitness) f_prototype.clone();</span>
+<span class="nc" id="L103">            myobj.pipe_prototype = (BreedingSource) pipe_prototype.clone();</span>
+<span class="nc" id="L104">            return myobj;</span>
             }
-<span class="nc" id="L103">        catch (CloneNotSupportedException e)</span>
-<span class="nc" id="L104">            { throw new InternalError(); } // never happens</span>
+<span class="nc" id="L106">        catch (CloneNotSupportedException e)</span>
+<span class="nc" id="L107">            { throw new InternalError(); } // never happens</span>
         } 
         
     /** Called whenever the Breeder calls produce(...) on a BreedingPipeline, in order to pass
         a new &quot;misc&quot; object.  Customize this as you see fit: the default just builds an empty hashmap. */
     public HashMap&lt;String, Object&gt; buildMisc(EvolutionState state, int subpopIndex, int thread)
         {
-<span class="nc" id="L111">        return new HashMap&lt;String,Object&gt;();</span>
+<span class="nc" id="L114">        return new HashMap&lt;String,Object&gt;();</span>
         }
    
     /** Provides a brand-new individual to fill in a population.  The default form
@@ -118,19 +121,65 @@ import java.util.*;
         you will need to override this method as you see fit.
     */
     
-    public Individual newIndividual(final EvolutionState state, int thread)
-        {
-<span class="fc" id="L123">        Individual newind = (Individual)(i_prototype.clone());</span>
+    public Individual newIndividual(final EvolutionState state, int thread)  {
+<span class="nc" id="L125">        Individual newind = (Individual)(i_prototype.clone());</span>
 
         // Set the fitness
-<span class="fc" id="L126">        newind.fitness = (Fitness)(f_prototype.clone());</span>
-<span class="fc" id="L127">        newind.evaluated = false;</span>
+<span class="nc" id="L128">        newind.fitness = (Fitness)(f_prototype.clone());</span>
+<span class="nc" id="L129">        newind.evaluated = false;</span>
 
         // Set the species to me
-<span class="fc" id="L130">        newind.species = this;</span>
+<span class="nc" id="L132">        newind.species = this;</span>
+        // ...and we're ready!*/
+        //... para hacer magias:
 
-        // ...and we're ready!
-<span class="fc" id="L133">        return newind;</span>
+//        Random r = new Random();
+//        int cantEmpleados= ((IntegerVectorIndividualP1E1) newind).getCantidadEmpleados();
+//        int cantTareas= ((IntegerVectorIndividualP1E1) newind).getCantidadTareas();
+//        int[] nuevoGenotype=new int[cantTareas];
+//        //El numero de empleado me devuelve su lista de tareas
+//        HashMap&lt;Integer, List&lt;Integer&gt;&gt; tareasDeEmpleado = new HashMap&lt;Integer, List&lt;Integer&gt;&gt;();
+//        //Lista de tareas
+//        ArrayList &lt;Integer&gt; Tareas=new ArrayList&lt;Integer&gt;();
+//        //System.out.print(&quot;\tTareas          :&quot;);
+//        for (int iTareas = 0; iTareas &lt; cantTareas; iTareas++) {
+//            Tareas.add(iTareas);
+//            //System.out.print(iTareas);
+//        }    //System.out.println();
+//        //System.out.print(&quot;\tTareas Sorteadas:&quot;);
+//
+//        //Repartimos RoundRobin tareas elegidas al azar entre los empleados
+//        for (int iTareas = 0; iTareas &lt; cantTareas; iTareas++) {
+//            //Sorteo una tarea aleatoria entre las que quedan
+//            int tareaAleatoria= r.nextInt(Tareas.size());
+//            //System.out.print(&quot;\tIndice Tareas Sorteada: &quot;+tareaAleatoria);
+//            //System.out.print(&quot;\tTareas Sorteada: &quot;+Tareas.get(tareaAleatoria));
+//            //System.out.print(Tareas.get(tareaAleatoria));
+//            //Se la asigno a un empleado en orden
+//            if (tareasDeEmpleado.containsKey(iTareas % cantEmpleados)) {
+//                tareasDeEmpleado.get(iTareas % cantEmpleados).add(Tareas.get(tareaAleatoria));
+//            } else {
+//                List&lt;Integer&gt; tareas = new ArrayList&lt;Integer&gt;();
+//                tareas.add(Tareas.get(tareaAleatoria));
+//                tareasDeEmpleado.put(iTareas % cantEmpleados, tareas);
+//            }
+//            //la quito de la lista
+//            Tareas.remove(tareaAleatoria);
+//        }//System.out.println();
+//        //Convierto nuestra representacion a una acorde al genotype
+//        //itero entre empleados
+//        for (int iEmpleado = 0; iEmpleado &lt;cantEmpleados ; iEmpleado++) {
+//            //Itero entre las tareas de ese empleado
+//            for (int iTareas = 0; iTareas &lt; tareasDeEmpleado.get(iEmpleado).size(); iTareas++) {
+//                nuevoGenotype[tareasDeEmpleado.get(iEmpleado).get(iTareas)]=iEmpleado;
+//            }
+//        }
+//        //Borro el genotype viejo y cargo el nuevo
+//        ((IntegerVectorIndividualP1E1) newind).cargarGenotype(state,nuevoGenotype);
+//        System.out.println(&quot;Generado en Species: &quot;);
+//        //devuelvo el nuevo individuo
+//        newind.printIndividualForHumans(state,0);
+<span class="nc" id="L182">        return newind;</span>
         }
     
     /**
@@ -147,20 +196,20 @@ import java.util.*;
         final LineNumberReader reader)
         throws IOException
         {
-<span class="nc" id="L150">        Individual newind = (Individual)(i_prototype.clone());</span>
+<span class="nc" id="L199">        Individual newind = (Individual)(i_prototype.clone());</span>
         
         // Set the fitness
-<span class="nc" id="L153">        newind.fitness = (Fitness)(f_prototype.clone());</span>
-<span class="nc" id="L154">        newind.evaluated = false; // for sanity's sake, though it's a useless line</span>
+<span class="nc" id="L202">        newind.fitness = (Fitness)(f_prototype.clone());</span>
+<span class="nc" id="L203">        newind.evaluated = false; // for sanity's sake, though it's a useless line</span>
 
         // load that sucker
-<span class="nc" id="L157">        newind.readIndividual(state,reader);</span>
+<span class="nc" id="L206">        newind.readIndividual(state,reader);</span>
 
         // Set the species to me
-<span class="nc" id="L160">        newind.species = this;</span>
+<span class="nc" id="L209">        newind.species = this;</span>
 
         // and we're ready!
-<span class="nc" id="L163">        return newind;  </span>
+<span class="nc" id="L212">        return newind;  </span>
         }
 
     /**
@@ -176,20 +225,20 @@ import java.util.*;
         final DataInput dataInput)
         throws IOException
         {
-<span class="nc" id="L179">        Individual newind = (Individual)(i_prototype.clone());</span>
+<span class="nc" id="L228">        Individual newind = (Individual)(i_prototype.clone());</span>
         
         // Set the fitness
-<span class="nc" id="L182">        newind.fitness = (Fitness)(f_prototype.clone());</span>
-<span class="nc" id="L183">        newind.evaluated = false; // for sanity's sake, though it's a useless line</span>
+<span class="nc" id="L231">        newind.fitness = (Fitness)(f_prototype.clone());</span>
+<span class="nc" id="L232">        newind.evaluated = false; // for sanity's sake, though it's a useless line</span>
 
         // Set the species to me
-<span class="nc" id="L186">        newind.species = this;</span>
+<span class="nc" id="L235">        newind.species = this;</span>
 
         // load that sucker
-<span class="nc" id="L189">        newind.readIndividual(state,dataInput);</span>
+<span class="nc" id="L238">        newind.readIndividual(state,dataInput);</span>
 
         // and we're ready!
-<span class="nc" id="L192">        return newind;  </span>
+<span class="nc" id="L241">        return newind;  </span>
         }
         
         
@@ -202,25 +251,25 @@ import java.util.*;
  
     public void setup(final EvolutionState state, final Parameter base)
         {
-<span class="fc" id="L205">        Parameter def = defaultBase();</span>
+<span class="fc" id="L254">        Parameter def = defaultBase();</span>
 
         // load the breeding pipeline
-<span class="fc" id="L208">        pipe_prototype = (BreedingSource)(state.parameters.getInstanceForParameter(base.push(P_PIPE),def.push(P_PIPE),BreedingSource.class));</span>
-<span class="fc" id="L209">        pipe_prototype.setup(state,base.push(P_PIPE));</span>
+<span class="fc" id="L257">        pipe_prototype = (BreedingSource)(state.parameters.getInstanceForParameter(base.push(P_PIPE),def.push(P_PIPE),BreedingSource.class));</span>
+<span class="fc" id="L258">        pipe_prototype.setup(state,base.push(P_PIPE));</span>
 
         // I promised over in BreedingSource.java that this method would get called.
-<span class="fc" id="L212">        state.output.exitIfErrors();</span>
+<span class="fc" id="L261">        state.output.exitIfErrors();</span>
 
         // load our individual prototype
-<span class="fc" id="L215">        i_prototype = (Individual)(state.parameters.getInstanceForParameter(base.push(P_INDIVIDUAL), def.push(P_INDIVIDUAL), Individual. class));</span>
+<span class="fc" id="L264">        i_prototype = (Individual)(state.parameters.getInstanceForParameter(base.push(P_INDIVIDUAL), def.push(P_INDIVIDUAL), Individual. class));</span>
         // set the species to me before setting up the individual, so they know who I am
-<span class="fc" id="L217">        i_prototype.species = this;</span>
-<span class="fc" id="L218">        i_prototype.setup(state,base.push(P_INDIVIDUAL));</span>
+<span class="fc" id="L266">        i_prototype.species = this;</span>
+<span class="fc" id="L267">        i_prototype.setup(state,base.push(P_INDIVIDUAL));</span>
         
         // load our fitness
-<span class="fc" id="L221">        f_prototype = (Fitness) state.parameters.getInstanceForParameter( base.push(P_FITNESS),def.push(P_FITNESS), Fitness.class);</span>
-<span class="fc" id="L222">        f_prototype.setup(state,base.push(P_FITNESS));</span>
-<span class="fc" id="L223">        }</span>
+<span class="fc" id="L270">        f_prototype = (Fitness) state.parameters.getInstanceForParameter( base.push(P_FITNESS),def.push(P_FITNESS), Fitness.class);</span>
+<span class="fc" id="L271">        f_prototype.setup(state,base.push(P_FITNESS));</span>
+<span class="fc" id="L272">        }</span>
     }
 
 

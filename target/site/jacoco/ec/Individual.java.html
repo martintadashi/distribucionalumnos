@@ -94,7 +94,7 @@ import ec.util.*;
         try 
             { 
 <span class="fc" id="L96">            Individual myobj = (Individual) (super.clone());</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">            if (myobj.fitness != null) myobj.fitness = (Fitness)(fitness.clone());</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">            if (myobj.fitness != null) myobj.fitness = (Fitness)(fitness.clone());</span>
 <span class="fc" id="L98">            return myobj; </span>
             }
 <span class="nc" id="L100">        catch (CloneNotSupportedException e) </span>

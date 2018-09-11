@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleEvolutionState.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecj</a> &gt; <a href="index.source.html" class="el_package">ec.simple</a> &gt; <span class="el_source">SimpleEvolutionState.java</span></div><h1>SimpleEvolutionState.java</h1><pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleEvolutionStateP1E1.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ecj</a> &gt; <a href="index.source.html" class="el_package">ec.simple</a> &gt; <span class="el_source">SimpleEvolutionStateP1E1.java</span></div><h1>SimpleEvolutionStateP1E1.java</h1><pre class="source lang-java linenums">/*
   Copyright 2006 by Sean Luke
   Licensed under the Academic Free License version 3.0
   See the file &quot;LICENSE&quot; for more information
@@ -9,9 +9,9 @@ package ec.simple;
 import ec.*;
 import ec.util.Checkpoint;
 
-/* 
+/*
  * SimpleEvolutionState.java
- * 
+ *
  * Created: Tue Aug 10 22:14:46 1999
  * By: Sean Luke
  */
@@ -35,13 +35,13 @@ import ec.util.Checkpoint;
  * most applications of Genetic Algorithms and Genetic Programming.
  *
  * @author Sean Luke
- * @version 1.0 
+ * @version 1.0
  */
 
-<span class="nc" id="L41">public class SimpleEvolutionState extends EvolutionState</span>
-    {
+<span class="nc" id="L41">public class SimpleEvolutionStateP1E1 extends EvolutionState</span>
+{
     public void startFresh()
-        {
+    {
 <span class="nc" id="L45">        output.message(&quot;Setting up&quot;);</span>
 <span class="nc" id="L46">        setup(this,null);  // a garbage Parameter</span>
 
@@ -56,35 +56,35 @@ import ec.util.Checkpoint;
         // an attempt is made to connect to island models etc.
 <span class="nc" id="L57">        exchanger.initializeContacts(this);</span>
 <span class="nc" id="L58">        evaluator.initializeContacts(this);</span>
-<span class="nc" id="L59">        }</span>
+<span class="nc" id="L59">    }</span>
 
     public int evolve()
-        {
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (generation &gt;= 0)</span>
+    {
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (generation &gt; 0)</span>
             //TODO DESCOMENTAR
-<span class="nc" id="L65">            output.message(&quot;Generation &quot; + generation +&quot;\tEvaluations So Far &quot; + evaluations);</span>
+            //output.message(&quot;Generation &quot; + generation +&quot;\tEvaluations So Far &quot; + evaluations);
 
-        // EVALUATION
-<span class="nc" id="L68">        statistics.preEvaluationStatistics(this);</span>
+            // EVALUATION
+<span class="nc" id="L68">            statistics.preEvaluationStatistics(this);</span>
 <span class="nc" id="L69">        evaluator.evaluatePopulation(this);</span>
 <span class="nc" id="L70">        statistics.postEvaluationStatistics(this);</span>
 
         // SHOULD WE QUIT?
 <span class="nc" id="L73">        String runCompleteMessage = evaluator.runComplete(this);</span>
 <span class="nc bnc" id="L74" title="All 4 branches missed.">        if ((runCompleteMessage != null) &amp;&amp; quitOnRunComplete)</span>
-            {
+        {
 <span class="nc" id="L76">            output.message(runCompleteMessage);</span>
 <span class="nc" id="L77">            return R_SUCCESS;</span>
-            }
+        }
 
         // SHOULD WE QUIT?
 <span class="nc bnc" id="L81" title="All 8 branches missed.">        if ((numGenerations != UNDEFINED &amp;&amp; generation &gt;= numGenerations-1) || (numEvaluations != UNDEFINED &amp;&amp; evaluations &gt;= numEvaluations)) {</span>
 <span class="nc" id="L82">            return R_FAILURE;</span>
         }
- 
+
         // INCREMENT GENERATION AND CHECKPOINT
 <span class="nc" id="L86">        generation++;</span>
-       
+
         // PRE-BREEDING EXCHANGING
 <span class="nc" id="L89">        statistics.prePreBreedingExchangeStatistics(this);</span>
 <span class="nc" id="L90">        population = exchanger.preBreedingExchangePopulation(this);</span>
@@ -92,46 +92,46 @@ import ec.util.Checkpoint;
 
 <span class="nc" id="L93">        String exchangerWantsToShutdown = exchanger.runComplete(this);</span>
 <span class="nc bnc" id="L94" title="All 2 branches missed.">        if (exchangerWantsToShutdown!=null)</span>
-            { 
+        {
 <span class="nc" id="L96">            output.message(exchangerWantsToShutdown);</span>
 <span class="nc" id="L97">            return R_SUCCESS;</span>
-            }
+        }
 
-        
+
         // BREEDING
 <span class="nc" id="L102">        statistics.preBreedingStatistics(this);</span>
 <span class="nc" id="L103">        population = breeder.breedPopulation(this);</span>
 <span class="nc" id="L104">        statistics.postBreedingStatistics(this);</span>
-            
-       
+
+
         // POST-BREEDING EXCHANGING
 <span class="nc" id="L108">        statistics.prePostBreedingExchangeStatistics(this);</span>
 <span class="nc" id="L109">        population = exchanger.postBreedingExchangePopulation(this);</span>
 <span class="nc" id="L110">        statistics.postPostBreedingExchangeStatistics(this);</span>
 
-<span class="nc bnc" id="L112" title="All 4 branches missed.">        if (checkpoint &amp;&amp; (generation - 1) % checkpointModulo == 0) </span>
-            {
+<span class="nc bnc" id="L112" title="All 4 branches missed.">        if (checkpoint &amp;&amp; (generation - 1) % checkpointModulo == 0)</span>
+        {
 <span class="nc" id="L114">            output.message(&quot;Checkpointing&quot;);</span>
 <span class="nc" id="L115">            statistics.preCheckpointStatistics(this);</span>
 <span class="nc" id="L116">            Checkpoint.setCheckpoint(this);</span>
 <span class="nc" id="L117">            statistics.postCheckpointStatistics(this);</span>
-            }
+        }
 
 <span class="nc" id="L120">        return R_NOTDONE;</span>
-        }
+    }
 
     /**
      * @param result
      */
-    public void finish(int result) 
-        {
+    public void finish(int result)
+    {
 <span class="nc" id="L128">        output.message(&quot;Total Evaluations &quot; + evaluations);</span>
         /* finish up -- we completed. */
 <span class="nc" id="L130">        statistics.finalStatistics(this,result);</span>
 <span class="nc" id="L131">        finisher.finishPopulation(this,result);</span>
 <span class="nc" id="L132">        exchanger.closeContacts(this,result);</span>
 <span class="nc" id="L133">        evaluator.closeContacts(this,result);</span>
-<span class="nc" id="L134">        }</span>
+<span class="nc" id="L134">    }</span>
 
-    }
+}
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

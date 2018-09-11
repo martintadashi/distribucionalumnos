@@ -167,7 +167,8 @@ import java.util.ArrayList;
 <span class="nc bnc" id="L167" title="All 2 branches missed.">            for(int x = 0; x&lt; subpops.size(); x++)</span>
 <span class="nc" id="L168">                subpops.get(x).populate(state, thread);</span>
             }
-<span class="nc" id="L170">        }</span>
+
+<span class="nc" id="L171">        }</span>
         
         
     /** Prints an entire population in a form readable by humans. 
@@ -177,8 +178,8 @@ import java.util.ArrayList;
         final int log, 
         final int verbosity)
         {
-<span class="nc" id="L180">        printPopulationForHumans(state, log);</span>
-<span class="nc" id="L181">        }</span>
+<span class="nc" id="L181">        printPopulationForHumans(state, log);</span>
+<span class="nc" id="L182">        }</span>
         
     /** Prints an entire population in a form readable by humans but also parseable by the computer using readPopulation(EvolutionState, LineNumberReader).
         @deprecated Verbosity no longer has meaning
@@ -187,85 +188,85 @@ import java.util.ArrayList;
         final int log, 
         final int verbosity)
         {
-<span class="nc" id="L190">        printPopulation(state, log);</span>
-<span class="nc" id="L191">        }</span>
+<span class="nc" id="L191">        printPopulation(state, log);</span>
+<span class="nc" id="L192">        }</span>
         
     /** Prints an entire population in a form readable by humans, with a verbosity of Output.V_NO_GENERAL. */
     public void printPopulationForHumans(final EvolutionState state,
         final int log)
         {
-<span class="nc" id="L197">        state.output.println(NUM_SUBPOPS_PREAMBLE + subpops.size(),  log);</span>
-<span class="nc bnc" id="L198" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
+<span class="nc" id="L198">        state.output.println(NUM_SUBPOPS_PREAMBLE + subpops.size(),  log);</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
             {
-<span class="nc" id="L200">            state.output.println(SUBPOP_INDEX_PREAMBLE + i,  log);</span>
-<span class="nc" id="L201">            subpops.get(i).printSubpopulationForHumans(state, log);</span>
+<span class="nc" id="L201">            state.output.println(SUBPOP_INDEX_PREAMBLE + i,  log);</span>
+<span class="nc" id="L202">            subpops.get(i).printSubpopulationForHumans(state, log);</span>
             }
-<span class="nc" id="L203">        }</span>
+<span class="nc" id="L204">        }</span>
         
     /** Prints an entire population in a form readable by humans but also parseable by the computer using readPopulation(EvolutionState, LineNumberReader), with a verbosity of Output.V_NO_GENERAL. */
     public void printPopulation(final EvolutionState state,
         final int log)
         {
-<span class="nc" id="L209">        state.output.println(NUM_SUBPOPS_PREAMBLE + Code.encode(subpops.size()),  log);</span>
-<span class="nc bnc" id="L210" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
+<span class="nc" id="L210">        state.output.println(NUM_SUBPOPS_PREAMBLE + Code.encode(subpops.size()),  log);</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
             {
-<span class="nc" id="L212">            state.output.println(SUBPOP_INDEX_PREAMBLE + Code.encode(i),  log);</span>
-<span class="nc" id="L213">            subpops.get(i).printSubpopulation(state, log);</span>
+<span class="nc" id="L213">            state.output.println(SUBPOP_INDEX_PREAMBLE + Code.encode(i),  log);</span>
+<span class="nc" id="L214">            subpops.get(i).printSubpopulation(state, log);</span>
             }
-<span class="nc" id="L215">        }</span>
+<span class="nc" id="L216">        }</span>
         
     /** Prints an entire population in a form readable by humans but also parseable by the computer using readPopulation(EvolutionState, LineNumberReader). */
     public void printPopulation(final EvolutionState state,
         final PrintWriter writer)
         {
-<span class="nc" id="L221">        writer.println(NUM_SUBPOPS_PREAMBLE + Code.encode(subpops.size()));</span>
-<span class="nc bnc" id="L222" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
+<span class="nc" id="L222">        writer.println(NUM_SUBPOPS_PREAMBLE + Code.encode(subpops.size()));</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
             {
-<span class="nc" id="L224">            writer.println(SUBPOP_INDEX_PREAMBLE + Code.encode(i));         </span>
-<span class="nc" id="L225">            subpops.get(i).printSubpopulation(state, writer);</span>
+<span class="nc" id="L225">            writer.println(SUBPOP_INDEX_PREAMBLE + Code.encode(i));         </span>
+<span class="nc" id="L226">            subpops.get(i).printSubpopulation(state, writer);</span>
             }
-<span class="nc" id="L227">        }</span>
+<span class="nc" id="L228">        }</span>
     
     /** Reads a population from the format generated by printPopulation(....).  The number of subpopulations and the species information must be identical. */
     public void readPopulation(final EvolutionState state, 
         final LineNumberReader reader) throws IOException
         {
         // read the number of subpops and check to see if this appears to be a valid individual
-<span class="nc" id="L234">        int numSubpops = Code.readIntegerWithPreamble(NUM_SUBPOPS_PREAMBLE, state, reader);</span>
+<span class="nc" id="L235">        int numSubpops = Code.readIntegerWithPreamble(NUM_SUBPOPS_PREAMBLE, state, reader);</span>
         
         // read in subpops
-<span class="nc bnc" id="L237" title="All 2 branches missed.">        if (numSubpops != subpops.size())  // definitely wrong</span>
-<span class="nc" id="L238">            state.output.fatal(&quot;On reading population from text stream, the number of subpopulations was wrong.&quot;);</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">        if (numSubpops != subpops.size())  // definitely wrong</span>
+<span class="nc" id="L239">            state.output.fatal(&quot;On reading population from text stream, the number of subpopulations was wrong.&quot;);</span>
 
-<span class="nc bnc" id="L240" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
             {
-<span class="nc" id="L242">            int j = Code.readIntegerWithPreamble(SUBPOP_INDEX_PREAMBLE, state, reader);</span>
+<span class="nc" id="L243">            int j = Code.readIntegerWithPreamble(SUBPOP_INDEX_PREAMBLE, state, reader);</span>
             // sanity check
-<span class="nc bnc" id="L244" title="All 2 branches missed.">            if (j!=i) state.output.warnOnce(&quot;On reading population from text stream, some subpopulation indexes in the population did not match.&quot;);</span>
-<span class="nc" id="L245">            subpops.get(i).readSubpopulation(state, reader);</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">            if (j!=i) state.output.warnOnce(&quot;On reading population from text stream, some subpopulation indexes in the population did not match.&quot;);</span>
+<span class="nc" id="L246">            subpops.get(i).readSubpopulation(state, reader);</span>
             }
-<span class="nc" id="L247">        }</span>
+<span class="nc" id="L248">        }</span>
     
     /** Writes a population in binary form, in a format readable by readPopulation(EvolutionState, DataInput). */
     public void writePopulation(final EvolutionState state,
         final DataOutput dataOutput) throws IOException
         {
-<span class="nc" id="L253">        dataOutput.writeInt(subpops.size());</span>
-<span class="nc bnc" id="L254" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
-<span class="nc" id="L255">            subpops.get(i).writeSubpopulation(state, dataOutput);</span>
-<span class="nc" id="L256">        }</span>
+<span class="nc" id="L254">        dataOutput.writeInt(subpops.size());</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
+<span class="nc" id="L256">            subpops.get(i).writeSubpopulation(state, dataOutput);</span>
+<span class="nc" id="L257">        }</span>
     
     /** Reads a population in binary form, from the format generated by writePopulation(...). The number of subpopulations and the species information must be identical. */
     public void readPopulation(final EvolutionState state,
         final DataInput dataInput) throws IOException
         {
-<span class="nc" id="L262">        int numSubpopulations = dataInput.readInt();</span>
-<span class="nc bnc" id="L263" title="All 2 branches missed.">        if (numSubpopulations != subpops.size())</span>
-<span class="nc" id="L264">            state.output.fatal(&quot;On reading subpopulation from binary stream, the number of subpopulations was wrong.&quot;);</span>
+<span class="nc" id="L263">        int numSubpopulations = dataInput.readInt();</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">        if (numSubpopulations != subpops.size())</span>
+<span class="nc" id="L265">            state.output.fatal(&quot;On reading subpopulation from binary stream, the number of subpopulations was wrong.&quot;);</span>
 
-<span class="nc bnc" id="L266" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
-<span class="nc" id="L267">            subpops.get(i).readSubpopulation(state, dataInput);</span>
-<span class="nc" id="L268">        }</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">        for(int i = 0; i &lt; subpops.size(); i++)</span>
+<span class="nc" id="L268">            subpops.get(i).readSubpopulation(state, dataInput);</span>
+<span class="nc" id="L269">        }</span>
 
 
     }

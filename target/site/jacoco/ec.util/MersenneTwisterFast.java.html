@@ -866,64 +866,64 @@ public strictfp class MersenneTwisterFast implements Serializable, Cloneable
         int y;
         int z;
 
-<span class="fc bfc" id="L869" title="All 2 branches covered.">        if (mti &gt;= N)   // generate N words at one time</span>
+<span class="nc bnc" id="L869" title="All 2 branches missed.">        if (mti &gt;= N)   // generate N words at one time</span>
             {
             int kk;
-<span class="fc" id="L872">            final int[] mt = this.mt; // locals are slightly faster </span>
-<span class="fc" id="L873">            final int[] mag01 = this.mag01; // locals are slightly faster </span>
+<span class="nc" id="L872">            final int[] mt = this.mt; // locals are slightly faster </span>
+<span class="nc" id="L873">            final int[] mag01 = this.mag01; // locals are slightly faster </span>
             
-<span class="fc bfc" id="L875" title="All 2 branches covered.">            for (kk = 0; kk &lt; N - M; kk++)</span>
+<span class="nc bnc" id="L875" title="All 2 branches missed.">            for (kk = 0; kk &lt; N - M; kk++)</span>
                 {
-<span class="fc" id="L877">                y = (mt[kk] &amp; UPPER_MASK) | (mt[kk+1] &amp; LOWER_MASK);</span>
-<span class="fc" id="L878">                mt[kk] = mt[kk+M] ^ (y &gt;&gt;&gt; 1) ^ mag01[y &amp; 0x1];</span>
+<span class="nc" id="L877">                y = (mt[kk] &amp; UPPER_MASK) | (mt[kk+1] &amp; LOWER_MASK);</span>
+<span class="nc" id="L878">                mt[kk] = mt[kk+M] ^ (y &gt;&gt;&gt; 1) ^ mag01[y &amp; 0x1];</span>
                 }
-<span class="fc bfc" id="L880" title="All 2 branches covered.">            for (; kk &lt; N-1; kk++)</span>
+<span class="nc bnc" id="L880" title="All 2 branches missed.">            for (; kk &lt; N-1; kk++)</span>
                 {
-<span class="fc" id="L882">                y = (mt[kk] &amp; UPPER_MASK) | (mt[kk+1] &amp; LOWER_MASK);</span>
-<span class="fc" id="L883">                mt[kk] = mt[kk+(M-N)] ^ (y &gt;&gt;&gt; 1) ^ mag01[y &amp; 0x1];</span>
+<span class="nc" id="L882">                y = (mt[kk] &amp; UPPER_MASK) | (mt[kk+1] &amp; LOWER_MASK);</span>
+<span class="nc" id="L883">                mt[kk] = mt[kk+(M-N)] ^ (y &gt;&gt;&gt; 1) ^ mag01[y &amp; 0x1];</span>
                 }
-<span class="fc" id="L885">            y = (mt[N-1] &amp; UPPER_MASK) | (mt[0] &amp; LOWER_MASK);</span>
-<span class="fc" id="L886">            mt[N-1] = mt[M-1] ^ (y &gt;&gt;&gt; 1) ^ mag01[y &amp; 0x1];</span>
+<span class="nc" id="L885">            y = (mt[N-1] &amp; UPPER_MASK) | (mt[0] &amp; LOWER_MASK);</span>
+<span class="nc" id="L886">            mt[N-1] = mt[M-1] ^ (y &gt;&gt;&gt; 1) ^ mag01[y &amp; 0x1];</span>
 
-<span class="fc" id="L888">            mti = 0;</span>
+<span class="nc" id="L888">            mti = 0;</span>
             }
   
-<span class="fc" id="L891">        y = mt[mti++];</span>
-<span class="fc" id="L892">        y ^= y &gt;&gt;&gt; 11;                          // TEMPERING_SHIFT_U(y)</span>
-<span class="fc" id="L893">        y ^= (y &lt;&lt; 7) &amp; TEMPERING_MASK_B;       // TEMPERING_SHIFT_S(y)</span>
-<span class="fc" id="L894">        y ^= (y &lt;&lt; 15) &amp; TEMPERING_MASK_C;      // TEMPERING_SHIFT_T(y)</span>
-<span class="fc" id="L895">        y ^= (y &gt;&gt;&gt; 18);                        // TEMPERING_SHIFT_L(y)</span>
+<span class="nc" id="L891">        y = mt[mti++];</span>
+<span class="nc" id="L892">        y ^= y &gt;&gt;&gt; 11;                          // TEMPERING_SHIFT_U(y)</span>
+<span class="nc" id="L893">        y ^= (y &lt;&lt; 7) &amp; TEMPERING_MASK_B;       // TEMPERING_SHIFT_S(y)</span>
+<span class="nc" id="L894">        y ^= (y &lt;&lt; 15) &amp; TEMPERING_MASK_C;      // TEMPERING_SHIFT_T(y)</span>
+<span class="nc" id="L895">        y ^= (y &gt;&gt;&gt; 18);                        // TEMPERING_SHIFT_L(y)</span>
 
-<span class="fc bfc" id="L897" title="All 2 branches covered.">        if (mti &gt;= N)   // generate N words at one time</span>
+<span class="nc bnc" id="L897" title="All 2 branches missed.">        if (mti &gt;= N)   // generate N words at one time</span>
             {
             int kk;
-<span class="fc" id="L900">            final int[] mt = this.mt; // locals are slightly faster </span>
-<span class="fc" id="L901">            final int[] mag01 = this.mag01; // locals are slightly faster </span>
+<span class="nc" id="L900">            final int[] mt = this.mt; // locals are slightly faster </span>
+<span class="nc" id="L901">            final int[] mag01 = this.mag01; // locals are slightly faster </span>
             
-<span class="fc bfc" id="L903" title="All 2 branches covered.">            for (kk = 0; kk &lt; N - M; kk++)</span>
+<span class="nc bnc" id="L903" title="All 2 branches missed.">            for (kk = 0; kk &lt; N - M; kk++)</span>
                 {
-<span class="fc" id="L905">                z = (mt[kk] &amp; UPPER_MASK) | (mt[kk+1] &amp; LOWER_MASK);</span>
-<span class="fc" id="L906">                mt[kk] = mt[kk+M] ^ (z &gt;&gt;&gt; 1) ^ mag01[z &amp; 0x1];</span>
+<span class="nc" id="L905">                z = (mt[kk] &amp; UPPER_MASK) | (mt[kk+1] &amp; LOWER_MASK);</span>
+<span class="nc" id="L906">                mt[kk] = mt[kk+M] ^ (z &gt;&gt;&gt; 1) ^ mag01[z &amp; 0x1];</span>
                 }
-<span class="fc bfc" id="L908" title="All 2 branches covered.">            for (; kk &lt; N-1; kk++)</span>
+<span class="nc bnc" id="L908" title="All 2 branches missed.">            for (; kk &lt; N-1; kk++)</span>
                 {
-<span class="fc" id="L910">                z = (mt[kk] &amp; UPPER_MASK) | (mt[kk+1] &amp; LOWER_MASK);</span>
-<span class="fc" id="L911">                mt[kk] = mt[kk+(M-N)] ^ (z &gt;&gt;&gt; 1) ^ mag01[z &amp; 0x1];</span>
+<span class="nc" id="L910">                z = (mt[kk] &amp; UPPER_MASK) | (mt[kk+1] &amp; LOWER_MASK);</span>
+<span class="nc" id="L911">                mt[kk] = mt[kk+(M-N)] ^ (z &gt;&gt;&gt; 1) ^ mag01[z &amp; 0x1];</span>
                 }
-<span class="fc" id="L913">            z = (mt[N-1] &amp; UPPER_MASK) | (mt[0] &amp; LOWER_MASK);</span>
-<span class="fc" id="L914">            mt[N-1] = mt[M-1] ^ (z &gt;&gt;&gt; 1) ^ mag01[z &amp; 0x1];</span>
+<span class="nc" id="L913">            z = (mt[N-1] &amp; UPPER_MASK) | (mt[0] &amp; LOWER_MASK);</span>
+<span class="nc" id="L914">            mt[N-1] = mt[M-1] ^ (z &gt;&gt;&gt; 1) ^ mag01[z &amp; 0x1];</span>
             
-<span class="fc" id="L916">            mti = 0;</span>
+<span class="nc" id="L916">            mti = 0;</span>
             }
         
-<span class="fc" id="L919">        z = mt[mti++];</span>
-<span class="fc" id="L920">        z ^= z &gt;&gt;&gt; 11;                          // TEMPERING_SHIFT_U(z)</span>
-<span class="fc" id="L921">        z ^= (z &lt;&lt; 7) &amp; TEMPERING_MASK_B;       // TEMPERING_SHIFT_S(z)</span>
-<span class="fc" id="L922">        z ^= (z &lt;&lt; 15) &amp; TEMPERING_MASK_C;      // TEMPERING_SHIFT_T(z)</span>
-<span class="fc" id="L923">        z ^= (z &gt;&gt;&gt; 18);                        // TEMPERING_SHIFT_L(z)</span>
+<span class="nc" id="L919">        z = mt[mti++];</span>
+<span class="nc" id="L920">        z ^= z &gt;&gt;&gt; 11;                          // TEMPERING_SHIFT_U(z)</span>
+<span class="nc" id="L921">        z ^= (z &lt;&lt; 7) &amp; TEMPERING_MASK_B;       // TEMPERING_SHIFT_S(z)</span>
+<span class="nc" id="L922">        z ^= (z &lt;&lt; 15) &amp; TEMPERING_MASK_C;      // TEMPERING_SHIFT_T(z)</span>
+<span class="nc" id="L923">        z ^= (z &gt;&gt;&gt; 18);                        // TEMPERING_SHIFT_L(z)</span>
         
         /* derived from nextDouble documentation in jdk 1.2 docs, see top */
-<span class="fc" id="L926">        return ((((long)(y &gt;&gt;&gt; 6)) &lt;&lt; 27) + (z &gt;&gt;&gt; 5)) / (double)(1L &lt;&lt; 53);</span>
+<span class="nc" id="L926">        return ((((long)(y &gt;&gt;&gt; 6)) &lt;&lt; 27) + (z &gt;&gt;&gt; 5)) / (double)(1L &lt;&lt; 53);</span>
         }
 
 

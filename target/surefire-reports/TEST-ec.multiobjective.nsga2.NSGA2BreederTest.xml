@@ -60,15 +60,15 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testLoadElites" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.009"/>
-  <testcase name="testLoadElitesBadState" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.002"/>
-  <testcase name="testLoadElitesRanks" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.006"/>
+  <testcase name="testLoadElites" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.007"/>
+  <testcase name="testLoadElitesBadState" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.003"/>
+  <testcase name="testLoadElitesRanks" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.007"/>
   <testcase name="testLoadElitesSparsity1" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.004"/>
   <testcase name="testLoadElitesSparsity2" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.003"/>
   <testcase name="testNumElitesBadState" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.002"/>
   <testcase name="testLoadElitesSize" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.002"/>
-  <testcase name="testNumElites" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.002"/>
-  <testcase name="testSetup1" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.001"/>
-  <testcase name="testSetup2" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0"/>
+  <testcase name="testNumElites" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.003"/>
+  <testcase name="testSetup1" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0"/>
+  <testcase name="testSetup2" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.001"/>
   <testcase name="testSetup3" classname="ec.multiobjective.nsga2.NSGA2BreederTest" time="0.001"/>
 </testsuite>

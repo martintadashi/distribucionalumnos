@@ -6,7 +6,10 @@
 
 
 package ec;
+import ec.app.p1e1.Tarea;
 import ec.util.*;
+import ec.vector.IntegerVectorIndividualP1E1;
+
 import java.io.*;
 import java.util.*;
 
@@ -118,8 +121,7 @@ public abstract class Species implements Prototype
         you will need to override this method as you see fit.
     */
     
-    public Individual newIndividual(final EvolutionState state, int thread)
-        {
+    public Individual newIndividual(final EvolutionState state, int thread)  {
         Individual newind = (Individual)(i_prototype.clone());
 
         // Set the fitness
@@ -128,8 +130,55 @@ public abstract class Species implements Prototype
 
         // Set the species to me
         newind.species = this;
+        // ...and we're ready!*/
+        //... para hacer magias:
 
-        // ...and we're ready!
+//        Random r = new Random();
+//        int cantEmpleados= ((IntegerVectorIndividualP1E1) newind).getCantidadEmpleados();
+//        int cantTareas= ((IntegerVectorIndividualP1E1) newind).getCantidadTareas();
+//        int[] nuevoGenotype=new int[cantTareas];
+//        //El numero de empleado me devuelve su lista de tareas
+//        HashMap<Integer, List<Integer>> tareasDeEmpleado = new HashMap<Integer, List<Integer>>();
+//        //Lista de tareas
+//        ArrayList <Integer> Tareas=new ArrayList<Integer>();
+//        //System.out.print("\tTareas          :");
+//        for (int iTareas = 0; iTareas < cantTareas; iTareas++) {
+//            Tareas.add(iTareas);
+//            //System.out.print(iTareas);
+//        }    //System.out.println();
+//        //System.out.print("\tTareas Sorteadas:");
+//
+//        //Repartimos RoundRobin tareas elegidas al azar entre los empleados
+//        for (int iTareas = 0; iTareas < cantTareas; iTareas++) {
+//            //Sorteo una tarea aleatoria entre las que quedan
+//            int tareaAleatoria= r.nextInt(Tareas.size());
+//            //System.out.print("\tIndice Tareas Sorteada: "+tareaAleatoria);
+//            //System.out.print("\tTareas Sorteada: "+Tareas.get(tareaAleatoria));
+//            //System.out.print(Tareas.get(tareaAleatoria));
+//            //Se la asigno a un empleado en orden
+//            if (tareasDeEmpleado.containsKey(iTareas % cantEmpleados)) {
+//                tareasDeEmpleado.get(iTareas % cantEmpleados).add(Tareas.get(tareaAleatoria));
+//            } else {
+//                List<Integer> tareas = new ArrayList<Integer>();
+//                tareas.add(Tareas.get(tareaAleatoria));
+//                tareasDeEmpleado.put(iTareas % cantEmpleados, tareas);
+//            }
+//            //la quito de la lista
+//            Tareas.remove(tareaAleatoria);
+//        }//System.out.println();
+//        //Convierto nuestra representacion a una acorde al genotype
+//        //itero entre empleados
+//        for (int iEmpleado = 0; iEmpleado <cantEmpleados ; iEmpleado++) {
+//            //Itero entre las tareas de ese empleado
+//            for (int iTareas = 0; iTareas < tareasDeEmpleado.get(iEmpleado).size(); iTareas++) {
+//                nuevoGenotype[tareasDeEmpleado.get(iEmpleado).get(iTareas)]=iEmpleado;
+//            }
+//        }
+//        //Borro el genotype viejo y cargo el nuevo
+//        ((IntegerVectorIndividualP1E1) newind).cargarGenotype(state,nuevoGenotype);
+//        System.out.println("Generado en Species: ");
+//        //devuelvo el nuevo individuo
+//        newind.printIndividualForHumans(state,0);
         return newind;
         }
     

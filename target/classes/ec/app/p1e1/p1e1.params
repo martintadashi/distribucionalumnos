@@ -1,12 +1,13 @@
 parent.0 = ../../simple/simple.params
 eval.problem = ec.app.p1e1.p1e1
-state = ec.simple.SimpleEvolutionState
+state = ec.simple.SimpleEvolutionStateP1E1
 
+stat.do-message = true
 quit-on-run-complete = true
 
 pop.subpop.0.size = 100
 generations = 10000
-breed.elite.0 = 1
+breed.elite.0 = 10
 
 pop.subpop.0.species = ec.vector.IntegerVectorSpeciesP1E1
 
@@ -26,12 +27,12 @@ pop.subpop.0.species.crossover-prob = 0.5
 pop.subpop.0.species.mutation-bounded =true
 
 #pop.subpop.0.species.mutation-type = reset
-#pop.subpop.0.species.mutation-prob = 0.02
+#pop.subpop.0.species.mutation-prob = 0.10
 #pop.subpop.0.species.mutation-stdev = 0.01
 
 pop.subpop.0.species.mutation-type = random-walk
-pop.subpop.0.species.random-walk-probability = 0.5
-pop.subpop.0.species.mutation-prob = 0.01
+pop.subpop.0.species.random-walk-probability = 0.9
+pop.subpop.0.species.mutation-prob = 0.6
 pop.subpop.0.species.duplicate-retries = 5
 
 
@@ -41,7 +42,7 @@ pop.subpop.0.species.pipe = ec.vector.breed.VectorMutationPipeline
 
 pop.subpop.0.species.pipe.source.0 = ec.vector.breed.VectorMutationPipeline
 pop.subpop.0.species.pipe.source.0.pipe.mutation =reset
-pop.subpop.0.species.pipe.source.0.pipe.mutation-prob = 0.02
+pop.subpop.0.species.pipe.source.0.pipe.mutation-prob = 0.9
 pop.subpop.0.species.pipe.source.0.pipe.mutation-stdev = 0.01
 pop.subpop.0.species.pipe.source.0.pipe.duplicate-retries = 5
 

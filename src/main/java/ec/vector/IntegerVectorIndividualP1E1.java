@@ -12,6 +12,8 @@ import ec.app.p1e1.Empleado;
 import ec.app.p1e1.Tarea;
 import ec.util.*;
 import java.io.*;
+import java.util.Collections;
+import java.util.List;
 
 /*
  * IntegerVectorIndividualP1E1.java
@@ -74,6 +76,14 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
     public static final String P_IntegerVectorIndividualP1E1 = "int-vect-ind";
     public int[] genome;
 
+    public int getCantidadTareas(){
+        return this.genomeLength();
+    }
+    public int getCantidadEmpleados(){
+        IntegerVectorSpeciesP1E1 _species = (IntegerVectorSpeciesP1E1)species;
+        return (int)_species.maxGene(0)+1;
+    }
+
     public Parameter defaultBase()
         {
         return VectorDefaults.base().push(P_IntegerVectorIndividualP1E1);
@@ -98,6 +108,9 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
         if (!(species instanceof IntegerVectorSpeciesP1E1)) 
             state.output.fatal("IntegerVectorIndividualP1E1 requires an IntegerVectorSpeciesP1E1", base, def);
         IntegerVectorSpeciesP1E1 s = (IntegerVectorSpeciesP1E1) species;
+
+        System.out.print("cant empl y cant tareas de intVectSpe: " + s.getCantEmpleados() + ", " + s.getCantTareas());
+
         
         genome = new int[s.genomeSize];
         }
@@ -433,6 +446,15 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
         for(int x=0;x<genome.length;x++)
             genome[x] = dataInput.readInt();
         }
+    public void cargarGenotype(final EvolutionState state,
+                             final int[] nuevoGenotype)
+    {
+        int len = nuevoGenotype.length;
+        if (genome==null || genome.length != len)
+            genome = new int[len];
+        for(int x=0;x<genome.length;x++)
+            genome[x] = nuevoGenotype[x];
+    }
 
     /** Clips each gene value to be within its specified [min,max] range. */
     public void clamp() 

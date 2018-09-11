@@ -81,12 +81,12 @@ import java.io.*;
 
     public Object clone()
         {
-<span class="fc" id="L84">        IntegerVectorIndividual myobj = (IntegerVectorIndividual) (super.clone());</span>
+<span class="nc" id="L84">        IntegerVectorIndividual myobj = (IntegerVectorIndividual) (super.clone());</span>
 
         // must clone the genome
-<span class="fc" id="L87">        myobj.genome = (int[])(genome.clone());</span>
+<span class="nc" id="L87">        myobj.genome = (int[])(genome.clone());</span>
         
-<span class="fc" id="L89">        return myobj;</span>
+<span class="nc" id="L89">        return myobj;</span>
         } 
 
     public void setup(final EvolutionState state, final Parameter base)
@@ -274,14 +274,14 @@ import java.io.*;
         min is less than or equal to max.  You must check this yourself. */
     public int randomValueFromClosedInterval(int min, int max, MersenneTwisterFast random)
         {
-<span class="pc bpc" id="L277" title="1 of 2 branches missed.">        if (max - min &lt; 0) // we had an overflow</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">        if (max - min &lt; 0) // we had an overflow</span>
             {
 <span class="nc" id="L279">            int l = 0;</span>
 <span class="nc" id="L280">            do l = random.nextInt();</span>
 <span class="nc bnc" id="L281" title="All 4 branches missed.">            while(l &lt; min || l &gt; max);</span>
 <span class="nc" id="L282">            return l;</span>
             }
-<span class="fc" id="L284">        else return min + random.nextInt(max - min + 1);</span>
+<span class="nc" id="L284">        else return min + random.nextInt(max - min + 1);</span>
         }
 
 
@@ -338,10 +338,10 @@ import java.io.*;
     // notice that we bump to longs to avoid overflow errors
     public void reset(EvolutionState state, int thread)
         {
-<span class="fc" id="L341">        IntegerVectorSpecies s = (IntegerVectorSpecies) species;</span>
-<span class="fc bfc" id="L342" title="All 2 branches covered.">        for(int x=0;x&lt;genome.length;x++)</span>
-<span class="fc" id="L343">            genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);</span>
-<span class="fc" id="L344">        }</span>
+<span class="nc" id="L341">        IntegerVectorSpecies s = (IntegerVectorSpecies) species;</span>
+<span class="nc bnc" id="L342" title="All 2 branches missed.">        for(int x=0;x&lt;genome.length;x++)</span>
+<span class="nc" id="L343">            genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);</span>
+<span class="nc" id="L344">        }</span>
 
     public int hashCode()
         {

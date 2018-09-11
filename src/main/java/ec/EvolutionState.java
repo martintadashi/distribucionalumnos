@@ -288,7 +288,7 @@ public class EvolutionState implements Singleton
     public void setBestFitnessGeneration(int bestFitnessGeneration) {
         this.bestFitnessGeneration = bestFitnessGeneration;
     }
-
+    public boolean p1e1 =false;
 
     /** This will be called to create your evolution state; immediately
         after the constructor is called,

@@ -156,48 +156,48 @@ import java.util.Collections;
     
     public Individual newIndividual(final EvolutionState state, int thread)
         {
-<span class="fc" id="L159">        Individual newind = super.newIndividual(state, thread);</span>
-<span class="fc" id="L160">        MersenneTwisterFast random = state.random[thread];</span>
+<span class="nc" id="L159">        Individual newind = super.newIndividual(state, thread);</span>
+<span class="nc" id="L160">        MersenneTwisterFast random = state.random[thread];</span>
         double rand;
 
-<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        if (!(newind instanceof IntegerVectorIndividual))  </span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">        if (!(newind instanceof IntegerVectorIndividual))  </span>
 <span class="nc" id="L164">            state.output.fatal(&quot;To use PBILSpecies, the species must be initialized with a IntegerVectorIndividual.  But it contains a &quot; + newind);</span>
         
-<span class="fc" id="L166">        IntegerVectorIndividual ivind = (IntegerVectorIndividual)(newind);</span>
-<span class="fc" id="L167">        List&lt;double[]&gt; temp=new ArrayList&lt;double[]&gt;();</span>
+<span class="nc" id="L166">        IntegerVectorIndividual ivind = (IntegerVectorIndividual)(newind);</span>
+<span class="nc" id="L167">        List&lt;double[]&gt; temp=new ArrayList&lt;double[]&gt;();</span>
 
-<span class="fc bfc" id="L169" title="All 2 branches covered.">        for(int i=0;i&lt;genomeSize;i++)</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        for(int i=0;i&lt;genomeSize;i++)</span>
             {
-<span class="fc" id="L171">            temp.add(distributions.get(i));</span>
+<span class="nc" id="L171">            temp.add(distributions.get(i));</span>
             }
 
         //for every gene value slot in the individual, checks the most probable 
         //gene value using the generated random number
-<span class="fc bfc" id="L176" title="All 2 branches covered.">        for(int i=0;i&lt;genomeSize;i++)</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        for(int i=0;i&lt;genomeSize;i++)</span>
             { 
-<span class="fc" id="L178">            rand = random.nextDouble();</span>
-<span class="fc" id="L179">            boolean q = true;</span>
-<span class="fc" id="L180">            double cB = 0;</span>
-<span class="pc bpc" id="L181" title="1 of 2 branches missed.">            for(int j=0;j&lt;maxGene[i]-minGene[i]+1;j++)</span>
+<span class="nc" id="L178">            rand = random.nextDouble();</span>
+<span class="nc" id="L179">            boolean q = true;</span>
+<span class="nc" id="L180">            double cB = 0;</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            for(int j=0;j&lt;maxGene[i]-minGene[i]+1;j++)</span>
                 { 
-<span class="fc bfc" id="L183" title="All 2 branches covered.">                if(q)</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">                if(q)</span>
                     { 
-<span class="fc" id="L185">                    cB = temp.get(i)[j];</span>
+<span class="nc" id="L185">                    cB = temp.get(i)[j];</span>
                     }
-<span class="fc bfc" id="L187" title="All 2 branches covered.">                if(rand&lt;cB)</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">                if(rand&lt;cB)</span>
                     {
-<span class="fc" id="L189">                    ivind.genome[i] = j + (int)minGene[i];</span>
-<span class="fc" id="L190">                    break;</span>
+<span class="nc" id="L189">                    ivind.genome[i] = j + (int)minGene[i];</span>
+<span class="nc" id="L190">                    break;</span>
                     }
-<span class="pc bpc" id="L192" title="1 of 2 branches missed.">                else if(j&lt;maxGene[i]-minGene[i])</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">                else if(j&lt;maxGene[i]-minGene[i])</span>
                     {
-<span class="fc" id="L194">                    cB = cB + temp.get(i)[j+1];</span>
-<span class="fc" id="L195">                    q = false; </span>
+<span class="nc" id="L194">                    cB = cB + temp.get(i)[j+1];</span>
+<span class="nc" id="L195">                    q = false; </span>
                     }
                 }
             }
 
-<span class="fc" id="L200">        return ivind ;</span>
+<span class="nc" id="L200">        return ivind ;</span>
         }
 
     

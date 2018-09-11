@@ -89,14 +89,14 @@ public class p1e1 extends Problem implements SimpleProblemForm
                 } else{
                     //System.out.println("NO SE PENALIZA\t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
                 }
-                //System.out.println("\tAl individuo: "+ind2.genotypeToString());
+                //System.out.println("\tAl individuo: ");
 
 
 
                 boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] <= t_spe.getF(); // factible??
                 //ideal = ideal && (((SimpleFitness) ind2.fitness).getMinFitness() > costoProyecto);
                 ideal =  ideal && (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;
-                ideal = ideal || state.generation - state.getBestFitnessGeneration() > (int) state.numGenerations/10;
+                //ideal = ideal || state.generation - state.getBestFitnessGeneration() > (int) state.numGenerations/10;
                 //System.out.println("state.generation: " + state.generation + ",getBestFitnessGeneration(): " + state.getBestFitnessGeneration() + ", state.numGenerations: " + state.numGenerations);
                 //System.out.println("ideal= "+ideal+"  horasDeTrabajoParaCadaEmpleado[posMax]"+ horasDeTrabajoParaCadaEmpleado[posMax]);
                 ((SimpleFitness) ind2.fitness).setFitness(state, costoProyecto * (-1), ideal);
