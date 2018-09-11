@@ -84,7 +84,7 @@ public class p1e1 extends Problem implements SimpleProblemForm
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
                 if(diasDeTrabajoParaCadaEmpleado[posMax]>t_spe.getF()){
                     //System.out.print("Se penaliza   \t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ " a su costo: "+ costoProyecto);
-                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();
+                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal()*(diasDeTrabajoParaCadaEmpleado[posMax]/t_spe.getF());
                     //System.out.println(" total: "+costoProyecto);
                 } else{
                     //System.out.println("NO SE PENALIZA\t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);

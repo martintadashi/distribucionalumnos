@@ -54,7 +54,7 @@ ecj,ec.coevolve,CompetitiveEvaluatorThread,3,0,0,0,1,0,1,0,1,0
 ecj,ec.coevolve,MultiPopCoevolutionaryEvaluator,1163,221,122,20,147,38,76,7,9,3
 ecj,ec.coevolve,RoundRobinCompetitiveEvaluatorThread,21,0,0,0,2,0,2,0,2,0
 ecj,ec.coevolve,NRandomOneWayCompetitiveEvaluatorThread,21,0,0,0,2,0,2,0,2,0
-ecj,ec,Subpopulation,1179,27,103,1,186,6,65,3,13,3
+ecj,ec,Subpopulation,1279,27,109,1,204,6,70,3,15,3
 ecj,ec,Finisher,0,3,0,0,0,1,0,1,0,1
 ecj,ec,Problem,29,4,0,0,13,2,10,2,10,2
 ecj,ec,Initializer,0,3,0,0,0,1,0,1,0,1
@@ -100,7 +100,7 @@ ecj,ec.vector,FloatVectorIndividual,2160,0,237,0,344,0,155,0,31,0
 ecj,ec.vector,BitVectorIndividual,851,0,91,0,149,0,69,0,21,0
 ecj,ec.vector,GeneVectorIndividual,936,0,94,0,152,0,70,0,21,0
 ecj,ec.vector,IntegerVectorSpecies,622,293,84,24,93,47,57,7,6,4
-ecj,ec.vector,IntegerVectorSpeciesP1E1,1458,0,140,0,236,0,91,0,21,0
+ecj,ec.vector,IntegerVectorSpeciesP1E1,1460,0,140,0,236,0,91,0,21,0
 ecj,ec.app.parity.func,Or,34,0,2,0,7,0,5,0,4,0
 ecj,ec.app.parity.func,Nand,43,0,2,0,9,0,5,0,4,0
 ecj,ec.app.parity.func,And,35,0,2,0,7,0,5,0,4,0
@@ -341,7 +341,7 @@ ecj,ec.eda.cmaes,CMAESDefaults,8,0,0,0,2,0,2,0,2,0
 ecj,ec.eda.cmaes,CMAESBreeder,72,0,6,0,13,0,6,0,3,0
 ecj,ec.eda.cmaes,CMAESSpecies,2201,0,136,0,257,0,74,0,6,0
 ecj,ec.app.p1e1,Empleado,42,0,0,0,17,0,10,0,10,0
-ecj,ec.app.p1e1,p1e1,224,0,26,0,38,0,15,0,2,0
+ecj,ec.app.p1e1,p1e1,232,0,26,0,38,0,15,0,2,0
 ecj,ec.app.p1e1,Tarea,28,0,0,0,11,0,6,0,6,0
 ecj,ec.rule.breed,RuleMutationPipeline,75,0,4,0,14,0,7,0,5,0
 ecj,ec.rule.breed,RuleCrossoverPipeline,523,0,44,0,75,0,29,0,7,0

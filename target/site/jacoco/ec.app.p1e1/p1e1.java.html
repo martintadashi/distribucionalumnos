@@ -84,7 +84,7 @@ import ec.vector.*;
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
 <span class="nc bnc" id="L85" title="All 2 branches missed.">                if(diasDeTrabajoParaCadaEmpleado[posMax]&gt;t_spe.getF()){</span>
                     //System.out.print(&quot;Se penaliza   \t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF() +&quot; se agrega costo: &quot;+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ &quot; a su costo: &quot;+ costoProyecto);
-<span class="nc" id="L87">                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();</span>
+<span class="nc" id="L87">                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal()*(diasDeTrabajoParaCadaEmpleado[posMax]/t_spe.getF());</span>
                     //System.out.println(&quot; total: &quot;+costoProyecto);
                 } else{
                     //System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);

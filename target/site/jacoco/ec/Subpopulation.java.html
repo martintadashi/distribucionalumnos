@@ -285,132 +285,131 @@ import ec.vector.IntegerVectorSpeciesP1E1;
 <span class="nc bnc" id="L285" title="All 2 branches missed.">        if (numDuplicateRetries &gt;= 1)</span>
 <span class="nc" id="L286">            h = new HashMap((len - start) / 2);  // seems reasonable</span>
 <span class="nc" id="L287">        System.out.println(&quot;COMIENZO DE MOSTRAR LOS INDIVIDUOS ORIGINALES&quot;);</span>
-<span class="nc bnc" id="L288" title="All 2 branches missed.">        for(int x=start;x&lt;len;x++){</span>
-<span class="nc" id="L289">            System.out.println(&quot;INDIVIDUO: &quot;+x);</span>
-<span class="nc" id="L290">            Individual newInd = null;</span>
-<span class="nc" id="L291">            for(int tries=0; </span>
-<span class="nc bnc" id="L292" title="All 2 branches missed.">                tries &lt;= /* Yes, I see that*/ numDuplicateRetries; </span>
-<span class="nc" id="L293">                tries++)</span>
+
+<span class="nc bnc" id="L289" title="All 2 branches missed.">        for(int x=start;x&lt;len;x++){</span>
+<span class="nc" id="L290">            System.out.println(&quot;INDIVIDUO: &quot;+x);</span>
+<span class="nc" id="L291">            Individual newInd = null;</span>
+<span class="nc" id="L292">            newInd = species.newIndividual(state, thread);</span>
+<span class="nc" id="L293">            IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) newInd.species;</span>
+<span class="nc" id="L294">            Tarea[] tareas = t_spe.getTareas();</span>
+<span class="nc" id="L295">            Empleado[] empleados = t_spe.getEmpleados();</span>
+            /*
+            System.out.println(&quot;\nEmpleados: &quot;);
+            for (Empleado e : empleados) {
+                System.out.print((int)e.getId() + &quot; ,&quot;);
+            }
+            System.out.println(&quot;\n Tareas: &quot;);
+            for (Tarea t : tareas) {
+                System.out.print(t.getId() + &quot; ,&quot;);
+            }
+            System.out.println(&quot;&quot;);
+            */
+
+
+<span class="nc" id="L309">            for(int tries=0; </span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">                tries &lt;= /* Yes, I see that*/ numDuplicateRetries; </span>
+<span class="nc" id="L311">                tries++)</span>
                 {
 
-<span class="nc" id="L296">                    newInd = null;</span>
+<span class="nc" id="L314">                    newInd = null;</span>
                     //System.out.println(&quot;Sete en null: &quot;);
-<span class="nc" id="L298">                    newInd = species.newIndividual(state, thread);</span>
+<span class="nc" id="L316">                    newInd = species.newIndividual(state, thread);</span>
+<span class="nc" id="L317">                    newInd= generarIndividuoRRAcotadoPorF(state,tareas, empleados, t_spe ,newInd);</span>
+<span class="nc" id="L318">                    evaluoAMano(state,tareas, empleados, t_spe ,newInd);</span>
 
+<span class="nc" id="L320">                    System.out.println(&quot;Generado en Species: &quot;);</span>
+                    //devuelvo el nuevo individuo
+<span class="nc" id="L322">                    newInd.printIndividualForHumans(state,0);</span>
 
+                    //System.out.println(&quot;Obtenido en Subpopulation despues del new: &quot;+newInd.genotypeToStringForHumans());
+                    //newInd.printIndividualForHumans(state,0);
 
-<span class="nc" id="L302">                    Random r = new Random();</span>
-<span class="nc" id="L303">                    int cantEmpleados= ((IntegerVectorIndividualP1E1) newInd).getCantidadEmpleados();</span>
-<span class="nc" id="L304">                    int cantTareas= ((IntegerVectorIndividualP1E1) newInd).getCantidadTareas();</span>
-                    //System.out.println(&quot;CantEmpleados: &quot;+cantEmpleados+&quot; CantTareas: &quot;+cantTareas);
-<span class="nc" id="L306">                    int[] nuevoGenotype=new int[cantTareas];</span>
-                    //El numero de empleado me devuelve su lista de tareas
-<span class="nc" id="L308">                    HashMap&lt;Integer, List&lt;Integer&gt;&gt; tareasDeEmpleado = new HashMap&lt;Integer, List&lt;Integer&gt;&gt;();</span>
-                    //Lista de tareas
-<span class="nc" id="L310">                    ArrayList &lt;Integer&gt; Tareas=new ArrayList&lt;Integer&gt;();</span>
-                    //System.out.print(&quot;\tTareas          :&quot;);
-<span class="nc bnc" id="L312" title="All 2 branches missed.">                    for (int iTareas = 0; iTareas &lt; cantTareas; iTareas++) {</span>
-<span class="nc" id="L313">                        Tareas.add(iTareas);</span>
-                        //System.out.print(iTareas);
-                    }    //System.out.println();
-                    //System.out.print(&quot;\tTareas Sorteadas:&quot;);
-
-                    //Repartimos RoundRobin tareas elegidas al azar entre los empleados
-<span class="nc bnc" id="L319" title="All 2 branches missed.">                    for (int iTareas = 0; iTareas &lt; cantTareas; iTareas++) {</span>
-                        //Sorteo una tarea aleatoria entre las que quedan
-<span class="nc" id="L321">                        int tareaAleatoria= r.nextInt(Tareas.size());</span>
-                        //System.out.print(&quot;\tIndice Tareas Sorteada: &quot;+tareaAleatoria);
-                        //System.out.print(&quot;\tTareas Sorteada: &quot;+Tareas.get(tareaAleatoria));
-                        //System.out.print(Tareas.get(tareaAleatoria));
-                        //Se la asigno a un empleado en orden
-<span class="nc bnc" id="L326" title="All 2 branches missed.">                        if (tareasDeEmpleado.containsKey(iTareas % cantEmpleados)) {</span>
-<span class="nc" id="L327">                            tareasDeEmpleado.get(iTareas % cantEmpleados).add(Tareas.get(tareaAleatoria));</span>
-                        } else {
-<span class="nc" id="L329">                            List&lt;Integer&gt; tareas = new ArrayList&lt;Integer&gt;();</span>
-<span class="nc" id="L330">                            tareas.add(Tareas.get(tareaAleatoria));</span>
-<span class="nc" id="L331">                            tareasDeEmpleado.put(iTareas % cantEmpleados, tareas);</span>
-                        }
-                        //la quito de la lista
-<span class="nc" id="L334">                        Tareas.remove(tareaAleatoria);</span>
-                    }//System.out.println();
-                    //Convierto nuestra representacion a una acorde al genotype
-                    //itero entre empleados
-<span class="nc bnc" id="L338" title="All 2 branches missed.">                    for (int iEmpleado = 0; iEmpleado &lt;cantEmpleados ; iEmpleado++) {</span>
-                        //Itero entre las tareas de ese empleado
-<span class="nc bnc" id="L340" title="All 2 branches missed.">                        for (int iTareas = 0; iTareas &lt; tareasDeEmpleado.get(iEmpleado).size(); iTareas++) {</span>
-<span class="nc" id="L341">                            nuevoGenotype[tareasDeEmpleado.get(iEmpleado).get(iTareas)]=iEmpleado;</span>
+<span class="nc bnc" id="L327" title="All 2 branches missed.">                    if (numDuplicateRetries &gt;= 1)</span>
+                    {
+                    // check for duplicates
+<span class="nc" id="L330">                    Object o = h.get(newInd);</span>
+<span class="nc bnc" id="L331" title="All 2 branches missed.">                    if (o == null) // found nothing, we're safe</span>
+                        // hash it and go
+                        {
+<span class="nc" id="L334">                        h.put(newInd,newInd);</span>
+<span class="nc" id="L335">                        break;</span>
                         }
                     }
-                    //Borro el genotype viejo y cargo el nuevo
-<span class="nc" id="L345">                    ((IntegerVectorIndividualP1E1) newInd).cargarGenotype(state,nuevoGenotype);</span>
+                }  // oh well, we tried to cut down the duplicates
+<span class="nc" id="L339">            individuals.add(newInd);</span>
+            //Muestro ppoblacion inicial
+//            System.out.println(&quot;Obtenido en Subpopulation.&quot;);
+//            newInd.printIndividualForHumans(state,0);
+            }
+<span class="nc" id="L344">        System.out.println(&quot;TERMINO DE MOSTRAR LOS INDIVIDUOS ORIGINALES&quot;);</span>
+<span class="nc" id="L345">        }</span>
 
-                    //Evaluo a mano
-<span class="nc" id="L348">                    IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) newInd.species;</span>
-<span class="nc" id="L349">                    Tarea[] tareas = t_spe.getTareas();</span>
-<span class="nc" id="L350">                    Empleado[] empleados = t_spe.getEmpleados();</span>
-<span class="nc" id="L351">                    int costoProyecto = 0;</span>
-<span class="nc" id="L352">                    int posMax = 0;</span>
+        private void evaluoAMano(EvolutionState state, Tarea[] tareas, Empleado[] empleados, IntegerVectorSpeciesP1E1 t_spe, Individual newInd) {
+            //Evaluo a mano
 
-<span class="nc" id="L354">                    int[] empleadosPorTarea = ((IntegerVectorIndividualP1E1) newInd).genome;</span>
+<span class="nc" id="L350">            int costoProyecto = 0;</span>
+<span class="nc" id="L351">            int posMax = 0;</span>
 
-<span class="nc bnc" id="L356" title="All 4 branches missed.">                    if (tareas.length == empleadosPorTarea.length &amp;&amp; tareas.length &gt; empleados.length) {</span>
-                        //System.out.println(&quot;INICIA INDIVIDUO&quot;);
+<span class="nc" id="L353">            int[] empleadosPorTarea = ((IntegerVectorIndividualP1E1) newInd).genome;</span>
 
-<span class="nc" id="L359">                        float[] horasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];</span>
-<span class="nc" id="L360">                        float[] diasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];</span>
+<span class="nc bnc" id="L355" title="All 4 branches missed.">            if (tareas.length == empleadosPorTarea.length &amp;&amp; tareas.length &gt; empleados.length) {</span>
+                //System.out.println(&quot;INICIA INDIVIDUO&quot;);
 
-                        //Inicializa las horas trabajadas en cero
-<span class="nc bnc" id="L363" title="All 2 branches missed.">                        for (int i = 0; i &lt; horasDeTrabajoParaCadaEmpleado.length; i++) {</span>
-<span class="nc" id="L364">                            horasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;</span>
-<span class="nc" id="L365">                            diasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;</span>
-                        }
-                        //Recorro cada Calcula las horas de cada empleado
-<span class="nc bnc" id="L368" title="All 2 branches missed.">                        for (int i = 0; i &lt; empleadosPorTarea.length; i++) {</span>
-                            //Consigo la tarea con la que voy a trabajar
-<span class="nc" id="L370">                            Tarea tarea = tareas[i];</span>
-                            //System.out.println(&quot;empleadosPorTarea[&quot;+i+&quot;]= &quot;+empleadosPorTarea[i]);
-                            //Encuentro al empleado que tiene asignada esa tarea
-<span class="nc" id="L373">                            Empleado empleado = empleados[empleadosPorTarea[i]];</span>
-                            //Sumo las horas que le va a tomar al empleado (segun su habilidad) completar el esfuerzo de la tarea
-                            //System.out.println(&quot;Tarea: &quot;+tarea.toString());
-                            //System.out.println(&quot;Empleado: &quot;+empleado.toString());
-<span class="nc" id="L377">                            float horasTrabajadasPorTarea = tarea.getEsfuerzo() / ((float) 0.5 + empleado.getHabilidad());</span>
-<span class="nc" id="L378">                            horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;</span>
-                        }
-                        //Con todas las horas cargadas en todos los empleados calculo los dias que trabaja cada uno y cuanto nos cuesta
-<span class="nc bnc" id="L381" title="All 2 branches missed.">                        for (int i = 0; i &lt; diasDeTrabajoParaCadaEmpleado.length; i++) {</span>
-<span class="nc" id="L382">                            Empleado empleado = empleados[i];</span>
-<span class="nc" id="L383">                            diasDeTrabajoParaCadaEmpleado[i] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[i] / empleado.getDedicacion()));</span>
-<span class="nc" id="L384">                            costoProyecto += diasDeTrabajoParaCadaEmpleado[i] * empleado.getSueldo();</span>
-                            //System.out.println(&quot;\t Dias trabajados por el empleado &quot;+i+&quot; : &quot;+diasDeTrabajoParaCadaEmpleado[i]);
-                            //Guardo la posicion del empleado que trabaje mas dias
-<span class="nc bnc" id="L387" title="All 2 branches missed.">                            if (diasDeTrabajoParaCadaEmpleado[i] &gt; diasDeTrabajoParaCadaEmpleado[posMax]) {</span>
-<span class="nc" id="L388">                                posMax = i;</span>
-                            }
-                        }
+<span class="nc" id="L358">                float[] horasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];</span>
+<span class="nc" id="L359">                float[] diasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];</span>
 
-                        //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
-<span class="nc bnc" id="L393" title="All 2 branches missed.">                        if(diasDeTrabajoParaCadaEmpleado[posMax]&gt;t_spe.getF()){</span>
-<span class="nc" id="L394">                            System.out.print(&quot;Se penaliza   \t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF() +&quot; se agrega costo: &quot;+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ &quot; a su costo: &quot;+ costoProyecto);</span>
-<span class="nc" id="L395">                            costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();</span>
-<span class="nc" id="L396">                            System.out.println(&quot; total: &quot;+costoProyecto);</span>
-                        } else{
-<span class="nc" id="L398">                            System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);</span>
-                        }
-<span class="nc" id="L400">                        System.out.println(&quot;\tAl individuo: &quot;);</span>
+                //Inicializa las horas trabajadas en cero
+<span class="nc bnc" id="L362" title="All 2 branches missed.">                for (int i = 0; i &lt; horasDeTrabajoParaCadaEmpleado.length; i++) {</span>
+<span class="nc" id="L363">                    horasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;</span>
+<span class="nc" id="L364">                    diasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;</span>
+                }
+                //Recorro cada Calcula las horas de cada empleado
+<span class="nc bnc" id="L367" title="All 2 branches missed.">                for (int i = 0; i &lt; empleadosPorTarea.length; i++) {</span>
+                    //Consigo la tarea con la que voy a trabajar
+<span class="nc" id="L369">                    Tarea tarea = tareas[i];</span>
+                    //System.out.println(&quot;empleadosPorTarea[&quot;+i+&quot;]= &quot;+empleadosPorTarea[i]);
+                    //Encuentro al empleado que tiene asignada esa tarea
+<span class="nc" id="L372">                    Empleado empleado = empleados[empleadosPorTarea[i]];</span>
+                    //Sumo las horas que le va a tomar al empleado (segun su habilidad) completar el esfuerzo de la tarea
+                    //System.out.println(&quot;Tarea: &quot;+tarea.toString());
+                    //System.out.println(&quot;Empleado: &quot;+empleado.toString());
+<span class="nc" id="L376">                    float horasTrabajadasPorTarea = tarea.getEsfuerzo() / ((float) 0.5 + empleado.getHabilidad());</span>
+<span class="nc" id="L377">                    horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;</span>
+                }
+                //Con todas las horas cargadas en todos los empleados calculo los dias que trabaja cada uno y cuanto nos cuesta
+<span class="nc bnc" id="L380" title="All 2 branches missed.">                for (int i = 0; i &lt; diasDeTrabajoParaCadaEmpleado.length; i++) {</span>
+<span class="nc" id="L381">                    Empleado empleado = empleados[i];</span>
+<span class="nc" id="L382">                    diasDeTrabajoParaCadaEmpleado[i] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[i] / empleado.getDedicacion()));</span>
+<span class="nc" id="L383">                    costoProyecto += diasDeTrabajoParaCadaEmpleado[i] * empleado.getSueldo();</span>
+                    //System.out.println(&quot;\t Dias trabajados por el empleado &quot;+i+&quot; : &quot;+diasDeTrabajoParaCadaEmpleado[i]);
+                    //Guardo la posicion del empleado que trabaje mas dias
+<span class="nc bnc" id="L386" title="All 2 branches missed.">                    if (diasDeTrabajoParaCadaEmpleado[i] &gt; diasDeTrabajoParaCadaEmpleado[posMax]) {</span>
+<span class="nc" id="L387">                        posMax = i;</span>
+                    }
+                }
 
+                //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
+<span class="nc bnc" id="L392" title="All 2 branches missed.">                if(diasDeTrabajoParaCadaEmpleado[posMax]&gt;t_spe.getF()){</span>
+<span class="nc" id="L393">                    System.out.print(&quot;Se penaliza   \t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF() +&quot; se agrega costo: &quot;+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ &quot; a su costo: &quot;+ costoProyecto);</span>
+<span class="nc" id="L394">                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal()*(diasDeTrabajoParaCadaEmpleado[posMax]/t_spe.getF());</span>
+<span class="nc" id="L395">                    System.out.println(&quot; total: &quot;+costoProyecto);</span>
+                } else{
+<span class="nc" id="L397">                    System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);</span>
+                }
+<span class="nc" id="L399">                System.out.println(&quot;\tAl individuo: &quot;);</span>
 
 
-<span class="nc bnc" id="L404" title="All 2 branches missed.">                        boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] &lt;= t_spe.getF(); // factible??</span>
-                        //ideal = ideal &amp;&amp; (((SimpleFitness) ind2.fitness).getMinFitness() &gt; costoProyecto);
-<span class="nc bnc" id="L406" title="All 4 branches missed.">                        ideal =  ideal &amp;&amp; (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;</span>
-                        //ideal = ideal || state.generation - state.getBestFitnessGeneration() &gt; (int) state.numGenerations/10;
-                        //System.out.println(&quot;state.generation: &quot; + state.generation + &quot;,getBestFitnessGeneration(): &quot; + state.getBestFitnessGeneration() + &quot;, state.numGenerations: &quot; + state.numGenerations);
-                        //System.out.println(&quot;ideal= &quot;+ideal+&quot;  horasDeTrabajoParaCadaEmpleado[posMax]&quot;+ horasDeTrabajoParaCadaEmpleado[posMax]);
-<span class="nc" id="L410">                        ((SimpleFitness) newInd.fitness).setFitness(state, costoProyecto * (-1), ideal);</span>
-<span class="nc" id="L411">                        newInd.evaluated = true;</span>
 
-                        //ind.printIndividualForHumans(state,0);
+<span class="nc bnc" id="L403" title="All 2 branches missed.">                boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] &lt;= t_spe.getF(); // factible??</span>
+                //ideal = ideal &amp;&amp; (((SimpleFitness) ind2.fitness).getMinFitness() &gt; costoProyecto);
+<span class="nc bnc" id="L405" title="All 4 branches missed.">                ideal =  ideal &amp;&amp; (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;</span>
+                //ideal = ideal || state.generation - state.getBestFitnessGeneration() &gt; (int) state.numGenerations/10;
+                //System.out.println(&quot;state.generation: &quot; + state.generation + &quot;,getBestFitnessGeneration(): &quot; + state.getBestFitnessGeneration() + &quot;, state.numGenerations: &quot; + state.numGenerations);
+                //System.out.println(&quot;ideal= &quot;+ideal+&quot;  horasDeTrabajoParaCadaEmpleado[posMax]&quot;+ horasDeTrabajoParaCadaEmpleado[posMax]);
+<span class="nc" id="L409">                ((SimpleFitness) newInd.fitness).setFitness(state, costoProyecto * (-1), ideal);</span>
+<span class="nc" id="L410">                newInd.evaluated = true;</span>
+
+                //ind.printIndividualForHumans(state,0);
                 /*
                 System.out.print(&quot;\t Dias trabajados: (&quot;);
 
@@ -420,50 +419,109 @@ import ec.vector.IntegerVectorSpeciesP1E1;
                 System.out.println(&quot;)&quot;);
                 System.out.println(&quot;FINALIZA INDIVIDUO&quot;);
                 */
-                    }
-
-
-
-<span class="nc" id="L427">                    System.out.println(&quot;Generado en Species: &quot;);</span>
-                    //devuelvo el nuevo individuo
-<span class="nc" id="L429">                    newInd.printIndividualForHumans(state,0);</span>
-
-
-
-
-                    //System.out.println(&quot;Obtenido en Subpopulation despues del new: &quot;+newInd.genotypeToStringForHumans());
-                    //newInd.printIndividualForHumans(state,0);
-
-<span class="nc bnc" id="L437" title="All 2 branches missed.">                    if (numDuplicateRetries &gt;= 1)</span>
-                    {
-                    // check for duplicates
-<span class="nc" id="L440">                    Object o = h.get(newInd);</span>
-<span class="nc bnc" id="L441" title="All 2 branches missed.">                    if (o == null) // found nothing, we're safe</span>
-                        // hash it and go
-                        {
-<span class="nc" id="L444">                        h.put(newInd,newInd);</span>
-<span class="nc" id="L445">                        break;</span>
-                        }
-                    }
-                }  // oh well, we tried to cut down the duplicates
-<span class="nc" id="L449">            individuals.add(newInd);</span>
-            //Muestro ppoblacion inicial
-//            System.out.println(&quot;Obtenido en Subpopulation.&quot;);
-//            newInd.printIndividualForHumans(state,0);
             }
-<span class="nc" id="L454">        System.out.println(&quot;TERMINO DE MOSTRAR LOS INDIVIDUOS ORIGINALES&quot;);</span>
-<span class="nc" id="L455">        }</span>
-    
-        
-    /** Prints an entire subpopulation in a form readable by humans. 
+            /*
+            System.out.println(&quot;\n Genotipo: &quot;);
+            for (int iGenotipo = 0; iGenotipo &lt; nuevoGenotype.length; iGenotipo++) {
+                System.out.print(nuevoGenotype[iGenotipo]+&quot; &quot;);
+            }
+
+            System.out.println(&quot;&quot;);
+             */
+
+<span class="nc" id="L432">        }</span>
+
+        private Individual generarIndividuoRRAcotadoPorF(EvolutionState state, Tarea[] tareas, Empleado[] empleados, IntegerVectorSpeciesP1E1 t_spe, Individual newInd) {
+<span class="nc" id="L435">            Random r = new Random();</span>
+            //int cantEmpleados= ((IntegerVectorIndividualP1E1) newInd).getCantidadEmpleados();
+            //int cantTareas= ((IntegerVectorIndividualP1E1) newInd).getCantidadTareas();
+            //System.out.println(&quot;CantEmpleados: &quot;+cantEmpleados+&quot; CantTareas: &quot;+cantTareas);
+            //int[] nuevoGenotype=new int[cantTareas];
+
+<span class="nc" id="L441">            float[] horasEmpleado = new float[empleados.length];</span>
+<span class="nc" id="L442">            int iterEmpleados = 0;</span>
+<span class="nc" id="L443">            int[] nuevoGenotype=new int[tareas.length];</span>
+<span class="nc" id="L444">            int empleadosProbados=0;</span>
+<span class="nc" id="L445">            boolean asigne=false;</span>
+<span class="nc" id="L446">            ArrayList &lt;Integer&gt; Tareas=new ArrayList&lt;Integer&gt;();</span>
+            //System.out.print(&quot;\tTareas          :&quot;);
+<span class="nc bnc" id="L448" title="All 2 branches missed.">            for (int iTareas = 0; iTareas &lt; tareas.length; iTareas++) {</span>
+<span class="nc" id="L449">                Tareas.add(iTareas);</span>
+                //System.out.print(iTareas);
+            }    //System.out.println();
+            //System.out.print(&quot;\tTareas Sorteadas:&quot;);
+
+            //GENERO UN NUEVO GENOTYPE
+
+            //Recorro todas las tareas
+<span class="nc bnc" id="L457" title="All 2 branches missed.">            for (int iterTarea = 0; iterTarea &lt; tareas.length; iterTarea++) {</span>
+                //Sorteo una tarea aleatoria entre las que quedan
+<span class="nc" id="L459">                int indiceTareaAleatoria = r.nextInt(Tareas.size());</span>
+<span class="nc" id="L460">                int tareaAleatoria = Tareas.get(indiceTareaAleatoria);</span>
+                //System.out.println(&quot;Sorteo la tarea: &quot;+ tareaAleatoria);
+
+                //Calculo el empleado con el que quiero probar
+<span class="nc" id="L464">                iterEmpleados = (iterTarea + empleadosProbados) % empleados.length;</span>
+                //Calculo el esfuerzo de la tarea para el empleado con el que quiero probar
+<span class="nc" id="L466">                float esfuerzo = tareas[tareaAleatoria].getEsfuerzo() / ((float) 0.5 + empleados[iterEmpleados].getHabilidad());</span>
+                //Calculo si es posiblea agregarle la tarea
+<span class="nc bnc" id="L468" title="All 2 branches missed.">                boolean agregar = ((int) Math.ceil(horasEmpleado[iterEmpleados] + esfuerzo / empleados[iterEmpleados].getDedicacion())) &lt;= t_spe.getF();</span>
+                //Itero hasta que pueda asignar
+<span class="nc bnc" id="L470" title="All 2 branches missed.">                while (!asigne) {</span>
+                    //System.out.println(&quot;Intento agregar a la tarea &quot;+tareaAleatoria+&quot; el empleado &quot;+iterEmpleados);
+                    //Si puedo asignar al empleado actual
+<span class="nc bnc" id="L473" title="All 4 branches missed.">                    if (agregar &amp;&amp; (empleadosProbados &lt; empleados.length)) {//cumple condicion</span>
+                        //asigno tarea, actualizo ezfuerso del empleado,
+<span class="nc" id="L475">                        nuevoGenotype[tareaAleatoria] = iterEmpleados;</span>
+                        //System.out.println(&quot;\tAsigno en &quot;+tareaAleatoria+&quot; el empleado &quot;+iterEmpleados);
+<span class="nc" id="L477">                        horasEmpleado[iterEmpleados] += esfuerzo;</span>
+                        //Seteo valores para la siguiente tarea
+<span class="nc" id="L479">                        empleadosProbados = 0;</span>
+<span class="nc" id="L480">                        asigne = true;</span>
+                    }
+                    //Si ya recorri a todos los empleados, le asigno al primero que probe y fallo
+<span class="nc bnc" id="L483" title="All 2 branches missed.">                    else if ((empleadosProbados == empleados.length)) {</span>
+                        //asigno tarea, actualizo ezfuerso del empleado,
+<span class="nc" id="L485">                        nuevoGenotype[tareaAleatoria] = iterEmpleados;</span>
+                        //System.out.println(&quot;\tAsigno en &quot;+tareaAleatoria+&quot; el empleado &quot;+iterEmpleados);
+<span class="nc" id="L487">                        horasEmpleado[iterEmpleados] += esfuerzo;</span>
+                        //Seteo valores para la siguiente tarea
+<span class="nc" id="L489">                        empleadosProbados = 0;</span>
+<span class="nc" id="L490">                        asigne = true;</span>
+                    }
+                    //Si me quedan empleados por probar
+                    else {
+                        //Actualizo empleados probados
+<span class="nc" id="L495">                        empleadosProbados++;</span>
+                        //Calculo el empleado a probar despues
+<span class="nc" id="L497">                        iterEmpleados = (iterTarea + empleadosProbados) % empleados.length;</span>
+                        //Actualizo el ezfuerzo de esa tarea
+<span class="nc" id="L499">                        esfuerzo = tareas[tareaAleatoria].getEsfuerzo() / ((float) 0.5 + empleados[iterEmpleados].getHabilidad());</span>
+                        //Reviso si puedo agregar
+<span class="nc bnc" id="L501" title="All 2 branches missed.">                        agregar = ((int) Math.ceil(horasEmpleado[iterEmpleados] + esfuerzo / empleados[iterEmpleados].getDedicacion())) &lt;= t_spe.getF();</span>
+
+
+                    }
+                }
+<span class="nc" id="L506">                asigne = false;</span>
+                //System.out.println(&quot;Elimino la tarea: &quot;+ tareaAleatoria);
+<span class="nc" id="L508">                Tareas.remove(indiceTareaAleatoria);</span>
+            }
+            //Borro el genotype viejo y cargo el nuevo
+<span class="nc" id="L511">            ((IntegerVectorIndividualP1E1) newInd).cargarGenotype(state,nuevoGenotype);</span>
+<span class="nc" id="L512">            return newInd;</span>
+        }
+
+
+        /** Prints an entire subpopulation in a form readable by humans.
         @deprecated Verbosity no longer has meaning
     */
     public final void printSubpopulationForHumans(final EvolutionState state,
         final int log, 
         final int verbosity)
         {
-<span class="nc" id="L465">        printSubpopulationForHumans(state, log);</span>
-<span class="nc" id="L466">        }</span>
+<span class="nc" id="L523">        printSubpopulationForHumans(state, log);</span>
+<span class="nc" id="L524">        }</span>
         
     /** Prints an entire subpopulation in a form readable by humans but also parseable by the computer using readSubpopulation(EvolutionState, LineNumberReader). 
         @deprecated Verbosity no longer has meaning
@@ -472,50 +530,50 @@ import ec.vector.IntegerVectorSpeciesP1E1;
         final int log, 
         final int verbosity)
         {
-<span class="nc" id="L475">        printSubpopulation(state, log);</span>
-<span class="nc" id="L476">        }</span>
+<span class="nc" id="L533">        printSubpopulation(state, log);</span>
+<span class="nc" id="L534">        }</span>
         
     /** Prints an entire subpopulation in a form readable by humans, with a verbosity of Output.V_NO_GENERAL. */
-<span class="fc" id="L479">    boolean warned = false;</span>
+<span class="fc" id="L537">    boolean warned = false;</span>
     public void printSubpopulationForHumans(final EvolutionState state,
         final int log)
         {
-<span class="nc" id="L483">        state.output.println(NUM_INDIVIDUALS_PREAMBLE + individuals.size(), log);</span>
-<span class="nc bnc" id="L484" title="All 2 branches missed.">        for(int i = 0 ; i &lt; individuals.size(); i++)</span>
+<span class="nc" id="L541">        state.output.println(NUM_INDIVIDUALS_PREAMBLE + individuals.size(), log);</span>
+<span class="nc bnc" id="L542" title="All 2 branches missed.">        for(int i = 0 ; i &lt; individuals.size(); i++)</span>
             {
-<span class="nc" id="L486">            state.output.println(INDIVIDUAL_INDEX_PREAMBLE + Code.encode(i), log);</span>
-<span class="nc bnc" id="L487" title="All 2 branches missed.">            if (individuals.get(i) != null)</span>
-<span class="nc" id="L488">                individuals.get(i).printIndividualForHumans(state, log);</span>
-<span class="nc bnc" id="L489" title="All 2 branches missed.">            else if (!warned)</span>
+<span class="nc" id="L544">            state.output.println(INDIVIDUAL_INDEX_PREAMBLE + Code.encode(i), log);</span>
+<span class="nc bnc" id="L545" title="All 2 branches missed.">            if (individuals.get(i) != null)</span>
+<span class="nc" id="L546">                individuals.get(i).printIndividualForHumans(state, log);</span>
+<span class="nc bnc" id="L547" title="All 2 branches missed.">            else if (!warned)</span>
                 {
-<span class="nc" id="L491">                state.output.warnOnce(&quot;Null individuals found in subpopulation&quot;);</span>
-<span class="nc" id="L492">                warned = true;  // we do this rather than relying on warnOnce because it is much faster in a tight loop</span>
+<span class="nc" id="L549">                state.output.warnOnce(&quot;Null individuals found in subpopulation&quot;);</span>
+<span class="nc" id="L550">                warned = true;  // we do this rather than relying on warnOnce because it is much faster in a tight loop</span>
                 }
             }
-<span class="nc" id="L495">        }</span>
+<span class="nc" id="L553">        }</span>
         
     /** Prints an entire subpopulation in a form readable by humans but also parseable by the computer using readSubpopulation(EvolutionState, LineNumberReader) with a verbosity of Output.V_NO_GENERAL. */
     public void printSubpopulation(final EvolutionState state, final int log)
         {
-<span class="nc" id="L500">        state.output.println(NUM_INDIVIDUALS_PREAMBLE + Code.encode(individuals.size()), log);</span>
-<span class="nc bnc" id="L501" title="All 2 branches missed.">        for(int i = 0 ; i &lt; individuals.size(); i++)</span>
+<span class="nc" id="L558">        state.output.println(NUM_INDIVIDUALS_PREAMBLE + Code.encode(individuals.size()), log);</span>
+<span class="nc bnc" id="L559" title="All 2 branches missed.">        for(int i = 0 ; i &lt; individuals.size(); i++)</span>
             {
-<span class="nc" id="L503">            state.output.println(INDIVIDUAL_INDEX_PREAMBLE + Code.encode(i), log);</span>
-<span class="nc" id="L504">            individuals.get(i).printIndividual(state, log);</span>
+<span class="nc" id="L561">            state.output.println(INDIVIDUAL_INDEX_PREAMBLE + Code.encode(i), log);</span>
+<span class="nc" id="L562">            individuals.get(i).printIndividual(state, log);</span>
             }
-<span class="nc" id="L506">        }</span>
+<span class="nc" id="L564">        }</span>
         
     /** Prints an entire subpopulation in a form readable by humans but also parseable by the computer using readSubpopulation(EvolutionState, LineNumberReader). */
     public void printSubpopulation(final EvolutionState state,
         final PrintWriter writer)
         {
-<span class="nc" id="L512">        writer.println(NUM_INDIVIDUALS_PREAMBLE + Code.encode(individuals.size()));</span>
-<span class="nc bnc" id="L513" title="All 2 branches missed.">        for(int i = 0 ; i &lt; individuals.size(); i++)</span>
+<span class="nc" id="L570">        writer.println(NUM_INDIVIDUALS_PREAMBLE + Code.encode(individuals.size()));</span>
+<span class="nc bnc" id="L571" title="All 2 branches missed.">        for(int i = 0 ; i &lt; individuals.size(); i++)</span>
             {
-<span class="nc" id="L515">            writer.println(INDIVIDUAL_INDEX_PREAMBLE + Code.encode(i));</span>
-<span class="nc" id="L516">            individuals.get(i).printIndividual(state, writer);</span>
+<span class="nc" id="L573">            writer.println(INDIVIDUAL_INDEX_PREAMBLE + Code.encode(i));</span>
+<span class="nc" id="L574">            individuals.get(i).printIndividual(state, writer);</span>
             }
-<span class="nc" id="L518">        }</span>
+<span class="nc" id="L576">        }</span>
     
     /** Reads a subpopulation from the format generated by printSubpopulation(....).  If the number of individuals is not identical, the individuals array will
         be deleted and replaced with a new array, and a warning will be generated as individuals will have to be created using newIndividual(...) rather
@@ -523,37 +581,37 @@ import ec.vector.IntegerVectorSpeciesP1E1;
     public void readSubpopulation(final EvolutionState state, final LineNumberReader reader) throws IOException
         {
         // read in number of individuals and check to see if this appears to be a valid subpopulation
-<span class="nc" id="L526">        int numIndividuals = Code.readIntegerWithPreamble(NUM_INDIVIDUALS_PREAMBLE, state, reader);</span>
+<span class="nc" id="L584">        int numIndividuals = Code.readIntegerWithPreamble(NUM_INDIVIDUALS_PREAMBLE, state, reader);</span>
 
-<span class="nc bnc" id="L528" title="All 2 branches missed.">        if (numIndividuals &lt; 1)</span>
-<span class="nc" id="L529">            state.output.fatal(&quot;On reading subpopulation from text stream, the subpopulation size must be &gt;= 1.  The provided value was: &quot; + numIndividuals + &quot;.&quot;);</span>
+<span class="nc bnc" id="L586" title="All 2 branches missed.">        if (numIndividuals &lt; 1)</span>
+<span class="nc" id="L587">            state.output.fatal(&quot;On reading subpopulation from text stream, the subpopulation size must be &gt;= 1.  The provided value was: &quot; + numIndividuals + &quot;.&quot;);</span>
 
         // read in individuals
-<span class="nc bnc" id="L532" title="All 2 branches missed.">        if (numIndividuals != individuals.size())</span>
+<span class="nc bnc" id="L590" title="All 2 branches missed.">        if (numIndividuals != individuals.size())</span>
             {
-<span class="nc" id="L534">            state.output.warnOnce(&quot;On reading subpopulation from text stream, the current subpopulation size (&quot; + individuals.size() + &quot; didn't match the number of individuals in the file (&quot; + numIndividuals +</span>
+<span class="nc" id="L592">            state.output.warnOnce(&quot;On reading subpopulation from text stream, the current subpopulation size (&quot; + individuals.size() + &quot; didn't match the number of individuals in the file (&quot; + numIndividuals +</span>
                 &quot;) and so the subpopulation size will change.&quot;);
             }
                 
-<span class="nc" id="L538">        individuals = new ArrayList&lt;Individual&gt;();</span>
-<span class="nc bnc" id="L539" title="All 2 branches missed.">        for(int i = 0 ; i &lt; numIndividuals; i++)</span>
+<span class="nc" id="L596">        individuals = new ArrayList&lt;Individual&gt;();</span>
+<span class="nc bnc" id="L597" title="All 2 branches missed.">        for(int i = 0 ; i &lt; numIndividuals; i++)</span>
             {
-<span class="nc" id="L541">            int j = Code.readIntegerWithPreamble(INDIVIDUAL_INDEX_PREAMBLE, state, reader);</span>
+<span class="nc" id="L599">            int j = Code.readIntegerWithPreamble(INDIVIDUAL_INDEX_PREAMBLE, state, reader);</span>
             // sanity check
-<span class="nc bnc" id="L543" title="All 2 branches missed.">            if (j!=i) state.output.warnOnce(&quot;On reading subpopulation from text stream, some individual indexes in the subpopulation did not match.  &quot; +</span>
+<span class="nc bnc" id="L601" title="All 2 branches missed.">            if (j!=i) state.output.warnOnce(&quot;On reading subpopulation from text stream, some individual indexes in the subpopulation did not match.  &quot; +</span>
                 &quot;The first was individual &quot; + i + &quot;, which is listed in the file as &quot; + j);
-<span class="nc" id="L545">            individuals.add(species.newIndividual(state, reader));</span>
+<span class="nc" id="L603">            individuals.add(species.newIndividual(state, reader));</span>
             }
-<span class="nc" id="L547">        }</span>
+<span class="nc" id="L605">        }</span>
         
     /** Writes a subpopulation in binary form, in a format readable by readSubpopulation(EvolutionState, DataInput). */
     public void writeSubpopulation(final EvolutionState state,
         final DataOutput dataOutput) throws IOException
         {
-<span class="nc" id="L553">        dataOutput.writeInt(individuals.size());</span>
-<span class="nc bnc" id="L554" title="All 2 branches missed.">        for(int i = 0 ; i &lt; individuals.size(); i++)</span>
-<span class="nc" id="L555">            individuals.get(i).writeIndividual(state, dataOutput);</span>
-<span class="nc" id="L556">        }</span>
+<span class="nc" id="L611">        dataOutput.writeInt(individuals.size());</span>
+<span class="nc bnc" id="L612" title="All 2 branches missed.">        for(int i = 0 ; i &lt; individuals.size(); i++)</span>
+<span class="nc" id="L613">            individuals.get(i).writeIndividual(state, dataOutput);</span>
+<span class="nc" id="L614">        }</span>
     
     /** Reads a subpopulation in binary form, from the format generated by writeSubpopulation(...).  If the number of individuals is not identical, the individuals array will
         be deleted and replaced with a new array, and a warning will be generated as individuals will have to be created using newIndividual(...) rather
@@ -561,18 +619,18 @@ import ec.vector.IntegerVectorSpeciesP1E1;
     public void readSubpopulation(final EvolutionState state,
         final DataInput dataInput) throws IOException
         {
-<span class="nc" id="L564">        int numIndividuals = dataInput.readInt();</span>
-<span class="nc bnc" id="L565" title="All 2 branches missed.">        if (numIndividuals != individuals.size())</span>
+<span class="nc" id="L622">        int numIndividuals = dataInput.readInt();</span>
+<span class="nc bnc" id="L623" title="All 2 branches missed.">        if (numIndividuals != individuals.size())</span>
             {
-<span class="nc" id="L567">            state.output.warnOnce(&quot;On reading subpopulation from binary stream, the subpopulation size was incorrect.\n&quot; + </span>
+<span class="nc" id="L625">            state.output.warnOnce(&quot;On reading subpopulation from binary stream, the subpopulation size was incorrect.\n&quot; + </span>
                 &quot;Had to resize and use newIndividual() instead of readIndividual().&quot;);
             
-<span class="nc" id="L570">            individuals = new ArrayList&lt;Individual&gt;();</span>
-<span class="nc bnc" id="L571" title="All 2 branches missed.">            for(int i = 0 ; i &lt; numIndividuals; i++)</span>
-<span class="nc" id="L572">                individuals.add(species.newIndividual(state, dataInput));</span>
+<span class="nc" id="L628">            individuals = new ArrayList&lt;Individual&gt;();</span>
+<span class="nc bnc" id="L629" title="All 2 branches missed.">            for(int i = 0 ; i &lt; numIndividuals; i++)</span>
+<span class="nc" id="L630">                individuals.add(species.newIndividual(state, dataInput));</span>
             }
-<span class="nc bnc" id="L574" title="All 2 branches missed.">        else for(int i = 0 ; i &lt; individuals.size(); i++)</span>
-<span class="nc" id="L575">                 individuals.get(i).readIndividual(state, dataInput);</span>
-<span class="nc" id="L576">        }</span>
+<span class="nc bnc" id="L632" title="All 2 branches missed.">        else for(int i = 0 ; i &lt; individuals.size(); i++)</span>
+<span class="nc" id="L633">                 individuals.get(i).readIndividual(state, dataInput);</span>
+<span class="nc" id="L634">        }</span>
     }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

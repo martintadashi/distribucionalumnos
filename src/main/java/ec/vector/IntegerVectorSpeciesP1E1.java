@@ -342,7 +342,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpeciesP1E1
                 int index = 0;
                 String[] line_tokens = br.readLine().split(" ");
                 for (String id : line_tokens) {
-                    tareas[index] = new Tarea(Integer.parseInt((String) id.substring(1,2)));
+                    tareas[index] = new Tarea(Integer.parseInt((String) id.substring(1,id.length())));
                     index++;
                 }
 
@@ -377,7 +377,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpeciesP1E1
                 int index = 0;
                 String[] line_tokens = br.readLine().split(" ");
                 for (String id : line_tokens) {
-                    empleados[index] = new Empleado(Integer.parseInt((String) id.substring(1,2)));
+                    empleados[index] = new Empleado(Integer.parseInt((String) id.substring(1,id.length())));
                     index++;
                 }
 

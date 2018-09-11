@@ -285,9 +285,27 @@ public class Subpopulation implements Cloneable, Setup
         if (numDuplicateRetries >= 1)
             h = new HashMap((len - start) / 2);  // seems reasonable
         System.out.println("COMIENZO DE MOSTRAR LOS INDIVIDUOS ORIGINALES");
+
         for(int x=start;x<len;x++){
             System.out.println("INDIVIDUO: "+x);
             Individual newInd = null;
+            newInd = species.newIndividual(state, thread);
+            IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) newInd.species;
+            Tarea[] tareas = t_spe.getTareas();
+            Empleado[] empleados = t_spe.getEmpleados();
+            /*
+            System.out.println("\nEmpleados: ");
+            for (Empleado e : empleados) {
+                System.out.print((int)e.getId() + " ,");
+            }
+            System.out.println("\n Tareas: ");
+            for (Tarea t : tareas) {
+                System.out.print(t.getId() + " ,");
+            }
+            System.out.println("");
+            */
+
+
             for(int tries=0; 
                 tries <= /* Yes, I see that*/ numDuplicateRetries; 
                 tries++)
@@ -296,140 +314,12 @@ public class Subpopulation implements Cloneable, Setup
                     newInd = null;
                     //System.out.println("Sete en null: ");
                     newInd = species.newIndividual(state, thread);
-
-
-
-                    Random r = new Random();
-                    int cantEmpleados= ((IntegerVectorIndividualP1E1) newInd).getCantidadEmpleados();
-                    int cantTareas= ((IntegerVectorIndividualP1E1) newInd).getCantidadTareas();
-                    //System.out.println("CantEmpleados: "+cantEmpleados+" CantTareas: "+cantTareas);
-                    int[] nuevoGenotype=new int[cantTareas];
-                    //El numero de empleado me devuelve su lista de tareas
-                    HashMap<Integer, List<Integer>> tareasDeEmpleado = new HashMap<Integer, List<Integer>>();
-                    //Lista de tareas
-                    ArrayList <Integer> Tareas=new ArrayList<Integer>();
-                    //System.out.print("\tTareas          :");
-                    for (int iTareas = 0; iTareas < cantTareas; iTareas++) {
-                        Tareas.add(iTareas);
-                        //System.out.print(iTareas);
-                    }    //System.out.println();
-                    //System.out.print("\tTareas Sorteadas:");
-
-                    //Repartimos RoundRobin tareas elegidas al azar entre los empleados
-                    for (int iTareas = 0; iTareas < cantTareas; iTareas++) {
-                        //Sorteo una tarea aleatoria entre las que quedan
-                        int tareaAleatoria= r.nextInt(Tareas.size());
-                        //System.out.print("\tIndice Tareas Sorteada: "+tareaAleatoria);
-                        //System.out.print("\tTareas Sorteada: "+Tareas.get(tareaAleatoria));
-                        //System.out.print(Tareas.get(tareaAleatoria));
-                        //Se la asigno a un empleado en orden
-                        if (tareasDeEmpleado.containsKey(iTareas % cantEmpleados)) {
-                            tareasDeEmpleado.get(iTareas % cantEmpleados).add(Tareas.get(tareaAleatoria));
-                        } else {
-                            List<Integer> tareas = new ArrayList<Integer>();
-                            tareas.add(Tareas.get(tareaAleatoria));
-                            tareasDeEmpleado.put(iTareas % cantEmpleados, tareas);
-                        }
-                        //la quito de la lista
-                        Tareas.remove(tareaAleatoria);
-                    }//System.out.println();
-                    //Convierto nuestra representacion a una acorde al genotype
-                    //itero entre empleados
-                    for (int iEmpleado = 0; iEmpleado <cantEmpleados ; iEmpleado++) {
-                        //Itero entre las tareas de ese empleado
-                        for (int iTareas = 0; iTareas < tareasDeEmpleado.get(iEmpleado).size(); iTareas++) {
-                            nuevoGenotype[tareasDeEmpleado.get(iEmpleado).get(iTareas)]=iEmpleado;
-                        }
-                    }
-                    //Borro el genotype viejo y cargo el nuevo
-                    ((IntegerVectorIndividualP1E1) newInd).cargarGenotype(state,nuevoGenotype);
-
-                    //Evaluo a mano
-                    IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) newInd.species;
-                    Tarea[] tareas = t_spe.getTareas();
-                    Empleado[] empleados = t_spe.getEmpleados();
-                    int costoProyecto = 0;
-                    int posMax = 0;
-
-                    int[] empleadosPorTarea = ((IntegerVectorIndividualP1E1) newInd).genome;
-
-                    if (tareas.length == empleadosPorTarea.length && tareas.length > empleados.length) {
-                        //System.out.println("INICIA INDIVIDUO");
-
-                        float[] horasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];
-                        float[] diasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];
-
-                        //Inicializa las horas trabajadas en cero
-                        for (int i = 0; i < horasDeTrabajoParaCadaEmpleado.length; i++) {
-                            horasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;
-                            diasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;
-                        }
-                        //Recorro cada Calcula las horas de cada empleado
-                        for (int i = 0; i < empleadosPorTarea.length; i++) {
-                            //Consigo la tarea con la que voy a trabajar
-                            Tarea tarea = tareas[i];
-                            //System.out.println("empleadosPorTarea["+i+"]= "+empleadosPorTarea[i]);
-                            //Encuentro al empleado que tiene asignada esa tarea
-                            Empleado empleado = empleados[empleadosPorTarea[i]];
-                            //Sumo las horas que le va a tomar al empleado (segun su habilidad) completar el esfuerzo de la tarea
-                            //System.out.println("Tarea: "+tarea.toString());
-                            //System.out.println("Empleado: "+empleado.toString());
-                            float horasTrabajadasPorTarea = tarea.getEsfuerzo() / ((float) 0.5 + empleado.getHabilidad());
-                            horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;
-                        }
-                        //Con todas las horas cargadas en todos los empleados calculo los dias que trabaja cada uno y cuanto nos cuesta
-                        for (int i = 0; i < diasDeTrabajoParaCadaEmpleado.length; i++) {
-                            Empleado empleado = empleados[i];
-                            diasDeTrabajoParaCadaEmpleado[i] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[i] / empleado.getDedicacion()));
-                            costoProyecto += diasDeTrabajoParaCadaEmpleado[i] * empleado.getSueldo();
-                            //System.out.println("\t Dias trabajados por el empleado "+i+" : "+diasDeTrabajoParaCadaEmpleado[i]);
-                            //Guardo la posicion del empleado que trabaje mas dias
-                            if (diasDeTrabajoParaCadaEmpleado[i] > diasDeTrabajoParaCadaEmpleado[posMax]) {
-                                posMax = i;
-                            }
-                        }
-
-                        //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
-                        if(diasDeTrabajoParaCadaEmpleado[posMax]>t_spe.getF()){
-                            System.out.print("Se penaliza   \t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ " a su costo: "+ costoProyecto);
-                            costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal();
-                            System.out.println(" total: "+costoProyecto);
-                        } else{
-                            System.out.println("NO SE PENALIZA\t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
-                        }
-                        System.out.println("\tAl individuo: ");
-
-
-
-                        boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] <= t_spe.getF(); // factible??
-                        //ideal = ideal && (((SimpleFitness) ind2.fitness).getMinFitness() > costoProyecto);
-                        ideal =  ideal && (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;
-                        //ideal = ideal || state.generation - state.getBestFitnessGeneration() > (int) state.numGenerations/10;
-                        //System.out.println("state.generation: " + state.generation + ",getBestFitnessGeneration(): " + state.getBestFitnessGeneration() + ", state.numGenerations: " + state.numGenerations);
-                        //System.out.println("ideal= "+ideal+"  horasDeTrabajoParaCadaEmpleado[posMax]"+ horasDeTrabajoParaCadaEmpleado[posMax]);
-                        ((SimpleFitness) newInd.fitness).setFitness(state, costoProyecto * (-1), ideal);
-                        newInd.evaluated = true;
-
-                        //ind.printIndividualForHumans(state,0);
-                /*
-                System.out.print("\t Dias trabajados: (");
-
-                for (int i = 0; i < horasDeTrabajoParaCadaEmpleado.length; i++) {
-                    System.out.print(diasDeTrabajoParaCadaEmpleado[i]+", ");
-                }
-                System.out.println(")");
-                System.out.println("FINALIZA INDIVIDUO");
-                */
-                    }
-
-
+                    newInd= generarIndividuoRRAcotadoPorF(state,tareas, empleados, t_spe ,newInd);
+                    evaluoAMano(state,tareas, empleados, t_spe ,newInd);
 
                     System.out.println("Generado en Species: ");
                     //devuelvo el nuevo individuo
                     newInd.printIndividualForHumans(state,0);
-
-
-
 
                     //System.out.println("Obtenido en Subpopulation despues del new: "+newInd.genotypeToStringForHumans());
                     //newInd.printIndividualForHumans(state,0);
@@ -453,9 +343,177 @@ public class Subpopulation implements Cloneable, Setup
             }
         System.out.println("TERMINO DE MOSTRAR LOS INDIVIDUOS ORIGINALES");
         }
-    
-        
-    /** Prints an entire subpopulation in a form readable by humans. 
+
+        private void evaluoAMano(EvolutionState state, Tarea[] tareas, Empleado[] empleados, IntegerVectorSpeciesP1E1 t_spe, Individual newInd) {
+            //Evaluo a mano
+
+            int costoProyecto = 0;
+            int posMax = 0;
+
+            int[] empleadosPorTarea = ((IntegerVectorIndividualP1E1) newInd).genome;
+
+            if (tareas.length == empleadosPorTarea.length && tareas.length > empleados.length) {
+                //System.out.println("INICIA INDIVIDUO");
+
+                float[] horasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];
+                float[] diasDeTrabajoParaCadaEmpleado = new float[t_spe.getCantEmpleados()];
+
+                //Inicializa las horas trabajadas en cero
+                for (int i = 0; i < horasDeTrabajoParaCadaEmpleado.length; i++) {
+                    horasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;
+                    diasDeTrabajoParaCadaEmpleado[i] = (float) 0.0;
+                }
+                //Recorro cada Calcula las horas de cada empleado
+                for (int i = 0; i < empleadosPorTarea.length; i++) {
+                    //Consigo la tarea con la que voy a trabajar
+                    Tarea tarea = tareas[i];
+                    //System.out.println("empleadosPorTarea["+i+"]= "+empleadosPorTarea[i]);
+                    //Encuentro al empleado que tiene asignada esa tarea
+                    Empleado empleado = empleados[empleadosPorTarea[i]];
+                    //Sumo las horas que le va a tomar al empleado (segun su habilidad) completar el esfuerzo de la tarea
+                    //System.out.println("Tarea: "+tarea.toString());
+                    //System.out.println("Empleado: "+empleado.toString());
+                    float horasTrabajadasPorTarea = tarea.getEsfuerzo() / ((float) 0.5 + empleado.getHabilidad());
+                    horasDeTrabajoParaCadaEmpleado[empleadosPorTarea[i]] += horasTrabajadasPorTarea;
+                }
+                //Con todas las horas cargadas en todos los empleados calculo los dias que trabaja cada uno y cuanto nos cuesta
+                for (int i = 0; i < diasDeTrabajoParaCadaEmpleado.length; i++) {
+                    Empleado empleado = empleados[i];
+                    diasDeTrabajoParaCadaEmpleado[i] = ((int) Math.ceil(horasDeTrabajoParaCadaEmpleado[i] / empleado.getDedicacion()));
+                    costoProyecto += diasDeTrabajoParaCadaEmpleado[i] * empleado.getSueldo();
+                    //System.out.println("\t Dias trabajados por el empleado "+i+" : "+diasDeTrabajoParaCadaEmpleado[i]);
+                    //Guardo la posicion del empleado que trabaje mas dias
+                    if (diasDeTrabajoParaCadaEmpleado[i] > diasDeTrabajoParaCadaEmpleado[posMax]) {
+                        posMax = i;
+                    }
+                }
+
+                //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
+                if(diasDeTrabajoParaCadaEmpleado[posMax]>t_spe.getF()){
+                    System.out.print("Se penaliza   \t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ " a su costo: "+ costoProyecto);
+                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal()*(diasDeTrabajoParaCadaEmpleado[posMax]/t_spe.getF());
+                    System.out.println(" total: "+costoProyecto);
+                } else{
+                    System.out.println("NO SE PENALIZA\t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
+                }
+                System.out.println("\tAl individuo: ");
+
+
+
+                boolean ideal = diasDeTrabajoParaCadaEmpleado[posMax] <= t_spe.getF(); // factible??
+                //ideal = ideal && (((SimpleFitness) ind2.fitness).getMinFitness() > costoProyecto);
+                ideal =  ideal && (t_spe.getMaxSueldoReal()*diasDeTrabajoParaCadaEmpleado[posMax]) == costoProyecto;
+                //ideal = ideal || state.generation - state.getBestFitnessGeneration() > (int) state.numGenerations/10;
+                //System.out.println("state.generation: " + state.generation + ",getBestFitnessGeneration(): " + state.getBestFitnessGeneration() + ", state.numGenerations: " + state.numGenerations);
+                //System.out.println("ideal= "+ideal+"  horasDeTrabajoParaCadaEmpleado[posMax]"+ horasDeTrabajoParaCadaEmpleado[posMax]);
+                ((SimpleFitness) newInd.fitness).setFitness(state, costoProyecto * (-1), ideal);
+                newInd.evaluated = true;
+
+                //ind.printIndividualForHumans(state,0);
+                /*
+                System.out.print("\t Dias trabajados: (");
+
+                for (int i = 0; i < horasDeTrabajoParaCadaEmpleado.length; i++) {
+                    System.out.print(diasDeTrabajoParaCadaEmpleado[i]+", ");
+                }
+                System.out.println(")");
+                System.out.println("FINALIZA INDIVIDUO");
+                */
+            }
+            /*
+            System.out.println("\n Genotipo: ");
+            for (int iGenotipo = 0; iGenotipo < nuevoGenotype.length; iGenotipo++) {
+                System.out.print(nuevoGenotype[iGenotipo]+" ");
+            }
+
+            System.out.println("");
+             */
+
+        }
+
+        private Individual generarIndividuoRRAcotadoPorF(EvolutionState state, Tarea[] tareas, Empleado[] empleados, IntegerVectorSpeciesP1E1 t_spe, Individual newInd) {
+            Random r = new Random();
+            //int cantEmpleados= ((IntegerVectorIndividualP1E1) newInd).getCantidadEmpleados();
+            //int cantTareas= ((IntegerVectorIndividualP1E1) newInd).getCantidadTareas();
+            //System.out.println("CantEmpleados: "+cantEmpleados+" CantTareas: "+cantTareas);
+            //int[] nuevoGenotype=new int[cantTareas];
+
+            float[] horasEmpleado = new float[empleados.length];
+            int iterEmpleados = 0;
+            int[] nuevoGenotype=new int[tareas.length];
+            int empleadosProbados=0;
+            boolean asigne=false;
+            ArrayList <Integer> Tareas=new ArrayList<Integer>();
+            //System.out.print("\tTareas          :");
+            for (int iTareas = 0; iTareas < tareas.length; iTareas++) {
+                Tareas.add(iTareas);
+                //System.out.print(iTareas);
+            }    //System.out.println();
+            //System.out.print("\tTareas Sorteadas:");
+
+            //GENERO UN NUEVO GENOTYPE
+
+            //Recorro todas las tareas
+            for (int iterTarea = 0; iterTarea < tareas.length; iterTarea++) {
+                //Sorteo una tarea aleatoria entre las que quedan
+                int indiceTareaAleatoria = r.nextInt(Tareas.size());
+                int tareaAleatoria = Tareas.get(indiceTareaAleatoria);
+                //System.out.println("Sorteo la tarea: "+ tareaAleatoria);
+
+                //Calculo el empleado con el que quiero probar
+                iterEmpleados = (iterTarea + empleadosProbados) % empleados.length;
+                //Calculo el esfuerzo de la tarea para el empleado con el que quiero probar
+                float esfuerzo = tareas[tareaAleatoria].getEsfuerzo() / ((float) 0.5 + empleados[iterEmpleados].getHabilidad());
+                //Calculo si es posiblea agregarle la tarea
+                boolean agregar = ((int) Math.ceil(horasEmpleado[iterEmpleados] + esfuerzo / empleados[iterEmpleados].getDedicacion())) <= t_spe.getF();
+                //Itero hasta que pueda asignar
+                while (!asigne) {
+                    //System.out.println("Intento agregar a la tarea "+tareaAleatoria+" el empleado "+iterEmpleados);
+                    //Si puedo asignar al empleado actual
+                    if (agregar && (empleadosProbados < empleados.length)) {//cumple condicion
+                        //asigno tarea, actualizo ezfuerso del empleado,
+                        nuevoGenotype[tareaAleatoria] = iterEmpleados;
+                        //System.out.println("\tAsigno en "+tareaAleatoria+" el empleado "+iterEmpleados);
+                        horasEmpleado[iterEmpleados] += esfuerzo;
+                        //Seteo valores para la siguiente tarea
+                        empleadosProbados = 0;
+                        asigne = true;
+                    }
+                    //Si ya recorri a todos los empleados, le asigno al primero que probe y fallo
+                    else if ((empleadosProbados == empleados.length)) {
+                        //asigno tarea, actualizo ezfuerso del empleado,
+                        nuevoGenotype[tareaAleatoria] = iterEmpleados;
+                        //System.out.println("\tAsigno en "+tareaAleatoria+" el empleado "+iterEmpleados);
+                        horasEmpleado[iterEmpleados] += esfuerzo;
+                        //Seteo valores para la siguiente tarea
+                        empleadosProbados = 0;
+                        asigne = true;
+                    }
+                    //Si me quedan empleados por probar
+                    else {
+                        //Actualizo empleados probados
+                        empleadosProbados++;
+                        //Calculo el empleado a probar despues
+                        iterEmpleados = (iterTarea + empleadosProbados) % empleados.length;
+                        //Actualizo el ezfuerzo de esa tarea
+                        esfuerzo = tareas[tareaAleatoria].getEsfuerzo() / ((float) 0.5 + empleados[iterEmpleados].getHabilidad());
+                        //Reviso si puedo agregar
+                        agregar = ((int) Math.ceil(horasEmpleado[iterEmpleados] + esfuerzo / empleados[iterEmpleados].getDedicacion())) <= t_spe.getF();
+
+
+                    }
+                }
+                asigne = false;
+                //System.out.println("Elimino la tarea: "+ tareaAleatoria);
+                Tareas.remove(indiceTareaAleatoria);
+            }
+            //Borro el genotype viejo y cargo el nuevo
+            ((IntegerVectorIndividualP1E1) newInd).cargarGenotype(state,nuevoGenotype);
+            return newInd;
+        }
+
+
+        /** Prints an entire subpopulation in a form readable by humans.
         @deprecated Verbosity no longer has meaning
     */
     public final void printSubpopulationForHumans(final EvolutionState state,

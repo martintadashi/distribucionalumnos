@@ -342,7 +342,7 @@ import java.io.*;
 <span class="nc" id="L342">                int index = 0;</span>
 <span class="nc" id="L343">                String[] line_tokens = br.readLine().split(&quot; &quot;);</span>
 <span class="nc bnc" id="L344" title="All 2 branches missed.">                for (String id : line_tokens) {</span>
-<span class="nc" id="L345">                    tareas[index] = new Tarea(Integer.parseInt((String) id.substring(1,2)));</span>
+<span class="nc" id="L345">                    tareas[index] = new Tarea(Integer.parseInt((String) id.substring(1,id.length())));</span>
 <span class="nc" id="L346">                    index++;</span>
                 }
 
@@ -377,7 +377,7 @@ import java.io.*;
 <span class="nc" id="L377">                int index = 0;</span>
 <span class="nc" id="L378">                String[] line_tokens = br.readLine().split(&quot; &quot;);</span>
 <span class="nc bnc" id="L379" title="All 2 branches missed.">                for (String id : line_tokens) {</span>
-<span class="nc" id="L380">                    empleados[index] = new Empleado(Integer.parseInt((String) id.substring(1,2)));</span>
+<span class="nc" id="L380">                    empleados[index] = new Empleado(Integer.parseInt((String) id.substring(1,id.length())));</span>
 <span class="nc" id="L381">                    index++;</span>
                 }
 
