@@ -284,10 +284,10 @@ import ec.vector.IntegerVectorSpeciesP1E1;
 <span class="nc" id="L284">        HashMap h = null;</span>
 <span class="nc bnc" id="L285" title="All 2 branches missed.">        if (numDuplicateRetries &gt;= 1)</span>
 <span class="nc" id="L286">            h = new HashMap((len - start) / 2);  // seems reasonable</span>
-<span class="nc" id="L287">        System.out.println(&quot;COMIENZO DE MOSTRAR LOS INDIVIDUOS ORIGINALES&quot;);</span>
+        //System.out.println(&quot;COMIENZO DE MOSTRAR LOS INDIVIDUOS ORIGINALES&quot;);
 
 <span class="nc bnc" id="L289" title="All 2 branches missed.">        for(int x=start;x&lt;len;x++){</span>
-<span class="nc" id="L290">            System.out.println(&quot;INDIVIDUO: &quot;+x);</span>
+            //System.out.println(&quot;INDIVIDUO: &quot;+x);
 <span class="nc" id="L291">            Individual newInd = null;</span>
 <span class="nc" id="L292">            newInd = species.newIndividual(state, thread);</span>
 <span class="nc" id="L293">            IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) newInd.species;</span>
@@ -317,9 +317,9 @@ import ec.vector.IntegerVectorSpeciesP1E1;
 <span class="nc" id="L317">                    newInd= generarIndividuoRRAcotadoPorF(state,tareas, empleados, t_spe ,newInd);</span>
 <span class="nc" id="L318">                    evaluoAMano(state,tareas, empleados, t_spe ,newInd);</span>
 
-<span class="nc" id="L320">                    System.out.println(&quot;Generado en Species: &quot;);</span>
+                    //System.out.println(&quot;Generado en Species: &quot;);
                     //devuelvo el nuevo individuo
-<span class="nc" id="L322">                    newInd.printIndividualForHumans(state,0);</span>
+                    //newInd.printIndividualForHumans(state,0);
 
                     //System.out.println(&quot;Obtenido en Subpopulation despues del new: &quot;+newInd.genotypeToStringForHumans());
                     //newInd.printIndividualForHumans(state,0);
@@ -341,7 +341,7 @@ import ec.vector.IntegerVectorSpeciesP1E1;
 //            System.out.println(&quot;Obtenido en Subpopulation.&quot;);
 //            newInd.printIndividualForHumans(state,0);
             }
-<span class="nc" id="L344">        System.out.println(&quot;TERMINO DE MOSTRAR LOS INDIVIDUOS ORIGINALES&quot;);</span>
+        //System.out.println(&quot;TERMINO DE MOSTRAR LOS INDIVIDUOS ORIGINALES&quot;);
 <span class="nc" id="L345">        }</span>
 
         private void evaluoAMano(EvolutionState state, Tarea[] tareas, Empleado[] empleados, IntegerVectorSpeciesP1E1 t_spe, Individual newInd) {
@@ -390,13 +390,13 @@ import ec.vector.IntegerVectorSpeciesP1E1;
 
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
 <span class="nc bnc" id="L392" title="All 2 branches missed.">                if(diasDeTrabajoParaCadaEmpleado[posMax]&gt;t_spe.getF()){</span>
-<span class="nc" id="L393">                    System.out.print(&quot;Se penaliza   \t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF() +&quot; se agrega costo: &quot;+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ &quot; a su costo: &quot;+ costoProyecto);</span>
+                    //System.out.print(&quot;Se penaliza   \t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF() +&quot; se agrega costo: &quot;+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ &quot; a su costo: &quot;+ costoProyecto);
 <span class="nc" id="L394">                    costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal()*(diasDeTrabajoParaCadaEmpleado[posMax]/t_spe.getF());</span>
-<span class="nc" id="L395">                    System.out.println(&quot; total: &quot;+costoProyecto);</span>
+                    //System.out.println(&quot; total: &quot;+costoProyecto);
                 } else{
-<span class="nc" id="L397">                    System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);</span>
+                    //System.out.println(&quot;NO SE PENALIZA\t|\t El individuo demora &quot;+diasDeTrabajoParaCadaEmpleado[posMax]+&quot;/&quot;+t_spe.getF()+&quot; y tiene costo: &quot;+costoProyecto);
                 }
-<span class="nc" id="L399">                System.out.println(&quot;\tAl individuo: &quot;);</span>
+                //System.out.println(&quot;\tAl individuo: &quot;);
 
 
 

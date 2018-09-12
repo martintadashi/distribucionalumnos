@@ -46,6 +46,10 @@ public class Empleado {
     public void setDedicacion(int dedicacion) {
         this.dedicacion = dedicacion;
     }
+    public float calcularHorasReales(int ezfuerzo){
+        return (ezfuerzo/(0.5f+habilidad));
+    }
+
 
     @Override
     public String toString() {

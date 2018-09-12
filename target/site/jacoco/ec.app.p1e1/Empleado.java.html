@@ -46,11 +46,15 @@ public class Empleado {
     public void setDedicacion(int dedicacion) {
 <span class="nc" id="L47">        this.dedicacion = dedicacion;</span>
 <span class="nc" id="L48">    }</span>
+    public float calcularHorasReales(int ezfuerzo){
+<span class="nc" id="L50">        return (ezfuerzo/(0.5f+habilidad));</span>
+    }
+
 
     @Override
     public String toString() {
-<span class="nc" id="L52">        Gson gson = new Gson();</span>
-<span class="nc" id="L53">        return gson.toJson(this);</span>
+<span class="nc" id="L56">        Gson gson = new Gson();</span>
+<span class="nc" id="L57">        return gson.toJson(this);</span>
     }
 
 }

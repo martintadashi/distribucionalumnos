@@ -284,10 +284,10 @@ public class Subpopulation implements Cloneable, Setup
         HashMap h = null;
         if (numDuplicateRetries >= 1)
             h = new HashMap((len - start) / 2);  // seems reasonable
-        System.out.println("COMIENZO DE MOSTRAR LOS INDIVIDUOS ORIGINALES");
+        //System.out.println("COMIENZO DE MOSTRAR LOS INDIVIDUOS ORIGINALES");
 
         for(int x=start;x<len;x++){
-            System.out.println("INDIVIDUO: "+x);
+            //System.out.println("INDIVIDUO: "+x);
             Individual newInd = null;
             newInd = species.newIndividual(state, thread);
             IntegerVectorSpeciesP1E1 t_spe = (IntegerVectorSpeciesP1E1) newInd.species;
@@ -317,9 +317,9 @@ public class Subpopulation implements Cloneable, Setup
                     newInd= generarIndividuoRRAcotadoPorF(state,tareas, empleados, t_spe ,newInd);
                     evaluoAMano(state,tareas, empleados, t_spe ,newInd);
 
-                    System.out.println("Generado en Species: ");
+                    //System.out.println("Generado en Species: ");
                     //devuelvo el nuevo individuo
-                    newInd.printIndividualForHumans(state,0);
+                    //newInd.printIndividualForHumans(state,0);
 
                     //System.out.println("Obtenido en Subpopulation despues del new: "+newInd.genotypeToStringForHumans());
                     //newInd.printIndividualForHumans(state,0);
@@ -341,7 +341,7 @@ public class Subpopulation implements Cloneable, Setup
 //            System.out.println("Obtenido en Subpopulation.");
 //            newInd.printIndividualForHumans(state,0);
             }
-        System.out.println("TERMINO DE MOSTRAR LOS INDIVIDUOS ORIGINALES");
+        //System.out.println("TERMINO DE MOSTRAR LOS INDIVIDUOS ORIGINALES");
         }
 
         private void evaluoAMano(EvolutionState state, Tarea[] tareas, Empleado[] empleados, IntegerVectorSpeciesP1E1 t_spe, Individual newInd) {
@@ -390,13 +390,13 @@ public class Subpopulation implements Cloneable, Setup
 
                 //Penalizo las soluciones no factibles con un valor que asegure sean peores que las factubles
                 if(diasDeTrabajoParaCadaEmpleado[posMax]>t_spe.getF()){
-                    System.out.print("Se penaliza   \t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ " a su costo: "+ costoProyecto);
+                    //System.out.print("Se penaliza   \t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF() +" se agrega costo: "+(t_spe.getHorasTotal()*t_spe.getMaxSueldoReal())+ " a su costo: "+ costoProyecto);
                     costoProyecto+=t_spe.getHorasTotal()*t_spe.getMaxSueldoReal()*(diasDeTrabajoParaCadaEmpleado[posMax]/t_spe.getF());
-                    System.out.println(" total: "+costoProyecto);
+                    //System.out.println(" total: "+costoProyecto);
                 } else{
-                    System.out.println("NO SE PENALIZA\t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
+                    //System.out.println("NO SE PENALIZA\t|\t El individuo demora "+diasDeTrabajoParaCadaEmpleado[posMax]+"/"+t_spe.getF()+" y tiene costo: "+costoProyecto);
                 }
-                System.out.println("\tAl individuo: ");
+                //System.out.println("\tAl individuo: ");
 
 
 

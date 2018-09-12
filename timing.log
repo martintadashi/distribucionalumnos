@@ -1,749 +1,708 @@
 =============================
-Number {1}: 2018-09-11-15:07:30
-Corro el generador para 64 y 38
+Number {1}: 2018-09-11-20:34:01
+Corro el generador para 34 y 2
 Ejecuto: java -jar target/ecj-26.jar -from app/p1e1/p1e1.params
-Sueldo real empleado 0: 180.70653
-Sueldo real empleado 1: 208.58208
-Sueldo real empleado 2: 213.34895
-Sueldo real empleado 3: 210.0
-Sueldo real empleado 4: 202.0
-Sueldo real empleado 5: 147.44897
-Sueldo real empleado 6: 155.13889
-Sueldo real empleado 7: 206.89656
-Sueldo real empleado 8: 157.30594
-Sueldo real empleado 9: 155.96846
-Sueldo real empleado 10: 184.74074
-Sueldo real empleado 11: 201.42857
-Sueldo real empleado 12: 156.61157
-Sueldo real empleado 13: 203.84616
-Sueldo real empleado 14: 171.00696
-Sueldo real empleado 15: 220.0
-Sueldo real empleado 16: 176.13208
-Sueldo real empleado 17: 168.78307
-Sueldo real empleado 18: 164.1129
-Sueldo real empleado 19: 187.02702
-Sueldo real empleado 20: 188.50575
-Sueldo real empleado 21: 181.52959
-Sueldo real empleado 22: 159.29576
-Sueldo real empleado 23: 175.22322
-Sueldo real empleado 24: 196.66667
-Sueldo real empleado 25: 205.64516
-Sueldo real empleado 26: 162.7907
-Sueldo real empleado 27: 168.78307
-Sueldo real empleado 28: 211.66667
-Sueldo real empleado 29: 180.35715
-Sueldo real empleado 30: 190.86757
-Sueldo real empleado 31: 192.28856
-Sueldo real empleado 32: 170.94016
-Sueldo real empleado 33: 188.57143
-Sueldo real empleado 34: 168.67815
-Sueldo real empleado 35: 174.76637
-Sueldo real empleado 36: 166.66667
-Sueldo real empleado 37: 151.04478
-cant empl y cant tareas de intVectSpe: 38, 64COMIENZO DE MOSTRAR LOS INDIVIDUOS ORIGINALES
+Sueldo real empleado 0: 162.31061
+Sueldo real empleado 1: 168.4406
+cant empl y cant tareas de intVectSpe: 2, 34COMIENZO DE MOSTRAR LOS INDIVIDUOS ORIGINALES
 INDIVIDUO: 0
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 376.0/313 se agrega costo: 584320.44 a su costo: 574017 total: 1275948
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1275948.0
+0 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 0 0 0 1 1 0 0 0 0 1 0 1 1 0 0 1 0 0
 INDIVIDUO: 1
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 308.0/313 y tiene costo: 575625
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575625.0
+1 0 1 1 1 0 0 0 0 0 0 0 0 1 0 1 0 1 1 1 1 1 1 1 0 0 0 0 1 0 1 1 1 0
 INDIVIDUO: 2
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 347.0/313 se agrega costo: 584320.44 a su costo: 575023 total: 1222816
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1222816.0
+0 1 0 0 0 0 0 0 1 1 0 1 0 0 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 1 1 0 1 0
 INDIVIDUO: 3
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 383.0/313 se agrega costo: 584320.44 a su costo: 573211 total: 1288210
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1288210.0
+1 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1 1 0 0 1 1 0 0 1 0 1 1 1 1 0 0 0 1 1
 INDIVIDUO: 4
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 383.0/313 se agrega costo: 584320.44 a su costo: 573211 total: 1288210
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1288210.0
+0 0 1 0 0 1 1 1 0 0 1 1 0 1 0 0 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 1 1 1
 INDIVIDUO: 5
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 338.0/313 se agrega costo: 584320.44 a su costo: 574115 total: 1205106
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1205106.0
+1 1 0 0 1 1 1 0 1 0 0 0 0 0 1 0 1 1 1 0 0 1 0 0 1 0 1 0 1 0 1 0 0 1
 INDIVIDUO: 6
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 349.0/313 se agrega costo: 584320.44 a su costo: 574015 total: 1225541
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1225541.0
+0 1 1 0 1 0 0 1 0 0 0 1 0 0 1 1 1 1 1 0 0 1 0 0 1 1 1 1 1 0 1 0 0 0
 INDIVIDUO: 7
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 328.0/313 se agrega costo: 584320.44 a su costo: 575072 total: 1187395
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1187395.0
+1 1 0 0 1 0 1 0 0 0 1 1 1 0 1 0 0 0 1 1 0 0 1 1 1 1 0 1 0 0 0 0 1 0
 INDIVIDUO: 8
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 316.0/313 se agrega costo: 584320.44 a su costo: 575676 total: 1165597
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1165597.0
+1 0 1 0 0 0 1 1 0 0 0 1 1 0 1 0 0 0 0 1 0 1 1 1 1 1 1 1 0 0 1 0 0 0
 INDIVIDUO: 9
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 329.0/313 se agrega costo: 584320.44 a su costo: 574568 total: 1188757
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1188757.0
+1 1 1 1 1 0 1 0 0 1 0 1 1 1 0 1 0 0 0 0 1 0 0 1 0 1 1 1 0 0 0 0 0 1
 INDIVIDUO: 10
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 350.0/313 se agrega costo: 584320.44 a su costo: 574872 total: 1228265
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1228265.0
+0 0 1 0 0 1 0 0 1 1 1 0 0 1 1 0 1 1 1 0 0 0 1 1 1 1 1 0 1 0 0 0 0 1
 INDIVIDUO: 11
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 384.0/313 se agrega costo: 584320.44 a su costo: 572707 total: 1289573
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1289573.0
+0 0 0 0 1 1 0 1 0 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 1 1 1 1 1 1 1 0 1
 INDIVIDUO: 12
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 363.0/313 se agrega costo: 584320.44 a su costo: 573764 total: 1251426
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1251426.0
+1 0 0 1 0 1 0 1 0 1 1 0 0 1 0 1 1 1 1 0 0 1 0 1 0 1 0 0 1 1 0 1 0 0
 INDIVIDUO: 13
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 291.0/313 y tiene costo: 576027
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -576027.0
+1 1 1 0 1 0 1 0 0 1 1 1 0 1 1 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 1 0 1 1
 INDIVIDUO: 14
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 269.0/313 y tiene costo: 576227
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -576227.0
+0 0 1 1 1 0 0 0 1 1 0 0 0 0 1 1 0 0 1 0 1 1 1 0 1 1 1 1 0 1 0 0 1 0
 INDIVIDUO: 15
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 319.0/313 se agrega costo: 584320.44 a su costo: 575525 total: 1171046
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1171046.0
+1 0 1 1 1 0 0 0 0 0 0 0 1 1 0 1 0 1 1 0 0 0 1 0 0 1 0 1 1 1 0 1 1 1
 INDIVIDUO: 16
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 306.0/313 y tiene costo: 575272
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575272.0
+0 0 0 0 1 1 0 1 1 1 0 1 1 1 1 0 1 0 1 0 0 1 0 0 0 1 0 0 1 0 1 1 1 1
 INDIVIDUO: 17
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 323.0/313 se agrega costo: 584320.44 a su costo: 574870 total: 1177858
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1177858.0
+1 0 0 1 0 0 1 0 1 0 1 1 1 1 1 1 0 1 1 1 0 0 0 1 1 1 1 0 0 0 0 0 1 0
 INDIVIDUO: 18
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 355.0/313 se agrega costo: 584320.44 a su costo: 573713 total: 1236440
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1236440.0
+0 0 0 1 1 1 1 0 1 1 1 0 1 0 0 1 1 1 0 1 0 0 1 0 1 0 0 0 1 1 0 0 0 1
 INDIVIDUO: 19
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 332.0/313 se agrega costo: 584320.44 a su costo: 574417 total: 1194207
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1194207.0
+0 0 1 1 1 1 0 0 0 1 0 1 1 0 1 1 0 0 0 1 1 1 0 0 0 0 0 0 1 1 1 0 0 1
 INDIVIDUO: 20
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 342.0/313 se agrega costo: 584320.44 a su costo: 574821 total: 1213279
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1213279.0
+0 0 1 0 1 1 1 1 1 0 0 0 0 0 1 1 1 0 0 1 1 0 0 0 0 1 1 1 1 1 0 0 0 1
 INDIVIDUO: 21
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 311.0/313 y tiene costo: 575474
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575474.0
+0 0 0 0 1 0 1 1 1 1 1 1 0 0 0 0 0 0 1 1 0 1 1 0 0 1 1 1 0 1 0 1 0 0
 INDIVIDUO: 22
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 314.0/313 se agrega costo: 584320.44 a su costo: 575323 total: 1161510
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1161510.0
+1 0 0 1 0 1 0 1 1 0 1 1 0 1 0 0 0 1 1 0 0 1 1 1 1 0 1 1 1 0 0 0 1 0
 INDIVIDUO: 23
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 318.0/313 se agrega costo: 584320.44 a su costo: 574668 total: 1168322
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1168322.0
+0 0 1 0 0 0 1 0 1 1 0 1 1 1 1 1 0 0 1 0 1 1 0 0 1 0 1 1 1 0 0 0 0 0
 INDIVIDUO: 24
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 306.0/313 y tiene costo: 575272
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575272.0
+1 0 1 1 1 0 0 1 1 1 0 1 1 1 0 0 1 0 0 1 0 0 0 1 1 1 0 0 0 0 1 0 1 0
 INDIVIDUO: 25
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 305.0/313 y tiene costo: 575776
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575776.0
+1 1 1 1 1 0 1 0 1 1 0 0 0 1 1 0 0 0 0 1 1 1 0 1 1 1 0 0 1 0 0 0 0 0
 INDIVIDUO: 26
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 291.0/313 y tiene costo: 576027
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -576027.0
+0 0 0 0 1 1 0 1 1 1 1 0 0 0 1 0 0 0 1 0 1 1 1 1 0 1 1 1 1 0 1 0 1 0
 INDIVIDUO: 27
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 394.0/313 se agrega costo: 584320.44 a su costo: 573111 total: 1308645
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1308645.0
+0 1 1 1 0 1 0 0 0 1 1 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 1 0 1 0 1 1 0 0
 INDIVIDUO: 28
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 354.0/313 se agrega costo: 584320.44 a su costo: 574217 total: 1235077
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1235077.0
+0 1 0 0 0 0 1 0 1 0 0 1 1 1 1 1 0 0 1 0 0 0 0 0 1 1 0 1 0 1 1 1 0 1
 INDIVIDUO: 29
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 326.0/313 se agrega costo: 584320.44 a su costo: 574719 total: 1183308
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1183308.0
+0 0 0 1 1 0 0 1 1 1 1 0 1 1 0 0 1 0 1 1 0 0 1 0 0 1 1 0 0 1 0 1 1 0
 INDIVIDUO: 30
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 336.0/313 se agrega costo: 584320.44 a su costo: 575123 total: 1202380
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1202380.0
+0 1 0 1 1 0 1 0 1 1 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 1 1 0 1 1 0 0 0 1
 INDIVIDUO: 31
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 360.0/313 se agrega costo: 584320.44 a su costo: 573915 total: 1245976
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1245976.0
+1 0 1 1 0 1 0 1 0 1 0 1 1 0 0 1 0 1 1 0 0 1 0 0 0 1 0 1 1 0 1 0 0 0
 INDIVIDUO: 32
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 309.0/313 y tiene costo: 575121
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575121.0
+1 1 1 1 1 1 0 1 0 1 0 1 0 0 1 0 1 1 0 0 0 1 0 0 0 1 0 1 0 1 0 1 0 0
 INDIVIDUO: 33
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 319.0/313 se agrega costo: 584320.44 a su costo: 575525 total: 1171046
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1171046.0
+0 0 1 1 0 0 0 0 0 0 0 0 1 1 1 0 1 1 1 1 1 1 0 1 0 0 1 0 0 0 1 1 1 1
 INDIVIDUO: 34
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 308.0/313 y tiene costo: 575625
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575625.0
+1 1 1 1 0 0 0 0 0 1 0 1 1 1 0 1 0 1 1 1 1 1 0 0 1 0 0 0 0 0 1 0 1 0
 INDIVIDUO: 35
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 314.0/313 se agrega costo: 584320.44 a su costo: 575323 total: 1161510
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1161510.0
+1 0 1 1 1 0 1 0 0 0 0 1 1 0 1 1 1 0 0 0 0 0 1 1 0 0 1 1 1 1 0 0 0 0
 INDIVIDUO: 36
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 318.0/313 se agrega costo: 584320.44 a su costo: 576029 total: 1169683
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1169683.0
+0 0 0 1 0 1 0 0 0 1 0 1 1 0 1 1 0 1 1 1 0 1 1 1 1 0 0 0 0 0 1 1 1 1
 INDIVIDUO: 37
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 302.0/313 y tiene costo: 575927
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575927.0
+1 0 1 0 0 0 0 0 1 0 0 1 0 1 0 0 1 1 1 1 0 1 0 0 1 1 0 1 0 0 1 0 1 1
 INDIVIDUO: 38
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 332.0/313 se agrega costo: 584320.44 a su costo: 574417 total: 1194207
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1194207.0
+0 0 1 0 0 1 1 1 0 1 0 0 1 0 1 1 0 1 0 1 0 0 1 1 1 0 0 1 1 1 1 0 0 0
 INDIVIDUO: 39
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 302.0/313 y tiene costo: 575927
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575927.0
+0 0 0 0 0 0 0 1 1 0 0 1 0 1 0 1 1 0 1 1 0 1 1 1 0 1 0 1 0 1 1 1 1 0
 INDIVIDUO: 40
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 320.0/313 se agrega costo: 584320.44 a su costo: 575021 total: 1172409
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1172409.0
+1 0 1 1 1 1 0 0 0 0 0 1 0 1 1 1 1 0 0 0 0 0 1 1 1 1 0 0 0 1 1 0 0 1
 INDIVIDUO: 41
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 303.0/313 y tiene costo: 575423
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575423.0
+0 0 1 0 1 0 0 1 1 0 1 0 1 1 1 0 1 1 1 0 0 1 1 0 1 0 0 1 0 0 0 1 0 1
 INDIVIDUO: 42
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 354.0/313 se agrega costo: 584320.44 a su costo: 574217 total: 1235077
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1235077.0
+0 0 0 1 0 0 1 1 0 1 0 1 0 1 1 1 1 0 0 0 1 0 1 1 1 0 1 0 1 0 1 0 1 0
 INDIVIDUO: 43
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 333.0/313 se agrega costo: 584320.44 a su costo: 575274 total: 1196931
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1196931.0
+1 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 0 0 0 1 1 0 0 0 0 1 0 1 0 0 1 0 0
 INDIVIDUO: 44
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 332.0/313 se agrega costo: 584320.44 a su costo: 574417 total: 1194207
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1194207.0
+0 1 1 1 1 0 0 0 0 1 0 0 1 1 0 0 1 1 0 1 1 0 0 1 0 1 0 0 0 1 0 1 1 1
 INDIVIDUO: 45
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 361.0/313 se agrega costo: 584320.44 a su costo: 573411 total: 1247339
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1247339.0
+1 1 0 1 1 1 1 0 0 1 0 0 0 1 0 1 0 0 0 1 0 0 0 1 1 1 1 1 1 1 0 0 0 0
 INDIVIDUO: 46
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 341.0/313 se agrega costo: 584320.44 a su costo: 573964 total: 1210556
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1210556.0
+1 1 0 0 1 1 1 0 0 0 0 0 0 1 1 0 0 0 1 1 0 0 1 1 0 1 0 1 0 0 0 1 1 1
 INDIVIDUO: 47
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 320.0/313 se agrega costo: 584320.44 a su costo: 575021 total: 1172409
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1172409.0
+0 0 1 1 1 0 0 1 0 1 0 0 1 1 0 0 0 0 1 0 0 1 1 1 0 1 1 1 1 1 0 0 0 0
 INDIVIDUO: 48
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 343.0/313 se agrega costo: 584320.44 a su costo: 574317 total: 1214642
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1214642.0
+0 0 0 1 0 0 0 0 1 1 0 1 0 0 1 1 1 0 0 1 0 0 0 1 0 1 1 1 1 1 1 0 1 0
 INDIVIDUO: 49
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 315.0/313 se agrega costo: 584320.44 a su costo: 576180 total: 1164234
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1164234.0
+0 0 1 1 1 1 1 0 1 0 0 0 1 0 0 0 1 0 1 1 1 0 0 0 1 1 0 1 0 1 1 0 1 0
 INDIVIDUO: 50
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 318.0/313 se agrega costo: 584320.44 a su costo: 574668 total: 1168322
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1168322.0
+0 0 0 0 0 1 0 0 1 1 1 0 0 1 1 1 0 1 0 1 1 0 1 1 0 0 1 1 0 0 1 1 1 1
 INDIVIDUO: 51
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 322.0/313 se agrega costo: 584320.44 a su costo: 575374 total: 1176496
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1176496.0
+1 1 0 0 0 1 0 1 1 0 0 1 0 0 1 1 1 1 1 1 1 1 0 0 1 0 0 1 1 0 0 0 0 1
 INDIVIDUO: 52
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 351.0/313 se agrega costo: 584320.44 a su costo: 574368 total: 1229628
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1229628.0
+1 1 1 1 0 0 1 0 0 0 1 1 1 0 1 0 0 0 1 1 1 0 0 0 1 1 0 0 1 0 1 1 0 1
 INDIVIDUO: 53
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 341.0/313 se agrega costo: 584320.44 a su costo: 573964 total: 1210556
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1210556.0
+0 1 1 1 1 0 0 1 1 0 0 1 1 0 0 1 0 1 1 1 0 0 0 1 1 0 0 0 0 0 1 0 1 1
 INDIVIDUO: 54
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 328.0/313 se agrega costo: 584320.44 a su costo: 575072 total: 1187395
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1187395.0
+0 0 1 0 1 0 0 1 0 1 0 0 0 1 0 1 1 0 1 1 0 1 0 0 0 1 1 1 0 0 1 0 1 1
 INDIVIDUO: 55
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 286.0/313 y tiene costo: 575825
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575825.0
+1 0 1 1 0 0 0 0 1 0 1 1 0 0 1 0 1 1 0 1 1 1 1 0 0 0 1 0 0 1 0 1 0 1
 INDIVIDUO: 56
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 352.0/313 se agrega costo: 584320.44 a su costo: 573864 total: 1230991
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1230991.0
+0 0 0 0 0 1 1 0 0 0 0 0 1 1 1 0 1 0 1 1 1 0 1 0 1 1 0 1 1 1 1 1 0 0
 INDIVIDUO: 57
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 359.0/313 se agrega costo: 584320.44 a su costo: 574419 total: 1244614
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1244614.0
+0 1 1 0 0 1 1 1 1 0 0 1 0 1 1 1 1 1 0 1 0 0 1 1 1 1 0 0 0 0 0 1 0 0
 INDIVIDUO: 58
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 342.0/313 se agrega costo: 584320.44 a su costo: 573460 total: 1211918
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1211918.0
+1 0 0 0 1 1 0 1 1 1 0 0 1 1 1 1 0 0 0 0 0 1 0 0 1 1 1 0 0 0 0 1 1 0
 INDIVIDUO: 59
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 323.0/313 se agrega costo: 584320.44 a su costo: 574870 total: 1177858
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1177858.0
+1 0 0 1 0 1 1 0 1 0 1 1 1 0 0 1 1 0 1 0 0 1 1 1 0 0 0 1 0 0 1 1 0 0
 INDIVIDUO: 60
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 328.0/313 se agrega costo: 584320.44 a su costo: 575072 total: 1187395
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1187395.0
+1 1 1 0 0 1 1 0 1 1 0 0 1 1 1 1 0 1 0 0 0 0 1 0 0 1 0 1 0 0 0 1 0 1
 INDIVIDUO: 61
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 300.0/313 y tiene costo: 575574
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575574.0
+0 1 1 0 1 1 0 0 1 1 1 0 0 0 1 1 1 0 0 1 1 1 1 1 0 0 0 0 0 1 0 1 0 0
 INDIVIDUO: 62
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 358.0/313 se agrega costo: 584320.44 a su costo: 573562 total: 1241890
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1241890.0
+0 1 0 1 0 0 0 1 1 0 1 0 0 0 1 0 1 1 0 0 1 0 1 1 1 0 1 0 1 1 1 0 0 1
 INDIVIDUO: 63
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 332.0/313 se agrega costo: 584320.44 a su costo: 574417 total: 1194207
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1194207.0
+0 1 0 0 1 1 1 1 1 1 0 0 1 0 0 1 1 1 1 1 0 1 0 0 0 1 0 1 1 0 1 0 0 0
 INDIVIDUO: 64
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 350.0/313 se agrega costo: 584320.44 a su costo: 574872 total: 1228265
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1228265.0
+1 0 0 1 0 1 1 1 1 0 1 0 1 0 1 0 1 1 0 0 0 0 0 1 0 0 1 1 1 0 1 1 0 1
 INDIVIDUO: 65
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 345.0/313 se agrega costo: 584320.44 a su costo: 574670 total: 1218729
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1218729.0
+1 0 0 0 0 1 0 1 0 1 1 0 1 1 1 0 1 0 0 1 0 1 0 0 0 1 0 1 1 0 0 1 1 1
 INDIVIDUO: 66
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 376.0/313 se agrega costo: 584320.44 a su costo: 574017 total: 1275948
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1275948.0
+0 0 0 1 1 1 1 1 1 1 1 0 1 0 0 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1
 INDIVIDUO: 67
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 321.0/313 se agrega costo: 584320.44 a su costo: 574517 total: 1173772
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1173772.0
+0 0 0 1 0 1 0 0 1 1 1 0 1 1 1 0 1 1 0 0 1 1 1 0 1 1 1 0 0 1 0 1 0 0
 INDIVIDUO: 68
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 331.0/313 se agrega costo: 584320.44 a su costo: 574921 total: 1192844
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1192844.0
+0 1 1 1 1 0 1 1 0 0 0 0 0 1 1 0 1 1 0 1 0 0 1 0 0 0 0 1 0 1 1 0 0 1
 INDIVIDUO: 69
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 339.0/313 se agrega costo: 584320.44 a su costo: 574972 total: 1207830
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1207830.0
+1 0 0 1 1 1 1 1 0 0 0 1 1 0 1 0 0 0 0 0 0 1 1 1 0 0 1 1 1 0 0 0 0 1
 INDIVIDUO: 70
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 343.0/313 se agrega costo: 584320.44 a su costo: 574317 total: 1214642
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1214642.0
+0 1 1 1 1 0 1 0 1 0 0 1 0 0 0 0 1 0 1 0 0 1 0 0 0 1 1 0 1 1 1 1 0 0
 INDIVIDUO: 71
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 344.0/313 se agrega costo: 584320.44 a su costo: 573813 total: 1216005
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1216005.0
+1 1 0 0 0 1 0 1 1 0 0 0 1 1 1 1 0 1 1 1 0 0 1 0 0 0 1 0 0 0 0 1 1 1
 INDIVIDUO: 72
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 268.0/313 y tiene costo: 576731
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -576731.0
+1 0 0 0 1 0 0 0 1 1 0 1 1 0 1 1 1 1 1 1 0 0 1 0 0 0 0 1 0 1 1 0 0 0
 INDIVIDUO: 73
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 353.0/313 se agrega costo: 584320.44 a su costo: 574721 total: 1233715
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1233715.0
+1 0 0 0 0 1 0 0 0 1 1 1 1 1 0 0 1 0 0 1 0 1 0 0 1 1 1 0 0 0 1 0 1 1
 INDIVIDUO: 74
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 304.0/313 y tiene costo: 574919
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -574919.0
+1 1 0 0 0 0 1 1 1 0 0 0 1 1 1 0 1 1 1 0 0 1 0 1 0 1 0 0 1 1 0 0 0 1
 INDIVIDUO: 75
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 317.0/313 se agrega costo: 584320.44 a su costo: 575172 total: 1166959
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1166959.0
+0 0 1 0 1 0 1 0 1 1 1 0 1 1 0 0 0 0 0 1 1 0 0 1 0 1 0 1 0 1 1 1 0 0
 INDIVIDUO: 76
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 361.0/313 se agrega costo: 584320.44 a su costo: 573411 total: 1247339
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1247339.0
+0 1 0 1 1 0 0 0 1 1 1 1 0 1 0 1 0 0 1 0 1 1 0 0 1 0 0 0 1 0 1 0 0 1
 INDIVIDUO: 77
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 351.0/313 se agrega costo: 584320.44 a su costo: 574368 total: 1229628
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1229628.0
+0 0 0 0 0 0 0 1 1 0 0 1 0 0 1 1 1 1 0 0 1 0 1 0 0 1 1 1 0 1 1 1 0 1
 INDIVIDUO: 78
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 300.0/313 y tiene costo: 575574
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575574.0
+1 1 0 0 0 0 0 0 1 0 0 0 0 1 1 1 0 0 0 0 1 1 1 1 1 1 0 0 1 1 1 0 1 1
 INDIVIDUO: 79
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 279.0/313 y tiene costo: 576631
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -576631.0
+1 0 0 1 0 0 1 1 0 0 0 0 1 0 1 0 0 0 1 0 0 1 1 1 1 1 0 1 1 1 1 0 1 1
 INDIVIDUO: 80
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 264.0/313 y tiene costo: 577386
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -577386.0
+1 0 1 1 1 1 1 0 1 0 0 1 0 1 0 1 1 1 1 0 0 0 0 1 0 0 0 1 0 1 1 0 1 0
 INDIVIDUO: 81
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 328.0/313 se agrega costo: 584320.44 a su costo: 575072 total: 1187395
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1187395.0
+1 0 0 1 1 0 1 0 0 1 1 0 0 1 1 1 1 1 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1
 INDIVIDUO: 82
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 323.0/313 se agrega costo: 584320.44 a su costo: 574870 total: 1177858
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1177858.0
+0 0 1 1 1 0 0 1 1 0 0 1 0 0 0 1 1 1 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 0
 INDIVIDUO: 83
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 341.0/313 se agrega costo: 584320.44 a su costo: 573964 total: 1210556
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1210556.0
+0 1 1 0 1 0 1 1 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 0 1 1 0 0 0 0
 INDIVIDUO: 84
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 300.0/313 y tiene costo: 575574
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575574.0
+0 0 1 1 0 0 0 1 0 1 1 1 1 1 0 0 1 0 0 1 1 1 0 1 0 0 0 0 0 1 1 0 1 1
 INDIVIDUO: 85
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 355.0/313 se agrega costo: 584320.44 a su costo: 573713 total: 1236440
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1236440.0
+1 1 0 0 0 0 0 1 0 0 1 0 1 1 0 0 1 1 0 1 1 1 0 0 1 0 1 0 1 0 1 0 1 1
 INDIVIDUO: 86
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 318.0/313 se agrega costo: 584320.44 a su costo: 574668 total: 1168322
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1168322.0
+0 0 0 0 1 0 1 0 1 0 1 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0 1 1 0 0 0 0 1 0
 INDIVIDUO: 87
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 369.0/313 se agrega costo: 584320.44 a su costo: 573462 total: 1262325
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1262325.0
+0 0 0 0 0 1 1 1 1 1 0 1 1 0 1 0 1 1 1 1 1 0 0 0 0 1 0 0 0 0 0 1 0 1
 INDIVIDUO: 88
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 336.0/313 se agrega costo: 584320.44 a su costo: 575123 total: 1202380
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1202380.0
+1 0 0 1 1 1 0 1 0 1 1 0 1 0 1 0 0 0 1 0 0 0 1 1 1 1 1 0 0 1 0 1 0 0
 INDIVIDUO: 89
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 349.0/313 se agrega costo: 584320.44 a su costo: 574015 total: 1225541
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1225541.0
+1 1 0 1 1 1 1 1 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0
 INDIVIDUO: 90
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 274.0/313 y tiene costo: 576429
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -576429.0
+1 0 1 1 1 0 0 0 1 1 0 1 1 1 0 0 0 1 1 1 1 0 0 0 0 0 1 0 1 1 0 0 1 0
 INDIVIDUO: 91
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+NO SE PENALIZA	|	 El individuo demora 306.0/313 y tiene costo: 575272
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -575272.0
+1 1 1 0 0 1 0 1 0 0 1 1 0 1 1 0 0 0 1 0 1 1 1 0 0 1 1 0 0 1 1 0 0 0
 INDIVIDUO: 92
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 335.0/313 se agrega costo: 584320.44 a su costo: 575627 total: 1201018
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1201018.0
+0 1 0 0 1 1 0 0 0 0 0 1 0 0 0 0 0 1 0 1 1 1 1 0 0 0 1 1 1 1 1 0 1 1
 INDIVIDUO: 93
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 340.0/313 se agrega costo: 584320.44 a su costo: 574468 total: 1209193
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1209193.0
+0 0 0 0 1 1 0 1 0 0 1 1 1 1 1 1 1 0 0 0 1 1 0 0 1 1 1 1 0 0 0 0 1 1
 INDIVIDUO: 94
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 352.0/313 se agrega costo: 584320.44 a su costo: 573864 total: 1230991
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1230991.0
+1 1 0 1 0 1 1 1 1 1 0 0 0 0 0 1 0 0 1 0 1 1 0 0 0 1 1 1 1 0 1 0 0 0
 INDIVIDUO: 95
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 372.0/313 se agrega costo: 584320.44 a su costo: 573311 total: 1267774
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1267774.0
+0 0 0 1 0 0 1 1 0 0 1 0 1 1 1 1 0 1 1 1 1 0 0 1 1 1 1 0 0 0 1 0 0 1
 INDIVIDUO: 96
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 316.0/313 se agrega costo: 584320.44 a su costo: 574315 total: 1164236
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1164236.0
+0 0 0 1 1 0 0 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 1 0 0 1 1 1 1 0
 INDIVIDUO: 97
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 367.0/313 se agrega costo: 584320.44 a su costo: 573109 total: 1258238
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1258238.0
+0 1 1 0 0 0 0 1 1 1 0 0 0 0 1 1 0 1 0 1 0 0 0 1 1 0 1 0 1 1 0 1 0 1
 INDIVIDUO: 98
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 335.0/313 se agrega costo: 584320.44 a su costo: 574266 total: 1199657
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1199657.0
+0 1 0 0 0 0 1 0 1 0 0 1 0 0 0 1 1 1 1 1 1 1 0 1 0 1 1 0 0 1 0 1 0 1
 INDIVIDUO: 99
-Se penaliza   	|	 El individuo demora 260.0/64 se agrega costo: 1637900.0 a su costo: 1365107 total: 3003007
+Se penaliza   	|	 El individuo demora 323.0/313 se agrega costo: 584320.44 a su costo: 574870 total: 1177858
 	Al individuo: 
 Generado en Species: 
 Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
+Fitness: -1177858.0
+1 1 1 1 1 1 1 0 1 0 1 0 1 0 1 0 0 0 0 1 0 0 0 1 1 1 1 1 1 0 0 0 0 1
 TERMINO DE MOSTRAR LOS INDIVIDUOS ORIGINALES
-Evaluated: T
-Fitness: -3003007.0
-0 1 2 3 4 5 6 8 9 10 12 14 13 16 17 18 19 18 21 22 20 23 24 27 28 25 26 29 29 31 30 32 33 34 35 37 36 37 0 1 2 3 7 13 6 7 11 9 10 11 12 13 14 15 16 26 18 19 20 21 22 23 24 25
-python verificador.py practico_tareas practico_empleados solucion.csv
-No cumple con el tiempo máximo de finalización (260 > 64).

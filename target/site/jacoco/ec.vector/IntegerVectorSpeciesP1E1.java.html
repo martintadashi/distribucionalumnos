@@ -498,94 +498,95 @@ import java.io.*;
 <span class="nc" id="L498">        }</span>
 
 
+
     protected void loadParametersForGene(EvolutionState state, int index, Parameter base, Parameter def, String postfix)
         {       
-<span class="nc" id="L503">        super.loadParametersForGene(state, index, base, def, postfix);</span>
+<span class="nc" id="L504">        super.loadParametersForGene(state, index, base, def, postfix);</span>
         
-<span class="nc" id="L505">        boolean minValExists = state.parameters.exists(base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
-<span class="nc" id="L506">        boolean maxValExists = state.parameters.exists(base.push(P_MAXGENE).push(postfix), def.push(P_MAXGENE).push(postfix));</span>
+<span class="nc" id="L506">        boolean minValExists = state.parameters.exists(base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
+<span class="nc" id="L507">        boolean maxValExists = state.parameters.exists(base.push(P_MAXGENE).push(postfix), def.push(P_MAXGENE).push(postfix));</span>
         
-<span class="nc bnc" id="L508" title="All 4 branches missed.">        if ((maxValExists &amp;&amp; !(minValExists)))</span>
-<span class="nc" id="L509">            state.output.warning(&quot;Max Gene specified but not Min Gene&quot;, base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
+<span class="nc bnc" id="L509" title="All 4 branches missed.">        if ((maxValExists &amp;&amp; !(minValExists)))</span>
+<span class="nc" id="L510">            state.output.warning(&quot;Max Gene specified but not Min Gene&quot;, base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
                 
-<span class="nc bnc" id="L511" title="All 4 branches missed.">        if ((minValExists &amp;&amp; !(maxValExists)))</span>
-<span class="nc" id="L512">            state.output.warning(&quot;Min Gene specified but not Max Gene&quot;, base.push(P_MAXGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
+<span class="nc bnc" id="L512" title="All 4 branches missed.">        if ((minValExists &amp;&amp; !(maxValExists)))</span>
+<span class="nc" id="L513">            state.output.warning(&quot;Min Gene specified but not Max Gene&quot;, base.push(P_MAXGENE).push(postfix), def.push(P_MINGENE).push(postfix));</span>
 
-<span class="nc bnc" id="L514" title="All 2 branches missed.">        if (minValExists)</span>
+<span class="nc bnc" id="L515" title="All 2 branches missed.">        if (minValExists)</span>
             {        
-<span class="nc" id="L516">            long minVal = state.parameters.getLongWithDefault(base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix), 0);</span>
+<span class="nc" id="L517">            long minVal = state.parameters.getLongWithDefault(base.push(P_MINGENE).push(postfix), def.push(P_MINGENE).push(postfix), 0);</span>
 
             //check if the value is in range
-<span class="nc bnc" id="L519" title="All 2 branches missed.">            if (!inNumericalTypeRange(minVal))</span>
-<span class="nc" id="L520">                state.output.error(&quot;Min Gene Value out of range for data type &quot; + i_prototype.getClass().getName(),</span>
-<span class="nc" id="L521">                    base.push(P_MINGENE).push(postfix), </span>
-<span class="nc" id="L522">                    base.push(P_MINGENE).push(postfix));</span>
-<span class="nc" id="L523">            else minGene[index] = minVal;</span>
+<span class="nc bnc" id="L520" title="All 2 branches missed.">            if (!inNumericalTypeRange(minVal))</span>
+<span class="nc" id="L521">                state.output.error(&quot;Min Gene Value out of range for data type &quot; + i_prototype.getClass().getName(),</span>
+<span class="nc" id="L522">                    base.push(P_MINGENE).push(postfix), </span>
+<span class="nc" id="L523">                    base.push(P_MINGENE).push(postfix));</span>
+<span class="nc" id="L524">            else minGene[index] = minVal;</span>
 
-<span class="nc bnc" id="L525" title="All 2 branches missed.">            if (dynamicInitialSize)</span>
-<span class="nc" id="L526">                state.output.warnOnce(&quot;Using dynamic initial sizing, but per-gene or per-segment min-gene declarations.  This is probably wrong.  You probably want to use global min/max declarations.&quot;,</span>
-<span class="nc" id="L527">                    base.push(P_MINGENE).push(postfix), </span>
-<span class="nc" id="L528">                    base.push(P_MINGENE).push(postfix));</span>
+<span class="nc bnc" id="L526" title="All 2 branches missed.">            if (dynamicInitialSize)</span>
+<span class="nc" id="L527">                state.output.warnOnce(&quot;Using dynamic initial sizing, but per-gene or per-segment min-gene declarations.  This is probably wrong.  You probably want to use global min/max declarations.&quot;,</span>
+<span class="nc" id="L528">                    base.push(P_MINGENE).push(postfix), </span>
+<span class="nc" id="L529">                    base.push(P_MINGENE).push(postfix));</span>
             }
             
-<span class="nc bnc" id="L531" title="All 2 branches missed.">        if (maxValExists)</span>
+<span class="nc bnc" id="L532" title="All 2 branches missed.">        if (maxValExists)</span>
             {
-<span class="nc" id="L533">            long maxVal = state.parameters.getLongWithDefault(base.push(P_MAXGENE).push(postfix), def.push(P_MAXGENE).push(postfix), 0);</span>
+<span class="nc" id="L534">            long maxVal = state.parameters.getLongWithDefault(base.push(P_MAXGENE).push(postfix), def.push(P_MAXGENE).push(postfix), 0);</span>
                 
             //check if the value is in range
-<span class="nc bnc" id="L536" title="All 2 branches missed.">            if (!inNumericalTypeRange(maxVal))</span>
-<span class="nc" id="L537">                state.output.error(&quot;Max Gene Value out of range for data type &quot; + i_prototype.getClass().getName(),</span>
-<span class="nc" id="L538">                    base.push(P_MAXGENE).push(postfix), </span>
-<span class="nc" id="L539">                    base.push(P_MAXGENE).push(postfix));</span>
-<span class="nc" id="L540">            else maxGene[index] = maxVal;</span>
+<span class="nc bnc" id="L537" title="All 2 branches missed.">            if (!inNumericalTypeRange(maxVal))</span>
+<span class="nc" id="L538">                state.output.error(&quot;Max Gene Value out of range for data type &quot; + i_prototype.getClass().getName(),</span>
+<span class="nc" id="L539">                    base.push(P_MAXGENE).push(postfix), </span>
+<span class="nc" id="L540">                    base.push(P_MAXGENE).push(postfix));</span>
+<span class="nc" id="L541">            else maxGene[index] = maxVal;</span>
 
-<span class="nc bnc" id="L542" title="All 2 branches missed.">            if (dynamicInitialSize)</span>
-<span class="nc" id="L543">                state.output.warnOnce(&quot;Using dynamic initial sizing, but per-gene or per-segment max-gene declarations.  This is probably wrong.  You probably want to use global min/max declarations.&quot;,</span>
-<span class="nc" id="L544">                    base.push(P_MAXGENE).push(postfix), </span>
-<span class="nc" id="L545">                    base.push(P_MAXGENE).push(postfix));</span>
+<span class="nc bnc" id="L543" title="All 2 branches missed.">            if (dynamicInitialSize)</span>
+<span class="nc" id="L544">                state.output.warnOnce(&quot;Using dynamic initial sizing, but per-gene or per-segment max-gene declarations.  This is probably wrong.  You probably want to use global min/max declarations.&quot;,</span>
+<span class="nc" id="L545">                    base.push(P_MAXGENE).push(postfix), </span>
+<span class="nc" id="L546">                    base.push(P_MAXGENE).push(postfix));</span>
             }
 
 
         /// MUTATION
 
-<span class="nc" id="L551">        String mtype = state.parameters.getStringWithDefault(base.push(P_MUTATIONTYPE).push(postfix), def.push(P_MUTATIONTYPE).push(postfix), null);</span>
-<span class="nc" id="L552">        int mutType = -1;</span>
-<span class="nc bnc" id="L553" title="All 2 branches missed.">        if (mtype == null) { }  // we're cool</span>
-<span class="nc bnc" id="L554" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RESET_MUTATION))</span>
-<span class="nc" id="L555">            mutType = mutationType[index] = C_RESET_MUTATION; </span>
-<span class="nc bnc" id="L556" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RANDOM_WALK_MUTATION))</span>
+<span class="nc" id="L552">        String mtype = state.parameters.getStringWithDefault(base.push(P_MUTATIONTYPE).push(postfix), def.push(P_MUTATIONTYPE).push(postfix), null);</span>
+<span class="nc" id="L553">        int mutType = -1;</span>
+<span class="nc bnc" id="L554" title="All 2 branches missed.">        if (mtype == null) { }  // we're cool</span>
+<span class="nc bnc" id="L555" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RESET_MUTATION))</span>
+<span class="nc" id="L556">            mutType = mutationType[index] = C_RESET_MUTATION; </span>
+<span class="nc bnc" id="L557" title="All 2 branches missed.">        else if (mtype.equalsIgnoreCase(V_RANDOM_WALK_MUTATION))</span>
             {
-<span class="nc" id="L558">            mutType = mutationType[index] = C_RANDOM_WALK_MUTATION;</span>
-<span class="nc" id="L559">            state.output.warnOnce(&quot;Integer Random Walk Mutation used in IntegerVectorSpeciesP1E1.  Be advised that during initialization these genes will only be set to integer values.&quot;);</span>
+<span class="nc" id="L559">            mutType = mutationType[index] = C_RANDOM_WALK_MUTATION;</span>
+<span class="nc" id="L560">            state.output.warnOnce(&quot;Integer Random Walk Mutation used in IntegerVectorSpeciesP1E1.  Be advised that during initialization these genes will only be set to integer values.&quot;);</span>
             }
         else
-<span class="nc" id="L562">            state.output.error(&quot;IntegerVectorSpeciesP1E1 given a bad mutation type: &quot; + mtype, </span>
-<span class="nc" id="L563">                base.push(P_MUTATIONTYPE).push(postfix), def.push(P_MUTATIONTYPE).push(postfix));</span>
+<span class="nc" id="L563">            state.output.error(&quot;IntegerVectorSpeciesP1E1 given a bad mutation type: &quot; + mtype, </span>
+<span class="nc" id="L564">                base.push(P_MUTATIONTYPE).push(postfix), def.push(P_MUTATIONTYPE).push(postfix));</span>
 
 
-<span class="nc bnc" id="L566" title="All 2 branches missed.">        if (mutType == C_RANDOM_WALK_MUTATION)</span>
+<span class="nc bnc" id="L567" title="All 2 branches missed.">        if (mutType == C_RANDOM_WALK_MUTATION)</span>
             {
-<span class="nc bnc" id="L568" title="All 2 branches missed.">            if (state.parameters.exists(base.push(P_RANDOM_WALK_PROBABILITY).push(postfix),def.push(P_RANDOM_WALK_PROBABILITY).push(postfix)))</span>
+<span class="nc bnc" id="L569" title="All 2 branches missed.">            if (state.parameters.exists(base.push(P_RANDOM_WALK_PROBABILITY).push(postfix),def.push(P_RANDOM_WALK_PROBABILITY).push(postfix)))</span>
                 {
-<span class="nc" id="L570">                randomWalkProbability[index] = state.parameters.getDoubleWithMax(base.push(P_RANDOM_WALK_PROBABILITY).push(postfix),def.push(P_RANDOM_WALK_PROBABILITY).push(postfix), 0.0, 1.0);</span>
-<span class="nc bnc" id="L571" title="All 2 branches missed.">                if (randomWalkProbability[index] &lt;= 0)</span>
-<span class="nc" id="L572">                    state.output.error(&quot;If it's going to use random walk mutation as a per-gene or per-segment type, IntegerVectorSpeciesP1E1 must a random walk mutation probability between 0.0 and 1.0.&quot;,</span>
-<span class="nc" id="L573">                        base.push(P_RANDOM_WALK_PROBABILITY).push(postfix), def.push(P_RANDOM_WALK_PROBABILITY).push(postfix));</span>
+<span class="nc" id="L571">                randomWalkProbability[index] = state.parameters.getDoubleWithMax(base.push(P_RANDOM_WALK_PROBABILITY).push(postfix),def.push(P_RANDOM_WALK_PROBABILITY).push(postfix), 0.0, 1.0);</span>
+<span class="nc bnc" id="L572" title="All 2 branches missed.">                if (randomWalkProbability[index] &lt;= 0)</span>
+<span class="nc" id="L573">                    state.output.error(&quot;If it's going to use random walk mutation as a per-gene or per-segment type, IntegerVectorSpeciesP1E1 must a random walk mutation probability between 0.0 and 1.0.&quot;,</span>
+<span class="nc" id="L574">                        base.push(P_RANDOM_WALK_PROBABILITY).push(postfix), def.push(P_RANDOM_WALK_PROBABILITY).push(postfix));</span>
                 }
             else
-<span class="nc" id="L576">                state.output.error(&quot;If IntegerVectorSpeciesP1E1 is going to use polynomial mutation as a per-gene or per-segment type, either the global or per-gene/per-segment random walk mutation probability must be defined.&quot;,</span>
-<span class="nc" id="L577">                    base.push(P_RANDOM_WALK_PROBABILITY).push(postfix), def.push(P_RANDOM_WALK_PROBABILITY).push(postfix));</span>
+<span class="nc" id="L577">                state.output.error(&quot;If IntegerVectorSpeciesP1E1 is going to use polynomial mutation as a per-gene or per-segment type, either the global or per-gene/per-segment random walk mutation probability must be defined.&quot;,</span>
+<span class="nc" id="L578">                    base.push(P_RANDOM_WALK_PROBABILITY).push(postfix), def.push(P_RANDOM_WALK_PROBABILITY).push(postfix));</span>
 
-<span class="nc bnc" id="L579" title="All 2 branches missed.">            if (state.parameters.exists(base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix)))</span>
+<span class="nc bnc" id="L580" title="All 2 branches missed.">            if (state.parameters.exists(base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix)))</span>
                 {
-<span class="nc" id="L581">                mutationIsBounded[index] = state.parameters.getBoolean(base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix), true);</span>
+<span class="nc" id="L582">                mutationIsBounded[index] = state.parameters.getBoolean(base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix), true);</span>
                 }
-<span class="nc bnc" id="L583" title="All 2 branches missed.">            else if (!mutationIsBoundedDefined)</span>
-<span class="nc" id="L584">                state.output.fatal(&quot;If IntegerVectorSpeciesP1E1 is going to use gaussian, polynomial, or integer random walk mutation as a per-gene or per-segment type, the mutation bounding must be defined.&quot;,</span>
-<span class="nc" id="L585">                    base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix));</span>
+<span class="nc bnc" id="L584" title="All 2 branches missed.">            else if (!mutationIsBoundedDefined)</span>
+<span class="nc" id="L585">                state.output.fatal(&quot;If IntegerVectorSpeciesP1E1 is going to use gaussian, polynomial, or integer random walk mutation as a per-gene or per-segment type, the mutation bounding must be defined.&quot;,</span>
+<span class="nc" id="L586">                    base.push(P_MUTATION_BOUNDED).push(postfix), def.push(P_MUTATION_BOUNDED).push(postfix));</span>
 
             }           
-<span class="nc" id="L588">        }</span>
+<span class="nc" id="L589">        }</span>
 
 
 

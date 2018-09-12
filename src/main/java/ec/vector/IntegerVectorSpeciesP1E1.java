@@ -498,6 +498,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpeciesP1E1
         }
 
 
+
     protected void loadParametersForGene(EvolutionState state, int index, Parameter base, Parameter def, String postfix)
         {       
         super.loadParametersForGene(state, index, base, def, postfix);
