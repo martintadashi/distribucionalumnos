@@ -5,21 +5,31 @@ RUTA_AL_JAR=target/
 NOMBRE_JAR=ecj-26.jar
 RUTA_AL_PARAMS=app/p1e1/
 NOMBRE_PARAMS=p1e1.params
-for i in {1} ; do
-	CANT_EMPLEADOS=$((1 + RANDOM % 50))
-	CANT_TAREAS=$(($CANT_EMPLEADOS + RANDOM % 50))    
+TOPE_RANDOM=100
+ITERACIONES=100
+NOMBRE_ARCHIVO=test-$ITERACIONES-$TOPE_RANDOM.out
+
+
+
+
+echo "$NOMBRE_ARCHIVO">$NOMBRE_ARCHIVO
+for i in {1..100} ; do
+	CANT_EMPLEADOS=$((1 + RANDOM % $TOPE_RANDOM))
+	CANT_TAREAS=$(($CANT_EMPLEADOS + RANDOM % $TOPE_RANDOM))    
 	echo =============================
     echo "Number $i: $(date +%Y-%m-%d-%H:%M:%S)"
+	echo "--------------------Number $i: $(date +%Y-%m-%d-%H:%M:%S)-------------------- ">>$NOMBRE_ARCHIVO
 	#Genero una instancia
 	#./generador <cant_tereas> <cant_empleados> <archivo_salida>	
 	python generador.py $CANT_TAREAS $CANT_EMPLEADOS practico
-	echo "Corro el generador para "$CANT_TAREAS" y "$CANT_EMPLEADOS
+	echo "	Cantidad de tareas: "$CANT_TAREAS"	Cantidad de tareas: "$CANT_EMPLEADOS>>$NOMBRE_ARCHIVO
 	#Corro el Jar
 	echo "Ejecuto: java -jar "$RUTA_AL_JAR$NOMBRE_JAR" -from "$RUTA_AL_PARAMS$NOMBRE_PARAMS 
 	java -jar $RUTA_AL_JAR$NOMBRE_JAR -from $RUTA_AL_PARAMS$NOMBRE_PARAMS
 	#Lo verifico
-	echo "python verificador.py practico_tareas practico_empleados solucion.csv"
-	python verificador.py practico_tareas practico_empleados solucion.csv
+	echo "python verificador.py practico_tareas practico_empleados solucion.csv $NOMBRE_ARCHIVO"
+	python verificador.py practico_tareas practico_empleados solucion.csv >> $NOMBRE_ARCHIVO
+	echo "">>$NOMBRE_ARCHIVO
 
 done | tee timing.log
 

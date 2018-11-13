@@ -46,7 +46,7 @@ public class SimpleEvolutionStateP1E1 extends EvolutionState
         setup(this,null);  // a garbage Parameter
 
         // POPULATION INITIALIZATION
-        output.message("Initializing Generation 0");
+        //output.message("Initializing Generation 0");
         statistics.preInitializationStatistics(this);
         population = initializer.initialPopulation(this, 0); // unthreaded
         statistics.postInitializationStatistics(this);

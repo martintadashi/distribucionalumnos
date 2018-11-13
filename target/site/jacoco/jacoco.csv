@@ -84,7 +84,7 @@ ecj,ec.app.hiff,HIFF,225,0,24,0,39,0,18,0,6,0
 ecj,ec.app.royaltree,RoyalTree,194,0,22,0,41,0,16,0,5,0
 ecj,ec.vector,ShortVectorIndividual,1332,0,151,0,204,0,103,0,24,0
 ecj,ec.vector,FloatVectorSpecies,1429,0,152,0,209,0,89,0,13,0
-ecj,ec.vector,IntegerVectorIndividualP1E1,1379,0,157,0,214,0,109,0,27,0
+ecj,ec.vector,IntegerVectorIndividualP1E1,1363,0,157,0,213,0,109,0,27,0
 ecj,ec.vector,VectorDefaults,3,5,0,0,1,1,1,1,1,1
 ecj,ec.vector,GeneVectorSpecies,32,0,0,0,7,0,2,0,2,0
 ecj,ec.vector,BitVectorSpecies,171,0,14,0,32,0,11,0,4,0
@@ -100,7 +100,7 @@ ecj,ec.vector,FloatVectorIndividual,2160,0,237,0,344,0,155,0,31,0
 ecj,ec.vector,BitVectorIndividual,851,0,91,0,149,0,69,0,21,0
 ecj,ec.vector,GeneVectorIndividual,936,0,94,0,152,0,70,0,21,0
 ecj,ec.vector,IntegerVectorSpecies,622,293,84,24,93,47,57,7,6,4
-ecj,ec.vector,IntegerVectorSpeciesP1E1,1460,0,140,0,236,0,91,0,21,0
+ecj,ec.vector,IntegerVectorSpeciesP1E1,1446,0,140,0,235,0,91,0,21,0
 ecj,ec.app.parity.func,Or,34,0,2,0,7,0,5,0,4,0
 ecj,ec.app.parity.func,Nand,43,0,2,0,9,0,5,0,4,0
 ecj,ec.app.parity.func,And,35,0,2,0,7,0,5,0,4,0
@@ -438,7 +438,7 @@ ecj,ec.simple,SimpleFitness,144,40,11,5,30,9,18,6,11,5
 ecj,ec.simple,SimpleShortStatistics,1094,0,126,0,136,0,79,0,16,0
 ecj,ec.simple,SimpleInitializer,34,0,0,0,9,0,4,0,4,0
 ecj,ec.simple,SimpleStatistics,606,97,76,2,81,16,45,2,6,2
-ecj,ec.simple,SimpleEvolutionStateP1E1,215,0,20,0,46,0,14,0,4,0
+ecj,ec.simple,SimpleEvolutionStateP1E1,211,0,20,0,45,0,14,0,4,0
 ecj,ec.simple,SimpleBreederThread,17,0,0,0,3,0,2,0,2,0
 ecj,ec.simple,SimpleDefaults,8,0,0,0,2,0,2,0,2,0
 ecj,ec.simple,SimpleFinisher,5,0,0,0,3,0,3,0,3,0

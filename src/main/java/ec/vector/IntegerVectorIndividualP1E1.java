@@ -109,7 +109,7 @@ public class IntegerVectorIndividualP1E1 extends VectorIndividual
             state.output.fatal("IntegerVectorIndividualP1E1 requires an IntegerVectorSpeciesP1E1", base, def);
         IntegerVectorSpeciesP1E1 s = (IntegerVectorSpeciesP1E1) species;
 
-        System.out.print("cant empl y cant tareas de intVectSpe: " + s.getCantEmpleados() + ", " + s.getCantTareas());
+        //System.out.print("cant empl y cant tareas de intVectSpe: " + s.getCantEmpleados() + ", " + s.getCantTareas());
 
         
         genome = new int[s.genomeSize];

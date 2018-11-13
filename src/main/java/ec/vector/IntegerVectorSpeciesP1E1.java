@@ -409,7 +409,7 @@ public class IntegerVectorSpeciesP1E1 extends VectorSpeciesP1E1
                 float sueldoReal;
                 for (int iEmpleados = 0; iEmpleados < empleados.length; iEmpleados++) {
                     sueldoReal= empleados[iEmpleados].getSueldo()/((0.5F+empleados[iEmpleados].getHabilidad())*empleados[iEmpleados].getDedicacion());
-                    System.out.println("Sueldo real empleado "+iEmpleados+ ": "+sueldoReal);
+                    //System.out.println("Sueldo real empleado "+iEmpleados+ ": "+sueldoReal);
                     if (sueldoReal> maxSueldoReal){
                         maxSueldoReal=sueldoReal;
                     }
